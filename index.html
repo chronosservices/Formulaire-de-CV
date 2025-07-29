@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <style>
+    /* Loader Chronos-Services */
+    #loader-chronos {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #094102 0%, #FF5700 100%);
+      z-index: 9999;
+      transition: opacity 0.5s;
+    }
+    .loader-text {
+      color: #fff;
+      font-family: 'Poppins', Helvetica, Arial, sans-serif;
+      font-size: clamp(1.1rem, 5vw, 2.2rem);
+      max-width: 90vw;
+      text-align: center;
+      white-space: nowrap;
+      margin: 0 auto;
+      font-weight: 700;
+      letter-spacing: 2px;
+      opacity: 0.1;
+      animation: loaderFadeIn 1.5s cubic-bezier(.4,0,.2,1) forwards, loaderPulse 1.2s 1.5s infinite alternate;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    @keyframes loaderFadeIn {
+      from { opacity: 0.1; filter: blur(6px); }
+      to   { opacity: 1; filter: blur(0); }
+    }
+    @keyframes loaderPulse {
+      from { letter-spacing: 2px; }
+      to   { letter-spacing: 8px; }
+    }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Professionnel - Choisissez votre profil</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #094102 0%, #0A7303 100%);
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(20px, 4vw, 40px);
+            min-height: 100vh;
+        }
+
+        /* ===== PAGE D'ACCUEIL ===== */
+        .welcome-section {
+            text-align: center;
+            background: linear-gradient(145deg, #ffffff, #f7f7f7);
+            border-radius: 12px;
+            padding: clamp(30px, 6vw, 60px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-left: 8px solid #ff5700;
+            margin-bottom: 40px;
+        }
+
+        .welcome-section h1 {
+            font-size: clamp(28px, 5vw, 42px);
+            background: linear-gradient(90deg, #094102, #ff5700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .welcome-section p {
+            font-size: clamp(16px, 3vw, 20px);
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .profile-card {
+            background: linear-gradient(145deg, #ffffff, #f9f9f9);
+            border-radius: 12px;
+            padding: clamp(25px, 4vw, 35px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #094102, #ff5700);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            border-color: #ff5700;
+        }
+
+        .profile-card h3 {
+            font-size: clamp(20px, 3vw, 24px);
+            color: #094102;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .profile-card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: clamp(14px, 2vw, 16px);
+        }
+
+        .profile-card .features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .profile-card .features li {
+            padding: 8px 0;
+            color: #555;
+            font-size: clamp(13px, 1.8vw, 15px);
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-card .features li:last-child {
+            border-bottom: none;
+        }
+
+        .profile-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #094102, #ff5700);
+            color: white;
+            border: none;
+            padding: clamp(12px, 2.5vw, 16px);
+            border-radius: 8px;
+            font-size: clamp(16px, 2vw, 18px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .profile-btn:hover {
+            background: linear-gradient(90deg, #076301, #e64a00);
+            transform: translateY(-2px);
+        }
+
+        /* ===== TUTORIEL DÉBUTANT ===== */
+        .tutorial-section {
+            display: none;
+            background: linear-gradient(145deg, #ffffff, #f7f7f7);
+            border-radius: 12px;
+            padding: clamp(25px, 4vw, 40px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-left: 8px solid #ff5700;
+        }
+
+        .tutorial-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tutorial-header h2 {
+            font-size: clamp(24px, 4vw, 32px);
+            background: linear-gradient(90deg, #094102, #ff5700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .tutorial-progress {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            .step-title {
+    font-size: clamp(20px, 3vw, 26px);
+    color: #094102;
+    margin-bottom: 20px;
+    font-weight: 600;
+    margin-top: clamp(1rem, 5vh, 3rem); /* AJOUTE cette ligne */
+}
+        }
+
+        .progress-step {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active {
+            background: linear-gradient(90deg, #094102, #ff5700);
+            color: white;
+        }
+
+        .progress-step.completed {
+            background: #094102;
+            color: white;
+        }
+
+        .progress-line {
+            height: 2px;
+            width: 30px;
+            background: #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .progress-line.completed {
+            background: #094102;
+        }
+
+        .tutorial-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tutorial-step {
+            display: none;
+        }
+
+        .tutorial-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-title {
+            font-size: clamp(20px, 3vw, 26px);
+            color: #094102;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .step-definition {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ff5700;
+            margin-bottom: 25px;
+        }
+
+        .step-definition h4 {
+            color: #094102;
+            margin-bottom: 10px;
+            font-size: clamp(16px, 2.5vw, 18px);
+        }
+
+        .step-definition p {
+            color: #555;
+            font-size: clamp(14px, 2vw, 16px);
+        }
+
+        .step-example {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .step-example h4 {
+            color: #094102;
+            margin-bottom: 15px;
+            font-size: clamp(16px, 2.5vw, 18px);
+        }
+
+        .example-content {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #d4edda;
+            font-family: monospace;
+            color: #333;
+            font-size: clamp(13px, 1.8vw, 15px);
+            white-space: pre-line;
+        }
+
+        .step-tips {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 30px;
+        }
+
+        .step-tips h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: clamp(16px, 2.5vw, 18px);
+        }
+
+        .step-tips ul {
+            color: #856404;
+            padding-left: 20px;
+        }
+
+        .tutorial-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .nav-btn {
+            background: linear-gradient(90deg, #094102, #ff5700);
+            color: white;
+            border: none;
+            padding: clamp(10px, 2vw, 14px) clamp(20px, 4vw, 30px);
+            border-radius: 8px;
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(90deg, #076301, #e64a00);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .skip-btn {
+            background: transparent;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+
+        .skip-btn:hover {
+            background: #f8f9fa;
+            border-color: #094102;
+            color: #094102;
+        }
+
+        /* ===== FORMULAIRE ANCIEN CLIENT ===== */
+        .ancien-client-section {
+            display: none;
+            background: linear-gradient(145deg, #ffffff, #f7f7f7);
+            border-radius: 12px;
+            padding: clamp(25px, 4vw, 40px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-left: 8px solid #ff5700;
+        }
+
+        .ancien-client-section h2 {
+            font-size: clamp(24px, 4vw, 32px);
+            background: linear-gradient(90deg, #094102, #ff5700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 600;
+            color: #094102;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: clamp(10px, 2vw, 14px);
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: clamp(14px, 2vw, 16px);
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s ease;
+            background: linear-gradient(90deg, #ffffff, #f9f9f9);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff5700;
+            box-shadow: 0 0 8px rgba(255, 87, 0, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #094102, #ff5700);
+            color: white;
+            border: none;
+            padding: clamp(14px, 3vw, 18px);
+            border-radius: 8px;
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #076301, #e64a00);
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+            background: transparent;
+            color: #666;
+            border: 2px solid #ddd;
+            padding: clamp(10px, 2vw, 14px) clamp(20px, 4vw, 30px);
+            border-radius: 8px;
+            font-size: clamp(14px, 2vw, 16px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            background: #f8f9fa;
+            border-color: #094102;
+            color: #094102;
+        }
+
+        /* ===== NIVEAU D'URGENCE (POUR TOUS) ===== */
+        .urgence-section {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #094102;
+            margin-bottom: 25px;
+        }
+
+        .urgence-section h4 {
+            color: #094102;
+            margin-bottom: 15px;
+            font-size: clamp(16px, 2.5vw, 18px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .profiles-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .tutorial-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .tutorial-progress {
+                gap: 8px;
+            }
+
+            .progress-step {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+            }
+
+            .progress-line {
+                width: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .welcome-section {
+                padding: 20px;
+            }
+
+            .profile-card {
+                padding: 20px;
+            }
+
+            .tutorial-section,
+            .ancien-client-section {
+                padding: 20px;
+            }
+
+            .tutorial-progress {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Animation d'entrée */
+        .fade-enter {
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* États de chargement */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader Chronos-Services : affiché au chargement, masqué après 5s -->
+    <div id="loader-chronos">
+      <span class="loader-text">Chronos-Services</span>
+    </div>
+    <div class="container">
+        <!-- PAGE D'ACCUEIL - SÉLECTION PROFIL -->
+        <section id="welcomeSection" class="welcome-section fade-enter">
+            <h1>Créez votre CV professionnel</h1>
+            <p>Choisissez le parcours qui correspond le mieux à votre profil pour une expérience optimisée</p>
+            
+            <div class="profiles-grid">
+                <!-- Profil Débutant -->
+                <div class="profile-card" onclick="selectProfile('debutant')">
+                    <h3>Débutant</h3>
+                    <p>Vous n'avez jamais rédigé de CV ou vous souhaitez être guidé étape par étape</p>
+                    <ul class="features">
+                        <li>Guide interactif complet</li>
+                        <li>Explications détaillées</li>
+                        <li>Exemples concrets</li>
+                        <li>Conseils personnalisés</li>
+                        <li>Navigation étape par étape</li>
+                    </ul>
+                    <button class="profile-btn">Commencer le guide</button>
+                </div>
+
+                <!-- Profil Ancien Client -->
+                <div class="profile-card" onclick="selectProfile('ancien')">
+                    <h3>Ancien client</h3>
+                    <p>Vous avez déjà un CV et souhaitez apporter des modifications spécifiques</p>
+                    <ul class="features">
+                        <li>Processus rapide</li>
+                        <li>Modification ciblée</li>
+                        <li>Formulaire simplifié</li>
+                        <li>Gain de temps</li>
+                        <li>Mise à jour efficace</li>
+                    </ul>
+                    <button class="profile-btn">Modifier mon CV</button>
+                </div>
+
+                <!-- Profil Expert -->
+                <div class="profile-card" onclick="selectProfile('expert')">
+                    <h3>Expert</h3>
+                    <p>Vous maîtrisez parfaitement la rédaction de CV et voulez un accès direct</p>
+                    <ul class="features">
+                        <li>Accès immédiat</li>
+                        <li>Formulaire complet</li>
+                        <li>Contrôle total</li>
+                        <li>Interface avancée</li>
+                        <li>Maximum de flexibilité</li>
+                    </ul>
+                    <button class="profile-btn">Accès expert</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TUTORIEL DÉBUTANT -->
+        <section id="tutorialSection" class="tutorial-section">
+            <div class="tutorial-header">
+                <button class="back-btn" onclick="showWelcome()">← Retour à l'accueil</button>
+                <h2>Guide de création de CV</h2>
+                <p>Nous allons vous accompagner à travers chaque section de votre CV</p>
+                
+                <div class="tutorial-progress">
+                    <div class="progress-step active" id="step1">1</div>
+                    <div class="progress-line" id="line1"></div>
+                    <div class="progress-step" id="step2">2</div>
+                    <div class="progress-line" id="line2"></div>
+                    <div class="progress-step" id="step3">3</div>
+                    <div class="progress-line" id="line3"></div>
+                    <div class="progress-step" id="step4">4</div>
+                    <div class="progress-line" id="line4"></div>
+                    <div class="progress-step" id="step5">5</div>
+                    <div class="progress-line" id="line5"></div>
+                    <div class="progress-step" id="step6">6</div>
+                    <div class="progress-line" id="line6"></div>
+                    <div class="progress-step" id="step7">7</div>
+                </div>
+            </div>
+
+            <div class="tutorial-content">
+                <!-- Slide 1: Introduction -->
+                <div class="tutorial-step active" id="tutorialStep1">
+                    <h3 class="step-title">1. Introduction : Pourquoi créer un bon CV ?</h3>
+                    <div class="step-definition">
+                        <h4>Définition</h4>
+                        <p>Un CV est un document qui résume ton parcours scolaire, professionnel et tes compétences pour convaincre un recruteur.</p>
+                    </div>
+                    <div class="step-example">
+                        <h4>Exemple concret :</h4>
+                        <div class="example-content">Un CV bien présenté peut te permettre d’obtenir un entretien même si tu n’as pas beaucoup d’expérience.</div>
+                    </div>
+                    <div class="step-tips">
+                        <h4>Conseils :</h4>
+                        <ul>
+                            <li>Il doit être clair, organisé et sans fautes.</li>
+                            <li>Un bon CV augmente tes chances de décrocher un emploi ou un stage.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Informations Personnelles -->
+                <div class="tutorial-step" id="tutorialStep2">
+                    <h3 class="step-title">2. Informations Personnelles</h3>
+                    <div class="step-definition">
+                        <h4>Définition</h4>
+                        <p>Ce sont les infos de base pour que l’employeur puisse te contacter.</p>
+                    </div>
+                    <div class="step-example">
+                        <h4>Exemple concret :</h4>
+                        <div class="example-content">Nom : NGOMA BILENGUI<br>Prénom : Nadège<br>Téléphone : 07 22 66 88<br>E-mail : nadege.ngoma@gmail.com<br>Adresse : Libreville, Gabon<br>N°PNPE/ONE : 123456</div>
+                    </div>
+                    <div class="step-tips">
+                        <h4>Conseils :</h4>
+                        <ul>
+                            <li>Utilise une adresse e-mail professionnelle.</li>
+                            <li>Vérifie ton numéro de téléphone.</li>
+                            <li>Nom en MAJUSCULES, prénom avec une seule majuscule.</li>
+                            <li>Mentionne ta ville.</li>
+                            <li>Si tu es au Gabon, le N° PNPE/ONE est souvent demandé.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Formation -->
+                <div class="tutorial-step" id="tutorialStep3">
+                    <h3 class="step-title">3. Formation</h3>
+                    <div class="step-definition">
+                        <h4>Définition</h4>
+                        <p>Détaille les études ou formations que tu as suivies, du plus récent au plus ancien.</p>
+                    </div>
+                    <div class="step-example">
+                        <h4>Exemple concret :</h4>
+                        <div class="example-content">2022 – 2023 | Licence en Gestion | Université Omar Bongo, Libreville<br>2018 – 2021 | Baccalauréat série A2 | Lycée Nelson Mandela</div>
+                    </div>
+                    <div class="step-tips">
+                        <h4>Conseils :</h4>
+                        <ul>
+                            <li>Donne le nom du diplôme, l’établissement, et l’année.</li>
+                            <li>Sois honnête, n’invente rien.</li>
+                            <li>Ne mélange pas les formations avec les expériences.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Expérience Professionnelle -->
+                <div class="tutorial-step" id="tutorialStep4">
+                    <h3 class="step-title">4. Expérience Professionnelle</h3>
+                    <div class="step-definition">
+                        <h4>Définition</h4>
+                        <p>Liste les emplois ou stages que tu as faits, même les plus petits.</p>
+                    </div>
+                    <div class="step-example">
+                        <h4>Exemple concret :</h4>
+                        <div class="example-content">Jan – Mars 2023 | Assistante de gestion | Cabinet Expert-Conseils, Libreville<br>- Accueil des clients, gestion de dossiers<br>- Rédaction de comptes rendus et archivage</div>
+                    </div>
+                    <div class="step-tips">
+                        <h4>Conseils :</h4>
+                        <ul>
+                            <li>Mets des verbes d’action : gérer, accueillir, rédiger…</li>
+                            <li>Mentionne les dates, l’entreprise et les tâches effectuées.</li>
+                            <li>Même un bénévolat ou stage compte.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 5: Compétences -->
+                <div class="tutorial-step" id="tutorialStep5">
+                    <h3 class="step-title">5. Compétences</h3>
+                    <div class="step-definition">
+                        <h4>Définition</h4>
+                        <p>Ce que tu sais faire techniquement ou professionnellement.</p>
+                    </div>
+                    <div class="step-example">
+                        <h4>Exemple concret :</h4>
+                        <div class="example-content">- Microsoft Word et Excel (niveau intermédiaire)<br>- Prise de parole en public<br>- Saisie de données</div>
+                    </div>
+                    <div class="step-tips">
+                        <h4>Conseils :</h4>
+                        <ul>
+                            <li>Ne dis pas juste « maîtrise de l’outil informatique », sois précis.</li>
+                            <li>Classe-les par type : techniques, informatiques, humaines.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Qualités Personnelles -->
+                <div class="tutorial-step" id="tutorialStep6">
+                    <h3 class="step-title">6. Qualités Personnelles</h3>
+                    <div class="step-definition">
+                        <h4>Définition</h4>
+                        <p>Ce qui te rend professionnellement fiable.</p>
+                    </div>
+                    <div class="step-example">
+                        <h4>Exemple concret :</h4>
+                        <div class="example-content">- Sérieux(se)<br>- Ponctuel(le)<br>- Sens de l'organisation<br>- Bon relationnel</div>
+                    </div>
+                    <div class="step-tips">
+                        <h4>Conseils :</h4>
+                        <ul>
+                            <li>Choisis 3 à 5 qualités en lien avec le poste visé.</li>
+                            <li>Évite les qualités trop vagues comme "gentil", "cool"...</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 7: Langues Parlées -->
+                <div class="tutorial-step" id="tutorialStep7">
+                    <h3 class="step-title">7. Langues Parlées</h3>
+                    <div class="step-definition">
+                        <h4>Définition</h4>
+                        <p>Les langues que tu sais utiliser.</p>
+                    </div>
+                    <div class="step-example">
+                        <h4>Exemple concret :</h4>
+                        <div class="example-content">- Français : courant (lu, écrit, parlé)<br>- Anglais : niveau intermédiaire<br>- Fang : langue maternelle</div>
+                    </div>
+                    <div class="step-tips">
+                        <h4>Conseils :</h4>
+                        <ul>
+                            <li>Sois honnête sur ton niveau.</li>
+                            <li>Tu peux indiquer « langue maternelle » si c’est pertinent.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 8: Centres d’intérêt -->
+                <div class="tutorial-step" id="tutorialStep8">
+                    <h3 class="step-title">8. Centres d’intérêt</h3>
+                    <div class="step-definition">
+                        <h4>Définition</h4>
+                        <p>Activités personnelles ou passions.</p>
+                    </div>
+                    <div class="step-example">
+                        <h4>Exemple concret :</h4>
+                        <div class="example-content">- Lecture de romans<br>- Football<br>- Bénévolat dans une association</div>
+                    </div>
+                    <div class="step-tips">
+                        <h4>Conseils :</h4>
+                        <ul>
+                            <li>Mets des hobbies qui peuvent montrer ton sérieux ou ton engagement.</li>
+                            <li>Évite les centres d’intérêt trop génériques : "musique", "internet"…</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 9: Vérification Finale -->
+                <div class="tutorial-step" id="tutorialStep9">
+                    <h3 class="step-title">9. Vérification Finale</h3>
+                    <div class="step-definition">
+                        <h4>Définition</h4>
+                        <p>Dernière étape pour corriger les erreurs.</p>
+                    </div>
+                    <div class="step-example">
+                        <h4>Exemple de checklist :</h4>
+                        <div class="example-content">Est-ce qu’il y a des fautes d’orthographe ?<br>Est-ce que toutes les infos sont à jour ?<br>Est-ce que la mise en page est propre et lisible ?</div>
+                    </div>
+                    <div class="step-tips">
+                        <h4>Conseils :</h4>
+                        <ul>
+                            <li>Demande à un proche de relire.</li>
+                            <li>Utilise une police lisible (Arial, Calibri, etc.).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tutorial-navigation">
+                <button class="nav-btn skip-btn" onclick="skipTutorial()">Passer le guide</button>
+                <div>
+                    <button class="nav-btn" id="prevBtn" onclick="previousStep()" disabled>Précédent</button>
+                    <button class="nav-btn" id="nextBtn" onclick="nextStep()">Suivant</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULAIRE ANCIEN CLIENT -->
+        <section id="ancienClientSection" class="ancien-client-section">
+            <button class="back-btn" onclick="showWelcome()">← Retour à l'accueil</button>
+            
+            <h2>Modification de CV - Ancien client</h2>
+            
+            <form action="https://formspree.io/f/mrbgraoo" method="POST" id="ancienClientForm">
+                <input type="hidden" name="type_demande" value="Modification CV - Ancien client">
+                
+                <div class="form-group">
+                    <label for="nom_complet">Nom et Prénom complets *</label>
+                    <input type="text" id="nom_complet" name="nom_complet" required 
+                           placeholder="Ex : MAVOUNGOU Jeanne">
+                </div>
+
+                <div class="form-group">
+                    <label for="email_contact">Email de contact *</label>
+                    <input type="email" id="email_contact" name="email_contact" required 
+                           placeholder="votre.email@exemple.com">
+                </div>
+
+                <!-- NIVEAU D'URGENCE POUR ANCIEN CLIENT -->
+                <div class="urgence-section">
+                    <h4>Niveau d'urgence de votre demande</h4>
+                    <div class="form-group">
+                        <select id="urgence_ancien" name="urgence" required>
+                            <option value="">Sélectionnez le délai souhaité</option>
+                            <option value="Normal - 48h">Normal - Sous 48 heures</option>
+                            <option value="Urgent - 24h">Urgent - Sous 24 heures</option>
+                            <option value="Très urgent - Même jour">Très urgent - Le jour même</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="section_modifier">Section du CV à modifier *</label>
+                    <select id="section_modifier" name="section_modifier" required>
+                        <option value="">Sélectionnez la section à modifier</option>
+                        <option value="Informations personnelles">Informations personnelles</option>
+                        <option value="Objectifs professionnels">Objectifs professionnels</option>
+                        <option value="Formation et diplômes">Formation et diplômes</option>
+                        <option value="Expériences professionnelles">Expériences professionnelles</option>
+                        <option value="Compétences">Compétences professionnelles</option>
+                        <option value="Langues">Langues</option>
+                        <option value="Centres d'intérêts">Centres d'intérêts</option>
+                        <option value="Informations complémentaires">Informations complémentaires</option>
+                        <option value="Mise en forme générale">Mise en forme générale du CV</option>
+                        <option value="Plusieurs sections">Plusieurs sections</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="modifications_demandees">Décrivez précisément les modifications souhaitées *</label>
+                    <textarea id="modifications_demandees" name="modifications_demandees" required 
+                              placeholder="Décrivez clairement ce que vous souhaitez modifier, ajouter ou supprimer. Soyez le plus précis possible pour un traitement rapide de votre demande.
+
+Exemple :
+- Ajouter une nouvelle expérience professionnelle : Agent comptable chez ABC Sarl de janvier 2024 à aujourd'hui
+- Modifier mon numéro de téléphone : nouveau numéro +241 XX XX XX XX
+- Supprimer l'ancienne formation en ...
+- Changer le modèle de CV vers le N°025"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="commentaires_supplementaires">Commentaires supplémentaires</label>
+                    <textarea id="commentaires_supplementaires" name="commentaires_supplementaires" 
+                              placeholder="Ajoutez ici toute information complémentaire qui pourrait nous aider à traiter votre demande (nouveau modèle souhaité, changement de mise en page, informations contextuelles, etc.)"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Envoyer ma demande de modification</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        // Variables globales
+let currentStep = 1;
+const totalSteps = 9;
+
+        // Fonctions de navigation principale
+        function selectProfile(profile) {
+            const welcomeSection = document.getElementById('welcomeSection');
+            const tutorialSection = document.getElementById('tutorialSection');
+            const ancienClientSection = document.getElementById('ancienClientSection');
+
+            // Cacher la section d'accueil
+            welcomeSection.style.display = 'none';
+
+            switch(profile) {
+                case 'debutant':
+                    tutorialSection.style.display = 'block';
+                    tutorialSection.classList.add('fade-enter');
+                    break;
+                    
+                case 'ancien':
+                    ancienClientSection.style.display = 'block';
+                    ancienClientSection.classList.add('fade-enter');
+                    break;
+                    
+                case 'expert':
+                    // Redirection vers le formulaire original avec niveau d'urgence
+                    redirectToExpertForm();
+                    break;
+            }
+        }
+
+        function redirectToExpertForm() {
+            // Demander le niveau d'urgence avant redirection
+            const urgence = prompt(`Choisissez votre niveau d'urgence :
+1 - Normal (sous 48h)
+2 - Urgent (sous 24h)  
+3 - Très urgent - Même jour
+
+Tapez 1, 2 ou 3 :`);
+            let urgenceValue = '';
+            switch(urgence) {
+                case '1': urgenceValue = 'Normal - 48h'; break;
+                case '2': urgenceValue = 'Urgent - 24h'; break;
+                case '3': urgenceValue = 'Très urgent - Même jour'; break;
+                default: urgenceValue = 'Normal - 48h'; break;
+            }
+            // Stocker le niveau d'urgence pour le formulaire expert
+            localStorage.setItem('niveau_urgence', urgenceValue);
+            // Redirection automatique vers le formulaire principal
+            window.location.href = 'formulaire-original.html';
+        }
+
+        function showWelcome() {
+            const welcomeSection = document.getElementById('welcomeSection');
+            const tutorialSection = document.getElementById('tutorialSection');
+            const ancienClientSection = document.getElementById('ancienClientSection');
+
+            // Cacher toutes les sections
+            tutorialSection.style.display = 'none';
+            ancienClientSection.style.display = 'none';
+            
+            // Afficher l'accueil
+            welcomeSection.style.display = 'block';
+            welcomeSection.classList.add('fade-enter');
+
+            // Réinitialiser le tutoriel
+            resetTutorial();
+        }
+
+        // Fonctions du tutoriel
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                // Masquer l'étape actuelle
+                document.getElementById(`tutorialStep${currentStep}`).classList.remove('active');
+                
+                // Marquer l'étape comme terminée
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                document.getElementById(`step${currentStep}`).classList.add('completed');
+                if (currentStep < totalSteps) {
+                    document.getElementById(`line${currentStep}`).classList.add('completed');
+                }
+                
+                currentStep++;
+                
+                // Afficher la nouvelle étape
+                document.getElementById(`tutorialStep${currentStep}`).classList.add('active');
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                
+                updateNavigationButtons();
+            } else {
+                // Fin du tutoriel - redirection vers le formulaire avec urgence
+                goToOriginalFormFromTutorial();
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                // Masquer l'étape actuelle
+                document.getElementById(`tutorialStep${currentStep}`).classList.remove('active');
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                
+                currentStep--;
+                
+                // Réafficher l'étape précédente
+                document.getElementById(`tutorialStep${currentStep}`).classList.add('active');
+                document.getElementById(`step${currentStep}`).classList.remove('completed');
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                if (currentStep < totalSteps) {
+                    document.getElementById(`line${currentStep}`).classList.remove('completed');
+                }
+                
+                updateNavigationButtons();
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            // Bouton précédent
+            prevBtn.disabled = currentStep === 1;
+            
+            // Bouton suivant
+            if (currentStep === totalSteps) {
+                nextBtn.textContent = 'Commencer mon CV';
+            } else {
+                nextBtn.textContent = 'Suivant';
+            }
+        }
+
+        function skipTutorial() {
+            if (confirm('Êtes-vous sûr de vouloir passer le guide ? Vous serez redirigé directement vers le formulaire de CV.')) {
+                goToOriginalFormFromTutorial();
+            }
+        }
+
+        function goToOriginalFormFromTutorial() {
+            // Demander le niveau d'urgence avant redirection
+            const urgence = prompt(`Avant de commencer votre CV, choisissez votre niveau d'urgence :
+1 - Normal (sous 48h)
+2 - Urgent (sous 24h)  
+3 - Très urgent (même jour)
+
+Tapez 1, 2 ou 3 :`);
+            let urgenceValue = '';
+            switch(urgence) {
+                case '1': urgenceValue = 'Normal - 48h'; break;
+                case '2': urgenceValue = 'Urgent - 24h'; break;
+                case '3': urgenceValue = 'Très urgent - Même jour'; break;
+                default: urgenceValue = 'Normal - 48h'; break;
+            }
+            // Stocker le niveau d'urgence pour le formulaire
+            localStorage.setItem('niveau_urgence', urgenceValue);
+            // Redirection automatique vers le formulaire principal
+            window.location.href = 'formulaire-original.html';
+        }
+
+        function resetTutorial() {
+            currentStep = 1;
+            
+            // Réinitialiser toutes les étapes
+            for (let i = 1; i <= totalSteps; i++) {
+                const step = document.getElementById(`tutorialStep${i}`);
+                const progressStep = document.getElementById(`step${i}`);
+                const progressLine = document.getElementById(`line${i}`);
+                
+                if (step) step.classList.remove('active');
+                if (progressStep) {
+                    progressStep.classList.remove('active', 'completed');
+                }
+                if (progressLine) progressLine.classList.remove('completed');
+            }
+            
+            // Activer la première étape
+            document.getElementById('tutorialStep1').classList.add('active');
+            document.getElementById('step1').classList.add('active');
+            
+            updateNavigationButtons();
+        }
+
+        // Gestion du formulaire ancien client
+        document.getElementById('ancienClientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitBtn = this.querySelector('.submit-btn');
+            
+            // Animation de chargement
+            submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.disabled = true;
+            
+            // Préparer les données pour un envoi structuré
+            const structuredData = {
+                type_demande: formData.get('type_demande'),
+                nom_complet: formData.get('nom_complet'),
+                email_contact: formData.get('email_contact'),
+                urgence: formData.get('urgence'),
+                section_modifier: formData.get('section_modifier'),
+                modifications_demandees: formData.get('modifications_demandees'),
+                commentaires_supplementaires: formData.get('commentaires_supplementaires'),
+                date_demande: new Date().toLocaleString('fr-FR'),
+                profil_utilisateur: 'Ancien client'
+            };
+            
+            // Créer un message structuré pour l'email
+            const messageStructure = `
+=== DEMANDE DE MODIFICATION CV - ANCIEN CLIENT ===
+
+INFORMATIONS CLIENT :
+- Profil utilisateur : ${structuredData.profil_utilisateur}
+- Nom et Prénom : ${structuredData.nom_complet}
+- Email : ${structuredData.email_contact}
+- Date de la demande : ${structuredData.date_demande}
+- Niveau d'urgence : ${structuredData.urgence}
+
+DÉTAILS DE LA MODIFICATION :
+- Section à modifier : ${structuredData.section_modifier}
+
+MODIFICATIONS DEMANDÉES :
+${structuredData.modifications_demandees}
+
+COMMENTAIRES SUPPLÉMENTAIRES :
+${structuredData.commentaires_supplementaires || 'Aucun commentaire supplémentaire'}
+
+=== FIN DE LA DEMANDE ===
+            `;
+            
+            // Ajouter le message structuré au formulaire
+            const hiddenField = document.createElement('input');
+            hiddenField.type = 'hidden';
+            hiddenField.name = 'message_structure';
+            hiddenField.value = messageStructure;
+            this.appendChild(hiddenField);
+            
+            // Envoi réel du formulaire
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    showSuccessMessage();
+                    this.reset();
+                } else {
+                    throw new Error('Erreur lors de l\'envoi');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert('Une erreur est survenue lors de l\'envoi. Veuillez réessayer.');
+            })
+            .finally(() => {
+                submitBtn.textContent = 'Envoyer ma demande de modification';
+                submitBtn.disabled = false;
+                
+                if (hiddenField.parentNode) {
+                    hiddenField.parentNode.removeChild(hiddenField);
+                }
+            });
+        });
+
+        function showSuccessMessage() {
+            const form = document.getElementById('ancienClientForm');
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.innerHTML = `
+                <strong>Demande envoyée avec succès !</strong><br>
+                Nous traiterons votre demande de modification selon le niveau d'urgence choisi. 
+                Vous recevrez une réponse par email.
+            `;
+            
+            form.parentNode.insertBefore(successDiv, form);
+            successDiv.scrollIntoView({ behavior: 'smooth' });
+            
+            setTimeout(() => {
+                if (successDiv.parentNode) {
+                    successDiv.parentNode.removeChild(successDiv);
+                }
+            }, 10000);
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // S'assurer que seule la section d'accueil est visible au démarrage
+            document.getElementById('welcomeSection').style.display = 'block';
+            document.getElementById('tutorialSection').style.display = 'none';
+            document.getElementById('ancienClientSection').style.display = 'none';
+            
+            // Initialiser les boutons du tutoriel
+            updateNavigationButtons();
+        });
+
+        // Gestion des raccourcis clavier pour le tutoriel
+        document.addEventListener('keydown', function(e) {
+            const tutorialSection = document.getElementById('tutorialSection');
+            
+            // Seulement si le tutoriel est visible
+            if (tutorialSection.style.display === 'block') {
+                if (e.key === 'ArrowLeft' && currentStep > 1) {
+                    previousStep();
+                } else if (e.key === 'ArrowRight' && currentStep <= totalSteps) {
+                    nextStep();
+                } else if (e.key === 'Escape') {
+                    if (confirm('Voulez-vous quitter le tutoriel et retourner à l\'accueil ?')) {
+                        showWelcome();
+                    }
+                }
+            }
+        });
+
+        // Animation au scroll pour les éléments visibles
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.profile-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('fade-enter');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Validation en temps réel pour le formulaire ancien client
+        function setupFormValidation() {
+            const form = document.getElementById('ancienClientForm');
+            const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('error')) {
+                        validateField(this);
+                    }
+                });
+            });
+        }
+
+        function validateField(field) {
+            const isValid = field.checkValidity();
+            
+            if (isValid) {
+                field.classList.remove('error');
+                field.style.borderColor = '#28a745';
+            } else {
+                field.classList.add('error');
+                field.style.borderColor = '#dc3545';
+            }
+            
+            return isValid;
+        }
+
+        // Initialiser la validation
+        document.addEventListener('DOMContentLoaded', setupFormValidation);
+    </script>
+</body>
+    <!-- Script pour masquer le loader après 5s -->
+    <script>
+      // Affiche le loader au chargement, le masque après 5s
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var loader = document.getElementById('loader-chronos');
+          if(loader) loader.style.opacity = '0';
+          setTimeout(function(){
+            if(loader) loader.style.display = 'none';
+          }, 600); // transition douce
+        }, 5000); // visible au moins 5s
+      });
+    </script>
+</html>
