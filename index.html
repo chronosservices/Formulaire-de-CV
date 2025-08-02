@@ -1144,27 +1144,15 @@ Tapez 1, 2 ou 3 :`);
             };
             
             // Créer un message structuré pour l'email
-            const messageStructure = `
-=== DEMANDE DE MODIFICATION CV - ANCIEN CLIENT ===
-
-INFORMATIONS CLIENT :
-- Profil utilisateur : ${structuredData.profil_utilisateur}
-- Nom et Prénom : ${structuredData.nom_complet}
-- Email : ${structuredData.email_contact}
-- Date de la demande : ${structuredData.date_demande}
-- Niveau d'urgence : ${structuredData.urgence}
-
-DÉTAILS DE LA MODIFICATION :
-- Section à modifier : ${structuredData.section_modifier}
-
-MODIFICATIONS DEMANDÉES :
-${structuredData.modifications_demandees}
-
-COMMENTAIRES SUPPLÉMENTAIRES :
-${structuredData.commentaires_supplementaires || 'Aucun commentaire supplémentaire'}
-
-=== FIN DE LA DEMANDE ===
-            `;
+            // Message texte brut strictement conforme à la demande pour le profil "Modification de CV – Ancien client"
+            const messageStructure =
+                `| DEMANDE DE MODIFICATION DE CV – Ancien Client\n\n` +
+                `Nom & Prénom : ${structuredData.nom_complet || '—'}\n` +
+                `Email de contact : ${structuredData.email_contact || '—'}\n` +
+                `Niveau d’urgence : ${structuredData.urgence || '—'}\n` +
+                `Section du CV à modifier : ${structuredData.section_modifier || '—'}\n` +
+                `Description précise des modifications : \n${structuredData.modifications_demandees || '—'}\n\n` +
+                `Commentaires supplémentaires : \n${structuredData.commentaires_supplementaires ? structuredData.commentaires_supplementaires : '—'}\n`;
             
             // Ajouter le message structuré au formulaire
             const hiddenField = document.createElement('input');
