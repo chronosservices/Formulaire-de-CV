@@ -665,6 +665,12 @@
                     <div class="progress-step" id="step6">6</div>
                     <div class="progress-line" id="line6"></div>
                     <div class="progress-step" id="step7">7</div>
+                    <div class="progress-line" id="line7"></div>
+                    <div class="progress-step" id="step8">8</div>
+                    <div class="progress-line" id="line8"></div>
+                    <div class="progress-step" id="step9">9</div>
+                    <div class="progress-line" id="line9"></div>
+                    <div class="progress-step" id="step10">10</div>
                 </div>
             </div>
 
@@ -819,17 +825,20 @@
                     <h3 class="step-title">8. Centres d’intérêt</h3>
                     <div class="step-definition">
                         <h4>Définition</h4>
-                        <p>Activités personnelles ou passions.</p>
+                        <p>Les centres d’intérêt sont les activités personnelles, loisirs ou passions que tu pratiques en dehors du cadre scolaire ou professionnel. Ils permettent de montrer ta personnalité, tes valeurs et parfois des compétences utiles pour le poste visé.</p>
                     </div>
                     <div class="step-example">
                         <h4>Exemple concret :</h4>
-                        <div class="example-content">- Lecture de romans<br>- Football<br>- Bénévolat dans une association</div>
+                        <div class="example-content">- Lecture de romans policiers<br>- Football (défenseur en club amateur)<br>- Bénévolat dans une association d’aide aux devoirs<br>- Photographie<br>- Jardinage</div>
                     </div>
                     <div class="step-tips">
                         <h4>Conseils :</h4>
                         <ul>
-                            <li>Mets des hobbies qui peuvent montrer ton sérieux ou ton engagement.</li>
-                            <li>Évite les centres d’intérêt trop génériques : "musique", "internet"…</li>
+                            <li>Choisis 2 à 4 centres d’intérêt qui te représentent vraiment.</li>
+                            <li>Privilégie les activités qui montrent ton sérieux, ton engagement ou des qualités utiles (ex : sport d’équipe = esprit d’équipe).</li>
+                            <li>Sois précis : préfère « lecture de romans policiers » à « lecture » ou « football en club » à « sport ».</li>
+                            <li>Évite les centres d’intérêt trop vagues ou trop courants comme « musique », « internet », sauf si tu précises.</li>
+                            <li>Si tu fais du bénévolat, indique-le : cela valorise ton engagement.</li>
                         </ul>
                     </div>
                 </div>
@@ -850,6 +859,28 @@
                         <ul>
                             <li>Demande à un proche de relire.</li>
                             <li>Utilise une police lisible (Arial, Calibri, etc.).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 10: Mini-FAQ Débutants -->
+                <div class="tutorial-step" id="tutorialStep10">
+                    <h3 class="step-title">10. Mini-FAQ Débutants</h3>
+                    <div class="mini-faq-debutant" style="background:#f8f9fa;border-left:4px solid #ff5700;padding:18px 22px;margin:30px auto 0;max-width:600px;border-radius:8px;">
+                        <strong>Mini-FAQ Débutants</strong>
+                        <ul style="margin:14px 0 0 0;padding-left:18px;">
+                            <li>
+                                <strong>Et si je n’ai aucune expérience&nbsp;?</strong><br>
+                                <span style="color:#444;">Pas de souci, nous mettrons en avant vos qualités, formations et vos points forts personnels.</span>
+                            </li>
+                            <li style="margin-top:12px;">
+                                <strong>Je ne sais pas quoi écrire dans certaines rubriques, c’est grave&nbsp;?</strong><br>
+                                <span style="color:#444;">Non. Remplissez ce que vous pouvez, et nous vous contacterons si besoin de précisions.</span>
+                            </li>
+                            <li style="margin-top:12px;">
+                                <strong>Et si je n’ai pas de formation professionnelle, et que mes expériences sont juste des petits boulots ou bricolages&nbsp;?</strong><br>
+                                <span style="color:#444;">Ce n’est pas un problème. Nous savons mettre en valeur toutes les expériences utiles, même les plus simples. Ce qui compte, ce sont vos compétences et votre motivation, pas seulement les diplômes.</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -941,7 +972,7 @@ Exemple :
     <script>
         // Variables globales
 let currentStep = 1;
-const totalSteps = 9;
+const totalSteps = 10;
 
         // Fonctions de navigation principale
         function selectProfile(profile) {
@@ -1013,20 +1044,18 @@ Tapez 1, 2 ou 3 :`);
             if (currentStep < totalSteps) {
                 // Masquer l'étape actuelle
                 document.getElementById(`tutorialStep${currentStep}`).classList.remove('active');
-                
                 // Marquer l'étape comme terminée
                 document.getElementById(`step${currentStep}`).classList.remove('active');
                 document.getElementById(`step${currentStep}`).classList.add('completed');
                 if (currentStep < totalSteps) {
                     document.getElementById(`line${currentStep}`).classList.add('completed');
                 }
-                
                 currentStep++;
-                
                 // Afficher la nouvelle étape
                 document.getElementById(`tutorialStep${currentStep}`).classList.add('active');
-                document.getElementById(`step${currentStep}`).classList.add('active');
-                
+                if (document.getElementById(`step${currentStep}`)) {
+                    document.getElementById(`step${currentStep}`).classList.add('active');
+                }
                 updateNavigationButtons();
             } else {
                 // Fin du tutoriel - redirection vers le formulaire avec urgence
@@ -1063,7 +1092,7 @@ Tapez 1, 2 ou 3 :`);
             
             // Bouton suivant
             if (currentStep === totalSteps) {
-                nextBtn.textContent = 'Commencer mon CV';
+                nextBtn.textContent = 'Accéder au formulaire';
             } else {
                 nextBtn.textContent = 'Suivant';
             }
@@ -1104,18 +1133,15 @@ Tapez 1, 2 ou 3 :`);
                 const step = document.getElementById(`tutorialStep${i}`);
                 const progressStep = document.getElementById(`step${i}`);
                 const progressLine = document.getElementById(`line${i}`);
-                
                 if (step) step.classList.remove('active');
                 if (progressStep) {
                     progressStep.classList.remove('active', 'completed');
                 }
                 if (progressLine) progressLine.classList.remove('completed');
             }
-            
             // Activer la première étape
             document.getElementById('tutorialStep1').classList.add('active');
             document.getElementById('step1').classList.add('active');
-            
             updateNavigationButtons();
         }
 
