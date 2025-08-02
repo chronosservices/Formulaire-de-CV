@@ -363,6 +363,20 @@
 
 <body>
     <div class="container">
+        <script>
+        // Ajout automatique du profil choisi si présent dans localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const profil = localStorage.getItem('profil_utilisateur');
+            const form = document.getElementById('mainForm');
+            if (profil && form && !form.querySelector('input[name="profil"]')) {
+                const hiddenProfil = document.createElement('input');
+                hiddenProfil.type = 'hidden';
+                hiddenProfil.name = 'profil';
+                hiddenProfil.value = profil;
+                form.appendChild(hiddenProfil);
+            }
+        });
+        </script>
         <button onclick="location.replace('./index.html')" style="background:#fff; color:#094102; border:2px solid #094102; border-radius:8px; padding:10px 24px; font-weight:600; margin-bottom:20px; cursor:pointer;">← Retour à l'accueil</button>
         <div class="image-container">
             <img src="public/Business-Facebook-Cover-05.jpg" alt="Formulaire Illustration" class="responsive-image">
@@ -851,60 +865,78 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         let message = '';
-        message += `=== INFORMATIONS PERSONNELLES ===\n`;
-        for (const [k, v] of Object.entries(blocks['INFORMATIONS PERSONNELLES'])) {
-            let label = k.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-            message += `- ${label} : ${v}\n`;
+        // Message texte brut structuré selon le format demandé
+        // Récupération du profil choisi (par exemple via un champ radio ou select nommé "profil")
+        let profil = '';
+        if (formData.has('profil')) {
+            profil = formData.get('profil');
+        } else if (blocks['AUTRES']['profil']) {
+            profil = blocks['AUTRES']['profil'];
+        }
+        if (!profil) {
+            // fallback : essaye de deviner selon d'autres champs ou laisse vide
+            profil = '';
+        }
+        let titreProfil = profil ? `|CANDIDATURE REÇUE – Profil ${profil.charAt(0).toUpperCase() + profil.slice(1).toLowerCase()}` : '|CANDIDATURE REÇUE';
+        message += `${titreProfil}\n\n`;
+        message += `Informations personnelles\n`;
+        message += `Nom & Prénom : ${blocks['INFORMATIONS PERSONNELLES']['nom_prenom'] || ''}\n`;
+        message += `Email : ${blocks['INFORMATIONS PERSONNELLES']['email'] || ''}\n`;
+        message += `Téléphone : ${blocks['INFORMATIONS PERSONNELLES']['telephone'] || ''}\n`;
+        message += `Adresse : ${blocks['INFORMATIONS PERSONNELLES']['adresse'] || ''}\n`;
+        message += `N° ONE / PNPE : ${blocks['INFORMATIONS PERSONNELLES']['N°ONE / PNPE'] || ''}\n`;
+        message += `Permis & Mobilité : ${blocks['INFORMATIONS PERSONNELLES']['permis_mobilite'] || ''}\n\n`;
+
+        message += `Poste recherché et objectif\n`;
+        message += `Poste visé : ${blocks['INFORMATIONS PERSONNELLES']['Poste recherché / Occupé'] || ''}\n`;
+        message += `Objectif professionnel : ${blocks['INFORMATIONS PERSONNELLES']['objectifs'] || ''}\n\n`;
+
+        message += `Formation\n`;
+        if (blocks['FORMATIONS'].length) {
+            blocks['FORMATIONS'].forEach((f, idx) => {
+                let ligne = [];
+                if (f.diplomes) ligne.push(`Diplôme : ${f.diplomes}`);
+                if (f.series) ligne.push(`Filière/Série : ${f.series}`);
+                if (f.dates) ligne.push(`Date/Lieu : ${f.dates}`);
+                if (f.etablissements) ligne.push(`Établissement : ${f.etablissements}`);
+                if (ligne.length) message += `- ${ligne.join(' | ')}\n`;
+            });
         }
         message += `\n`;
 
+        message += `Expériences professionnelles\n`;
+        if (blocks['EXPÉRIENCES PROFESSIONNELLES'].length) {
+            blocks['EXPÉRIENCES PROFESSIONNELLES'].forEach((exp, idx) => {
+                let ligne = [];
+                if (exp.dates) ligne.push(`Période : ${exp.dates}`);
+                if (exp.entreprises) ligne.push(`Structure : ${exp.entreprises}`);
+                if (exp.postes) ligne.push(`Poste : ${exp.postes}`);
+                if (exp.taches) ligne.push(`Tâches : ${exp.taches}`);
+                if (ligne.length) message += `- ${ligne.join(' | ')}\n`;
+            });
+        }
+        message += `\n`;
+
+        message += `Compétences\n`;
         if (blocks['COMPÉTENCES CLÉS'].length) {
-            message += `=== COMPÉTENCES CLÉS ===\n`;
             blocks['COMPÉTENCES CLÉS'].forEach((c) => {
                 message += `- ${c}\n`;
             });
-            message += `\n`;
         }
+        message += `\n`;
 
-        if (blocks['LOGICIELS'].length) {
-            message += `=== LOGICIELS ===\n`;
-            blocks['LOGICIELS'].forEach((l) => {
-                message += `- ${l}\n`;
-            });
-            message += `\n`;
+        message += `Centres d’intérêt\n`;
+        if (blocks['AUTRES']['centres_interet']) {
+            message += `- ${blocks['AUTRES']['centres_interet']}\n`;
         }
+        message += `\n`;
 
-        if (blocks['LANGUES'].length) {
-            message += `=== LANGUES ===\n`;
-            blocks['LANGUES'].forEach((l) => {
-                message += `- ${l}\n`;
-            });
-            message += `\n`;
-        }
+        message += `Niveau d’urgence\n`;
+        message += `Urgence choisie : ${blocks['AUTRES']['urgence'] || ''}\n\n`;
 
-        if (blocks['EXPÉRIENCES PROFESSIONNELLES'].length) {
-            message += `=== EXPÉRIENCES PROFESSIONNELLES ===\n`;
-            blocks['EXPÉRIENCES PROFESSIONNELLES'].forEach((exp, idx) => {
-                message += `\nExpérience ${idx + 1}\n`;
-                if (exp.dates) message += `Période : ${exp.dates}\n`;
-                if (exp.entreprises) message += `Structure : ${exp.entreprises}\n`;
-                if (exp.postes) message += `Poste : ${exp.postes}\n`;
-                if (exp.taches) message += `Tâches :\n${exp.taches}\n`;
-            });
-            message += `\n`;
-        }
-
-        if (blocks['FORMATIONS'].length) {
-            message += `=== FORMATIONS ===\n`;
-            blocks['FORMATIONS'].forEach((f, idx) => {
-                message += `\nFormation ${idx + 1}\n`;
-                if (f.diplomes) message += `Diplôme : ${f.diplomes}\n`;
-                if (f.series) message += `Filière/Série : ${f.series}\n`;
-                if (f.dates) message += `Date/Lieu : ${f.dates}\n`;
-                if (f.etablissements) message += `Établissement : ${f.etablissements}\n`;
-            });
-            message += `\n`;
-        }
+        message += `Modèle choisi\n`;
+        message += `Numéro de modèle : ${blocks['INFORMATIONS PERSONNELLES']['N° du modèle de CV & la formule'] || ''}\n`;
+        message += `Formule choisie : ${blocks['AUTRES']['formule'] || ''}\n`;
 
         if (Object.keys(blocks['AUTRES']).length) {
             message += `=== AUTRES INFORMATIONS ===\n`;
