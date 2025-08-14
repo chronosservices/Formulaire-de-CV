@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choix de service - Chronos Services</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(270deg, #094102, #FF5700, #094102);
+            background-size: 600% 600%;
+            animation: gradientMove 15s ease infinite;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .choice-btn {
+            background: white;
+            color: #094102;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 250px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .choice-btn:nth-child(1) {
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .choice-btn:nth-child(2) {
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.9s;
+        }
+
+        .choice-btn:hover {
+            background: #FF5700;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .choice-btn {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bienvenue chez Chronos Services</h1>
+    <p>Choisissez le service que vous souhaitez afin de commencer votre expérience personnalisée.</p>
+
+    <div class="button-container">
+        <button class="choice-btn" onclick="window.location.href='index.html'">Je veux un CV</button>
+        <button class="choice-btn" onclick="window.location.href='formulaire-lettre.html'">Je veux une lettre de motivation</button>
+    </div>
+
+</body>
+</html>

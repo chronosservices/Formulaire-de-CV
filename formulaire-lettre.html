@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demande de Lettre de Motivation</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #094102, #FF5700);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        line-height: 1.5;
+    }
+    .form-container {
+        background: white;
+        padding: 25px;
+        margin: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        max-width: 900px;
+        width: 100%;
+        animation: slideIn 0.5s ease-out;
+    }
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+        color: #094102;
+        font-size: 1.8em;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .definition {
+        background: #fff8e6;
+        border-left: 4px solid #FF5700;
+        padding: 15px;
+        font-size: 0.95em;
+        margin-bottom: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    h2 {
+        color: #FF5700;
+        border-bottom: 2px solid #FF5700;
+        padding-bottom: 5px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .form-section {
+        margin-bottom: 25px;
+        padding: 20px;
+        background: #fafafa;
+        border-radius: 8px;
+        border: 1px solid #eee;
+    }
+    .form-row {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #094102;
+        font-size: 0.95em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .required::after {
+        content: "*";
+        color: #FF5700;
+        margin-left: 2px;
+    }
+    input, select, textarea {
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: all 0.3s ease;
+        background: white;
+    }
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #FF5700;
+        box-shadow: 0 0 0 3px rgba(255, 87, 0, 0.1);
+        transform: translateY(-1px);
+    }
+    input:valid {
+        border-color: #28a745;
+    }
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+        font-family: Arial, sans-serif;
+    }
+    .competences-helper {
+        margin-top: 10px;
+        font-size: 0.9em;
+        color: #666;
+    }
+    .competences-suggestions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+    }
+    .competence-tag {
+        background: #f0f0f0;
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        cursor: pointer;
+        transition: all 0.2s;
+        user-select: none;
+    }
+    .competence-tag:hover {
+        background: #FF5700;
+        color: white;
+        transform: translateY(-1px);
+    }
+    .competence-tag.selected {
+        background: #094102;
+        color: white;
+        border-color: #094102;
+    }
+    .urgence-info {
+        font-size: 0.85em;
+        color: #666;
+        margin-top: 5px;
+        padding: 8px;
+        background: #f8f9fa;
+        border-radius: 5px;
+    }
+    button {
+        background: linear-gradient(90deg, #094102, #FF5700);
+        color: white;
+        border: none;
+        padding: 16px 30px;
+        font-size: 1.1em;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 25px;
+        width: 100%;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    button:active {
+        transform: translateY(0);
+    }
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+    .loading {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+    .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: #e0e0e0;
+        border-radius: 3px;
+        margin: 20px 0;
+        overflow: hidden;
+    }
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #094102, #FF5700);
+        width: 0%;
+        transition: width 0.3s ease;
+        border-radius: 3px;
+    }
+    .cv-note {
+        background: #e8f4fd;
+        border: 1px solid #bee5eb;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 0;
+        font-style: italic;
+        color: #0c5460;
+    }
+    .tooltip {
+        position: relative;
+        cursor: help;
+        color: #FF5700;
+        font-style: italic;
+        font-size: 0.8em;
+    }
+    .tooltip::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.8em;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        z-index: 1000;
+    }
+    .tooltip:hover::after {
+        opacity: 1;
+    }
+    
+    @media(max-width: 768px) {
+        .form-container {
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+        h1 {
+            font-size: 1.5em;
+        }
+        h2 {
+            font-size: 1.1em;
+        }
+        .form-row {
+            flex-direction: column;
+            gap: 0;
+        }
+        .form-section {
+            padding: 15px;
+        }
+        .competences-suggestions {
+            gap: 5px;
+        }
+        .competence-tag {
+            font-size: 0.8em;
+            padding: 4px 8px;
+        }
+        input, select, textarea {
+            font-size: 16px; /* Évite le zoom sur iOS */
+        }
+    }
+    
+    @media(max-width: 480px) {
+        .form-container {
+            margin: 5px;
+            padding: 15px;
+        }
+        h1 {
+            font-size: 1.3em;
+        }
+        button {
+            padding: 14px 20px;
+            font-size: 1em;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Formulaire de Demande - Lettre de Motivation</h1>
+    
+    <div class="definition">
+        La lettre de motivation est un document d'une page maximum, adressé à un recruteur pour lui faire part de votre volonté de travailler avec lui tout en lui faisant valoir vos qualités pour le poste.
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <form id="motivationForm" action="https://formspree.io/f/mrbgraoo" method="POST">
+
+        <div class="form-section">
+            <h2>Vos informations personnelles</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required">Nom et prénom</label>
+                    <input type="text" name="nom_prenom" required autocomplete="name" placeholder="Ex: Jean Dupont">
+                </div>
+                <div class="form-group">
+                    <label class="required">Contact</label>
+                    <input type="tel" name="contact" required autocomplete="tel" placeholder="Ex: +241 01 02 03 04">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required">Adresse e-mail</label>
+                    <input type="email" name="email" required autocomplete="email" placeholder="votre.email@exemple.com">
+                </div>
+                <div class="form-group">
+                    <label class="required">Adresse</label>
+                    <input type="text" name="adresse" required autocomplete="address-line1" placeholder="Votre adresse complète">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Informations sur l'entreprise</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required">Nom de l'entreprise</label>
+                    <input type="text" name="entreprise" required autocomplete="organization" placeholder="Ex: Total Gabon">
+                </div>
+                <div class="form-group">
+                    <label>Nom du destinataire ou service</label>
+                    <input type="text" name="destinataire" autocomplete="name" placeholder="Ex: M. Martin / Service RH">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">Adresse de l'entreprise</label>
+                <input type="text" name="adresse_entreprise" required placeholder="Adresse complète de l'entreprise">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Informations complémentaires</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Lieu et date de rédaction <span class="tooltip" data-tooltip="Sera automatiquement rempli si laissé vide">(info)</span></label>
+                    <input type="text" name="lieu_date" placeholder="Ex: Port-Gentil, le 20 Mars 2024">
+                </div>
+                <div class="form-group">
+                    <label class="required">Objet de la lettre</label>
+                    <input type="text" name="objet" required placeholder="Ex: Demande de stage en comptabilité">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required">Type de lettre</label>
+                    <select name="type_lettre" required>
+                        <option value="">Sélectionnez le type</option>
+                        <option value="Candidature spontanée">Candidature spontanée</option>
+                        <option value="Réponse à une offre">Réponse à une offre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Si réponse à une offre, précisez laquelle</label>
+                    <input type="text" name="offre" placeholder="Référence ou titre de l'offre">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Niveau d'urgence de votre demande</label>
+                <select name="urgence" required>
+                    <option value="">Sélectionnez le délai souhaité</option>
+                    <option value="Normal - Sous 48 heures">Normal - Sous 48 heures</option>
+                    <option value="Urgent - Sous 24 heures">Urgent - Sous 24 heures</option>
+                    <option value="Très urgent - Le jour même">Très urgent - Le jour même</option>
+                    <option value="Premium - Priorité absolue (+50% de frais)">Premium - Priorité absolue (+50% de frais)</option>
+                </select>
+                <div class="urgence-info" id="urgenceInfo"></div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Vos compétences</h2>
+            <div class="form-group">
+                <label>Listez vos compétences principales</label>
+                <textarea name="competences" placeholder="Décrivez vos compétences ou cliquez sur les suggestions ci-dessous..."></textarea>
+                <div class="competences-helper">
+                    Cliquez sur les compétences qui vous correspondent pour les ajouter automatiquement :
+                </div>
+                <div class="competences-suggestions">
+                    <span class="competence-tag">Sens de l'initiative</span>
+                    <span class="competence-tag">Capacité d'adaptation</span>
+                    <span class="competence-tag">Autonomie</span>
+                    <span class="competence-tag">Travail en équipe</span>
+                    <span class="competence-tag">Gestion du stress</span>
+                    <span class="competence-tag">Leadership</span>
+                    <span class="competence-tag">Communication</span>
+                    <span class="competence-tag">Dynamique et réactif</span>
+                    <span class="competence-tag">Créativité</span>
+                    <span class="competence-tag">Ponctualité</span>
+                    <span class="competence-tag">Prise d'initiatives</span>
+                    <span class="competence-tag">Organisation</span>
+                    <span class="competence-tag">Informatique</span>
+                    <span class="competence-tag">Polyvalence</span>
+                    <span class="competence-tag">Rigueur</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cv-note">
+            <strong>Important :</strong> N'oubliez pas de nous faire parvenir votre CV actuel (par email ou autre moyen) afin que nous puissions compléter les informations nécessaires à la rédaction de votre lettre de motivation.
+        </div>
+
+        <input type="hidden" name="profil" value="Demande de lettre de motivation">
+
+        <button type="submit" id="submitBtn">
+            <span id="submitText">Envoyer ma demande</span>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+            </div>
+        </button>
+    </form>
+</div>
+
+<script>
+// Gestion de la barre de progression
+function updateProgress() {
+    const form = document.getElementById('motivationForm');
+    const requiredFields = form.querySelectorAll('[required]');
+    const filledFields = Array.from(requiredFields).filter(field => field.value.trim() !== '');
+    const progress = (filledFields.length / requiredFields.length) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+}
+
+// Écouter les changements dans les champs requis
+document.querySelectorAll('[required]').forEach(field => {
+    field.addEventListener('input', updateProgress);
+    field.addEventListener('change', updateProgress);
+});
+
+// Gestion des suggestions de compétences
+const competencesTags = document.querySelectorAll('.competence-tag');
+const competencesTextarea = document.querySelector('textarea[name="competences"]');
+
+competencesTags.forEach(tag => {
+    tag.addEventListener('click', function() {
+        const competence = this.textContent;
+        const currentText = competencesTextarea.value;
+        
+        if (this.classList.contains('selected')) {
+            // Retirer la compétence
+            const regex = new RegExp(competence + '(?:,\\s*|\\s*,|$)', 'g');
+            competencesTextarea.value = currentText.replace(regex, '').replace(/,\s*$/, '').replace(/^,\s*/, '');
+            this.classList.remove('selected');
+        } else {
+            // Ajouter la compétence
+            const separator = currentText && !currentText.endsWith(', ') && !currentText.endsWith(',') ? ', ' : '';
+            competencesTextarea.value = currentText + separator + competence;
+            this.classList.add('selected');
+        }
+        
+        // Nettoyer les virgules multiples
+        competencesTextarea.value = competencesTextarea.value.replace(/,\s*,/g, ',').trim();
+        updateProgress();
+    });
+});
+
+// Gestion des informations d'urgence
+document.querySelector('select[name="urgence"]').addEventListener('change', function() {
+    const infoDiv = document.getElementById('urgenceInfo');
+    const value = this.value;
+    
+    if (value.includes('Urgent - Sous 24 heures')) {
+        infoDiv.innerHTML = 'Traitement prioritaire avec supplément tarifaire';
+        infoDiv.style.background = '#fff3cd';
+        infoDiv.style.borderColor = '#ffeaa7';
+        infoDiv.style.color = '#856404';
+    } else if (value.includes('Très urgent')) {
+        infoDiv.innerHTML = 'Traitement ultra-prioritaire avec supplément tarifaire';
+        infoDiv.style.background = '#f8d7da';
+        infoDiv.style.borderColor = '#f5c6cb';
+        infoDiv.style.color = '#721c24';
+    } else if (value.includes('Premium')) {
+        infoDiv.innerHTML = 'Service Premium - Priorité absolue sur tous les autres clients avec supplément de 50%';
+        infoDiv.style.background = '#d4edda';
+        infoDiv.style.borderColor = '#c3e6cb';
+        infoDiv.style.color = '#155724';
+    } else if (value.includes('Normal')) {
+        infoDiv.innerHTML = 'Tarif normal, délai standard de 48h';
+        infoDiv.style.background = '#d1edff';
+        infoDiv.style.borderColor = '#bee5eb';
+        infoDiv.style.color = '#0c5460';
+    } else {
+        infoDiv.innerHTML = '';
+        infoDiv.style.background = '';
+        infoDiv.style.borderColor = '';
+        infoDiv.style.color = '';
+    }
+});
+
+// Remplissage automatique de la date si vide
+document.querySelector('input[name="lieu_date"]').addEventListener('focus', function() {
+    if (!this.value) {
+        const today = new Date();
+        const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 
+                       'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        const dateStr = `Port-Gentil, le ${today.getDate()} ${months[today.getMonth()]} ${today.getFullYear()}`;
+        this.value = dateStr;
+    }
+});
+
+// Gestion du formulaire
+document.getElementById('motivationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('submitBtn');
+    const submitText = document.getElementById('submitText');
+    const loading = document.getElementById('loading');
+    
+    // Animation de soumission
+    submitBtn.disabled = true;
+    submitText.style.opacity = '0';
+    loading.style.display = 'block';
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    // Création du message structuré
+    let message = "| DEMANDE DE LETTRE DE MOTIVATION\n\n";
+    message += "VOS INFORMATIONS PERSONNELLES\n";
+    message += "Nom & Prénom : " + data.get('nom_prenom') + "\n";
+    message += "Contact : " + data.get('contact') + "\n";
+    message += "Email : " + data.get('email') + "\n";
+    message += "Adresse : " + data.get('adresse') + "\n\n";
+
+    message += "INFORMATIONS SUR L'ENTREPRISE\n";
+    message += "Nom de l'entreprise : " + data.get('entreprise') + "\n";
+    message += "Nom du destinataire/service : " + (data.get('destinataire') || "—") + "\n";
+    message += "Adresse de l'entreprise : " + data.get('adresse_entreprise') + "\n\n";
+
+    message += "INFORMATIONS COMPLÉMENTAIRES\n";
+    message += "Lieu et Date : " + (data.get('lieu_date') || "—") + "\n";
+    message += "Objet : " + data.get('objet') + "\n";
+    message += "Type de lettre : " + data.get('type_lettre') + "\n";
+    message += "Offre : " + (data.get('offre') || "—") + "\n";
+    message += "Niveau d'urgence : " + data.get('urgence') + "\n\n";
+
+    message += "COMPÉTENCES\n";
+    message += (data.get('competences') || "—") + "\n";
+
+    data.append("message_structuré", message);
+
+    // Envoi à Formspree
+    fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        if (response.ok) {
+            // Succès
+            submitText.textContent = "Demande envoyée !";
+            submitText.style.opacity = '1';
+            loading.style.display = 'none';
+            submitBtn.style.background = '#28a745';
+            
+            setTimeout(() => {
+                alert("Votre demande a été envoyée avec succès ! Nous vous contacterons rapidement.");
+                form.reset();
+                updateProgress();
+                
+                // Reset du bouton
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitText.textContent = "Envoyer ma demande";
+                    submitBtn.style.background = '';
+                }, 2000);
+            }, 1000);
+        } else {
+            throw new Error('Erreur serveur');
+        }
+    }).catch(() => {
+        // Erreur
+        submitText.textContent = "Erreur";
+        submitText.style.opacity = '1';
+        loading.style.display = 'none';
+        submitBtn.style.background = '#dc3545';
+        
+        setTimeout(() => {
+            alert("Une erreur est survenue, veuillez réessayer.");
+            submitBtn.disabled = false;
+            submitText.textContent = "Envoyer ma demande";
+            submitBtn.style.background = '';
+        }, 2000);
+    });
+});
+
+// Initialisation
+updateProgress();
+</script>
+
+</body>
+</html>
