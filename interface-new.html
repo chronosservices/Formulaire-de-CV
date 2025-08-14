@@ -952,8 +952,8 @@
                         <select id="urgence_ancien" name="urgence" required>
                             <option value="">Sélectionnez le délai souhaité</option>
                             <option value="Normal - 48h">Normal - Sous 48 heures</option>
-                            <option value="Urgent - 24h">Urgent - Sous 24 heures</option>
-                            <option value="Très urgent - Même jour">Très urgent - Le jour même</option>
+                            <option value="Premium - Priorité absolue (+50% de frais)">Premium - Priorité absolue (+50% de frais)</option>
+                <div class="urgence-info" id="urgenceInfoAncien"></div>
                         </select>
                     </div>
                 </div>
@@ -1032,17 +1032,11 @@ const totalSteps = 10;
 
         function redirectToExpertForm() {
             // Demander le niveau d'urgence avant redirection
-            const urgence = prompt(`Choisissez votre niveau d'urgence :
-1 - Normal (sous 48h)
-2 - Urgent (sous 24h)  
-3 - Très urgent - Même jour
-
-Tapez 1, 2 ou 3 :`);
+            const urgence = prompt(`Choisissez votre niveau d'urgence :\n1 - Normal (sous 48h)\n2 - Premium - Priorité absolue (+50% de frais)\n\nTapez 1 ou 2 :`);
             let urgenceValue = '';
             switch(urgence) {
                 case '1': urgenceValue = 'Normal - 48h'; break;
-                case '2': urgenceValue = 'Urgent - 24h'; break;
-                case '3': urgenceValue = 'Très urgent - Même jour'; break;
+                case '2': urgenceValue = 'Premium - Priorité absolue (+50% de frais)'; break;
                 default: urgenceValue = 'Normal - 48h'; break;
             }
             // Stocker le niveau d'urgence pour le formulaire expert
@@ -1135,17 +1129,11 @@ Tapez 1, 2 ou 3 :`);
 
         function goToOriginalFormFromTutorial() {
             // Demander le niveau d'urgence avant redirection
-            const urgence = prompt(`Avant de commencer votre CV, choisissez votre niveau d'urgence :
-1 - Normal (sous 48h)
-2 - Urgent (sous 24h)  
-3 - Très urgent (même jour)
-
-Tapez 1, 2 ou 3 :`);
+            const urgence = prompt(`Avant de commencer votre CV, choisissez votre niveau d'urgence :\n1 - Normal (sous 48h)\n2 - Premium - Priorité absolue (+50% de frais)\n\nTapez 1 ou 2 :`);
             let urgenceValue = '';
             switch(urgence) {
                 case '1': urgenceValue = 'Normal - 48h'; break;
-                case '2': urgenceValue = 'Urgent - 24h'; break;
-                case '3': urgenceValue = 'Très urgent - Même jour'; break;
+                case '2': urgenceValue = 'Premium - Priorité absolue (+50% de frais)'; break;
                 default: urgenceValue = 'Normal - 48h'; break;
             }
             // Stocker le niveau d'urgence pour le formulaire
@@ -1267,6 +1255,40 @@ Tapez 1, 2 ou 3 :`);
         }
 
         // Initialisation
+        // Affichage dynamique du message d'urgence pour le formulaire ancien client
+        document.addEventListener('DOMContentLoaded', function() {
+            var urgenceSelect = document.getElementById('urgence_ancien');
+            var infoDiv = document.getElementById('urgenceInfoAncien');
+            if (urgenceSelect && infoDiv) {
+                urgenceSelect.addEventListener('change', function() {
+                    if (this.value.includes('Premium')) {
+                        infoDiv.innerHTML = 'Service Premium - Priorité absolue sur tous les autres clients avec supplément de 50%.';
+                        infoDiv.style.background = '#d4edda';
+                        infoDiv.style.borderColor = '#c3e6cb';
+                        infoDiv.style.color = '#155724';
+                        infoDiv.style.padding = '10px';
+                        infoDiv.style.borderRadius = '6px';
+                        infoDiv.style.marginTop = '8px';
+                    } else if (this.value.includes('Normal')) {
+                        infoDiv.innerHTML = 'Tarif normal, délai standard de 48h.';
+                        infoDiv.style.background = '#d1edff';
+                        infoDiv.style.borderColor = '#bee5eb';
+                        infoDiv.style.color = '#0c5460';
+                        infoDiv.style.padding = '10px';
+                        infoDiv.style.borderRadius = '6px';
+                        infoDiv.style.marginTop = '8px';
+                    } else {
+                        infoDiv.innerHTML = '';
+                        infoDiv.style.background = '';
+                        infoDiv.style.borderColor = '';
+                        infoDiv.style.color = '';
+                        infoDiv.style.padding = '';
+                        infoDiv.style.borderRadius = '';
+                        infoDiv.style.marginTop = '';
+                    }
+                });
+            }
+        });
         document.addEventListener('DOMContentLoaded', function() {
             // S'assurer que seule la section d'accueil est visible au démarrage
             document.getElementById('welcomeSection').style.display = 'block';
