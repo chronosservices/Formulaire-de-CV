@@ -98,13 +98,47 @@
         }
 
         .steps-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .step-nav .step-desc {
+        display: none !important;
+    }
+}
+    .steps-container {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        max-width: 100%;
+        gap: 8px;
+    }
+    .step-nav {
+        flex-direction: column;
+        align-items: center;
+        min-width: 60px;
+        width: auto;
+        gap: 0;
+    }
+    .step-nav .step-desc {
+        display: none !important;
+    }
+}
+    .step-nav .step-number {
+        margin-bottom: 8px;
+    }
+    .step-nav .step-label {
+        margin-bottom: 4px;
+    }
+    .step-nav .step-desc {
+        margin-bottom: 0;
+    }
+}
 
         .step-line {
             position: absolute;
@@ -537,6 +571,33 @@
 
         /* Navigation professionnelle */
         .form-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid #e9ecef;
+        @media (max-width: 600px) {
+            .form-navigation {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+            .navigation-left, .navigation-right {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+            }
+            .navigation-left {
+                margin-bottom: 0;
+            }
+            .btn {
+                width: 80%;
+                max-width: 260px;
+            }
+        }
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1174,7 +1235,7 @@
 
                         <div class="form-navigation">
                             <div class="navigation-left">
-                                <div class="step-indicator">Étape 1 sur 5</div>
+                                <!-- Indicateur d'étape supprimé pour mobile, déjà présent en haut -->
                             </div>
                             <div class="navigation-right">
                                 <button type="button" class="btn btn-primary" id="nextBtn1">
@@ -1221,7 +1282,7 @@
                                 <button type="button" class="btn btn-secondary" id="prevBtn2">
                                     Précédent
                                 </button>
-                                <div class="step-indicator">Étape 2 sur 5</div>
+                                <!-- Indicateur d'étape supprimé pour mobile, déjà présent en haut -->
                             </div>
                             <div class="navigation-right">
                                 <button type="button" class="btn btn-primary" id="nextBtn2">
@@ -1300,7 +1361,7 @@
                                 <button type="button" class="btn btn-secondary" id="prevBtn3">
                                     Précédent
                                 </button>
-                                <div class="step-indicator">Étape 3 sur 5</div>
+                                <!-- Indicateur d'étape supprimé pour mobile, déjà présent en haut -->
                             </div>
                             <div class="navigation-right">
                                 <button type="button" class="btn btn-primary" id="nextBtn3">
@@ -1375,7 +1436,7 @@
                                 <button type="button" class="btn btn-secondary" id="prevBtn4">
                                     Précédent
                                 </button>
-                                <div class="step-indicator">Étape 4 sur 5</div>
+                                <!-- Indicateur d'étape supprimé pour mobile, déjà présent en haut -->
                             </div>
                             <div class="navigation-right">
                                 <button type="button" class="btn btn-primary" id="nextBtn4">
@@ -1486,7 +1547,7 @@
                                 <button type="button" class="btn btn-secondary" id="prevBtn5">
                                     Précédent
                                 </button>
-                                <div class="step-indicator">Étape 5 sur 5</div>
+                                <!-- Indicateur d'étape supprimé pour mobile, déjà présent en haut -->
                             </div>
                             <div class="navigation-right">
                                 <button type="submit" class="btn btn-success" id="submitBtn">
