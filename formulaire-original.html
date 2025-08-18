@@ -36,6 +36,166 @@
             margin-bottom: 20px;
         }
 
+        /* Progress Bar Styles */
+        .progress-container {
+            margin: 30px 0;
+            background: #f0f0f0;
+            border-radius: 25px;
+            padding: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #094102, #ff5700);
+            height: 8px;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .step-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0 30px;
+            position: relative;
+        }
+        @media (max-width: 900px) {
+            .step-indicators {
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+            .step-indicator {
+                flex: 1 1 60px;
+                min-width: 60px;
+                max-width: 120px;
+                margin-bottom: 0;
+            }
+            .step-indicator span {
+                font-size: 0.95rem;
+            }
+        }
+        }
+
+        .step-indicator {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: attr(data-step);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #ddd;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            /* line-height supprimé, flexbox gère le centrage */
+        }
+
+        .step-indicator.active::before {
+            background: linear-gradient(45deg, #094102, #ff5700);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step-indicator.completed::before {
+            background: #094102;
+            color: white;
+            content: "✓";
+        }
+
+        .step-indicator span {
+            display: block;
+            font-size: clamp(11px, 1.5vw, 14px);
+            font-weight: 500;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .step-indicator.active span,
+        .step-indicator.completed span {
+            color: #094102;
+            font-weight: 600;
+        }
+
+        /* Step Content */
+        .step-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation Buttons */
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: linear-gradient(90deg, #094102, #ff5700);
+            color: white;
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 600;
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 30px);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: linear-gradient(90deg, #076301, #e64a00);
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-button.secondary {
+            background: #fff;
+            color: #094102;
+            border: 2px solid #094102;
+        }
+
+        .nav-button.secondary:hover:not(:disabled) {
+            background: #094102;
+            color: white;
+        }
+
+        /* Step Title */
+        .step-title {
+            font-size: clamp(20px, 3vw, 24px);
+            color: #094102;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Form styles */
         form {
             display: flex;
             flex-direction: column;
@@ -96,6 +256,7 @@
             font-size: clamp(14px, 1.5vw, 16px);
             transition: border-color 0.3s ease;
             background: linear-gradient(90deg, #ffffff, #f9f9f9);
+            box-sizing: border-box;
         }
 
         input:focus,
@@ -135,16 +296,19 @@
             border-radius: 8px;
             transition: background 0.3s, color 0.3s;
         }
+        
         #form-message.success {
             background: #e6fbe6;
             color: #094102;
             border: 1px solid #0A7303;
         }
+        
         #form-message.error {
             background: #ffeaea;
             color: #d94c00;
             border: 1px solid #ff5700;
         }
+        
         #form-message.sending {
             background: #fffbe6;
             color: #ff8a00;
@@ -210,56 +374,16 @@
             font-size: clamp(16px, 2vw, 18px);
         }
 
-        .guide-button {
-            background: #094102;
-            color: white;
-            padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 30px);
-            border-radius: 6px;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px 0;
-            transition: background 0.3s;
-            font-weight: 600;
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        .guide-button:hover {
-            background: #0A7303;
-        }
-
-        #guideModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            background: white;
-            margin: 20px auto;
-            padding: clamp(20px, 4vw, 30px);
-            width: 95%;
-            max-width: 800px;
-            border-radius: 12px;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .close-modal:hover {
-            color: #333;
+        .image-container .responsive-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         @media (max-width: 768px) {
@@ -268,16 +392,32 @@
                 padding: 20px;
             }
 
+            .step-indicators {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .step-indicator {
+                flex: 0 0 calc(50% - 5px);
+                margin-bottom: 15px;
+            }
+
+            .step-navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-button {
+                width: 100%;
+                min-width: auto;
+            }
+
             .help-tooltip {
                 width: calc(100vw - 40px);
                 left: 50%;
                 transform: translateX(-50%);
-                .help-tooltip,
-
-    max-width: 100%;
-    overflow-wrap: break-word;
-}
-
+                max-width: 100%;
+                overflow-wrap: break-word;
             }
         }
 
@@ -292,19 +432,27 @@
                 border-radius: 8px;
                 width: 100%;
                 max-width: 100%;
-                margin: 0 auto;
-                padding: 15px;
-                overflow: hidden; /* Empêche le débordement */
+                overflow: hidden;
                 box-sizing: border-box;
+            }
+
+            .step-indicator {
+                flex: 0 0 100%;
+            }
+
+            .step-indicator::before {
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
             }
 
             input,
             select,
             textarea {
                 padding: 8px;
-                width: 100%; /* S'assure que les champs ne dépassent pas */
-                max-width: 100%; /* Empêche tout dépassement */
-                box-sizing: border-box; /* Inclut padding et bordure dans la largeur */
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
                 font-size: 1rem;
                 min-height: 40px;
             }
@@ -335,109 +483,105 @@
                 padding: 20px;
             }
 
-            .guide-button,
+            .progress-container,
+            .step-indicators,
+            .step-navigation,
             .add-button,
             .help-icon,
             .help-tooltip {
                 display: none;
             }
         }
-
-
- /* Conteneur spécifique pour l'image */
-.image-container {
-    text-align: center; /* Centrer l'image dans le conteneur */
-    margin-bottom: 20px; /* Ajouter un espacement entre l'image et le formulaire */
-}
-
-.image-container .responsive-image {
-    max-width: 100%; /* Image responsive : ne dépasse pas le conteneur */
-    height: auto; /* Conserve les proportions */
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce (optionnel) */
-}
-
-
     </style>
 </head>
 
 <body>
     <div class="container">
-        <script>
-        // Ajout automatique du profil choisi si présent dans localStorage
-        document.addEventListener('DOMContentLoaded', function() {
-            const profil = localStorage.getItem('profil_utilisateur');
-            const form = document.getElementById('mainForm');
-            if (profil && form && !form.querySelector('input[name="profil"]')) {
-                const hiddenProfil = document.createElement('input');
-                hiddenProfil.type = 'hidden';
-                hiddenProfil.name = 'profil';
-                hiddenProfil.value = profil;
-                form.appendChild(hiddenProfil);
-            }
-        });
-        </script>
         <button onclick="location.replace('./index.html')" style="background:#fff; color:#094102; border:2px solid #094102; border-radius:8px; padding:10px 24px; font-weight:600; margin-bottom:20px; cursor:pointer;">← Retour à l'accueil</button>
+        
         <div class="image-container">
             <img src="public/Business-Facebook-Cover-05.jpg" alt="Formulaire Illustration" class="responsive-image">
         </div>
+        
         <h1>Remplissez ce formulaire pour obtenir votre CV professionnel</h1>
-        <!-- Espace réservé pour le guide, volontairement vide -->
-        <div style="height:32px;"></div>
+        
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <!-- Step Indicators -->
+        <div class="step-indicators">
+            <div class="step-indicator active" data-step="1">
+                <span>Informations<br>personnelles</span>
+            </div>
+            <div class="step-indicator" data-step="2">
+                <span>Compétences</span>
+            </div>
+            <div class="step-indicator" data-step="3">
+                <span>Expériences</span>
+            </div>
+            <div class="step-indicator" data-step="4">
+                <span>Formation</span>
+            </div>
+            <div class="step-indicator" data-step="5">
+                <span>Finalisation</span>
+            </div>
+        </div>
 
         <form action="https://formspree.io/f/mrbgraoo" method="POST" id="mainForm">
-            <!-- Informations personnelles -->
-            <div class="section" style="margin-bottom:32px;">
-                <div class="section-title">INFORMATIONS PERSONNELLES</div>
+            <!-- Step 1: Informations personnelles -->
+            <div class="step-content active" data-step="1">
+                <div class="step-title">Informations personnelles</div>
                 <div class="section-help">Cette section contient vos informations de contact.</div>
                 
                 <label>
                     Nom et Prénom
                     <span class="help-icon">?</span>
                     <span class="help-tooltip">Écrivez votre nom en majuscules suivi de votre prénom avec une majuscule initiale.</span>
-                    <input type="text" name="nom_prenom" placeholder="Ex : MAVOUNGOU Jeanne">
+                    <input type="text" name="nom_prenom" placeholder="Ex : MAVOUNGOU Jeanne" required>
                 </label>
 
                 <label>
                     Email
                     <span class="help-icon">?</span>
                     <span class="help-tooltip">Utilisez une adresse email professionnelle que vous consultez régulièrement.</span>
-                    <input type="email" name="email" placeholder="Ex : mavoungouj@email.com">
+                    <input type="email" name="email" placeholder="Ex : mavoungouj@email.com" required>
                 </label>
 
                 <label>
                     Téléphone
                     <span class="help-icon">?</span>
                     <span class="help-tooltip">Incluez votre indicatif pays et assurez-vous que le numéro est actif.</span>
-                    <input type="text" name="telephone" placeholder="Ex : +241 60 00 00 00 / 074 00 07 08">
+                    <input type="text" name="telephone" placeholder="Ex : +241 60 00 00 00 / 074 00 07 08" required>
                 </label>
 
                 <label>
                     Adresse
                     <span class="help-icon">?</span>
                     <span class="help-tooltip">Indiquez votre ville et pays de résidence.</span>
-                    <input type="text" name="adresse" placeholder="Ex : Libreville, Gabon">
+                    <input type="text" name="adresse" placeholder="Ex : Libreville, Gabon" required>
                 </label>
 
                 <label>
                     N°ONE / PNPE
                     <span class="help-icon">?</span>
                     <span class="help-tooltip">Numéro d'inscription obligatoire pour certains emplois.</span>
-                    <input type="text" name="N°ONE / PNPE" placeholder="Pôle National de Promotion de l'Emploi(PNPE) / Office National de l'Emploi(ONE)">
+                    <input type="text" name="numero_one_pnpe" placeholder="Pôle National de Promotion de l'Emploi(PNPE) / Office National de l'Emploi(ONE)">
                 </label>
 
                 <label>
                     Poste recherché / Occupé
                     <span class="help-icon">?</span>
                     <span class="help-tooltip">Précisez le titre du poste que vous recherchez ou occupez actuellement.</span>
-                    <input type="text" name="Poste recherché / Occupé" placeholder="Ex : Agent Administratif">
+                    <input type="text" name="poste_recherche" placeholder="Ex : Agent Administratif" required>
                 </label>
 
                 <label>
                     N° du modèle de CV & la formule
                     <span class="help-icon">?</span>
                     <span class="help-tooltip">Référence pour le style de CV souhaité.</span>
-                    <input type="text" name="N° du modèle de CV & la formule" placeholder="Ex : N°030 - Formule N°1">
+                    <input type="text" name="modele_cv_formule" placeholder="Ex : N°030 - Formule N°1">
                 </label>
 
                 <label>
@@ -448,38 +592,41 @@
                 </label>
             </div>
 
-            <!-- Compétences -->
-            <div class="section">
-                <div class="section-title">COMPETENCES</div>
+            <!-- Step 2: Compétences -->
+            <div class="step-content" data-step="2">
+                <div class="step-title">Compétences</div>
                 <div class="section-help">Listez vos compétences en précisant votre niveau de maîtrise.</div>
+                
                 <div id="competenceFields">
-                    <div class="competence-category" id="languesFields" style="margin-bottom:24px;">
-                        <label>
-                            Langues
+                    <div class="competence-category" style="margin-bottom:24px;">
+                        <label>Langues</label>
+                        <div id="languesFields">
                             <input type="text" name="langues[]" placeholder="Ex : Français (courant)">
-                        </label>
+                        </div>
                         <a class="add-button" onclick="addLangue()">+ Ajouter une langue</a>
                     </div>
-                    <div class="competence-category" id="competencesInformatiqueFields" style="margin-bottom:24px;">
-                        <label>
-                            Compétences Informatiques
+                    
+                    <div class="competence-category" style="margin-bottom:24px;">
+                        <label>Compétences Informatiques</label>
+                        <div id="competencesInformatiqueFields">
                             <input type="text" name="competences_informatiques[]" placeholder="Ex : Word (avancé)">
-                        </label>
+                        </div>
                         <a class="add-button" onclick="addLogiciel()">+ Ajouter un logiciel</a>
                     </div>
-                    <div class="competence-category" id="Domaines de CompétencesFields" style="margin-bottom:24px;">
-                        <label>
-                            Domaines de Compétences
-                            <input type="text" name="Domaines de Compétences[]" placeholder="Ex : Gestion de projet (intermédiaire)">
-                        </label>
-                        <a class="add-button" onclick="addProfessionnelle()">+ Ajouter un domaine de Compétence</a>
+                    
+                    <div class="competence-category" style="margin-bottom:24px;">
+                        <label>Domaines de Compétences</label>
+                        <div id="domainesCompetencesFields">
+                            <input type="text" name="domaines_competences[]" placeholder="Ex : Gestion de projet (intermédiaire)">
+                        </div>
+                        <a class="add-button" onclick="addDomaineCompetence()">+ Ajouter un domaine de compétence</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Expériences Professionnelles -->
-            <div class="section" style="margin-bottom:32px;">
-                <div class="section-title">EXPERIENCES PROFESSIONNELLES</div>
+            <!-- Step 3: Expériences -->
+            <div class="step-content" data-step="3">
+                <div class="step-title">Expériences professionnelles</div>
                 <div class="section-help">Détaillez vos expériences professionnelles de la plus récente à la plus ancienne.</div>
                 
                 <div id="experienceFields">
@@ -510,16 +657,16 @@
                             <input type="text" name="experience_1_entreprises" placeholder="Ex : Airtel Gabon, Libreville">
                         </label>
                     </div>
-                    <div style="display:flex;justify-content:flex-start;margin-bottom:24px;">
-                        <a class="add-button" onclick="addExperience()">+ Ajouter une expérience</a>
-                    </div>
                 </div>
+                <a class="add-button" onclick="addExperience()">+ Ajouter une expérience</a>
+            </div>
+
+            <!-- Step 4: Formation -->
+            <div class="step-content" data-step="4">
+                <div class="step-title">Formation</div>
+                <div class="section-help">Indiquez vos diplômes et formations, de la plus récente à la plus ancienne.</div>
                 
                 <div id="formationFields">
-                    <!-- Titre et aide Formation -->
-                    <div class="section-title" style="margin-bottom:0;">FORMATION</div>
-                    <div style="height:2px;background:#ff5700;width:100%;margin-bottom:8px;"></div>
-                    <div class="section-help" style="margin-bottom:18px;">Indiquez vos diplômes et formations, de la plus récente à la plus ancienne.</div>
                     <div class="formation-group" style="margin-bottom:24px;">
                         <h4>Formation 1</h4>
                         <label>
@@ -539,418 +686,509 @@
                             <input type="text" name="formation_1_etablissements" placeholder="Ex : Lycée National">
                         </label>
                     </div>
-                    <a class="add-button" onclick="addFormation()">+ Ajouter une formation</a>
                 </div>
+                <a class="add-button" onclick="addFormation()">+ Ajouter une formation</a>
             </div>
+
+            <!-- Step 5: Finalisation -->
+            <div class="step-content" data-step="5">
+                <div class="step-title">Finalisation</div>
                 
-            <!-- Centres d'intérêt -->
-            <div class="section" style="margin-bottom:32px;">
-                <div class="section-title">CENTRES D'INTERÊTS</div>
-                <div class="section-help">Mentionnez vos activités extra-professionnelles pertinentes.</div>
-                <label>
-                    <textarea name="centres_interet" rows="3" placeholder="Ex : • Sport : Football en club&#10;• Culture : Lecture, théâtre&#10;• Bénévolat : Association caritative"></textarea>
-                </label>
+                <div class="section" style="margin-bottom:32px;">
+                    <div class="section-title">CENTRES D'INTÉRÊTS</div>
+                    <div class="section-help">Mentionnez vos activités extra-professionnelles pertinentes.</div>
+                    <label>
+                        <textarea name="centres_interet" rows="3" placeholder="Ex : • Sport : Football en club&#10;• Culture : Lecture, théâtre&#10;• Bénévolat : Association caritative"></textarea>
+                    </label>
+                </div>
+
+                <div class="section" style="margin-bottom:32px;">
+                    <div class="section-title">INFORMATIONS COMPLÉMENTAIRES</div>
+                    <div class="section-help">Ajoutez toute information pertinente non mentionnée ailleurs.</div>
+                    <label>
+                        <textarea name="informations_complementaires" rows="3" placeholder="Ex : • Permis B&#10;• Disponibilité immédiate&#10;• Mobile sur Libreville"></textarea>
+                    </label>
+                </div>
+
+                <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px;">
+                    <button type="button" id="resetFormBtn" style="background:#fff; color:#d94c00; border:2px solid #d94c00; border-radius:8px; padding:10px 24px; font-weight:600; cursor:pointer;">Réinitialiser le formulaire</button>
+                </div>
+                <div id="form-message"></div>
             </div>
 
-            <!-- Informations complémentaires -->
-            <div class="section" style="margin-bottom:32px;">
-                <div class="section-title">INFORMATIONS COMPLEMENTAIRES</div>
-                <div class="section-help">Ajoutez toute information pertinente non mentionnée ailleurs.</div>
-                <label>
-                    <textarea name="Informations complémentaires" rows="3" placeholder="Ex : • Permis B&#10;• Disponibilité immédiate&#10;• Mobile sur Libreville"></textarea>
-                </label>
+            <!-- Navigation Buttons -->
+            <div class="step-navigation">
+                <button type="button" id="prevBtn" class="nav-button secondary" style="display:none;">Précédent</button>
+                <div style="flex:1;"></div>
+                <button type="button" id="nextBtn" class="nav-button">Suivant</button>
+                <button type="submit" id="submitBtn" class="nav-button" style="display:none;">Valider et envoyer</button>
             </div>
 
-            <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px;">
-                <button type="button" id="resetFormBtn" style="background:#fff; color:#d94c00; border:2px solid #d94c00; border-radius:8px; padding:10px 24px; font-weight:600; cursor:pointer;">Réinitialiser le formulaire</button>
-            </div>
-            <div id="form-message"></div>
             <input type="hidden" name="message" id="formatted-message">
-            <button type="submit">Valider et envoyer</button>
+            <input type="hidden" name="profil" id="profil-hidden">
+            <input type="hidden" name="niveau_urgence" id="urgence-hidden">
         </form>
     </div>
 
-    <!-- Modal Guide -->
-    <!-- Guide supprimé, espace réservé -->
-
     <script>
-        // Ajout automatique du niveau d'urgence si présent dans localStorage
-        document.addEventListener('DOMContentLoaded', function() {
-            const urgence = localStorage.getItem('niveau_urgence');
-            if (urgence) {
-                // Crée un champ caché pour transmettre l'urgence
-                const form = document.getElementById('mainForm');
-                if (form && !form.querySelector('input[name="niveau_urgence"]')) {
-                    const hiddenUrgence = document.createElement('input');
-                    hiddenUrgence.type = 'hidden';
-                    hiddenUrgence.name = 'niveau_urgence';
-                    hiddenUrgence.value = urgence;
-                    form.appendChild(hiddenUrgence);
+        // Variables globales
+        let currentStep = 1;
+        const totalSteps = 5;
+        let experienceCounter = 1;
+        let formationCounter = 1;
+
+        // Gestion des étapes
+        function updateProgressBar() {
+            const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            document.getElementById('progressBar').style.width = progressPercentage + '%';
+        }
+
+        function updateStepIndicators() {
+            const indicators = document.querySelectorAll('.step-indicator');
+            indicators.forEach((indicator, index) => {
+                const stepNumber = index + 1;
+                indicator.classList.remove('active', 'completed');
+                
+                if (stepNumber < currentStep) {
+                    indicator.classList.add('completed');
+                } else if (stepNumber === currentStep) {
+                    indicator.classList.add('active');
                 }
-                // Optionnel : supprimer la donnée après soumission pour éviter doublons
-                form.addEventListener('submit', function() {
-                    localStorage.removeItem('niveau_urgence');
-                });
+            });
+        }
+
+        function showStep(step) {
+            // Hide all step contents
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show current step
+            const currentContent = document.querySelector(`.step-content[data-step="${step}"]`);
+            if (currentContent) {
+                currentContent.classList.add('active');
             }
-        }); // <-- fermeture correcte de la fonction DOMContentLoaded
-        // Fonction pour ajouter une langue
+            
+            // Update navigation buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            prevBtn.style.display = step === 1 ? 'none' : 'inline-block';
+            nextBtn.style.display = step === totalSteps ? 'none' : 'inline-block';
+            submitBtn.style.display = step === totalSteps ? 'inline-block' : 'none';
+            
+            updateProgressBar();
+            updateStepIndicators();
+        }
+
+        function validateCurrentStep() {
+            const currentContent = document.querySelector(`.step-content[data-step="${currentStep}"]`);
+            if (!currentContent) return true;
+
+            const requiredFields = currentContent.querySelectorAll('[required]');
+            let allFilled = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    allFilled = false;
+                    field.style.borderColor = '#dc3545';
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+
+            if (!allFilled) {
+                const msg = document.getElementById('form-message');
+                if (msg) {
+                    msg.textContent = 'Veuillez remplir tous les champs obligatoires avant de continuer.';
+                    msg.className = 'error';
+                }
+                return false;
+            }
+
+            // Clear error message if validation passes
+            const msg = document.getElementById('form-message');
+            if (msg) {
+                msg.textContent = '';
+                msg.className = '';
+            }
+            
+            return true;
+        }
+
+        function nextStep() {
+            if (validateCurrentStep() && currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        // Fonctions d'ajout dynamique
         function addLangue() {
             const container = document.getElementById('languesFields');
             const newInput = document.createElement('input');
             newInput.type = 'text';
             newInput.name = 'langues[]';
-            newInput.placeholder = 'Nouvelle langue';
-            container.insertBefore(newInput, container.querySelector('.add-button'));
+            newInput.placeholder = 'Ex : Anglais (intermédiaire)';
+            newInput.style.marginTop = '10px';
+            container.appendChild(newInput);
         }
 
-        // Fonction pour ajouter une compétence informatique
         function addLogiciel() {
             const container = document.getElementById('competencesInformatiqueFields');
             const newInput = document.createElement('input');
             newInput.type = 'text';
             newInput.name = 'competences_informatiques[]';
-            newInput.placeholder = 'Nouveau logiciel';
-            container.insertBefore(newInput, container.querySelector('.add-button'));
+            newInput.placeholder = 'Ex : Excel (avancé)';
+            newInput.style.marginTop = '10px';
+            container.appendChild(newInput);
         }
 
-        // Fonction pour ajouter une compétence professionnelle
-        function addProfessionnelle() {
-            const container = document.getElementById('Domaines de CompétencesFields');
+        function addDomaineCompetence() {
+            const container = document.getElementById('domainesCompetencesFields');
             const newInput = document.createElement('input');
             newInput.type = 'text';
-            newInput.name = 'competences_professionnelles[]';
-            newInput.placeholder = 'Nouvelle compétence professionnelle';
-            container.insertBefore(newInput, container.querySelector('.add-button'));
+            newInput.name = 'domaines_competences[]';
+            newInput.placeholder = 'Ex : Communication (expert)';
+            newInput.style.marginTop = '10px';
+            container.appendChild(newInput);
         }
-
-        let experienceCounter = 1;
-        let formationCounter = 1;
 
         function addExperience() {
             experienceCounter++;
             const container = document.getElementById('experienceFields');
-            container.insertAdjacentHTML('beforeend', `
-                <div class="experience-group">
-                    <h4>Expérience Professionnelle ${experienceCounter}</h4>
-                    <label>Date de début et fin de contrat
-                        <span class="help-icon">?</span>
-                        <span class="help-tooltip">Format : Mois Année - Mois Année</span>
-                        <input type="text" name="experience_${experienceCounter}_dates" placeholder="Ex : Janvier 2020 - Décembre 2023">
-                    </label>
-                    <label>Intitulé du poste occupé
-                        <span class="help-icon">?</span>
-                        <span class="help-tooltip">Titre exact du poste</span>
-                        <input type="text" name="experience_${experienceCounter}_postes" placeholder="Ex : Agent commercial">
-                    </label>
-                    <label>Tâches effectuées
-                        <span class="help-icon">?</span>
-                        <span class="help-tooltip">Listez vos principales responsabilités</span>
-                        <textarea name="experience_${experienceCounter}_taches" rows="3" placeholder="Ex : • Accueil et orientation de la clientèle&#10;• Gestion des réclamations&#10;• Suivi des ventes"></textarea>
-                    </label>
-                    <label>Nom de l'entreprise et localisation
-                        <span class="help-icon">?</span>
-                        <span class="help-tooltip">Nom complet de l'entreprise et ville</span>
-                        <input type="text" name="experience_${experienceCounter}_entreprises" placeholder="Ex : Airtel Gabon, Libreville">
-                    </label>
-                </div>
-            `);
+            const newExperience = document.createElement('div');
+            newExperience.className = 'experience-group';
+            newExperience.style.marginBottom = '24px';
+            newExperience.innerHTML = `
+                <h4>Expérience Professionnelle ${experienceCounter}</h4>
+                <label>
+                    Date de début et fin de contrat
+                    <span class="help-icon">?</span>
+                    <span class="help-tooltip">Format : Mois Année - Mois Année</span>
+                    <input type="text" name="experience_${experienceCounter}_dates" placeholder="Ex : Janvier 2020 - Décembre 2023">
+                </label>
+                <label>
+                    Intitulé du poste occupé
+                    <span class="help-icon">?</span>
+                    <span class="help-tooltip">Titre exact du poste</span>
+                    <input type="text" name="experience_${experienceCounter}_postes" placeholder="Ex : Agent commercial">
+                </label>
+                <label>
+                    Tâches effectuées
+                    <span class="help-icon">?</span>
+                    <span class="help-tooltip">Listez vos principales responsabilités</span>
+                    <textarea name="experience_${experienceCounter}_taches" rows="3" placeholder="Ex : • Accueil et orientation de la clientèle&#10;• Gestion des réclamations&#10;• Suivi des ventes"></textarea>
+                </label>
+                <label>
+                    Nom de l'entreprise et localisation
+                    <span class="help-icon">?</span>
+                    <span class="help-tooltip">Nom complet de l'entreprise et ville</span>
+                    <input type="text" name="experience_${experienceCounter}_entreprises" placeholder="Ex : Airtel Gabon, Libreville">
+                </label>
+            `;
+            container.appendChild(newExperience);
         }
 
         function addFormation() {
             formationCounter++;
             const container = document.getElementById('formationFields');
-            container.insertAdjacentHTML('beforeend', `
-                <div class="formation-group">
-                    <h4>Formation ${formationCounter}</h4>
-                    <label>Nom du diplôme ou formation
-                        <span class="help-icon">?</span>
-                        <span class="help-tooltip">Nom complet du diplôme</span>
-                        <input type="text" name="formation_${formationCounter}_diplomes" placeholder="Ex : Baccalauréat série B">
-                    </label>
-                    <label>Filière / Série
-                        <span class="help-icon">?</span>
-                        <span class="help-tooltip">Votre spécialisation</span>
-                        <input type="text" name="formation_${formationCounter}_series" placeholder="Ex : Littéraire">
-                    </label>
-                    <label>Date et lieu
-                        <span class="help-icon">?</span>
-                        <span class="help-tooltip">Année d'obtention et ville</span>
-                        <input type="text" name="formation_${formationCounter}_dates" placeholder="Ex : 2020 - Libreville">
-                    </label>
-                    <label>Nom de l'établissement
-                        <span class="help-icon">?</span>
-                        <span class="help-tooltip">Nom complet de l'établissement</span>
-                        <input type="text" name="formation_${formationCounter}_etablissements" placeholder="Ex : Lycée National">
-                    </label>
-                </div>
-            `);
+            const newFormation = document.createElement('div');
+            newFormation.className = 'formation-group';
+            newFormation.style.marginBottom = '24px';
+            newFormation.innerHTML = `
+                <h4>Formation ${formationCounter}</h4>
+                <label>
+                    Nom du diplôme ou formation
+                    <span class="help-icon">?</span>
+                    <span class="help-tooltip">Nom complet du diplôme</span>
+                    <input type="text" name="formation_${formationCounter}_diplomes" placeholder="Ex : Baccalauréat série B">
+                </label>
+                <label>
+                    Filière / Série
+                    <span class="help-icon">?</span>
+                    <span class="help-tooltip">Votre spécialisation</span>
+                    <input type="text" name="formation_${formationCounter}_series" placeholder="Ex : Littéraire">
+                </label>
+                <label>
+                    Date et lieu
+                    <span class="help-icon">?</span>
+                    <span class="help-tooltip">Année d'obtention et ville</span>
+                    <input type="text" name="formation_${formationCounter}_dates" placeholder="Ex : 2020 - Libreville">
+                </label>
+                <label>
+                    Nom de l'établissement
+                    <span class="help-icon">?</span>
+                    <span class="help-tooltip">Nom complet de l'établissement</span>
+                    <input type="text" name="formation_${formationCounter}_etablissements" placeholder="Ex : Lycée National">
+                </label>
+            `;
+            container.appendChild(newFormation);
         }
 
-        function openGuide() {
-            document.getElementById('guideModal').style.display = 'block';
-        }
-
-        function closeGuide() {
-            document.getElementById('guideModal').style.display = 'none';
-        }
-
-        // Fermer le modal en cliquant en dehors
-        window.onclick = function(event) {
-            const modal = document.getElementById('guideModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // --- SAUVEGARDE AUTOMATIQUE & RESTAURATION ---
-        function saveFormToLocalStorage(form) {
+        // Sauvegarde et restauration du formulaire
+        function saveFormToLocalStorage() {
+            const form = document.getElementById('mainForm');
             const data = {};
-            Array.from(form.elements).forEach(el => {
-                if (!el.name) return;
-                if (el.type === 'checkbox' || el.type === 'radio') {
-                    data[el.name] = el.checked;
-                } else if (el.type === 'select-multiple') {
-                    data[el.name] = Array.from(el.selectedOptions).map(opt => opt.value);
+            const formData = new FormData(form);
+            
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (!Array.isArray(data[key])) {
+                        data[key] = [data[key]];
+                    }
+                    data[key].push(value);
                 } else {
-                    data[el.name] = el.value;
+                    data[key] = value;
                 }
-            });
+            }
+            
+            // Sauvegarder l'étape actuelle
+            data._currentStep = currentStep;
+            data._experienceCounter = experienceCounter;
+            data._formationCounter = formationCounter;
+            
             localStorage.setItem('formulaireCV', JSON.stringify(data));
         }
 
-        function restoreFormFromLocalStorage(form) {
-            const data = JSON.parse(localStorage.getItem('formulaireCV') || '{}');
-            Array.from(form.elements).forEach(el => {
-                if (!el.name || !(el.name in data)) return;
-                if (el.type === 'checkbox' || el.type === 'radio') {
-                    el.checked = !!data[el.name];
-                } else if (el.type === 'select-multiple') {
-                    Array.from(el.options).forEach(opt => {
-                        opt.selected = (data[el.name] || []).includes(opt.value);
-                    });
-                } else {
-                    el.value = data[el.name];
-                }
-            });
-        }
-
-        function clearFormAndLocalStorage(form) {
-            Array.from(form.elements).forEach(el => {
-                if (!el.name) return;
-                if (el.type === 'checkbox' || el.type === 'radio') {
-                    el.checked = false;
-                } else {
-                    el.value = '';
-                }
-            });
-            localStorage.removeItem('formulaireCV');
-            const msg = document.getElementById('form-message');
-            if (msg) msg.textContent = '';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
+        function restoreFormFromLocalStorage() {
+            const savedData = localStorage.getItem('formulaireCV');
+            if (!savedData) return;
+            
+            const data = JSON.parse(savedData);
             const form = document.getElementById('mainForm');
-            if (!form) return;
-            restoreFormFromLocalStorage(form);
-            form.addEventListener('input', function(e) {
-                saveFormToLocalStorage(form);
-            });
-            document.getElementById('resetFormBtn').addEventListener('click', function() {
-                clearFormAndLocalStorage(form);
-            });
-        });
-
-        // --- ENVOI DU FORMULAIRE & MESSAGES ---
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('mainForm');
-            const btn = form.querySelector('button[type="submit"]');
-            const msg = document.getElementById('form-message');
-            if (!form || !btn || !msg) return;
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                msg.textContent = '🔄 Envoi en cours…';
-                msg.className = 'sending';
-                btn.disabled = true;
-                const formData = new FormData(form);
-                fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        msg.textContent = '✅ Formulaire envoyé avec succès';
-                        msg.className = 'success';
-                        clearFormAndLocalStorage(form);
+            
+            // Restaurer les valeurs des champs
+            for (let [key, value] of Object.entries(data)) {
+                if (key.startsWith('_')) continue; // Skip internal data
+                
+                const field = form.querySelector(`[name="${key}"]`);
+                if (field) {
+                    if (Array.isArray(value)) {
+                        field.value = value[0]; // Use first value for simple fields
                     } else {
-                        return response.json().then(data => {
-                            throw new Error(data.error || 'Erreur inconnue');
-                        });
+                        field.value = value;
                     }
-                })
-                .catch(() => {
-                    msg.textContent = '❌ Échec de l’envoi, veuillez réessayer';
-                    msg.className = 'error';
-                })
-                .finally(() => {
-                    btn.disabled = false;
+                }
+            }
+            
+            // Restaurer les compteurs et l'étape
+            if (data._experienceCounter) experienceCounter = data._experienceCounter;
+            if (data._formationCounter) formationCounter = data._formationCounter;
+            if (data._currentStep) {
+                currentStep = data._currentStep;
+                showStep(currentStep);
+            }
+        }
+
+        function clearFormAndLocalStorage() {
+            const form = document.getElementById('mainForm');
+            form.reset();
+            localStorage.removeItem('formulaireCV');
+            
+            // Reset counters and step
+            currentStep = 1;
+            experienceCounter = 1;
+            formationCounter = 1;
+            showStep(currentStep);
+            
+            // Clear message
+            const msg = document.getElementById('form-message');
+            if (msg) {
+                msg.textContent = '';
+                msg.className = '';
+            }
+        }
+
+        // Structuration du message pour Formspree
+        function structureMessage() {
+            const form = document.getElementById('mainForm');
+            const formData = new FormData(form);
+            
+            let message = '';
+            const profil = localStorage.getItem('profil_utilisateur') || '';
+            const urgence = localStorage.getItem('niveau_urgence') || '';
+            
+            // En-tête
+            const titreProfil = profil ? `CANDIDATURE REÇUE – Profil ${profil.charAt(0).toUpperCase() + profil.slice(1).toLowerCase()}` : 'CANDIDATURE REÇUE';
+            message += `${titreProfil}\n\n`;
+            
+            // Informations personnelles
+            message += `=== INFORMATIONS PERSONNELLES ===\n`;
+            message += `Nom & Prénom : ${formData.get('nom_prenom') || ''}\n`;
+            message += `Email : ${formData.get('email') || ''}\n`;
+            message += `Téléphone : ${formData.get('telephone') || ''}\n`;
+            message += `Adresse : ${formData.get('adresse') || ''}\n`;
+            message += `N° ONE / PNPE : ${formData.get('numero_one_pnpe') || ''}\n`;
+            message += `Poste recherché : ${formData.get('poste_recherche') || ''}\n`;
+            message += `Modèle CV & Formule : ${formData.get('modele_cv_formule') || ''}\n`;
+            message += `Objectifs : ${formData.get('objectifs') || ''}\n\n`;
+            
+            // Compétences
+            message += `=== COMPÉTENCES ===\n`;
+            const langues = formData.getAll('langues[]').filter(l => l.trim());
+            if (langues.length) {
+                message += `Langues :\n`;
+                langues.forEach(l => message += `- ${l}\n`);
+            }
+            
+            const competencesInfo = formData.getAll('competences_informatiques[]').filter(c => c.trim());
+            if (competencesInfo.length) {
+                message += `Compétences informatiques :\n`;
+                competencesInfo.forEach(c => message += `- ${c}\n`);
+            }
+            
+            const domainesComp = formData.getAll('domaines_competences[]').filter(d => d.trim());
+            if (domainesComp.length) {
+                message += `Domaines de compétences :\n`;
+                domainesComp.forEach(d => message += `- ${d}\n`);
+            }
+            message += `\n`;
+            
+            // Expériences
+            message += `=== EXPÉRIENCES PROFESSIONNELLES ===\n`;
+            for (let i = 1; i <= experienceCounter; i++) {
+                const dates = formData.get(`experience_${i}_dates`);
+                const poste = formData.get(`experience_${i}_postes`);
+                const entreprise = formData.get(`experience_${i}_entreprises`);
+                const taches = formData.get(`experience_${i}_taches`);
+                
+                if (dates || poste || entreprise || taches) {
+                    message += `Expérience ${i} :\n`;
+                    if (dates) message += `- Période : ${dates}\n`;
+                    if (poste) message += `- Poste : ${poste}\n`;
+                    if (entreprise) message += `- Entreprise : ${entreprise}\n`;
+                    if (taches) message += `- Tâches : ${taches}\n`;
+                    message += `\n`;
+                }
+            }
+            
+            // Formations
+            message += `=== FORMATIONS ===\n`;
+            for (let i = 1; i <= formationCounter; i++) {
+                const diplome = formData.get(`formation_${i}_diplomes`);
+                const serie = formData.get(`formation_${i}_series`);
+                const date = formData.get(`formation_${i}_dates`);
+                const etablissement = formData.get(`formation_${i}_etablissements`);
+                
+                if (diplome || serie || date || etablissement) {
+                    message += `Formation ${i} :\n`;
+                    if (diplome) message += `- Diplôme : ${diplome}\n`;
+                    if (serie) message += `- Filière/Série : ${serie}\n`;
+                    if (date) message += `- Date/Lieu : ${date}\n`;
+                    if (etablissement) message += `- Établissement : ${etablissement}\n`;
+                    message += `\n`;
+                }
+            }
+            
+            // Informations complémentaires
+            const centresInteret = formData.get('centres_interet');
+            const infosComplementaires = formData.get('informations_complementaires');
+            
+            if (centresInteret || infosComplementaires) {
+                message += `=== INFORMATIONS COMPLÉMENTAIRES ===\n`;
+                if (centresInteret) message += `Centres d'intérêt :\n${centresInteret}\n\n`;
+                if (infosComplementaires) message += `Autres informations :\n${infosComplementaires}\n\n`;
+            }
+            
+            // Niveau d'urgence
+            if (urgence) {
+                message += `=== NIVEAU D'URGENCE ===\n${urgence}\n\n`;
+            }
+            
+            document.getElementById('formatted-message').value = message.trim();
+        }
+
+        // Gestionnaire d'envoi du formulaire
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            structureMessage();
+            
+            const form = document.getElementById('mainForm');
+            const btn = document.getElementById('submitBtn');
+            const msg = document.getElementById('form-message');
+            
+            msg.textContent = '🔄 Envoi en cours…';
+            msg.className = 'sending';
+            btn.disabled = true;
+            
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    msg.textContent = '✅ Formulaire envoyé avec succès';
+                    msg.className = 'success';
+                    clearFormAndLocalStorage();
+                } else {
+                    return response.json().then(data => {
+                        throw new Error(data.error || 'Erreur inconnue');
+                    });
+                }
+            })
+            .catch(() => {
+                msg.textContent = '❌ Échec de l\'envoi, veuillez réessayer';
+                msg.className = 'error';
+            })
+            .finally(() => {
+                btn.disabled = false;
+            });
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupération des données du localStorage
+            const profil = localStorage.getItem('profil_utilisateur');
+            const urgence = localStorage.getItem('niveau_urgence');
+            
+            if (profil) {
+                document.getElementById('profil-hidden').value = profil;
+            }
+            if (urgence) {
+                document.getElementById('urgence-hidden').value = urgence;
+            }
+            
+            // Restaurer le formulaire sauvegardé
+            restoreFormFromLocalStorage();
+            
+            // Initialiser l'affichage
+            showStep(currentStep);
+            
+            // Event listeners
+            document.getElementById('nextBtn').addEventListener('click', nextStep);
+            document.getElementById('prevBtn').addEventListener('click', prevStep);
+            document.getElementById('resetFormBtn').addEventListener('click', clearFormAndLocalStorage);
+            document.getElementById('mainForm').addEventListener('submit', handleFormSubmit);
+            
+            // Sauvegarde automatique
+            document.getElementById('mainForm').addEventListener('input', saveFormToLocalStorage);
+            
+            // Step indicators click events
+            document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    const newStep = index + 1;
+                    if (newStep < currentStep || validateCurrentStep()) {
+                        currentStep = newStep;
+                        showStep(currentStep);
+                    }
                 });
             });
         });
-        // --- FIN ENVOI & MESSAGES ---
     </script>
-
-<!-- Script de structuration du message pour Formspree -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('mainForm');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-        const blocks = {
-            'INFORMATIONS PERSONNELLES': {},
-            'COMPÉTENCES CLÉS': [],
-            'LOGICIELS': [],
-            'LANGUES': [],
-            'EXPÉRIENCES PROFESSIONNELLES': [],
-            'FORMATIONS': [],
-            'AUTRES': {}
-        };
-
-        for (let [key, value] of formData.entries()) {
-            if (!value || key === 'message') continue;
-
-            if ([
-                'nom_prenom', 'email', 'telephone', 'adresse',
-                'N°ONE / PNPE', 'Poste recherché / Occupé',
-                'N° du modèle de CV & la formule', 'objectifs'
-            ].includes(key)) {
-                blocks['INFORMATIONS PERSONNELLES'][key] = value;
-            }
-            else if (key.startsWith('Domaines de Compétences') || key.startsWith('competences_professionnelles')) {
-                blocks['COMPÉTENCES CLÉS'].push(value);
-            }
-            else if (key.startsWith('competences_informatiques')) {
-                blocks['LOGICIELS'].push(value);
-            }
-            else if (key.startsWith('langues')) {
-                blocks['LANGUES'].push(value);
-            }
-            else if (/^experience_\d+_/.test(key)) {
-                const match = key.match(/^experience_(\d+)_([a-z]+)/);
-                if (match) {
-                    const idx = parseInt(match[1], 10) - 1;
-                    const field = match[2];
-                    if (!blocks['EXPÉRIENCES PROFESSIONNELLES'][idx]) blocks['EXPÉRIENCES PROFESSIONNELLES'][idx] = {};
-                    blocks['EXPÉRIENCES PROFESSIONNELLES'][idx][field] = value;
-                }
-            }
-            else if (/^formation_\d+_/.test(key)) {
-                const match = key.match(/^formation_(\d+)_([a-z]+)/);
-                if (match) {
-                    const idx = parseInt(match[1], 10) - 1;
-                    const field = match[2];
-                    if (!blocks['FORMATIONS'][idx]) blocks['FORMATIONS'][idx] = {};
-                    blocks['FORMATIONS'][idx][field] = value;
-                }
-            }
-            else {
-                blocks['AUTRES'][key] = value;
-            }
-        }
-
-        let message = '';
-        // Message texte brut structuré selon le format demandé
-        // Récupération du profil choisi (par exemple via un champ radio ou select nommé "profil")
-        let profil = '';
-        if (formData.has('profil')) {
-            profil = formData.get('profil');
-        } else if (blocks['AUTRES']['profil']) {
-            profil = blocks['AUTRES']['profil'];
-        }
-        if (!profil) {
-            // fallback : essaye de deviner selon d'autres champs ou laisse vide
-            profil = '';
-        }
-        let titreProfil = profil ? `|CANDIDATURE REÇUE – Profil ${profil.charAt(0).toUpperCase() + profil.slice(1).toLowerCase()}` : '|CANDIDATURE REÇUE';
-        message += `${titreProfil}\n\n`;
-        message += `Informations personnelles\n`;
-        message += `Nom & Prénom : ${blocks['INFORMATIONS PERSONNELLES']['nom_prenom'] || ''}\n`;
-        message += `Email : ${blocks['INFORMATIONS PERSONNELLES']['email'] || ''}\n`;
-        message += `Téléphone : ${blocks['INFORMATIONS PERSONNELLES']['telephone'] || ''}\n`;
-        message += `Adresse : ${blocks['INFORMATIONS PERSONNELLES']['adresse'] || ''}\n`;
-        message += `N° ONE / PNPE : ${blocks['INFORMATIONS PERSONNELLES']['N°ONE / PNPE'] || ''}\n`;
-        message += `Permis & Mobilité : ${blocks['INFORMATIONS PERSONNELLES']['permis_mobilite'] || ''}\n\n`;
-
-        message += `Poste recherché et objectif\n`;
-        message += `Poste visé : ${blocks['INFORMATIONS PERSONNELLES']['Poste recherché / Occupé'] || ''}\n`;
-        message += `Objectif professionnel : ${blocks['INFORMATIONS PERSONNELLES']['objectifs'] || ''}\n\n`;
-
-        message += `Formation\n`;
-        if (blocks['FORMATIONS'].length) {
-            blocks['FORMATIONS'].forEach((f, idx) => {
-                let ligne = [];
-                if (f.diplomes) ligne.push(`Diplôme : ${f.diplomes}`);
-                if (f.series) ligne.push(`Filière/Série : ${f.series}`);
-                if (f.dates) ligne.push(`Date/Lieu : ${f.dates}`);
-                if (f.etablissements) ligne.push(`Établissement : ${f.etablissements}`);
-                if (ligne.length) message += `- ${ligne.join(' | ')}\n`;
-            });
-        }
-        message += `\n`;
-
-        message += `Expériences professionnelles\n`;
-        if (blocks['EXPÉRIENCES PROFESSIONNELLES'].length) {
-            blocks['EXPÉRIENCES PROFESSIONNELLES'].forEach((exp, idx) => {
-                let ligne = [];
-                if (exp.dates) ligne.push(`Période : ${exp.dates}`);
-                if (exp.entreprises) ligne.push(`Structure : ${exp.entreprises}`);
-                if (exp.postes) ligne.push(`Poste : ${exp.postes}`);
-                if (exp.taches) ligne.push(`Tâches : ${exp.taches}`);
-                if (ligne.length) message += `- ${ligne.join(' | ')}\n`;
-            });
-        }
-        message += `\n`;
-
-        message += `Compétences\n`;
-        if (blocks['COMPÉTENCES CLÉS'].length) {
-            blocks['COMPÉTENCES CLÉS'].forEach((c) => {
-                message += `- ${c}\n`;
-            });
-        }
-        message += `\n`;
-
-        message += `Centres d’intérêt\n`;
-        if (blocks['AUTRES']['centres_interet']) {
-            message += `- ${blocks['AUTRES']['centres_interet']}\n`;
-        }
-        message += `\n`;
-
-        message += `Niveau d’urgence\n`;
-        message += `Urgence choisie : ${blocks['AUTRES']['urgence'] || ''}\n\n`;
-
-        message += `Modèle choisi\n`;
-        message += `Numéro de modèle : ${blocks['INFORMATIONS PERSONNELLES']['N° du modèle de CV & la formule'] || ''}\n`;
-        message += `Formule choisie : ${blocks['AUTRES']['formule'] || ''}\n`;
-
-        if (Object.keys(blocks['AUTRES']).length) {
-            message += `=== AUTRES INFORMATIONS ===\n`;
-            for (const [k, v] of Object.entries(blocks['AUTRES'])) {
-                let label = k.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                message += `- ${label} : ${v}\n`;
-            }
-            message += `\n`;
-        }
-
-        document.getElementById('formatted-message').value = message.trim();
-        form.submit();
-    });
-});
-</script>
+</body>
 </html>
-
