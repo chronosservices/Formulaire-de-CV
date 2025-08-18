@@ -1017,15 +1017,13 @@ const totalSteps = 10;
                     tutorialSection.style.display = 'block';
                     tutorialSection.classList.add('fade-enter');
                     break;
-                    
                 case 'ancien':
                     ancienClientSection.style.display = 'block';
                     ancienClientSection.classList.add('fade-enter');
                     break;
-                    
                 case 'expert':
-                    // Redirection vers le formulaire original avec niveau d'urgence
-                    redirectToExpertForm();
+                    // Redirection directe vers le formulaire original
+                    window.location.href = 'formulaire-original.html';
                     break;
             }
         }
@@ -1123,22 +1121,12 @@ const totalSteps = 10;
 
         function skipTutorial() {
             if (confirm('Êtes-vous sûr de vouloir passer le guide ? Vous serez redirigé directement vers le formulaire de CV.')) {
-                goToOriginalFormFromTutorial();
+                window.location.href = 'formulaire-original.html';
             }
         }
 
         function goToOriginalFormFromTutorial() {
-            // Demander le niveau d'urgence avant redirection
-            const urgence = prompt(`Avant de commencer votre CV, choisissez votre niveau d'urgence :\n1 - Normal (sous 48h)\n2 - Premium - Priorité absolue (+50% de frais)\n\nTapez 1 ou 2 :`);
-            let urgenceValue = '';
-            switch(urgence) {
-                case '1': urgenceValue = 'Normal - 48h'; break;
-                case '2': urgenceValue = 'Premium - Priorité absolue (+50% de frais)'; break;
-                default: urgenceValue = 'Normal - 48h'; break;
-            }
-            // Stocker le niveau d'urgence pour le formulaire
-            localStorage.setItem('niveau_urgence', urgenceValue);
-            // Redirection automatique vers le formulaire principal
+            // Redirection directe vers le formulaire original
             window.location.href = 'formulaire-original.html';
         }
 

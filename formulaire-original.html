@@ -6,6 +6,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire CV</title>
     <style>
+        /* Présentation professionnelle étape 6 */
+        .professional-verification {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 24px 18px;
+            margin-bottom: 24px;
+        }
+        .verif-row {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .verif-col {
+            flex: 1 1 320px;
+            min-width: 260px;
+        }
+        .verif-section-title {
+            font-size: 1.08rem;
+            color: #094102;
+            font-weight: 700;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+        .verif-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        .verif-label {
+            font-weight: 600;
+            color: #333;
+            min-width: 140px;
+            margin-right: 8px;
+        }
+        .verif-value {
+            color: #222;
+            word-break: break-word;
+        }
+        .verif-separator {
+            border: none;
+            border-top: 1.5px solid #eee;
+            margin: 18px 0;
+        }
+        @media (max-width: 900px) {
+            .verif-row {
+                flex-direction: column;
+                gap: 0;
+                margin-bottom: 8px;
+            }
+            .verif-col {
+                min-width: 100%;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            .professional-verification {
+                padding: 12px 6px;
+            }
+            .verif-section-title {
+                margin-bottom: 6px;
+                font-size: 1rem;
+            }
+            .verif-item {
+                margin-bottom: 4px;
+            }
+            .verif-separator {
+                margin: 10px 0;
+            }
+        }
+        }
+        .urgence-info {
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.98rem;
+            font-weight: 500;
+            display: none;
+        }
+        .price-display {
+            margin-top: 12px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 10px 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: none;
+        }
+        .price-display.show {
+            display: block;
+        }
+        .price-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #094102;
+        }
+        .price-amount {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FF5700;
+            margin-top: 2px;
+        }
+        .price-details {
+            font-size: 0.95rem;
+            color: #666;
+        }
+        .verification-content {
+            background: #f7f7f7;
+            border-radius: 10px;
+            padding: 18px 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .info-section {
+            margin-bottom: 18px;
+        }
+        .info-section h4 {
+            margin: 0 0 8px 0;
+            font-size: 1.08rem;
+            color: #094102;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 16px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.98rem;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #333;
+            margin-right: 6px;
+        }
+        .info-value {
+            color: #222;
+        }
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         body {
@@ -77,7 +215,6 @@
                 font-size: 0.95rem;
             }
         }
-        }
 
         .step-indicator {
             flex: 1;
@@ -96,9 +233,8 @@
             background: #ddd;
             color: #666;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin: 0 auto 8px auto;
             transition: all 0.3s ease;
-            /* line-height supprimé, flexbox gère le centrage */
         }
 
         .step-indicator.active::before {
@@ -419,6 +555,10 @@
                 max-width: 100%;
                 overflow-wrap: break-word;
             }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -525,7 +665,10 @@
                 <span>Formation</span>
             </div>
             <div class="step-indicator" data-step="5">
-                <span>Finalisation</span>
+                <span>Informations complémentaires</span>
+            </div>
+            <div class="step-indicator" data-step="6">
+                <span>Vérification</span>
             </div>
         </div>
 
@@ -590,6 +733,22 @@
                     <span class="help-tooltip">Décrivez brièvement vos aspirations professionnelles et ce que vous pouvez apporter à l'entreprise.</span>
                     <textarea name="objectifs" rows="3" placeholder="Décrivez vos objectifs professionnels"></textarea>
                 </label>
+                <label>
+                    Niveau d'urgence <span style="color: #FF5700;">*</span>
+                    <span class="help-icon">?</span>
+                    <span class="help-tooltip">Choisissez votre délai de livraison souhaité</span>
+                    <select name="niveau_urgence" id="niveauUrgence" required>
+                        <option value="">Sélectionnez le délai souhaité</option>
+                        <option value="Normal - Sous 48 heures">Normal - Sous 48 heures</option>
+                        <option value="Premium - Priorité absolue (+50% de frais)">Premium - Priorité absolue (+50% de frais)</option>
+                    </select>
+                </label>
+                <div class="urgence-info" id="urgenceInfo" style="display:none;"></div>
+                <div class="price-display" id="priceDisplay" style="display:none;">
+                    <div class="price-title">Montant à payer</div>
+                    <div class="price-amount" id="priceAmount">2050 FCFA</div>
+                    <div class="price-details" id="priceDetails">Frais inclus</div>
+                </div>
             </div>
 
             <!-- Step 2: Compétences -->
@@ -716,6 +875,62 @@
                 <div id="form-message"></div>
             </div>
 
+            <!-- Étape 6 : Vérification -->
+            <div class="step-content" data-step="6">
+                <div class="step-title">Vérification et prévisualisation</div>
+                <div class="verification-content professional-verification">
+                    <div class="verif-row">
+                        <div class="verif-col">
+                            <h4 class="verif-section-title">Informations personnelles</h4>
+                            <div class="verif-item"><span class="verif-label">Nom & Prénom :</span> <span class="verif-value" id="verify-nom-prenom">-</span></div>
+                            <div class="verif-item"><span class="verif-label">Email :</span> <span class="verif-value" id="verify-email">-</span></div>
+                            <div class="verif-item"><span class="verif-label">Téléphone :</span> <span class="verif-value" id="verify-telephone">-</span></div>
+                            <div class="verif-item"><span class="verif-label">Adresse :</span> <span class="verif-value" id="verify-adresse">-</span></div>
+                            <div class="verif-item"><span class="verif-label">N° ONE / PNPE :</span> <span class="verif-value" id="verify-one">-</span></div>
+                            <div class="verif-item"><span class="verif-label">Poste recherché :</span> <span class="verif-value" id="verify-poste">-</span></div>
+                            <div class="verif-item"><span class="verif-label">Modèle CV & Formule :</span> <span class="verif-value" id="verify-modele">-</span></div>
+                        </div>
+                        <div class="verif-col">
+                            <h4 class="verif-section-title">Compétences</h4>
+                            <div class="verif-item"><span class="verif-label">Langues :</span> <span class="verif-value" id="verify-langues">-</span></div>
+                            <div class="verif-item"><span class="verif-label">Compétences informatiques :</span> <span class="verif-value" id="verify-competences-info">-</span></div>
+                            <div class="verif-item"><span class="verif-label">Domaines de compétences :</span> <span class="verif-value" id="verify-domaines">-</span></div>
+                        </div>
+                    </div>
+                    <hr class="verif-separator">
+                    <div class="verif-row">
+                        <div class="verif-col">
+                            <h4 class="verif-section-title">Expériences</h4>
+                            <div class="verif-item"><span class="verif-label">Résumé :</span> <span class="verif-value" id="verify-experiences">-</span></div>
+                        </div>
+                        <div class="verif-col">
+                            <h4 class="verif-section-title">Formation</h4>
+                            <div class="verif-item"><span class="verif-label">Résumé :</span> <span class="verif-value" id="verify-formations">-</span></div>
+                        </div>
+                    </div>
+                    <hr class="verif-separator">
+                    <div class="verif-row">
+                        <div class="verif-col">
+                            <h4 class="verif-section-title">Autres informations</h4>
+                            <div class="verif-item"><span class="verif-label">Centres d'intérêt :</span> <span class="verif-value" id="verify-centres">-</span></div>
+                            <div class="verif-item"><span class="verif-label">Objectifs :</span> <span class="verif-value" id="verify-objectifs">-</span></div>
+                        </div>
+                        <div class="verif-col">
+                            <h4 class="verif-section-title">Informations complémentaires</h4>
+                            <div class="verif-item"><span class="verif-label">Informations complémentaires :</span> <span class="verif-value" id="verify-infos">-</span></div>
+                        </div>
+                    </div>
+                    <hr class="verif-separator">
+                    <div class="verif-row">
+                        <div class="verif-col">
+                            <h4 class="verif-section-title">Urgence & Prix</h4>
+                            <div class="verif-item"><span class="verif-label">Niveau d'urgence :</span> <span class="verif-value" id="verify-urgence">-</span></div>
+                            <div class="verif-item"><span class="verif-label">Montant à payer :</span> <span class="verif-value" id="verify-price" style="font-weight:600;color:#FF5700;">-</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Navigation Buttons -->
             <div class="step-navigation">
                 <button type="button" id="prevBtn" class="nav-button secondary" style="display:none;">Précédent</button>
@@ -733,9 +948,111 @@
     <script>
         // Variables globales
         let currentStep = 1;
-        const totalSteps = 5;
+        const totalSteps = 6;
         let experienceCounter = 1;
         let formationCounter = 1;
+
+        // Gestion urgence et prix dynamique
+        document.addEventListener('DOMContentLoaded', function() {
+            const urgenceSelect = document.getElementById('niveauUrgence');
+            if (urgenceSelect) {
+                urgenceSelect.addEventListener('change', handleUrgenceChange);
+            }
+        });
+
+        function handleUrgenceChange(e) {
+            const infoDiv = document.getElementById('urgenceInfo');
+            const priceDisplay = document.getElementById('priceDisplay');
+            const priceAmount = document.getElementById('priceAmount');
+            const priceDetails = document.getElementById('priceDetails');
+            const value = e.target.value;
+            
+            if (value.includes('Premium')) {
+                infoDiv.innerHTML = 'Service Premium - Priorité absolue avec supplément de 50%';
+                infoDiv.style.display = 'block';
+                infoDiv.style.background = '#d4edda';
+                infoDiv.style.color = '#155724';
+                priceDisplay.style.display = 'block';
+                priceAmount.textContent = '3050 FCFA';
+                priceDetails.textContent = 'Service Premium - Frais inclus';
+            } else if (value.includes('Normal')) {
+                infoDiv.innerHTML = 'Tarif normal, délai standard de 48h';
+                infoDiv.style.display = 'block';
+                infoDiv.style.background = '#d1ecf1';
+                infoDiv.style.color = '#0c5460';
+                priceDisplay.style.display = 'block';
+                priceAmount.textContent = '2050 FCFA';
+                priceDetails.textContent = 'Frais inclus';
+            } else {
+                infoDiv.style.display = 'none';
+                priceDisplay.style.display = 'none';
+            }
+        }
+
+        // Prévisualisation étape 6
+        function updateVerificationData() {
+            const form = document.getElementById('mainForm');
+            const formData = new FormData(form);
+            
+            document.getElementById('verify-nom-prenom').textContent = formData.get('nom_prenom') || '-';
+            document.getElementById('verify-email').textContent = formData.get('email') || '-';
+            document.getElementById('verify-telephone').textContent = formData.get('telephone') || '-';
+            document.getElementById('verify-adresse').textContent = formData.get('adresse') || '-';
+            document.getElementById('verify-one').textContent = formData.get('numero_one_pnpe') || '-';
+            document.getElementById('verify-poste').textContent = formData.get('poste_recherche') || '-';
+            document.getElementById('verify-modele').textContent = formData.get('modele_cv_formule') || '-';
+            document.getElementById('verify-objectifs').textContent = formData.get('objectifs') || '-';
+            
+            // Compétences
+            const langues = formData.getAll('langues[]').filter(l => l && l.trim());
+            document.getElementById('verify-langues').textContent = langues.length ? langues.join(', ') : '-';
+            
+            const competencesInfo = formData.getAll('competences_informatiques[]').filter(c => c && c.trim());
+            document.getElementById('verify-competences-info').textContent = competencesInfo.length ? competencesInfo.join(', ') : '-';
+            
+            const domainesComp = formData.getAll('domaines_competences[]').filter(d => d && d.trim());
+            document.getElementById('verify-domaines').textContent = domainesComp.length ? domainesComp.join(', ') : '-';
+            
+            // Expériences
+            let experienceText = '';
+            for (let i = 1; i <= experienceCounter; i++) {
+                const poste = formData.get(`experience_${i}_postes`);
+                const entreprise = formData.get(`experience_${i}_entreprises`);
+                const dates = formData.get(`experience_${i}_dates`);
+                if (poste || entreprise || dates) {
+                    experienceText += `${poste || 'Poste'} - ${entreprise || 'Entreprise'} (${dates || 'Dates'}); `;
+                }
+            }
+            document.getElementById('verify-experiences').textContent = experienceText || '-';
+            
+            // Formations
+            let formationText = '';
+            for (let i = 1; i <= formationCounter; i++) {
+                const diplome = formData.get(`formation_${i}_diplomes`);
+                const serie = formData.get(`formation_${i}_series`);
+                const date = formData.get(`formation_${i}_dates`);
+                const etablissement = formData.get(`formation_${i}_etablissements`);
+                if (diplome || serie || date || etablissement) {
+                    formationText += `${diplome || ''} - ${serie || ''} (${date || ''}) @ ${etablissement || ''}; `;
+                }
+            }
+            document.getElementById('verify-formations').textContent = formationText || '-';
+            
+            document.getElementById('verify-centres').textContent = formData.get('centres_interet') || '-';
+            document.getElementById('verify-infos').textContent = formData.get('informations_complementaires') || '-';
+            
+            // Urgence & prix
+            const urgence = formData.get('niveau_urgence');
+            document.getElementById('verify-urgence').textContent = urgence || '-';
+            const priceElement = document.getElementById('verify-price');
+            if (urgence && urgence.includes('Premium')) {
+                priceElement.textContent = '3050 FCFA';
+            } else if (urgence && urgence.includes('Normal')) {
+                priceElement.textContent = '2050 FCFA';
+            } else {
+                priceElement.textContent = '-';
+            }
+        }
 
         // Gestion des étapes
         function updateProgressBar() {
@@ -762,24 +1079,30 @@
             document.querySelectorAll('.step-content').forEach(content => {
                 content.classList.remove('active');
             });
-            
+
             // Show current step
             const currentContent = document.querySelector(`.step-content[data-step="${step}"]`);
             if (currentContent) {
                 currentContent.classList.add('active');
             }
-            
+
             // Update navigation buttons
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const submitBtn = document.getElementById('submitBtn');
-            
-            prevBtn.style.display = step === 1 ? 'none' : 'inline-block';
-            nextBtn.style.display = step === totalSteps ? 'none' : 'inline-block';
-            submitBtn.style.display = step === totalSteps ? 'inline-block' : 'none';
-            
+
+            if (prevBtn) prevBtn.style.display = step === 1 ? 'none' : 'inline-block';
+            if (nextBtn) nextBtn.style.display = step === totalSteps ? 'none' : 'inline-block';
+            if (submitBtn) submitBtn.style.display = step === totalSteps ? 'inline-block' : 'none';
+
+            // Update progress and indicators
             updateProgressBar();
             updateStepIndicators();
+            
+            // Update verification data on step 6
+            if (step === 6) {
+                updateVerificationData();
+            }
         }
 
         function validateCurrentStep() {
@@ -934,92 +1257,16 @@
             container.appendChild(newFormation);
         }
 
-        // Sauvegarde et restauration du formulaire
-        function saveFormToLocalStorage() {
-            const form = document.getElementById('mainForm');
-            const data = {};
-            const formData = new FormData(form);
-            
-            for (let [key, value] of formData.entries()) {
-                if (data[key]) {
-                    if (!Array.isArray(data[key])) {
-                        data[key] = [data[key]];
-                    }
-                    data[key].push(value);
-                } else {
-                    data[key] = value;
-                }
-            }
-            
-            // Sauvegarder l'étape actuelle
-            data._currentStep = currentStep;
-            data._experienceCounter = experienceCounter;
-            data._formationCounter = formationCounter;
-            
-            localStorage.setItem('formulaireCV', JSON.stringify(data));
-        }
-
-        function restoreFormFromLocalStorage() {
-            const savedData = localStorage.getItem('formulaireCV');
-            if (!savedData) return;
-            
-            const data = JSON.parse(savedData);
-            const form = document.getElementById('mainForm');
-            
-            // Restaurer les valeurs des champs
-            for (let [key, value] of Object.entries(data)) {
-                if (key.startsWith('_')) continue; // Skip internal data
-                
-                const field = form.querySelector(`[name="${key}"]`);
-                if (field) {
-                    if (Array.isArray(value)) {
-                        field.value = value[0]; // Use first value for simple fields
-                    } else {
-                        field.value = value;
-                    }
-                }
-            }
-            
-            // Restaurer les compteurs et l'étape
-            if (data._experienceCounter) experienceCounter = data._experienceCounter;
-            if (data._formationCounter) formationCounter = data._formationCounter;
-            if (data._currentStep) {
-                currentStep = data._currentStep;
-                showStep(currentStep);
-            }
-        }
-
-        function clearFormAndLocalStorage() {
-            const form = document.getElementById('mainForm');
-            form.reset();
-            localStorage.removeItem('formulaireCV');
-            
-            // Reset counters and step
-            currentStep = 1;
-            experienceCounter = 1;
-            formationCounter = 1;
-            showStep(currentStep);
-            
-            // Clear message
-            const msg = document.getElementById('form-message');
-            if (msg) {
-                msg.textContent = '';
-                msg.className = '';
-            }
-        }
-
         // Structuration du message pour Formspree
         function structureMessage() {
             const form = document.getElementById('mainForm');
             const formData = new FormData(form);
             
             let message = '';
-            const profil = localStorage.getItem('profil_utilisateur') || '';
-            const urgence = localStorage.getItem('niveau_urgence') || '';
+            const profil = 'CV Professionnel';
             
             // En-tête
-            const titreProfil = profil ? `CANDIDATURE REÇUE – Profil ${profil.charAt(0).toUpperCase() + profil.slice(1).toLowerCase()}` : 'CANDIDATURE REÇUE';
-            message += `${titreProfil}\n\n`;
+            message += `CANDIDATURE REÇUE – Profil CV Professionnel\n\n`;
             
             // Informations personnelles
             message += `=== INFORMATIONS PERSONNELLES ===\n`;
@@ -1034,19 +1281,19 @@
             
             // Compétences
             message += `=== COMPÉTENCES ===\n`;
-            const langues = formData.getAll('langues[]').filter(l => l.trim());
+            const langues = formData.getAll('langues[]').filter(l => l && l.trim());
             if (langues.length) {
                 message += `Langues :\n`;
                 langues.forEach(l => message += `- ${l}\n`);
             }
             
-            const competencesInfo = formData.getAll('competences_informatiques[]').filter(c => c.trim());
+            const competencesInfo = formData.getAll('competences_informatiques[]').filter(c => c && c.trim());
             if (competencesInfo.length) {
                 message += `Compétences informatiques :\n`;
                 competencesInfo.forEach(c => message += `- ${c}\n`);
             }
             
-            const domainesComp = formData.getAll('domaines_competences[]').filter(d => d.trim());
+            const domainesComp = formData.getAll('domaines_competences[]').filter(d => d && d.trim());
             if (domainesComp.length) {
                 message += `Domaines de compétences :\n`;
                 domainesComp.forEach(d => message += `- ${d}\n`);
@@ -1100,16 +1347,23 @@
             }
             
             // Niveau d'urgence
+            const urgence = formData.get('niveau_urgence');
             if (urgence) {
                 message += `=== NIVEAU D'URGENCE ===\n${urgence}\n\n`;
             }
             
             document.getElementById('formatted-message').value = message.trim();
+            document.getElementById('profil-hidden').value = profil;
+            document.getElementById('urgence-hidden').value = urgence || '';
         }
 
         // Gestionnaire d'envoi du formulaire
         function handleFormSubmit(e) {
             e.preventDefault();
+            
+            if (!validateCurrentStep()) {
+                return;
+            }
             
             structureMessage();
             
@@ -1150,33 +1404,46 @@
             });
         }
 
+        function clearFormAndLocalStorage() {
+            const form = document.getElementById('mainForm');
+            form.reset();
+            
+            // Reset counters and step
+            currentStep = 1;
+            experienceCounter = 1;
+            formationCounter = 1;
+            showStep(currentStep);
+            
+            // Clear message
+            const msg = document.getElementById('form-message');
+            if (msg) {
+                msg.textContent = '';
+                msg.className = '';
+            }
+
+            // Hide price display
+            const priceDisplay = document.getElementById('priceDisplay');
+            const urgenceInfo = document.getElementById('urgenceInfo');
+            if (priceDisplay) priceDisplay.style.display = 'none';
+            if (urgenceInfo) urgenceInfo.style.display = 'none';
+        }
+
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
-            // Récupération des données du localStorage
-            const profil = localStorage.getItem('profil_utilisateur');
-            const urgence = localStorage.getItem('niveau_urgence');
-            
-            if (profil) {
-                document.getElementById('profil-hidden').value = profil;
-            }
-            if (urgence) {
-                document.getElementById('urgence-hidden').value = urgence;
-            }
-            
-            // Restaurer le formulaire sauvegardé
-            restoreFormFromLocalStorage();
-            
             // Initialiser l'affichage
             showStep(currentStep);
             
             // Event listeners
-            document.getElementById('nextBtn').addEventListener('click', nextStep);
-            document.getElementById('prevBtn').addEventListener('click', prevStep);
-            document.getElementById('resetFormBtn').addEventListener('click', clearFormAndLocalStorage);
-            document.getElementById('mainForm').addEventListener('submit', handleFormSubmit);
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const resetBtn = document.getElementById('resetFormBtn');
+            const mainForm = document.getElementById('mainForm');
             
-            // Sauvegarde automatique
-            document.getElementById('mainForm').addEventListener('input', saveFormToLocalStorage);
+            if (nextBtn) nextBtn.addEventListener('click', nextStep);
+            if (prevBtn) prevBtn.addEventListener('click', prevStep);
+            if (resetBtn) resetBtn.addEventListener('click', clearFormAndLocalStorage);
+            if (mainForm) mainForm.addEventListener('submit', handleFormSubmit);
             
             // Step indicators click events
             document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
