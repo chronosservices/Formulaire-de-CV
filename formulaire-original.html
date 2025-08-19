@@ -6,6 +6,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire CV</title>
     <style>
+        /* Styles spécifiques pour le modal de paiement */
+        .payment-methods {
+            margin-bottom: 20px;
+        }
+        .payment-methods h4 {
+            color: #2f3640;
+            margin-bottom: 15px;
+        }
+        .payment-option {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .payment-provider {
+            font-weight: 600;
+            color: #094102;
+        }
+        .payment-number {
+            font-weight: 600;
+            color: #FF5700;
+        }
+        .recipient-info {
+            text-align: center;
+            background: #e6fbe6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #094102;
+        }
+        .confirmation-section {
+            text-align: center;
+        }
+        .confirmation-btn {
+            background: linear-gradient(90deg, #094102, #ff5700);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .confirmation-btn:hover {
+            background: linear-gradient(90deg, #076301, #e64a00);
+            transform: translateY(-2px);
+        }
+        .service-item:last-child {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #094102;
+        }
+        /* Modal de paiement responsive et centré */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .payment-modal.show {
+            display: flex;
+        }
+        .payment-content {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideInModal 0.3s ease;
+        }
+        @keyframes slideInModal {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .close-modal:hover {
+            background: #f8f9fa;
+            color: #2f3640;
+        }
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .invoice-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2f3640;
+            margin-bottom: 10px;
+        }
+        .invoice-number {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .client-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .client-info h4 {
+            color: #2f3640;
+            margin-bottom: 10px;
+        }
+        .service-details {
+            margin-bottom: 30px;
+        }
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        @media (max-width: 768px) {
+            .payment-content {
+                padding: 15px;
+                max-width: 98vw;
+            }
+        }
+        @media (max-width: 480px) {
+            .payment-content {
+                padding: 6px;
+                border-radius: 8px;
+            }
+        }
         /* Présentation professionnelle étape 6 */
         .professional-verification {
             background: #fff;
@@ -943,6 +1103,61 @@
             <input type="hidden" name="profil" id="profil-hidden">
             <input type="hidden" name="niveau_urgence" id="urgence-hidden">
         </form>
+
+        <!-- Modal de paiement -->
+        <div class="payment-modal" id="paymentModal">
+            <div class="payment-content">
+                <button class="close-modal" onclick="closePaymentModal()">&times;</button>
+                <div class="invoice-header">
+                    <div class="invoice-title">Facture de Service</div>
+                    <div class="invoice-number" id="invoiceNumber">Facture N° CV-001</div>
+                </div>
+                <div class="client-info">
+                    <h4>Informations Client</h4>
+                    <div id="clientDetails">
+                        <strong id="clientName">-</strong><br>
+                        <span id="clientContact">-</span><br>
+                        <span id="clientEmail">-</span>
+                    </div>
+                </div>
+                <div class="service-details">
+                    <h4 style="margin-bottom: 15px; color: #2f3640;">Détails du Service</h4>
+                    <div class="service-item">
+                        <span>Rédaction de CV professionnel</span>
+                        <span>2050 FCFA</span>
+                    </div>
+                    <div class="service-item" id="premiumCharge" style="display: none;">
+                        <span>Supplément Premium (+50%)</span>
+                        <span id="premiumAmount">1000 FCFA</span>
+                    </div>
+                    <div class="service-item">
+                        <span>Total à payer</span>
+                        <span id="totalAmount">2050 FCFA</span>
+                    </div>
+                </div>
+                <div class="payment-methods">
+                    <h4>Procédez au paiement</h4>
+                    <div class="payment-option">
+                        <div class="payment-provider">Airtel Money</div>
+                        <div class="payment-number">077 101 378</div>
+                    </div>
+                    <div class="payment-option">
+                        <div class="payment-provider">Moov Money</div>
+                        <div class="payment-number">065 370 882</div>
+                    </div>
+                </div>
+                <div class="recipient-info">
+                    <strong>Bénéficiaire: Nel MANKOU</strong><br>
+                    <small>Vous recevrez le document Word / PowerPoint et PDF en fonction du modèle de CV que vous avez choisi, une fois la rédaction terminée.</small>
+                </div>
+                <div class="confirmation-section">
+                    <button class="confirmation-btn" onclick="closePaymentModal()">
+                        J'ai effectué le paiement
+                    </button>
+                </div>
+            </div>
+        </div>
+        </form>
     </div>
 
     <script>
@@ -1302,12 +1517,12 @@
             
             // Expériences
             message += `=== EXPÉRIENCES PROFESSIONNELLES ===\n`;
-            for (let i = 1; i <= experienceCounter; i++) {
+            let expCount = (typeof experienceCounter !== 'undefined' && experienceCounter) ? experienceCounter : 1;
+            for (let i = 1; i <= expCount; i++) {
                 const dates = formData.get(`experience_${i}_dates`);
                 const poste = formData.get(`experience_${i}_postes`);
                 const entreprise = formData.get(`experience_${i}_entreprises`);
                 const taches = formData.get(`experience_${i}_taches`);
-                
                 if (dates || poste || entreprise || taches) {
                     message += `Expérience ${i} :\n`;
                     if (dates) message += `- Période : ${dates}\n`;
@@ -1320,12 +1535,12 @@
             
             // Formations
             message += `=== FORMATIONS ===\n`;
-            for (let i = 1; i <= formationCounter; i++) {
+            let formCount = (typeof formationCounter !== 'undefined' && formationCounter) ? formationCounter : 1;
+            for (let i = 1; i <= formCount; i++) {
                 const diplome = formData.get(`formation_${i}_diplomes`);
                 const serie = formData.get(`formation_${i}_series`);
                 const date = formData.get(`formation_${i}_dates`);
                 const etablissement = formData.get(`formation_${i}_etablissements`);
-                
                 if (diplome || serie || date || etablissement) {
                     message += `Formation ${i} :\n`;
                     if (diplome) message += `- Diplôme : ${diplome}\n`;
@@ -1360,23 +1575,17 @@
         // Gestionnaire d'envoi du formulaire
         function handleFormSubmit(e) {
             e.preventDefault();
-            
             if (!validateCurrentStep()) {
                 return;
             }
-            
             structureMessage();
-            
             const form = document.getElementById('mainForm');
             const btn = document.getElementById('submitBtn');
             const msg = document.getElementById('form-message');
-            
             msg.textContent = '🔄 Envoi en cours…';
             msg.className = 'sending';
             btn.disabled = true;
-            
             const formData = new FormData(form);
-            
             fetch(form.action, {
                 method: 'POST',
                 body: formData,
@@ -1388,20 +1597,74 @@
                 if (response.ok) {
                     msg.textContent = '✅ Formulaire envoyé avec succès';
                     msg.className = 'success';
-                    clearFormAndLocalStorage();
+                    // Attendre un peu avant d'afficher le modal
+                    setTimeout(() => {
+                        showPaymentModal(formData);
+                    }, 500);
                 } else {
                     return response.json().then(data => {
                         throw new Error(data.error || 'Erreur inconnue');
                     });
                 }
             })
-            .catch(() => {
+            .catch((error) => {
+                console.error('Erreur:', error);
                 msg.textContent = '❌ Échec de l\'envoi, veuillez réessayer';
                 msg.className = 'error';
             })
             .finally(() => {
                 btn.disabled = false;
             });
+        }
+        // Affichage du modal de facture après envoi réussi
+        function showPaymentModal(formData) {
+            const modal = document.getElementById('paymentModal');
+            const clientName = document.getElementById('clientName');
+            const clientContact = document.getElementById('clientContact');
+            const clientEmail = document.getElementById('clientEmail');
+            const invoiceNumber = document.getElementById('invoiceNumber');
+            const premiumCharge = document.getElementById('premiumCharge');
+            const premiumAmount = document.getElementById('premiumAmount');
+            const totalAmount = document.getElementById('totalAmount');
+
+            // Générer un numéro de facture unique
+            const today = new Date();
+            const invoiceNum = `CV-${today.getFullYear()}${(today.getMonth() + 1).toString().padStart(2, '0')}${today.getDate().toString().padStart(2, '0')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
+
+            // Remplir les informations client
+            clientName.textContent = formData.get('nom_prenom') || 'Client';
+            clientContact.textContent = formData.get('telephone') || '-';
+            clientEmail.textContent = formData.get('email') || '-';
+            invoiceNumber.textContent = `Facture N° ${invoiceNum}`;
+
+            // Calculer le prix selon l'urgence
+            const urgence = formData.get('niveau_urgence');
+            const isPremium = urgence && urgence.includes('Premium');
+
+            if (isPremium) {
+                premiumCharge.style.display = 'flex';
+                premiumAmount.textContent = '1000 FCFA';
+                totalAmount.textContent = '3050 FCFA';
+            } else {
+                premiumCharge.style.display = 'none';
+                totalAmount.textContent = '2050 FCFA';
+            }
+
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fermeture du modal de paiement
+        function closePaymentModal() {
+            const modal = document.getElementById('paymentModal');
+            if (modal) {
+                modal.classList.remove('show');
+            }
+            document.body.style.overflow = 'auto';
+            // Réinitialiser le formulaire après fermeture
+            setTimeout(() => {
+                clearFormAndLocalStorage();
+            }, 300);
         }
 
         function clearFormAndLocalStorage() {
