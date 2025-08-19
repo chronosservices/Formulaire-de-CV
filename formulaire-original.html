@@ -82,7 +82,9 @@
             border-radius: 16px;
             padding: 30px;
             max-width: 500px;
-            width: 90%;
+            width: 95vw;
+            min-width: 0;
+            box-sizing: border-box;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
@@ -156,8 +158,36 @@
         }
         @media (max-width: 768px) {
             .payment-content {
-                padding: 15px;
-                max-width: 98vw;
+                padding: 10px 5px;
+                max-width: 99vw;
+                width: 99vw;
+                font-size: 0.97rem;
+            }
+            .invoice-title {
+                font-size: 1.1rem;
+            }
+            .invoice-header, .client-info, .service-details, .payment-methods, .recipient-info {
+                padding-left: 2px;
+                padding-right: 2px;
+            }
+            .service-item, .payment-option {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+            }
+            .confirmation-btn {
+                width: 100%;
+                font-size: 1rem;
+                padding: 10px 0;
+            }
+            .close-modal {
+                top: 8px;
+                right: 8px;
+                font-size: 1.2rem;
+            }
+            .payment-modal {
+                align-items: flex-start;
+                padding-top: 10vw;
             }
         }
         @media (max-width: 480px) {
