@@ -221,7 +221,7 @@
     @media(max-width:280px){.header{flex-wrap:wrap;gap:6px;}.header__btn:last-child{display:none;}.search-input{font-size:.72rem;}.quick-item__desc{display:none;}.bottom-nav__label{display:none;}.bottom-nav__icon-wrap{width:32px;height:32px;border-radius:50%;}}
 
     /* ====================================================
-       ONBOARDING — VERSION FINALE RESPONSIVE
+       NOUVEL ONBOARDING
     ==================================================== */
     #csOb {
       position: fixed;
@@ -229,484 +229,881 @@
       width: 100vw;
       height: 100dvh;
       z-index: 9999;
-      background: #fff;
-      font-family: 'Sora','DM Sans',system-ui,sans-serif;
+      background: #f5f3ee;
+      font-family: 'DM Sans', sans-serif;
       display: flex;
       flex-direction: column;
       overflow: hidden;
     }
     #csOb .ob-topbar {
-      height: 5px;
-      background: linear-gradient(90deg,#094102,#FF5700);
+      height: 4px;
+      background: linear-gradient(90deg, #094102, #FF5700);
       flex-shrink: 0;
     }
-    #csOb .ob-slide {
-      display: none;
-      flex-direction: column;
-      flex: 1;
+    #csOb .ob-prog-wrap {
+      height: 3px;
+      background: #e8e6e0;
+      flex-shrink: 0;
       overflow: hidden;
-      min-height: 0;
     }
-    #csOb .ob-slide.on {
+    #csOb .ob-prog-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #094102, #FF5700);
+      transition: width .55s cubic-bezier(.4,0,.2,1);
+      width: 0%;
+    }
+    #csOb .ob-slide {
+      position: absolute;
+      left: 0; right: 0; top: 7px; bottom: 0;
       display: flex;
-      animation: obFade .32s ease;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(28px);
+      transition: opacity .08s, transform .08s;
     }
-    @keyframes obFade{from{opacity:0;transform:translateX(12px);}to{opacity:1;transform:translateX(0);}}
+    #csOb .ob-slide.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(0);
+    }
+    #csOb .ob-slide.exit {
+      opacity: 0;
+      transform: translateX(-28px);
+    }
     #csOb .ob-illus {
-      flex: 0 0 44%;
+      flex: 0 0 52%;
       min-height: 0;
-      max-height: 52vh;
-      background: #f0f2ee;
       overflow: hidden;
       position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: #f5f3ee;
     }
     #csOb .ob-illus svg {
-      position: absolute;
-      inset: 0;
+      display: block;
       width: 100%;
       height: 100%;
-      display: block;
     }
+    #csOb .ob-illus::before {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      z-index: 0;
+      width: 220px; height: 220px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -54%);
+    }
+    #csOb .s0 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.09) 0%, transparent 70%); }
+    #csOb .s1 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.09) 0%, transparent 70%); }
+    #csOb .s2 .ob-illus::before { background: radial-gradient(circle, rgba(255,87,0,.09) 0%, transparent 70%); }
+    #csOb .s3 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.08) 0%, transparent 70%); }
+    #csOb .s4 .ob-illus::before { background: radial-gradient(circle, rgba(255,87,0,.08) 0%, transparent 70%); }
+    #csOb .s5 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.09) 0%, transparent 70%); }
+    #csOb .s6 .ob-illus::before { background: radial-gradient(circle, rgba(37,211,102,.10) 0%, transparent 70%); }
     #csOb .ob-bottom {
       flex: 1;
       min-height: 0;
       background: #fff;
+      border-radius: 24px 24px 0 0;
+      padding: 18px 22px 0;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: clamp(12px,3vw,22px) clamp(16px,5vw,32px) 0;
-      overflow: hidden;
+      box-shadow: 0 -4px 20px rgba(9,65,2,.07);
     }
     #csOb .ob-eyebrow {
-      font-size: clamp(.58rem,2vw,.7rem);
+      font-size: .58rem;
       font-weight: 700;
-      letter-spacing: .1em;
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: #FF5700;
       margin-bottom: 4px;
-      flex-shrink: 0;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all .4s .05s ease;
     }
     #csOb .ob-title {
-      font-size: clamp(.92rem,3.8vw,1.25rem);
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(.92rem, 3.5vw, 1.12rem);
       font-weight: 800;
       color: #094102;
       line-height: 1.22;
-      margin-bottom: 6px;
-      flex-shrink: 0;
+      margin-bottom: 7px;
+      min-height: 54px;
     }
+    #csOb .ob-title .ob-cursor {
+      display: inline-block;
+      width: 2px;
+      height: .88em;
+      background: #FF5700;
+      vertical-align: middle;
+      margin-left: 1px;
+      animation: obBlink .65s step-start infinite;
+    }
+    @keyframes obBlink { 0%,100%{opacity:1;} 50%{opacity:0;} }
     #csOb .ob-desc {
-      font-size: clamp(.72rem,2.7vw,.86rem);
-      color: #4b5563;
-      line-height: 1.55;
+      font-size: clamp(.72rem, 2.5vw, .78rem);
+      color: #6b7280;
+      line-height: 1.6;
+      flex: 1;
       overflow: hidden;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 4;
-      flex-shrink: 0;
+      -webkit-line-clamp: 3;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all .4s .2s ease;
     }
-    #csOb .ob-desc strong{color:#094102;}
+    #csOb .ob-desc strong { color: #094102; }
     #csOb .ob-chip {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: clamp(4px,.8vh,6px) clamp(10px,2.5vw,14px);
+      gap: 5px;
+      padding: 5px 13px;
       border-radius: 100px;
-      font-size: clamp(.58rem,2vw,.7rem);
-      font-weight: 600;
+      font-size: .62rem;
+      font-weight: 700;
       border: 1.5px solid currentColor;
-      margin-top: 8px;
-      flex-shrink: 0;
-      white-space: nowrap;
       width: fit-content;
-      max-width: 100%;
+      margin-bottom: 4px;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 100%;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all .4s .32s ease;
     }
-    #csOb .ob-chip.g{color:#094102;}
-    #csOb .ob-chip.o{color:#FF5700;}
+    #csOb .ob-chip.g { color: #094102; }
+    #csOb .ob-chip.o { color: #FF5700; }
+    #csOb .ob-slide.active .ob-eyebrow,
+    #csOb .ob-slide.active .ob-desc,
+    #csOb .ob-slide.active .ob-chip { opacity: 1; transform: none; }
     #csOb .ob-nav {
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: clamp(10px,2vw,14px) clamp(16px,5vw,32px);
-      padding-bottom: calc(clamp(10px,2vw,14px) + env(safe-area-inset-bottom,0px));
+      padding: 10px 22px calc(10px + env(safe-area-inset-bottom, 0px));
       background: #fff;
       border-top: 1px solid #f3f4f6;
     }
-    #csOb .ob-dots{display:flex;gap:5px;align-items:center;}
-    #csOb .ob-dot{width:7px;height:7px;border-radius:4px;background:#e5e7eb;transition:all .28s cubic-bezier(.4,0,.2,1);}
-    #csOb .ob-dot.on{width:22px;background:#094102;}
-    #csOb .ob-dot.done{background:#a7f3d0;}
-    #csOb .ob-nav-right{display:flex;align-items:center;gap:8px;}
-    #csOb .ob-skip-btn{font-size:clamp(.72rem,2.6vw,.85rem);color:#9ca3af;background:none;border:none;cursor:pointer;font-family:inherit;padding:6px 8px;white-space:nowrap;}
-    #csOb .ob-prev-btn{width:clamp(34px,9vw,42px);height:clamp(34px,9vw,42px);border-radius:50%;border:1.5px solid #e5e7eb;background:#fff;color:#374151;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit;flex-shrink:0;}
-    #csOb .ob-prev-btn:hover{border-color:#094102;color:#094102;}
-    #csOb .ob-prev-btn.ob-hidden{display:none!important;}
-    #csOb .ob-next-btn{height:clamp(38px,9vw,46px);padding:0 clamp(14px,3.5vw,24px);border-radius:100px;background:linear-gradient(135deg,#094102 0%,#FF5700 100%);color:#fff;font-family:inherit;font-size:clamp(.76rem,2.8vw,.9rem);font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;box-shadow:0 4px 14px rgba(9,65,2,.22);transition:opacity .2s,transform .15s;flex-shrink:0;}
-    #csOb .ob-next-btn:hover{opacity:.88;transform:translateY(-1px);}
-    #csOb .ob-next-btn:active{transform:scale(.97);}
-    #csOb.closing{animation:obClose .32s ease forwards;}
-    @keyframes obClose{from{opacity:1;}to{opacity:0;pointer-events:none;}}
+    #csOb .ob-dots-row { display: flex; gap: 5px; align-items: center; }
+    #csOb .ob-dot {
+      width: 6px; height: 6px;
+      border-radius: 3px;
+      background: #e5e7eb;
+      transition: all .35s cubic-bezier(.23,1,.32,1);
+      cursor: pointer;
+    }
+    #csOb .ob-dot.on  { width: 20px; background: #094102; }
+    #csOb .ob-dot.done { background: #bbf7d0; }
+    #csOb .ob-nav-r { display: flex; align-items: center; gap: 8px; }
+    #csOb .ob-skip {
+      font-size: .74rem;
+      color: #9ca3af;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 4px 8px;
+    }
+    #csOb .ob-skip:hover { color: #6b7280; }
+    #csOb .ob-prev {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid #e5e7eb;
+      background: #fff;
+      color: #374151;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      font-size: .8rem;
+      font-family: inherit;
+    }
+    #csOb .ob-prev:hover { border-color: #094102; color: #094102; }
+    #csOb .ob-next {
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, #094102, #1e7a06);
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: .74rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 4px 14px rgba(9,65,2,.28);
+      transition: opacity .2s, transform .15s;
+      white-space: nowrap;
+    }
+    #csOb .ob-next:hover { opacity: .88; transform: translateY(-1px); }
+    #csOb .ob-next:active { transform: scale(.97); }
+    #csOb .ob-next.last { background: linear-gradient(135deg, #094102, #FF5700); }
+    #csOb .ob-slide.active .ob-perso  { animation: obPersoIn .6s cubic-bezier(.22,1,.36,1) forwards; }
+    #csOb .ob-slide.active .ob-scene  { animation: obPersoIn .6s .1s cubic-bezier(.22,1,.36,1) forwards; }
+    #csOb .ob-slide.active .ob-scene2 { animation: obPersoIn .6s .18s cubic-bezier(.22,1,.36,1) forwards; }
+    #csOb .ob-slide.active .ob-bob    { animation: obPersoIn .6s .08s cubic-bezier(.22,1,.36,1) forwards, obBob 3.5s ease-in-out infinite .7s; }
+    #csOb .ob-perso, #csOb .ob-scene, #csOb .ob-scene2, #csOb .ob-bob { opacity: 0; }
+    @keyframes obPersoIn { from{opacity:0;transform:translateY(14px) scale(.96);} to{opacity:1;transform:translateY(0) scale(1);} }
+    @keyframes obBob { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+    #csOb.ob-closing { animation: obClose .35s ease forwards; }
+    @keyframes obClose { from{opacity:1;transform:scale(1);} to{opacity:0;transform:scale(.94);pointer-events:none;} }
 
-    /* RESPONSIVE ONBOARDING */
     @media(max-width:480px){
-      #csOb .ob-illus{flex:0 0 40%;max-height:46vh;}
-      #csOb .ob-bottom{padding:10px 16px 0;}
-      #csOb .ob-nav{padding:8px 16px calc(8px + env(safe-area-inset-bottom,0px));}
+      #csOb .ob-illus { flex: 0 0 50%; }
+      #csOb .ob-bottom { padding: 14px 16px 0; }
+      #csOb .ob-nav { padding: 8px 16px calc(8px + env(safe-area-inset-bottom,0px)); }
     }
     @media(max-width:375px){
-      #csOb .ob-illus{flex:0 0 36%;max-height:42vh;}
-      #csOb .ob-title{font-size:clamp(.86rem,4.2vw,1rem);}
-      #csOb .ob-desc{font-size:clamp(.7rem,3vw,.8rem);-webkit-line-clamp:3;}
-      #csOb .ob-chip{font-size:clamp(.54rem,2.3vw,.64rem);padding:3px 9px;}
-      #csOb .ob-prev-btn{width:32px;height:32px;}
-      #csOb .ob-next-btn{height:36px;}
+      #csOb .ob-illus { flex: 0 0 44%; }
+      #csOb .ob-title { font-size: .9rem; min-height: 44px; }
+      #csOb .ob-desc { font-size: .7rem; -webkit-line-clamp: 2; }
+      #csOb .ob-chip { font-size: .58rem; padding: 4px 10px; }
+      #csOb .ob-next { font-size: .7rem; padding: 0 14px; }
     }
     @media(max-width:320px){
-      #csOb .ob-illus{flex:0 0 32%;}
-      #csOb .ob-chip{display:none;}
-      #csOb .ob-desc{-webkit-line-clamp:3;}
-      #csOb .ob-bottom{padding:8px 12px 0;}
-    }
-    @media(min-height:800px){
-      #csOb .ob-illus{flex:0 0 46%;max-height:50vh;}
-      #csOb .ob-desc{-webkit-line-clamp:5;}
-    }
-    @media(orientation:landscape) and (max-height:500px){
-      #csOb .ob-slide{flex-direction:row;}
-      #csOb .ob-illus{flex:0 0 45%;max-height:100vh;height:100%;}
-      #csOb .ob-bottom{padding:8px 18px 0;}
-      #csOb .ob-desc{-webkit-line-clamp:2;}
-      #csOb .ob-chip{display:none;}
+      #csOb .ob-illus { flex: 0 0 40%; }
+      #csOb .ob-chip { display: none; }
+      #csOb .ob-desc { -webkit-line-clamp: 2; }
     }
     @media(min-width:860px){
-      #csOb .ob-slide{flex-direction:row;}
-      #csOb .ob-illus{flex:0 0 52%;max-height:100vh;height:calc(100dvh - 5px);}
-      #csOb .ob-bottom{flex:1;padding:clamp(36px,5vw,72px) clamp(32px,4vw,60px) 0;justify-content:center;}
-      #csOb .ob-nav{position:fixed;bottom:0;right:0;width:48%;padding:14px clamp(32px,4vw,60px) 22px;background:#fff;border-top:1px solid #f3f4f6;}
-      #csOb .ob-desc{-webkit-line-clamp:6;}
+      #csOb .ob-slide { flex-direction: row; }
+      #csOb .ob-illus { flex: 0 0 52%; max-height: 100vh; height: calc(100dvh - 7px); }
+      #csOb .ob-bottom { padding: clamp(28px,4vw,56px) clamp(28px,4vw,52px) 0; justify-content: center; }
+      #csOb .ob-nav { position: fixed; bottom: 0; right: 0; width: 48%; padding: 12px clamp(28px,4vw,52px) 20px; background: #fff; border-top: 1px solid #f3f4f6; }
+      #csOb .ob-desc { -webkit-line-clamp: 5; }
     }
-    @media(min-width:860px) and (max-height:700px){
-      #csOb .ob-bottom{padding:20px 36px 0;}
-      #csOb .ob-desc{-webkit-line-clamp:4;}
+    @media(orientation:landscape) and (max-height:500px){
+      #csOb .ob-slide { flex-direction: row; }
+      #csOb .ob-illus { flex: 0 0 45%; max-height: 100vh; height: 100%; }
+      #csOb .ob-bottom { padding: 8px 18px 0; }
+      #csOb .ob-desc { -webkit-line-clamp: 2; }
+      #csOb .ob-chip { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ====================================================
+       NOUVEL ONBOARDING CHRONOS-SERVICES
+  ==================================================== -->
   <div id="csOb" role="dialog" aria-modal="true" aria-label="Présentation Chronos Services">
     <div class="ob-topbar"></div>
+    <div class="ob-prog-wrap"><div class="ob-prog-fill" id="obProgFill"></div></div>
 
-    <!-- SLIDE 1 -->
-    <div class="ob-slide on">
+    <!-- ══ SLIDE 0 : Bienvenue ══ -->
+    <div class="ob-slide s0 active">
       <div class="ob-illus">
-        <svg viewBox="0 0 580 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="580" height="340" fill="#f0f2ee"/>
-          <circle cx="80" cy="80" r="52" fill="#e8ebe5"/><circle cx="490" cy="240" r="62" fill="#fde8df" opacity=".7"/><circle cx="520" cy="60" r="34" fill="#e8ebe5" opacity=".6"/>
-          <rect x="170" y="40" width="220" height="262" rx="14" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <circle cx="260" cy="102" r="34" fill="#f0f2ee" stroke="#e5e7eb" stroke-width="1.5"/>
-          <circle cx="260" cy="102" r="22" fill="#dcfce7" stroke="#a7f3d0" stroke-width="1.5"/>
-          <line x1="260" y1="102" x2="260" y2="87" stroke="#094102" stroke-width="2" stroke-linecap="round"/>
-          <line x1="260" y1="102" x2="270" y2="108" stroke="#FF5700" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="260" cy="102" r="3" fill="#094102"/>
-          <rect x="195" y="148" width="130" height="7" rx="3.5" fill="#094102" opacity=".25"/>
-          <rect x="210" y="161" width="100" height="5" rx="2.5" fill="#e5e7eb"/>
-          <rect x="195" y="176" width="130" height="4" rx="2" fill="#f0f2ee"/><rect x="195" y="185" width="110" height="4" rx="2" fill="#f0f2ee"/><rect x="195" y="194" width="120" height="4" rx="2" fill="#f0f2ee"/>
-          <rect x="195" y="207" width="130" height="4" rx="2" fill="#e5e7eb"/><rect x="195" y="216" width="90" height="4" rx="2" fill="#f0f2ee"/><rect x="195" y="225" width="105" height="4" rx="2" fill="#f0f2ee"/>
-          <rect x="228" y="242" width="44" height="18" rx="9" fill="#FF5700" opacity=".15"/>
-          <text x="250" y="254.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#FF5700">PRO</text>
-          <rect x="60" y="130" width="90" height="5" rx="2.5" fill="#e5e7eb"/><rect x="60" y="141" width="70" height="5" rx="2.5" fill="#e5e7eb"/>
-          <rect x="412" y="110" width="80" height="5" rx="2.5" fill="#e5e7eb"/><rect x="420" y="121" width="64" height="5" rx="2.5" fill="#e5e7eb"/>
-        </svg>
-      </div>
-        <div class="ob-bottom" style="position: relative;">
-        <div class="ob-eyebrow">Bienvenue</div>
-        <div class="ob-title">Votre CV rédigé par des professionnels</div>
-        <div class="ob-desc">Vous nous transmettez vos informations via formulaire — <strong>nous rédigeons et mettons en forme votre CV</strong> de A à Z. Professionnel, soigné, prêt à décrocher un entretien.</div>
-        <span class="ob-chip g">✓ 562+ clients accompagnés</span>
-      </div>
-      <div class="ob-nav">
-        <div class="ob-dots"></div>
-        <div class="ob-nav-right">
-          <button class="ob-skip-btn">Passer</button>
-          <button class="ob-prev-btn ob-hidden">←</button>
-          <button class="ob-next-btn">Suivant →</button>
-        </div>
-      </div>
-    </div> 
-
-    <!-- SLIDE 2 -->
-    <div class="ob-slide">
-      <div class="ob-illus">
-        <svg viewBox="0 0 580 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="580" height="340" fill="#f0f2ee"/>
-          <rect x="48" y="30" width="210" height="280" rx="14" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <rect x="48" y="30" width="210" height="46" rx="14" fill="#f8fafc"/><rect x="48" y="60" width="210" height="16" fill="#f8fafc"/>
-          <text x="153" y="48" text-anchor="middle" font-family="'Sora',sans-serif" font-size="10" font-weight="700" fill="#374151">Formulaire de demande CV</text>
-          <rect x="66" y="84" width="174" height="22" rx="11" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/><rect x="154" y="91" width="70" height="8" rx="4" fill="#FF5700" opacity=".35"/>
-          <rect x="66" y="112" width="174" height="22" rx="11" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/><rect x="154" y="119" width="55" height="8" rx="4" fill="#FF5700" opacity=".25"/>
-          <rect x="66" y="140" width="174" height="22" rx="11" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/><rect x="154" y="147" width="65" height="8" rx="4" fill="#FF5700" opacity=".2"/>
-          <rect x="66" y="168" width="174" height="22" rx="11" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/><rect x="154" y="175" width="48" height="8" rx="4" fill="#FF5700" opacity=".18"/>
-          <rect x="66" y="196" width="174" height="22" rx="11" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/><rect x="154" y="203" width="60" height="8" rx="4" fill="#FF5700" opacity=".18"/>
-          <rect x="86" y="232" width="134" height="32" rx="16" fill="#094102"/>
-          <text x="153" y="251.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="10.5" font-weight="700" fill="white">Envoyer ma demande</text>
-          <line x1="270" y1="168" x2="308" y2="168" stroke="#FF5700" stroke-width="2.5" stroke-dasharray="5 4"/><polygon points="308,163 320,168 308,173" fill="#FF5700"/>
-          <rect x="324" y="80" width="200" height="190" rx="14" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <rect x="324" y="80" width="200" height="42" rx="14" fill="#f8fafc"/><rect x="324" y="108" width="200" height="14" fill="#f8fafc"/>
-          <text x="424" y="97" text-anchor="middle" font-family="'Sora',sans-serif" font-size="10" font-weight="700" fill="#374151">Votre CV Pro</text>
-          <text x="424" y="115" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#9ca3af">Rédigé &amp; mis en forme</text>
-          <rect x="340" y="130" width="168" height="5" rx="2.5" fill="#e5e7eb"/><rect x="340" y="141" width="130" height="4.5" rx="2" fill="#f0f2ee"/><rect x="340" y="151" width="148" height="4.5" rx="2" fill="#f0f2ee"/>
-          <rect x="340" y="165" width="168" height="4.5" rx="2" fill="#e5e7eb"/><rect x="340" y="175" width="110" height="4.5" rx="2" fill="#f0f2ee"/>
-          <rect x="340" y="196" width="46" height="18" rx="9" fill="#e8f0fe"/><text x="363" y="208.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="700" fill="#2563eb">Word</text>
-          <rect x="392" y="196" width="58" height="18" rx="9" fill="#fff3ee"/><text x="421" y="208.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="700" fill="#FF5700">PPT</text>
-          <rect x="456" y="196" width="40" height="18" rx="9" fill="#fef2f2"/><text x="476" y="208.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="700" fill="#dc2626">PDF</text>
-          <rect x="354" y="224" width="140" height="24" rx="12" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="1"/>
-          <text x="424" y="239.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#094102">Expert Rédaction ✓</text>
+        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
+          <defs>
+            <clipPath id="phoneClip0">
+              <rect x="133" y="19" width="80" height="170" rx="11"/>
+            </clipPath>
+          </defs>
+          <ellipse cx="190" cy="222" rx="130" ry="8" fill="rgba(9,65,2,.07)"/>
+          <g class="ob-scene ob-bob">
+            <rect x="129" y="14" width="90" height="182" rx="15" fill="#1e2532"/>
+            <rect x="133" y="19" width="80" height="170" rx="11" fill="#f0fdf4"/>
+            <rect x="157" y="14" width="34" height="5" rx="2.5" fill="#374151" opacity=".5"/>
+          </g>
+          <g clip-path="url(#phoneClip0)" class="ob-scene ob-bob">
+            <rect x="133" y="19" width="80" height="34" fill="#094102"/>
+            <text x="173" y="30" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="white">Chronos-Services</text>
+            <text x="173" y="42" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6" fill="rgba(255,255,255,.85)">Votre CV est prêt ✓</text>
+            <circle cx="155" cy="72" r="12" fill="#d1d5db"/>
+            <circle cx="155" cy="68" r="6" fill="#9ca3af"/>
+            <ellipse cx="155" cy="82" rx="10" ry="6" fill="#9ca3af"/>
+            <rect x="172" y="64" width="36" height="4" rx="2" fill="#e5e7eb"/>
+            <rect x="172" y="72" width="28" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="133" y="92" width="80" height="1" fill="#f0f0f0"/>
+            <rect x="139" y="98" width="68" height="3.5" rx="1.5" fill="#e5e7eb"/>
+            <rect x="139" y="106" width="56" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="139" y="113" width="62" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="133" y="122" width="80" height="1" fill="#f0f0f0"/>
+            <rect x="139" y="127" width="68" height="3.5" rx="1.5" fill="#e5e7eb"/>
+            <rect x="139" y="135" width="48" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="139" y="142" width="58" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="139" y="152" width="52" height="14" rx="7" fill="#FF5700" opacity=".9"/>
+            <text x="165" y="162" text-anchor="middle" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="white">Modèle N°030</text>
+            <text x="139" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#094102">Word</text>
+            <text x="158" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#6b7280">PPT</text>
+            <text x="174" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#dc2626">PDF</text>
+          </g>
+          <g class="ob-bob">
+            <rect x="232" y="58" width="112" height="34" rx="11" fill="white" stroke="rgba(9,65,2,.14)" stroke-width="1"/>
+            <circle cx="250" cy="75" r="8" fill="#094102"/>
+            <text x="250" y="79" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="white">✓</text>
+            <text x="262" y="70" font-family="Sora,sans-serif" font-size="8.5" font-weight="700" fill="#094102">562+ clients</text>
+            <text x="262" y="83" font-family="DM Sans,sans-serif" font-size="7.5" fill="#6b7280">accompagnés</text>
+          </g>
+          <text x="40" y="85" font-family="sans-serif" font-size="13" fill="#FF5700" opacity=".5">★</text>
+          <text x="330" y="110" font-family="sans-serif" font-size="9" fill="#094102" opacity=".45">★</text>
         </svg>
       </div>
       <div class="ob-bottom">
-        <div class="ob-eyebrow">Étape 1 — Catalogue</div>
-        <div class="ob-title">Vous remplissez, nous rédigeons</div>
-        <div class="ob-desc">Complétez le formulaire en 6 étapes. Nos experts <strong>rédigent et mettent en forme votre CV</strong> — livré en Word ou PowerPoint &amp; PDF sous 48h selon le modèle choisi.</div>
-        <span class="ob-chip g">40+ modèles · Optimisé ATS · 48h chrono</span>
+        <div class="ob-eyebrow">Bienvenue sur Chronos-Services</div>
+        <div class="ob-title" id="obTw0"></div>
+        <div class="ob-desc">Vous nous transmettez vos infos via formulaire — <strong>nos experts rédigent et mettent en forme votre CV</strong> de A à Z. Professionnel, soigné, prêt à décrocher un entretien.</div>
+        <span class="ob-chip g">✓ 562+ clients accompagnés depuis 2021</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots"></div>
-        <div class="ob-nav-right">
-          <button class="ob-skip-btn">Passer</button>
-          <button class="ob-prev-btn">←</button>
-          <button class="ob-next-btn">Suivant →</button>
+        <div class="ob-dots-row" id="obDots0"></div>
+        <div class="ob-nav-r">
+          <button class="ob-skip">Passer</button>
+          <button class="ob-prev" style="opacity:0;pointer-events:none">←</button>
+          <button class="ob-next">Suivant →</button>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 3 -->
-    <div class="ob-slide">
+    <!-- ══ SLIDE 1 : Formulaire ══ -->
+    <div class="ob-slide s1">
       <div class="ob-illus">
-        <svg viewBox="0 0 580 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="580" height="340" fill="#f0f2ee"/>
-          <rect x="30" y="50" width="158" height="210" rx="14" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <rect x="30" y="50" width="158" height="42" rx="14" fill="#fef2f2"/><rect x="30" y="78" width="158" height="14" fill="#fef2f2"/>
-          <text x="109" y="68" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9.5" font-weight="700" fill="#dc2626">CV_actuel.pdf</text>
-          <rect x="48" y="100" width="122" height="6" rx="3" fill="#f3f4f6"/><rect x="48" y="112" width="100" height="5" rx="2.5" fill="#f3f4f6"/><rect x="48" y="122" width="114" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="48" y="136" width="122" height="6" rx="3" fill="#f3f4f6"/><rect x="48" y="148" width="88" height="5" rx="2.5" fill="#f3f4f6"/><rect x="48" y="158" width="106" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="48" y="172" width="122" height="6" rx="3" fill="#f3f4f6"/><rect x="48" y="184" width="96" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="48" y="210" width="46" height="20" rx="10" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/><text x="71" y="223.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#dc2626">PDF</text>
-          <rect x="100" y="210" width="46" height="20" rx="10" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/><text x="123" y="223.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#6b7280">IMG</text>
-          <line x1="196" y1="155" x2="224" y2="155" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5 4"/><polygon points="224,150 234,155 224,160" fill="#9ca3af"/>
-          <rect x="234" y="105" width="114" height="100" rx="14" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <text x="291" y="155" text-anchor="middle" font-family="'Sora',sans-serif" font-size="14" font-weight="800" fill="#094102">IA</text>
-          <line x1="352" y1="155" x2="378" y2="155" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5 4"/><polygon points="378,150 388,155 378,160" fill="#9ca3af"/>
-          <rect x="388" y="38" width="164" height="262" rx="14" fill="white" stroke="#a7f3d0" stroke-width="2"/>
-          <rect x="388" y="38" width="164" height="38" rx="14" fill="#f0fdf4"/><rect x="388" y="62" width="164" height="14" fill="#f0fdf4"/>
-          <text x="470" y="54" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#094102">Formulaire pré-rempli ✓</text>
-          <text x="404" y="90" font-family="'DM Sans',sans-serif" font-size="9" fill="#374151">✓  Jean DUPONT</text><rect x="400" y="96" width="136" height="1" fill="#f0f2ee"/>
-          <text x="404" y="111" font-family="'DM Sans',sans-serif" font-size="9" fill="#374151">✓  Chef de projet · Libreville</text><rect x="400" y="117" width="136" height="1" fill="#f0f2ee"/>
-          <text x="404" y="132" font-family="'DM Sans',sans-serif" font-size="9" fill="#374151">✓  3 expériences pro.</text><rect x="400" y="138" width="136" height="1" fill="#f0f2ee"/>
-          <text x="404" y="153" font-family="'DM Sans',sans-serif" font-size="9" fill="#374151">✓  2 formations détectées</text><rect x="400" y="159" width="136" height="1" fill="#f0f2ee"/>
-          <text x="404" y="174" font-family="'DM Sans',sans-serif" font-size="9" fill="#374151">✓  Langues · Compétences</text><rect x="400" y="180" width="136" height="1" fill="#f0f2ee"/>
-          <text x="404" y="195" font-family="'DM Sans',sans-serif" font-size="9" fill="#374151">✓  N°ONE / PNPE reconnu</text>
-          <rect x="410" y="252" width="120" height="24" rx="12" fill="#fff3ee"/>
-          <text x="470" y="267.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="700" fill="#FF5700">Analyse en quelques sec.</text>
+        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
+          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
+          <g class="ob-scene">
+            <rect x="148" y="22" width="84" height="170" rx="14" fill="#1e2532"/>
+            <rect x="152" y="26" width="76" height="162" rx="11" fill="#f8fafc"/>
+            <rect x="168" y="22" width="44" height="5" rx="2.5" fill="#374151"/>
+            <rect x="152" y="26" width="76" height="28" rx="11" fill="#094102"/>
+            <rect x="152" y="46" width="76" height="8" fill="#094102"/>
+            <text x="190" y="38" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="white">Formulaire CV</text>
+            <text x="190" y="49" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,.75)">Étape 2 / 6</text>
+            <rect x="158" y="62" width="64" height="13" rx="6.5" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+            <text x="164" y="72" font-family="DM Sans,sans-serif" font-size="6.5" fill="#374151">Jean Dupont</text>
+            <rect x="158" y="79" width="64" height="13" rx="6.5" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+            <text x="164" y="89" font-family="DM Sans,sans-serif" font-size="6.5" fill="#374151">Chef de projet</text>
+            <rect x="158" y="96" width="64" height="13" rx="6.5" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+            <text x="164" y="106" font-family="DM Sans,sans-serif" font-size="6.5" fill="#374151">Libreville, Gabon</text>
+            <rect x="158" y="113" width="64" height="13" rx="6.5" fill="#f3f4f6" stroke="#094102" stroke-width="1.5"/>
+            <text x="164" y="123" font-family="DM Sans,sans-serif" font-size="6.5" fill="#9ca3af">Expériences...</text>
+            <rect x="158" y="132" width="64" height="4" rx="2" fill="#e5e7eb"/>
+            <rect x="158" y="132" width="32" height="4" rx="2" fill="#094102"/>
+            <rect x="164" y="141" width="52" height="14" rx="7" fill="#FF5700"/>
+            <text x="190" y="151" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="white">Continuer →</text>
+          </g>
+          <!-- Jeune femme lunettes rondes, cheveux courts, veste verte, peau medium -->
+          <g class="ob-perso">
+            <ellipse cx="270" cy="217" rx="11" ry="5" fill="#2d2d2d"/>
+            <ellipse cx="294" cy="217" rx="11" ry="5" fill="#2d2d2d"/>
+            <rect x="262" y="172" width="13" height="47" rx="6.5" fill="#1e3a5f"/>
+            <rect x="284" y="172" width="13" height="47" rx="6.5" fill="#1e3a5f"/>
+            <path d="M255 118 Q252 172 262 180 L297 180 Q307 172 304 118 Q296 126 279 126 Q262 126 255 118Z" fill="#2d7a3a"/>
+            <path d="M268 118 L273 130 L279 126 L285 130 L290 118" fill="#246830" stroke="none"/>
+            <rect x="275" y="118" width="8" height="20" rx="2" fill="#f9fafb"/>
+            <rect x="247" y="118" width="11" height="38" rx="5.5" fill="#2d7a3a"/>
+            <ellipse cx="252" cy="158" rx="7" ry="7" fill="#c8864a"/>
+            <rect x="301" y="118" width="11" height="38" rx="5.5" fill="#2d7a3a"/>
+            <ellipse cx="307" cy="158" rx="7" ry="7" fill="#c8864a"/>
+            <rect x="274" y="104" width="12" height="18" rx="6" fill="#c8864a"/>
+            <ellipse cx="280" cy="82" rx="22" ry="23" fill="#c8864a"/>
+            <ellipse cx="258" cy="84" rx="5" ry="7" fill="#c8864a"/>
+            <ellipse cx="302" cy="84" rx="5" ry="7" fill="#c8864a"/>
+            <ellipse cx="280" cy="62" rx="22" ry="11" fill="#2d1a00"/>
+            <path d="M258 72 Q263 66 270 68 Q266 75 260 77Z" fill="#2d1a00"/>
+            <path d="M302 72 Q297 66 290 68 Q294 75 300 77Z" fill="#2d1a00"/>
+            <path d="M265 74 Q271 70 276 73" fill="none" stroke="#2d1a00" stroke-width="2" stroke-linecap="round"/>
+            <path d="M284 73 Q289 70 295 74" fill="none" stroke="#2d1a00" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="272" cy="82" r="9" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
+            <circle cx="290" cy="82" r="9" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
+            <line x1="281" y1="81" x2="283" y2="81" stroke="#1f2937" stroke-width="2"/>
+            <line x1="258" y1="82" x2="263" y2="82" stroke="#1f2937" stroke-width="1.8"/>
+            <line x1="299" y1="82" x2="303" y2="82" stroke="#1f2937" stroke-width="1.8"/>
+            <ellipse cx="272" cy="83" rx="5.5" ry="6" fill="white"/>
+            <ellipse cx="290" cy="83" rx="5.5" ry="6" fill="white"/>
+            <ellipse cx="273" cy="84" rx="3.5" ry="4" fill="#2d1a0a"/>
+            <ellipse cx="291" cy="84" rx="3.5" ry="4" fill="#2d1a0a"/>
+            <ellipse cx="273" cy="84" rx="1.8" ry="2" fill="#0a0a0a"/>
+            <ellipse cx="291" cy="84" rx="1.8" ry="2" fill="#0a0a0a"/>
+            <circle cx="275" cy="82" r="1.2" fill="white"/>
+            <circle cx="293" cy="82" r="1.2" fill="white"/>
+            <ellipse cx="281" cy="91" rx="2.5" ry="2" fill="#b07840" opacity=".5"/>
+            <path d="M272 97 Q281 104 290 97" fill="white"/>
+            <path d="M272 97 Q281 104 290 97" fill="none" stroke="#c07040" stroke-width="1.4"/>
+            <ellipse cx="263" cy="91" rx="5" ry="3.5" fill="#f4a57a" opacity=".28"/>
+            <ellipse cx="297" cy="91" rx="5" ry="3.5" fill="#f4a57a" opacity=".28"/>
+          </g>
+          <g class="ob-bob">
+            <rect x="18" y="65" width="100" height="34" rx="11" fill="white" stroke="rgba(255,87,0,.2)" stroke-width="1"/>
+            <text x="68" y="79" text-anchor="middle" font-family="Sora,sans-serif" font-size="8.5" font-weight="700" fill="#FF5700">40+ modèles</text>
+            <text x="68" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#6b7280">disponibles</text>
+          </g>
+        </svg>
+      </div>
+      <div class="ob-bottom">
+        <div class="ob-eyebrow">Étape 1 — Formulaire</div>
+        <div class="ob-title" id="obTw1"></div>
+        <div class="ob-desc">6 étapes simples sur votre téléphone. Nos experts <strong>rédigent et mettent en forme</strong> — livré en Word, PowerPoint &amp; PDF sous 48h.</div>
+        <span class="ob-chip g">40+ modèles · Optimisé ATS · 48h chrono</span>
+      </div>
+      <div class="ob-nav">
+        <div class="ob-dots-row" id="obDots1"></div>
+        <div class="ob-nav-r">
+          <button class="ob-skip">Passer</button>
+          <button class="ob-prev">←</button>
+          <button class="ob-next">Suivant →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SLIDE 2 : Scanner IA ══ -->
+    <div class="ob-slide s2">
+      <div class="ob-illus">
+        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
+          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
+          <g class="ob-scene">
+            <rect x="12" y="38" width="82" height="110" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
+            <rect x="12" y="38" width="82" height="20" rx="8" fill="#fee2e2"/>
+            <rect x="12" y="50" width="82" height="8" fill="#fee2e2"/>
+            <text x="53" y="51" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#dc2626">CV_ancien.pdf</text>
+            <circle cx="53" cy="72" r="10" fill="#fecaca"/>
+            <rect x="22" y="87" width="62" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="22" y="95" width="50" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="22" y="102" width="56" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="22" y="112" width="62" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="22" y="120" width="44" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="26" y="133" width="54" height="12" rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
+            <text x="53" y="142" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#dc2626">Dépassé</text>
+          </g>
+          <g class="ob-scene2">
+            <line x1="96" y1="96" x2="118" y2="96" stroke="#FF5700" stroke-width="2" stroke-dasharray="4 3"/>
+            <polygon points="118,91 130,96 118,101" fill="#FF5700"/>
+            <circle cx="152" cy="96" r="22" fill="white" stroke="#FF5700" stroke-width="2"/>
+            <text x="152" y="92" text-anchor="middle" font-family="Sora,sans-serif" font-size="11" font-weight="800" fill="#FF5700">IA</text>
+            <text x="152" y="104" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="#6b7280">Scanner</text>
+            <line x1="174" y1="96" x2="196" y2="96" stroke="#094102" stroke-width="2" stroke-dasharray="4 3"/>
+            <polygon points="196,91 208,96 196,101" fill="#094102"/>
+            <rect x="210" y="36" width="86" height="118" rx="8" fill="white" stroke="rgba(9,65,2,.3)" stroke-width="1.5"/>
+            <rect x="210" y="36" width="86" height="20" rx="8" fill="#f0fdf4"/>
+            <rect x="210" y="48" width="86" height="8" fill="#f0fdf4"/>
+            <text x="253" y="49" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#094102">Pré-rempli ✓</text>
+            <text x="220" y="67" font-family="DM Sans,sans-serif" font-size="7" fill="#374151">✓  Jean DUPONT</text>
+            <line x1="216" y1="72" x2="288" y2="72" stroke="#f0f2ee" stroke-width="1"/>
+            <text x="220" y="83" font-family="DM Sans,sans-serif" font-size="7" fill="#374151">✓  Chef de projet</text>
+            <line x1="216" y1="88" x2="288" y2="88" stroke="#f0f2ee" stroke-width="1"/>
+            <text x="220" y="99" font-family="DM Sans,sans-serif" font-size="7" fill="#374151">✓  3 expériences</text>
+            <line x1="216" y1="104" x2="288" y2="104" stroke="#f0f2ee" stroke-width="1"/>
+            <text x="220" y="115" font-family="DM Sans,sans-serif" font-size="7" fill="#374151">✓  2 formations</text>
+            <rect x="222" y="124" width="62" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.25)" stroke-width="1"/>
+            <text x="253" y="134" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#094102">Analyse ⚡ rapide</text>
+          </g>
+          <!-- Jeune homme lunettes carrées, cheveux courts rasés, peau foncée, pull orange -->
+          <g class="ob-perso">
+            <ellipse cx="318" cy="217" rx="11" ry="5" fill="#1c1c1c"/>
+            <ellipse cx="342" cy="217" rx="11" ry="5" fill="#1c1c1c"/>
+            <rect x="311" y="172" width="13" height="47" rx="6.5" fill="#374151"/>
+            <rect x="333" y="172" width="13" height="47" rx="6.5" fill="#374151"/>
+            <path d="M304 116 Q301 172 311 180 L346 180 Q356 172 353 116 Q345 124 328 124 Q311 124 304 116Z" fill="#ea580c"/>
+            <ellipse cx="328" cy="116" rx="13" ry="8" fill="#c2410c"/>
+            <rect x="295" y="116" width="11" height="38" rx="5.5" fill="#ea580c"/>
+            <ellipse cx="300" cy="156" rx="7" ry="7" fill="#7a3b10"/>
+            <rect x="351" y="116" width="11" height="38" rx="5.5" fill="#ea580c"/>
+            <ellipse cx="357" cy="156" rx="7" ry="7" fill="#7a3b10"/>
+            <rect x="322" y="102" width="12" height="18" rx="6" fill="#7a3b10"/>
+            <ellipse cx="328" cy="78" rx="22" ry="23" fill="#7a3b10"/>
+            <ellipse cx="306" cy="80" rx="5" ry="7" fill="#7a3b10"/>
+            <ellipse cx="350" cy="80" rx="5" ry="7" fill="#7a3b10"/>
+            <ellipse cx="328" cy="58" rx="22" ry="9" fill="#1a0a00"/>
+            <rect x="306" y="57" width="6" height="16" rx="3" fill="#1a0a00"/>
+            <rect x="344" y="57" width="6" height="16" rx="3" fill="#1a0a00"/>
+            <rect x="312" y="68" width="14" height="3.5" rx="1.75" fill="#1a0a00"/>
+            <rect x="332" y="68" width="14" height="3.5" rx="1.75" fill="#1a0a00"/>
+            <rect x="311" y="74" rx="3" ry="3" width="16" height="13" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
+            <rect x="331" y="74" rx="3" ry="3" width="16" height="13" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
+            <line x1="327" y1="80" x2="331" y2="80" stroke="#1f2937" stroke-width="2"/>
+            <line x1="306" y1="80" x2="311" y2="80" stroke="#1f2937" stroke-width="1.8"/>
+            <line x1="347" y1="80" x2="352" y2="80" stroke="#1f2937" stroke-width="1.8"/>
+            <ellipse cx="319" cy="81" rx="5" ry="5.5" fill="white"/>
+            <ellipse cx="339" cy="81" rx="5" ry="5.5" fill="white"/>
+            <ellipse cx="320" cy="82" rx="3.2" ry="3.6" fill="#2d1a0a"/>
+            <ellipse cx="340" cy="82" rx="3.2" ry="3.6" fill="#2d1a0a"/>
+            <ellipse cx="320" cy="82" rx="1.6" ry="1.8" fill="#0a0a0a"/>
+            <ellipse cx="340" cy="82" rx="1.6" ry="1.8" fill="#0a0a0a"/>
+            <circle cx="322" cy="80" r="1.1" fill="white"/>
+            <circle cx="342" cy="80" r="1.1" fill="white"/>
+            <ellipse cx="329" cy="89" rx="2.5" ry="2" fill="#5a2a00" opacity=".45"/>
+            <path d="M320 97 Q329 104 338 97" fill="white"/>
+            <path d="M320 97 Q329 104 338 97" fill="none" stroke="#5a2a00" stroke-width="1.4"/>
+            <ellipse cx="311" cy="89" rx="5" ry="3.5" fill="#c06030" opacity=".22"/>
+            <ellipse cx="347" cy="89" rx="5" ry="3.5" fill="#c06030" opacity=".22"/>
+          </g>
         </svg>
       </div>
       <div class="ob-bottom">
         <div class="ob-eyebrow">Nouveauté — Scanner IA</div>
-        <div class="ob-title">Votre ancien CV importé en 1 clic</div>
-        <div class="ob-desc">Déposez votre CV existant (PDF ou photo). Notre IA extrait toutes vos infos et remplit le formulaire automatiquement — <strong>vous n'avez qu'à vérifier et envoyer</strong>.</div>
-        <span class="ob-chip o">Scanner IA · OCR intégré · Analyse rapide</span>
+        <div class="ob-title" id="obTw2"></div>
+        <div class="ob-desc">Prenez votre CV en photo. Notre IA extrait toutes vos infos et <strong>remplit le formulaire automatiquement</strong> — vous n'avez qu'à vérifier et envoyer.</div>
+        <span class="ob-chip o">OCR intégré · Analyse rapide · 1 clic</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots"></div>
-        <div class="ob-nav-right">
-          <button class="ob-skip-btn">Passer</button>
-          <button class="ob-prev-btn">←</button>
-          <button class="ob-next-btn">Suivant →</button>
+        <div class="ob-dots-row" id="obDots2"></div>
+        <div class="ob-nav-r">
+          <button class="ob-skip">Passer</button>
+          <button class="ob-prev">←</button>
+          <button class="ob-next">Suivant →</button>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 4 -->
-    <div class="ob-slide">
+    <!-- ══ SLIDE 3 : Mise à jour ══ -->
+    <div class="ob-slide s3">
       <div class="ob-illus">
-        <svg viewBox="0 0 580 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="580" height="340" fill="#f0f2ee"/>
-          <rect x="40" y="50" width="178" height="230" rx="14" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <text x="129" y="76" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9.5" font-weight="600" fill="#6b7280">Ancien CV — v1</text>
-          <rect x="58" y="86" width="142" height="5.5" rx="2.75" fill="#f3f4f6"/><rect x="58" y="97" width="110" height="5" rx="2.5" fill="#f3f4f6"/><rect x="58" y="107" width="128" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="58" y="121" width="142" height="5.5" rx="2.75" fill="#f3f4f6"/><rect x="58" y="132" width="96" height="5" rx="2.5" fill="#f3f4f6"/><rect x="58" y="142" width="116" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="58" y="156" width="142" height="5.5" rx="2.75" fill="#f3f4f6"/><rect x="58" y="167" width="84" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="78" y="228" width="102" height="24" rx="12" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
-          <text x="129" y="243.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9.5" font-weight="700" fill="#dc2626">Dépassé</text>
-          <circle cx="290" cy="165" r="42" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <text x="290" y="162" text-anchor="middle" font-family="'Sora',sans-serif" font-size="10" font-weight="800" fill="#094102">Mise</text>
-          <text x="290" y="176" text-anchor="middle" font-family="'Sora',sans-serif" font-size="10" font-weight="800" fill="#FF5700">à jour</text>
-          <line x1="220" y1="165" x2="248" y2="165" stroke="#e5e7eb" stroke-width="2"/><polygon points="248,160 258,165 248,170" fill="#e5e7eb"/>
-          <line x1="332" y1="165" x2="360" y2="165" stroke="#e5e7eb" stroke-width="2"/><polygon points="360,160 370,165 360,170" fill="#e5e7eb"/>
-          <rect x="370" y="50" width="178" height="230" rx="14" fill="white" stroke="#a7f3d0" stroke-width="2"/>
-          <text x="459" y="76" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9.5" font-weight="600" fill="#094102">CV mis à jour — v2</text>
-          <rect x="388" y="86" width="142" height="5.5" rx="2.75" fill="#f3f4f6"/><rect x="388" y="97" width="110" height="5" rx="2.5" fill="#f3f4f6"/><rect x="388" y="107" width="128" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="388" y="121" width="142" height="5.5" rx="2.75" fill="#f3f4f6"/><rect x="388" y="132" width="96" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="388" y="148" width="142" height="20" rx="10" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="1"/><text x="396" y="161.5" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#094102">✦ Nouveau poste ajouté</text>
-          <rect x="388" y="174" width="142" height="20" rx="10" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="1"/><text x="396" y="187.5" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#094102">✦ Formation mise à jour</text>
-          <rect x="388" y="200" width="142" height="20" rx="10" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="1"/><text x="396" y="213.5" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#094102">✦ Nouvelle adresse</text>
-          <text x="459" y="248" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" fill="#9ca3af">Même modèle · Livré sous 48h</text>
+        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
+          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
+          <g class="ob-scene">
+            <rect x="18" y="45" width="96" height="140" rx="9" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
+            <rect x="18" y="45" width="96" height="26" rx="9" fill="#f8fafc"/>
+            <rect x="18" y="63" width="96" height="8" fill="#f8fafc"/>
+            <text x="66" y="62" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="600" fill="#6b7280">CV actuel — v1</text>
+            <rect x="30" y="80" width="72" height="4" rx="2" fill="#f3f4f6"/>
+            <rect x="30" y="89" width="58" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="30" y="97" width="66" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="30" y="109" width="72" height="4" rx="2" fill="#f3f4f6"/>
+            <rect x="30" y="118" width="50" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="30" y="126" width="62" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="35" y="163" width="62" height="16" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
+            <text x="66" y="174" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="#dc2626">Dépassé</text>
+          </g>
+          <g class="ob-scene2">
+            <rect x="264" y="35" width="96" height="150" rx="9" fill="white" stroke="rgba(9,65,2,.35)" stroke-width="2"/>
+            <rect x="264" y="35" width="96" height="26" rx="9" fill="#f0fdf4"/>
+            <rect x="264" y="53" width="96" height="8" fill="#f0fdf4"/>
+            <text x="312" y="52" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="600" fill="#094102">CV mis à jour — v2</text>
+            <rect x="276" y="70" width="72" height="4" rx="2" fill="#f3f4f6"/>
+            <rect x="276" y="79" width="58" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="276" y="93" width="72" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
+            <text x="290" y="103" font-family="DM Sans,sans-serif" font-size="7" fill="#094102">✦ Nouveau poste</text>
+            <rect x="276" y="111" width="72" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
+            <text x="290" y="121" font-family="DM Sans,sans-serif" font-size="7" fill="#094102">✦ Formation MAJ</text>
+            <rect x="276" y="129" width="72" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
+            <text x="290" y="139" font-family="DM Sans,sans-serif" font-size="7" fill="#094102">✦ Nouvelle adresse</text>
+            <text x="312" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#9ca3af">Même design · 48h</text>
+          </g>
+          <!-- Jeune homme lunettes ovales, cheveux courts, peau claire, chemise bleu roi -->
+          <g class="ob-perso">
+            <ellipse cx="174" cy="217" rx="11" ry="5" fill="#1c1c1c"/>
+            <ellipse cx="198" cy="217" rx="11" ry="5" fill="#1c1c1c"/>
+            <rect x="167" y="172" width="13" height="47" rx="6.5" fill="#d4b896"/>
+            <rect x="189" y="172" width="13" height="47" rx="6.5" fill="#d4b896"/>
+            <path d="M160 116 Q157 172 167 180 L202 180 Q212 172 209 116 Q201 124 184 124 Q167 124 160 116Z" fill="#2563eb"/>
+            <path d="M173 116 L178 130 L184 126 L190 130 L195 116" fill="#1d4ed8" stroke="none"/>
+            <rect x="182" y="116" width="4" height="22" rx="1" fill="#1d4ed8"/>
+            <rect x="151" y="116" width="11" height="38" rx="5.5" fill="#2563eb"/>
+            <ellipse cx="156" cy="156" rx="7" ry="7" fill="#f5cba7"/>
+            <rect x="207" y="116" width="11" height="38" rx="5.5" fill="#2563eb"/>
+            <ellipse cx="213" cy="156" rx="7" ry="7" fill="#f5cba7"/>
+            <rect x="178" y="102" width="12" height="18" rx="6" fill="#f5cba7"/>
+            <ellipse cx="184" cy="78" rx="22" ry="23" fill="#f5cba7"/>
+            <ellipse cx="162" cy="80" rx="5" ry="7" fill="#f5cba7"/>
+            <ellipse cx="206" cy="80" rx="5" ry="7" fill="#f5cba7"/>
+            <ellipse cx="184" cy="58" rx="22" ry="10" fill="#3b1a00"/>
+            <rect x="162" y="57" width="6" height="18" rx="3" fill="#3b1a00"/>
+            <rect x="200" y="57" width="6" height="18" rx="3" fill="#3b1a00"/>
+            <ellipse cx="184" cy="56" rx="18" ry="6" fill="#4a2000"/>
+            <rect x="169" y="69" width="13" height="3" rx="1.5" fill="#3b1a00"/>
+            <rect x="188" y="69" width="13" height="3" rx="1.5" fill="#3b1a00"/>
+            <ellipse cx="176" cy="80" rx="10" ry="7" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
+            <ellipse cx="196" cy="80" rx="10" ry="7" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
+            <line x1="186" y1="80" x2="188" y2="80" stroke="#1f2937" stroke-width="2"/>
+            <line x1="162" y1="80" x2="166" y2="80" stroke="#1f2937" stroke-width="1.8"/>
+            <line x1="206" y1="80" x2="210" y2="80" stroke="#1f2937" stroke-width="1.8"/>
+            <ellipse cx="176" cy="81" rx="5.5" ry="5.5" fill="white"/>
+            <ellipse cx="196" cy="81" rx="5.5" ry="5.5" fill="white"/>
+            <ellipse cx="177" cy="82" rx="3.4" ry="3.6" fill="#2d1a0a"/>
+            <ellipse cx="197" cy="82" rx="3.4" ry="3.6" fill="#2d1a0a"/>
+            <ellipse cx="177" cy="82" rx="1.7" ry="1.8" fill="#0a0a0a"/>
+            <ellipse cx="197" cy="82" rx="1.7" ry="1.8" fill="#0a0a0a"/>
+            <circle cx="179" cy="80" r="1.2" fill="white"/>
+            <circle cx="199" cy="80" r="1.2" fill="white"/>
+            <ellipse cx="185" cy="89" rx="2.5" ry="2" fill="#d4936a" opacity=".4"/>
+            <path d="M176 97 Q185 105 194 97" fill="white"/>
+            <path d="M176 97 Q185 105 194 97" fill="none" stroke="#d4936a" stroke-width="1.5"/>
+            <ellipse cx="165" cy="89" rx="5" ry="3.5" fill="#f4a57a" opacity=".28"/>
+            <ellipse cx="203" cy="89" rx="5" ry="3.5" fill="#f4a57a" opacity=".28"/>
+          </g>
         </svg>
       </div>
       <div class="ob-bottom">
         <div class="ob-eyebrow">Déjà client ?</div>
-        <div class="ob-title">Mise à jour de votre CV existant</div>
-        <div class="ob-desc">Nouveau poste, nouvelle formation, nouvelle adresse ? Indiquez-nous ce qui a changé — <strong>nous mettons à jour votre CV</strong> sur votre modèle d'origine et vous le livrons en Word ou PowerPoint &amp; PDF.</div>
+        <div class="ob-title" id="obTw3"></div>
+        <div class="ob-desc">Nouveau poste, formation, adresse ? Indiquez ce qui a changé — <strong>même design conservé</strong>, livré en Word ou PowerPoint &amp; PDF sous 48h.</div>
         <span class="ob-chip g">Modification rapide · Même design conservé</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots"></div>
-        <div class="ob-nav-right">
-          <button class="ob-skip-btn">Passer</button>
-          <button class="ob-prev-btn">←</button>
-          <button class="ob-next-btn">Suivant →</button>
+        <div class="ob-dots-row" id="obDots3"></div>
+        <div class="ob-nav-r">
+          <button class="ob-skip">Passer</button>
+          <button class="ob-prev">←</button>
+          <button class="ob-next">Suivant →</button>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 5 -->
-    <div class="ob-slide">
+    <!-- ══ SLIDE 4 : Lettre de motivation ══ -->
+    <div class="ob-slide s4">
       <div class="ob-illus">
-        <svg viewBox="0 0 580 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="580" height="340" fill="#f0f2ee"/>
-          <rect x="148" y="30" width="288" height="240" rx="16" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <text x="210" y="64" font-family="'DM Sans',sans-serif" font-size="10" fill="#9ca3af">Madame, Monsieur,</text>
-          <rect x="170" y="76" width="244" height="5.5" rx="2.75" fill="#f3f4f6"/><rect x="170" y="87" width="220" height="5" rx="2.5" fill="#f3f4f6"/><rect x="170" y="97" width="234" height="5" rx="2.5" fill="#f3f4f6"/><rect x="170" y="107" width="200" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="170" y="121" width="244" height="5.5" rx="2.75" fill="#f3f4f6"/><rect x="170" y="132" width="186" height="5" rx="2.5" fill="#f3f4f6"/><rect x="170" y="142" width="218" height="5" rx="2.5" fill="#f3f4f6"/>
-          <text x="210" y="170" font-family="'DM Sans',sans-serif" font-size="10" fill="#9ca3af">Cordialement,</text>
-          <rect x="170" y="188" width="84" height="22" rx="11" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="1"/><text x="212" y="202.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#094102">Leadership</text>
-          <rect x="262" y="188" width="106" height="22" rx="11" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="1"/><text x="315" y="202.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#094102">Communication</text>
-          <rect x="376" y="188" width="80" height="22" rx="11" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="1"/><text x="416" y="202.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#094102">Rigueur</text>
-          <rect x="170" y="218" width="138" height="22" rx="11" fill="#fff3ee" stroke="#fdc7a4" stroke-width="1"/><text x="239" y="232.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#FF5700">Candidature spontanée</text>
-          <rect x="316" y="218" width="120" height="22" rx="11" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/><text x="376" y="232.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="600" fill="#6b7280">Réponse à une offre</text>
+        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
+          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
+          <g class="ob-scene ob-bob">
+            <rect x="118" y="22" width="144" height="180" rx="10" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
+            <text x="190" y="46" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#9ca3af">Madame, Monsieur,</text>
+            <rect x="130" y="55" width="120" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="130" y="63" width="106" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="130" y="70" width="114" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="130" y="88" width="120" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="130" y="96" width="86" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="130" y="103" width="108" height="3" rx="1.5" fill="#f3f4f6"/>
+            <text x="144" y="122" font-family="DM Sans,sans-serif" font-size="8" fill="#9ca3af">Cordialement,</text>
+            <rect x="130" y="130" width="50" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.25)" stroke-width="1"/>
+            <text x="155" y="140" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#094102">Leadership</text>
+            <rect x="186" y="130" width="60" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
+            <text x="216" y="140" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#094102">Communication</text>
+            <rect x="130" y="150" width="82" height="15" rx="7.5" fill="rgba(255,87,0,.1)" stroke="rgba(255,87,0,.35)" stroke-width="1"/>
+            <text x="171" y="161" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" font-weight="700" fill="#FF5700">Candidature spontanée</text>
+          </g>
+          <!-- Homme lunettes chemise bordeaux -->
+          <g class="ob-perso">
+            <ellipse cx="54" cy="217" rx="13" ry="6" fill="#1c1c1c"/>
+            <ellipse cx="82" cy="217" rx="13" ry="6" fill="#1c1c1c"/>
+            <rect x="46" y="170" width="17" height="49" rx="8.5" fill="#9ca3af"/>
+            <rect x="73" y="170" width="17" height="49" rx="8.5" fill="#9ca3af"/>
+            <rect x="30" y="110" width="76" height="68" rx="24" fill="#881337"/>
+            <ellipse cx="68" cy="110" rx="16" ry="10" fill="#f9fafb"/>
+            <polygon points="68,114 64,122 68,142 72,122" fill="#374151"/>
+            <rect x="8" y="116" width="26" height="48" rx="13" fill="#881337"/>
+            <ellipse cx="21" cy="166" rx="14" ry="13" fill="#f5cba7"/>
+            <rect x="102" y="116" width="26" height="48" rx="13" fill="#881337"/>
+            <ellipse cx="115" cy="166" rx="14" ry="13" fill="#f5cba7"/>
+            <rect x="58" y="96" width="20" height="20" rx="9" fill="#f5cba7"/>
+            <ellipse cx="68" cy="68" rx="36" ry="36" fill="#f5cba7"/>
+            <ellipse cx="32" cy="70" rx="8" ry="11" fill="#f5cba7"/>
+            <ellipse cx="104" cy="70" rx="8" ry="11" fill="#f5cba7"/>
+            <ellipse cx="68" cy="37" rx="35" ry="18" fill="#9ca3af"/>
+            <rect x="32" y="36" width="12" height="22" rx="6" fill="#9ca3af"/>
+            <rect x="92" y="36" width="12" height="22" rx="6" fill="#9ca3af"/>
+            <path d="M42 56 Q54 50 62 55" fill="none" stroke="#6b7280" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M74 55 Q82 50 94 56" fill="none" stroke="#6b7280" stroke-width="3.5" stroke-linecap="round"/>
+            <circle cx="53" cy="70" r="13" fill="rgba(200,220,255,0.25)" stroke="#1f2937" stroke-width="3"/>
+            <circle cx="83" cy="70" r="13" fill="rgba(200,220,255,0.25)" stroke="#1f2937" stroke-width="3"/>
+            <line x1="66" y1="69" x2="70" y2="69" stroke="#1f2937" stroke-width="3"/>
+            <line x1="32" y1="68" x2="40" y2="69" stroke="#1f2937" stroke-width="2.5"/>
+            <line x1="96" y1="69" x2="104" y2="68" stroke="#1f2937" stroke-width="2.5"/>
+            <ellipse cx="53" cy="71" rx="7" ry="8" fill="white"/>
+            <ellipse cx="83" cy="71" rx="7" ry="8" fill="white"/>
+            <ellipse cx="54" cy="72" rx="4.5" ry="5.5" fill="#2d1a0a"/>
+            <ellipse cx="84" cy="72" rx="4.5" ry="5.5" fill="#2d1a0a"/>
+            <circle cx="56" cy="69" r="1.8" fill="white"/>
+            <circle cx="86" cy="69" r="1.8" fill="white"/>
+            <path d="M56 86 Q68 96 80 86" fill="white"/>
+            <path d="M56 86 Q68 96 80 86" fill="none" stroke="#d4936a" stroke-width="1.8"/>
+            <ellipse cx="38" cy="80" rx="7" ry="5" fill="#f4a57a" opacity=".35"/>
+            <ellipse cx="98" cy="80" rx="7" ry="5" fill="#f4a57a" opacity=".35"/>
+          </g>
+          <g class="ob-bob" style="animation-delay:.3s">
+            <rect x="280" y="28" width="84" height="36" rx="11" fill="white" stroke="rgba(255,87,0,.2)" stroke-width="1"/>
+            <text x="322" y="42" text-anchor="middle" font-family="Sora,sans-serif" font-size="8.5" font-weight="700" fill="#FF5700">⚡ Premium</text>
+            <text x="322" y="56" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#6b7280">Prioritaire</text>
+          </g>
         </svg>
       </div>
       <div class="ob-bottom">
         <div class="ob-eyebrow">Lettre de motivation</div>
-        <div class="ob-title">Rédigée sur mesure pour votre poste</div>
-        <div class="ob-desc">Renseignez l'entreprise, l'objet, vos compétences. Nos experts <strong>rédigent une lettre personnalisée</strong> qui valorise votre profil. Candidature spontanée ou réponse à offre.</div>
+        <div class="ob-title" id="obTw4"></div>
+        <div class="ob-desc">Nos experts rédigent une <strong>lettre personnalisée</strong> qui valorise votre profil. Candidature spontanée ou réponse à offre disponible.</div>
         <span class="ob-chip o">⚡ Option Premium : livraison prioritaire</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots"></div>
-        <div class="ob-nav-right">
-          <button class="ob-skip-btn">Passer</button>
-          <button class="ob-prev-btn">←</button>
-          <button class="ob-next-btn">Suivant →</button>
+        <div class="ob-dots-row" id="obDots4"></div>
+        <div class="ob-nav-r">
+          <button class="ob-skip">Passer</button>
+          <button class="ob-prev">←</button>
+          <button class="ob-next">Suivant →</button>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 6 -->
-    <div class="ob-slide">
+    <!-- ══ SLIDE 5 : Catalogue ══ -->
+    <div class="ob-slide s5">
       <div class="ob-illus">
-        <svg viewBox="0 0 580 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="580" height="340" fill="#f0f2ee"/>
-          <rect x="30" y="30" width="112" height="178" rx="12" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <rect x="30" y="30" width="112" height="88" rx="12" fill="#f8fafc"/><rect x="30" y="102" width="112" height="16" fill="#f8fafc"/>
-          <circle cx="86" cy="74" r="22" fill="#e8ebe5"/>
-          <rect x="46" y="122" width="80" height="5.5" rx="2.75" fill="#e5e7eb"/><rect x="46" y="133" width="60" height="5" rx="2.5" fill="#f3f4f6"/><rect x="46" y="143" width="72" height="5" rx="2.5" fill="#f3f4f6"/>
-          <text x="86" y="170" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="600" fill="#9ca3af">N°018</text>
-          <rect x="50" y="180" width="72" height="20" rx="10" fill="#f3f4f6"/><text x="86" y="193" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#6b7280">Choisir</text>
-          <rect x="158" y="14" width="130" height="210" rx="14" fill="white" stroke="#FF5700" stroke-width="2.5"/>
-          <rect x="158" y="14" width="130" height="100" rx="14" fill="#fff3ee"/><rect x="158" y="98" width="130" height="16" fill="#fff3ee"/>
-          <circle cx="223" cy="64" r="26" fill="#fde8df"/>
-          <rect x="186" y="118" width="94" height="5.5" rx="2.75" fill="#e5e7eb"/><rect x="186" y="129" width="72" height="5" rx="2.5" fill="#f3f4f6"/><rect x="186" y="139" width="84" height="5" rx="2.5" fill="#f3f4f6"/>
-          <text x="223" y="162" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#374151">N°030</text>
-          <rect x="174" y="172" width="98" height="24" rx="12" fill="#FF5700"/>
-          <text x="223" y="187" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9.5" font-weight="700" fill="white">⭐ Populaire</text>
-          <rect x="304" y="30" width="112" height="178" rx="12" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <rect x="304" y="30" width="112" height="88" rx="12" fill="#f8fafc"/><rect x="304" y="102" width="112" height="16" fill="#f8fafc"/>
-          <circle cx="360" cy="74" r="22" fill="#e8ebe5"/>
-          <rect x="320" y="122" width="80" height="5.5" rx="2.75" fill="#e5e7eb"/><rect x="320" y="133" width="60" height="5" rx="2.5" fill="#f3f4f6"/><rect x="320" y="143" width="72" height="5" rx="2.5" fill="#f3f4f6"/>
-          <text x="360" y="170" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="600" fill="#9ca3af">N°001</text>
-          <rect x="324" y="180" width="72" height="20" rx="10" fill="#f3f4f6"/><text x="360" y="193" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#6b7280">Choisir</text>
-          <rect x="432" y="30" width="112" height="178" rx="12" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <rect x="432" y="30" width="112" height="88" rx="12" fill="#f8fafc"/><rect x="432" y="102" width="112" height="16" fill="#f8fafc"/>
-          <circle cx="488" cy="74" r="22" fill="#e8ebe5"/>
-          <rect x="448" y="122" width="80" height="5.5" rx="2.75" fill="#e5e7eb"/><rect x="448" y="133" width="60" height="5" rx="2.5" fill="#f3f4f6"/>
-          <text x="488" y="170" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="600" fill="#9ca3af">N°032</text>
-          <rect x="452" y="180" width="72" height="20" rx="10" fill="#f3f4f6"/><text x="488" y="193" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#6b7280">Choisir</text>
-          <rect x="30" y="224" width="524" height="40" rx="20" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <rect x="38" y="232" width="74" height="24" rx="12" fill="#094102"/><text x="75" y="247" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9.5" font-weight="700" fill="white">Tous (43)</text>
-          <rect x="120" y="232" width="76" height="24" rx="12" fill="#f3f4f6"/><text x="158" y="247" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9.5" fill="#6b7280">Moderne</text>
-          <rect x="204" y="232" width="84" height="24" rx="12" fill="#f3f4f6"/><text x="246" y="247" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9.5" fill="#6b7280">Classique</text>
-          <rect x="296" y="232" width="68" height="24" rx="12" fill="#f3f4f6"/><text x="330" y="247" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9.5" fill="#6b7280">Créatif</text>
-          <rect x="372" y="232" width="68" height="24" rx="12" fill="#f3f4f6"/><text x="406" y="247" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9.5" fill="#6b7280">Minimal</text>
-          <text x="530" y="247" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9.5" font-weight="700" fill="#FF5700">Zoom ⊕</text>
+        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
+          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
+          <g class="ob-scene">
+            <rect x="22" y="36" width="72" height="108" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
+            <rect x="22" y="36" width="72" height="48" rx="8" fill="#f8fafc"/>
+            <rect x="22" y="76" width="72" height="8" fill="#f8fafc"/>
+            <circle cx="58" cy="60" r="12" fill="#e5e7eb"/>
+            <rect x="32" y="92" width="52" height="3.5" rx="1.5" fill="#e5e7eb"/>
+            <rect x="32" y="100" width="40" height="3" rx="1.5" fill="#f3f4f6"/>
+            <text x="58" y="130" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" fill="#6b7280">N°018</text>
+          </g>
+          <g class="ob-bob">
+            <rect x="110" y="22" width="80" height="126" rx="9" fill="white" stroke="#FF5700" stroke-width="2.5"/>
+            <rect x="110" y="22" width="80" height="56" rx="9" fill="#fff3ee"/>
+            <rect x="110" y="70" width="80" height="8" fill="#fff3ee"/>
+            <circle cx="150" cy="50" r="14" fill="#fde8df"/>
+            <rect x="122" y="88" width="56" height="3.5" rx="1.5" fill="#e5e7eb"/>
+            <rect x="122" y="96" width="46" height="3" rx="1.5" fill="#f3f4f6"/>
+            <text x="150" y="122" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="#374151">N°030</text>
+            <rect x="118" y="128" width="64" height="18" rx="9" fill="#FF5700"/>
+            <text x="150" y="140" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="white">⭐ Populaire</text>
+          </g>
+          <g class="ob-scene">
+            <rect x="206" y="36" width="72" height="108" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
+            <rect x="206" y="36" width="72" height="48" rx="8" fill="#f0fdf4"/>
+            <rect x="206" y="76" width="72" height="8" fill="#f0fdf4"/>
+            <circle cx="242" cy="60" r="12" fill="#bbf7d0"/>
+            <rect x="216" y="92" width="52" height="3.5" rx="1.5" fill="#e5e7eb"/>
+            <rect x="216" y="100" width="40" height="3" rx="1.5" fill="#f3f4f6"/>
+            <text x="242" y="130" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" fill="#6b7280">N°001</text>
+          </g>
+          <g class="ob-scene2">
+            <rect x="16" y="162" width="280" height="28" rx="14" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+            <rect x="22" y="167" width="54" height="18" rx="9" fill="#094102"/>
+            <text x="49" y="179" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" font-weight="700" fill="white">Tous (43)</text>
+            <rect x="82" y="167" width="50" height="18" rx="9" fill="#f3f4f6"/>
+            <text x="107" y="179" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#6b7280">Moderne</text>
+            <rect x="138" y="167" width="54" height="18" rx="9" fill="#f3f4f6"/>
+            <text x="165" y="179" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#6b7280">Classique</text>
+            <rect x="198" y="167" width="44" height="18" rx="9" fill="#f3f4f6"/>
+            <text x="220" y="179" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#6b7280">Créatif</text>
+            <text x="280" y="179" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" font-weight="700" fill="#FF5700">Zoom ⊕</text>
+          </g>
+          <g class="ob-perso">
+            <rect x="296" y="168" width="14" height="46" rx="6.5" fill="#6b7280"/>
+            <rect x="316" y="168" width="14" height="46" rx="6.5" fill="#6b7280"/>
+            <ellipse cx="303" cy="216" rx="11" ry="5" fill="#2d2d2d"/>
+            <ellipse cx="323" cy="216" rx="11" ry="5" fill="#2d2d2d"/>
+            <rect x="286" y="106" width="58" height="68" rx="14" fill="#9ca3af"/>
+            <rect x="300" y="104" width="22" height="20" rx="5" fill="#f9fafb"/>
+            <polygon points="311,110 307,115 309,130 311,132 313,130 315,115" fill="#3b82f6"/>
+            <path d="M286 118 Q260 110 192 148" fill="none" stroke="#9ca3af" stroke-width="13" stroke-linecap="round"/>
+            <ellipse cx="189" cy="150" rx="9" ry="10" fill="#f4c5a0"/>
+            <ellipse cx="181" cy="147" rx="5" ry="4" fill="#f4c5a0"/>
+            <path d="M344 118 Q356 112 362 102" fill="none" stroke="#9ca3af" stroke-width="13" stroke-linecap="round"/>
+            <ellipse cx="364" cy="99" rx="9" ry="10" fill="#f4c5a0"/>
+            <rect x="304" y="90" width="14" height="18" rx="6" fill="#f4c5a0"/>
+            <ellipse cx="311" cy="74" rx="24" ry="26" fill="#f4c5a0"/>
+            <ellipse cx="287" cy="76" rx="5" ry="7" fill="#f4c5a0"/>
+            <ellipse cx="335" cy="76" rx="5" ry="7" fill="#f4c5a0"/>
+            <ellipse cx="311" cy="52" rx="24" ry="13" fill="#7a3b10"/>
+            <rect x="287" y="51" width="6" height="18" rx="3" fill="#7a3b10"/>
+            <rect x="330" y="51" width="6" height="18" rx="3" fill="#7a3b10"/>
+            <path d="M298 65 Q304 62 309 65" fill="none" stroke="#5a2a08" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M313 65 Q318 62 324 65" fill="none" stroke="#5a2a08" stroke-width="2.2" stroke-linecap="round"/>
+            <ellipse cx="304" cy="73" rx="5" ry="5.5" fill="white"/>
+            <ellipse cx="318" cy="73" rx="5" ry="5.5" fill="white"/>
+            <ellipse cx="305" cy="74" rx="3.2" ry="3.8" fill="#3d2b1a"/>
+            <ellipse cx="319" cy="74" rx="3.2" ry="3.8" fill="#3d2b1a"/>
+            <ellipse cx="305" cy="74" rx="1.6" ry="1.9" fill="#0d0d0d"/>
+            <ellipse cx="319" cy="74" rx="1.6" ry="1.9" fill="#0d0d0d"/>
+            <circle cx="307" cy="72" r="1.1" fill="white"/>
+            <circle cx="321" cy="72" r="1.1" fill="white"/>
+            <path d="M302 80 Q311 88 320 80" fill="white"/>
+            <path d="M302 80 Q311 88 320 80" fill="none" stroke="#d4936a" stroke-width="1.4"/>
+            <ellipse cx="297" cy="82" rx="5" ry="3.5" fill="#f4a57a" opacity=".3"/>
+            <ellipse cx="325" cy="82" rx="5" ry="3.5" fill="#f4a57a" opacity=".3"/>
+          </g>
         </svg>
       </div>
       <div class="ob-bottom">
         <div class="ob-eyebrow">Catalogue de CV</div>
-        <div class="ob-title">Choisissez votre design favori</div>
-        <div class="ob-desc">43 modèles Word &amp; PowerPoint. Filtrez par style, zoomez, comparez côte à côte. Notez le numéro du modèle dans votre formulaire — <strong>nous l'utilisons pour réaliser votre CV</strong>.</div>
+        <div class="ob-title" id="obTw5"></div>
+        <div class="ob-desc">43 modèles Word &amp; PowerPoint. Filtrez, zoomez, comparez. Notez le numéro dans votre formulaire — <strong>nous l'utilisons pour réaliser votre CV</strong>.</div>
         <span class="ob-chip g">Moderne · Classique · Créatif · Minimal</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots"></div>
-        <div class="ob-nav-right">
-          <button class="ob-skip-btn">Passer</button>
-          <button class="ob-prev-btn">←</button>
-          <button class="ob-next-btn">Suivant →</button>
+        <div class="ob-dots-row" id="obDots5"></div>
+        <div class="ob-nav-r">
+          <button class="ob-skip">Passer</button>
+          <button class="ob-prev">←</button>
+          <button class="ob-next">Suivant →</button>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 7 -->
-    <div class="ob-slide">
+    <!-- ══ SLIDE 6 : Paiement & Livraison ══ -->
+    <div class="ob-slide s6">
       <div class="ob-illus">
-        <svg viewBox="0 0 580 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="580" height="340" fill="#f0f2ee"/>
-          <rect x="30" y="28" width="240" height="282" rx="16" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-          <text x="150" y="56" text-anchor="middle" font-family="'Sora',sans-serif" font-size="11" font-weight="700" fill="#374151">Facture de Service</text>
-          <text x="150" y="71" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#9ca3af">N° CV-20241018–042</text>
-          <rect x="46" y="80" width="208" height="48" rx="10" fill="#f8fafc"/>
-          <text x="60" y="97" font-family="'Sora',sans-serif" font-size="10.5" font-weight="700" fill="#374151">Jean DUPONT</text>
-          <text x="60" y="114" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#9ca3af">+241 06 00 00 00</text>
-          <text x="46" y="144" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#6b7280">Rédaction CV professionnel</text>
-          <text x="238" y="144" text-anchor="end" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#374151">2 050 FCFA</text>
-          <line x1="46" y1="150" x2="238" y2="150" stroke="#f3f4f6" stroke-width="1.5"/>
-          <rect x="148" y="158" width="90" height="22" rx="11" fill="#fff3ee"/>
-          <text x="193" y="172.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="10" font-weight="700" fill="#FF5700">2 050 FCFA</text>
-          <text x="46" y="200" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#374151">Modes de paiement</text>
-          <rect x="46" y="208" width="100" height="34" rx="10" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
-          <text x="96" y="222" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="700" fill="#dc2626">Airtel Money</text>
-          <text x="96" y="234" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" fill="#6b7280">077 101 378</text>
-          <rect x="154" y="208" width="100" height="34" rx="10" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="1"/>
-          <text x="204" y="222" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="700" fill="#094102">Moov Money</text>
-          <text x="204" y="234" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" fill="#6b7280">065 370 882</text>
-          <text x="150" y="268" text-anchor="middle" font-family="'Sora',sans-serif" font-size="8.5" font-weight="700" fill="#094102">Bénéficiaire : Nel MANKOU</text>
-          <rect x="316" y="28" width="240" height="282" rx="16" fill="white" stroke="#a7f3d0" stroke-width="2"/>
-          <text x="436" y="56" text-anchor="middle" font-family="'Sora',sans-serif" font-size="11" font-weight="700" fill="#094102">Votre CV est prêt ! ✓</text>
-          <text x="436" y="71" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#9ca3af">Jean DUPONT · Modèle N°030</text>
-          <rect x="332" y="82" width="208" height="6" rx="3" fill="#e5e7eb"/><rect x="332" y="94" width="160" height="5" rx="2.5" fill="#f3f4f6"/><rect x="332" y="104" width="180" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="332" y="118" width="208" height="6" rx="3" fill="#e5e7eb"/><rect x="332" y="130" width="140" height="5" rx="2.5" fill="#f3f4f6"/>
-          <rect x="332" y="148" width="54" height="22" rx="11" fill="#e8f0fe"/><text x="359" y="162.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#2563eb">Word</text>
-          <rect x="394" y="148" width="70" height="22" rx="11" fill="#fff3ee"/><text x="429" y="162.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#FF5700">PPT</text>
-          <rect x="472" y="148" width="54" height="22" rx="11" fill="#fef2f2"/><text x="499" y="162.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="9" font-weight="700" fill="#dc2626">PDF</text>
-          <rect x="340" y="192" width="192" height="34" rx="17" fill="#25D366"/>
-          <text x="436" y="212.5" text-anchor="middle" font-family="'Sora',sans-serif" font-size="11" font-weight="700" fill="white">Envoyé via WhatsApp ✓</text>
-          <text x="436" y="258" text-anchor="middle" font-family="'Sora',sans-serif" font-size="18" fill="#FF5700">★ ★ ★ ★ ★</text>
+        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
+          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
+          <defs>
+            <clipPath id="phoneClip6">
+              <rect x="133" y="19" width="80" height="170" rx="11"/>
+            </clipPath>
+            <clipPath id="payClip6">
+              <rect x="13" y="55" width="98" height="70" rx="10"/>
+            </clipPath>
+          </defs>
+          <rect x="13" y="55" width="98" height="70" rx="10" fill="white" stroke="#e5e7eb" stroke-width="1" class="ob-scene2"/>
+          <g clip-path="url(#payClip6)" class="ob-scene2">
+            <text x="62" y="74" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="#374151">Paiement</text>
+            <rect x="20" y="79" width="84" height="18" rx="9" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
+            <text x="62" y="88" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#dc2626">Airtel Money</text>
+            <text x="62" y="97" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6" fill="#6b7280">0xx xxx xxxx</text>
+            <rect x="20" y="100" width="84" height="16" rx="8" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
+            <text x="62" y="111" text-anchor="middle" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#094102">Moov · 0xx xxx xxxx</text>
+          </g>
+          <g class="ob-scene ob-bob">
+            <rect x="129" y="14" width="90" height="182" rx="15" fill="#1e2532"/>
+            <rect x="133" y="19" width="80" height="170" rx="11" fill="#f0fdf4"/>
+            <rect x="157" y="14" width="34" height="5" rx="2.5" fill="#374151" opacity=".5"/>
+          </g>
+          <g clip-path="url(#phoneClip6)" class="ob-scene ob-bob">
+            <rect x="133" y="19" width="80" height="34" fill="#094102"/>
+            <text x="173" y="30" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="white">Chronos-Services</text>
+            <text x="173" y="42" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6" fill="rgba(255,255,255,.85)">Votre CV est prêt ✓</text>
+            <circle cx="155" cy="72" r="12" fill="#d1d5db"/>
+            <circle cx="155" cy="68" r="6" fill="#9ca3af"/>
+            <ellipse cx="155" cy="82" rx="10" ry="6" fill="#9ca3af"/>
+            <rect x="172" y="64" width="36" height="4" rx="2" fill="#e5e7eb"/>
+            <rect x="172" y="72" width="28" height="3.5" rx="1.5" fill="#f3f4f6"/>
+            <rect x="133" y="92" width="80" height="1" fill="#e5e7eb"/>
+            <rect x="139" y="98" width="68" height="3.5" rx="1.5" fill="#e5e7eb"/>
+            <rect x="139" y="106" width="56" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="139" y="113" width="62" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="133" y="122" width="80" height="1" fill="#e5e7eb"/>
+            <rect x="139" y="127" width="68" height="3.5" rx="1.5" fill="#e5e7eb"/>
+            <rect x="139" y="135" width="48" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="139" y="142" width="58" height="3" rx="1.5" fill="#f3f4f6"/>
+            <rect x="134" y="151" width="72" height="15" rx="7.5" fill="#25D366"/>
+            <text x="170" y="162" text-anchor="middle" font-family="Sora,sans-serif" font-size="6.2" font-weight="700" fill="white">Envoyé via WhatsApp ✓</text>
+            <text x="139" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#094102">Word</text>
+            <text x="158" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#6b7280">PPT</text>
+            <text x="174" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#dc2626">PDF</text>
+          </g>
+          <g class="ob-scene2">
+            <rect x="244" y="42" width="8" height="8" rx="1.5" fill="#FF5700" transform="rotate(20 248 46)" opacity=".7"/>
+            <rect x="280" y="28" width="6" height="6" rx="1" fill="#094102" transform="rotate(-10 283 31)" opacity=".6"/>
+            <rect x="310" y="18" width="7" height="7" rx="1" fill="#25D366" transform="rotate(30 313 21)" opacity=".65"/>
+            <circle cx="260" cy="170" r="4" fill="#FF5700" opacity=".5"/>
+            <circle cx="300" cy="185" r="3" fill="#094102" opacity=".45"/>
+            <circle cx="320" cy="155" r="3.5" fill="#25D366" opacity=".5"/>
+            <rect x="330" y="80" width="6" height="6" rx="1" fill="#FF5700" transform="rotate(-20 333 83)" opacity=".55"/>
+            <rect x="350" y="120" width="5" height="5" rx="1" fill="#094102" transform="rotate(15 352 122)" opacity=".5"/>
+            <circle cx="345" cy="50" r="3" fill="#f59e0b" opacity=".6"/>
+            <rect x="225" y="100" width="5" height="5" rx="1" fill="#25D366" transform="rotate(25 227 102)" opacity=".5"/>
+          </g>
         </svg>
       </div>
       <div class="ob-bottom">
-        <div class="ob-eyebrow">Paiement &amp; livraison</div>
-        <div class="ob-title">Simple, transparent, rapide</div>
-        <div class="ob-desc">Payez via Airtel Money ou Moov Money. Une <strong>facture PDF est générée automatiquement</strong>. Votre CV rédigé par nos experts est livré en Word ou PowerPoint &amp; PDF via WhatsApp.</div>
-        <span class="ob-chip g">✓ Bénéficiaire : Nel MANKOU</span>
+        <div class="ob-eyebrow">Paiement &amp; Livraison</div>
+        <div class="ob-title" id="obTw6"></div>
+        <div class="ob-desc">Payez via Airtel Money ou Moov Money. <strong>Facture PDF générée automatiquement</strong>. Votre CV vous est livré en Word ou PowerPoint &amp; PDF via WhatsApp.</div>
+        <span class="ob-chip g">✓ Paiement mobile · Livraison rapide</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots"></div>
-        <div class="ob-nav-right">
-          <button class="ob-skip-btn">Passer</button>
-          <button class="ob-prev-btn">←</button>
-          <button class="ob-next-btn">C'est parti !</button>
+        <div class="ob-dots-row" id="obDots6"></div>
+        <div class="ob-nav-r">
+          <button class="ob-skip">Passer</button>
+          <button class="ob-prev">←</button>
+          <button class="ob-next last">C'est parti !</button>
         </div>
       </div>
     </div>
@@ -740,14 +1137,6 @@
 
   <main class="main">
 
-    <!-- =====================================================
-         SLIDER PRINCIPAL — 5 slides
-         Slide 1 : Hero banner (photo Pack 2)
-         Slide 2 : Catalogue
-         Slide 3 : Mise à jour CV
-         Slide 4 : Lettre de motivation
-         Slide 5 : Contact WhatsApp
-    ====================================================== -->
     <section class="cs-slider-section">
       <div class="cs-track-outer" id="csTrack">
         <div class="cs-track" id="csInner">
@@ -761,9 +1150,7 @@
             <div class="cs-card__badge">
               <span class="cs-card__badge-dot"></span>Chronos-Services
             </div>
-            <!-- icône supprimée -->
             <div class="cs-card__content">
-              <!-- supprimé: Depuis 2021 -->
               <div class="cs-card__title">Un client satisfait,<br>c'est une publicité de plus<br>pour nos services.</div>
               <div class="cs-card__row">
                 <div class="cs-card__desc">562+ clients · 40+ modèles · Livraison WhatsApp</div>
@@ -785,7 +1172,6 @@
             <div class="cs-card__badge">
               <span class="cs-card__badge-dot"></span>Nouveau modèle
             </div>
-            <!-- icône supprimée -->
             <div class="cs-card__content" style="position:relative;z-index:3;">
               <div class="cs-card__eyebrow">Catalogue</div>
               <div class="cs-card__title">Optimisé ATS &amp;<br><em>100 % professionnel</em></div>
@@ -808,7 +1194,6 @@
             <div class="cs-card__badge">
               <span class="cs-card__badge-dot" style="background:#facc15;"></span>Déjà client ?
             </div>
-            <!-- icône supprimée -->
             <div class="cs-card__content">
               <div class="cs-card__eyebrow">Mise à jour CV</div>
               <div class="cs-card__title">Mettre à jour<br>votre <em>CV existant</em></div>
@@ -828,7 +1213,6 @@
             <div class="cs-card__badge">
               <span class="cs-card__badge-dot" style="background:#fb923c;"></span>Sur mesure
             </div>
-            <!-- icône supprimée -->
             <div class="cs-card__content">
               <div class="cs-card__eyebrow">Lettre de motivation</div>
               <div class="cs-card__title">Rédigée pour<br><em>votre poste cible</em></div>
@@ -870,7 +1254,6 @@
         <div class="cs-dot"></div>
       </div>
     </section>
-    <!-- ===================================================== -->
 
     <div class="stats-row">
       <div class="stat-card"><div class="stat-card__value">562+</div><div class="stat-card__label">CV mis à jour</div></div>
@@ -957,75 +1340,137 @@
   </div>
 
   <script>
-    /* ─── ONBOARDING ─────────────────────────────────────── */
+    /* ─── NOUVEL ONBOARDING ─────────────────────────────── */
     (function () {
-      var wrap   = document.getElementById('csOb');
-      if (!wrap) return;
-      var slides = wrap.querySelectorAll('.ob-slide');
-      var total  = slides.length;
-      var cur    = 0;
+      var TOTAL = 7;
+      var TITLES = [
+        "Votre CV rédigé\npar des professionnels",
+        "Vous remplissez,\nnous rédigeons",
+        "Votre ancien CV\nimporté en 1 clic",
+        "Mise à jour\nde votre CV existant",
+        "Lettre rédigée\nsur mesure pour vous",
+        "Choisissez\nvotre design favori",
+        "Simple, transparent\net rapide"
+      ];
 
-      slides.forEach(function (sl) {
-        var dw = sl.querySelector('.ob-dots');
-        if (!dw) return;
-        for (var i = 0; i < total; i++) {
+      var cur = 0, autoT = null, twT = null, busy = false;
+      var wrap = document.getElementById('csOb');
+      if (!wrap) return;
+
+      for (var s = 0; s < TOTAL; s++) {
+        var row = document.getElementById('obDots' + s);
+        if (!row) continue;
+        for (var i = 0; i < TOTAL; i++) {
           var d = document.createElement('div');
           d.className = 'ob-dot' + (i === 0 ? ' on' : '');
-          dw.appendChild(d);
+          (function(idx){ d.addEventListener('click', function(){ stopAuto(); goTo(idx); startAuto(); }); })(i);
+          row.appendChild(d);
         }
-      });
+      }
 
-      function updateAll() {
-        wrap.querySelectorAll('.ob-dot').forEach(function (d, idx) {
-          var pos = idx % total;
-          d.className = 'ob-dot' + (pos === cur ? ' on' : pos < cur ? ' done' : '');
-        });
-        wrap.querySelectorAll('.ob-prev-btn').forEach(function (b) {
-          b.classList.toggle('ob-hidden', cur === 0);
+      function updateDots() {
+        wrap.querySelectorAll('.ob-dot').forEach(function(d, idx) {
+          var p = idx % TOTAL;
+          d.className = 'ob-dot' + (p === cur ? ' on' : p < cur ? ' done' : '');
         });
       }
 
-      function close() {
-        wrap.classList.add('closing');
-        setTimeout(function () {
+      function typewrite(el, text) {
+        clearTimeout(twT);
+        el.innerHTML = '';
+        var chars = [], parts = text.split('\n');
+        parts.forEach(function(p, pi) {
+          for (var c of p) chars.push({ c: c, br: false });
+          if (pi < parts.length - 1) chars.push({ c: '', br: true });
+        });
+        var ci = 0, html = '';
+        function tick() {
+          if (ci >= chars.length) { el.innerHTML = html + '<span class="ob-cursor"></span>'; return; }
+          var item = chars[ci];
+          if (item.br) html += '<br>'; else html += item.c;
+          el.innerHTML = html;
+          ci++;
+          twT = setTimeout(tick, 34);
+        }
+        tick();
+      }
+
+      function goTo(n) {
+        if (busy || n === cur || n < 0 || n >= TOTAL) return;
+        busy = true;
+        var slides = wrap.querySelectorAll('.ob-slide');
+        slides[cur].classList.remove('active');
+        slides[cur].classList.add('exit');
+        var prev = cur;
+        setTimeout(function() {
+          slides[prev].classList.remove('exit');
+          cur = n;
+          slides[cur].classList.add('active');
+          updateDots();
+          updateNav();
+          var twEl = document.getElementById('obTw' + cur);
+          if (twEl) typewrite(twEl, TITLES[cur]);
+          document.getElementById('obProgFill').style.width = (cur / (TOTAL - 1) * 100) + '%';
+          busy = false;
+        }, 120);
+      }
+
+      function updateNav() {
+        wrap.querySelectorAll('.ob-prev').forEach(function(b) {
+          b.style.opacity = cur === 0 ? '0' : '1';
+          b.style.pointerEvents = cur === 0 ? 'none' : 'all';
+        });
+        wrap.querySelectorAll('.ob-next').forEach(function(b) {
+          b.textContent = cur === TOTAL - 1 ? "C'est parti !" : "Suivant →";
+          b.classList.toggle('last', cur === TOTAL - 1);
+        });
+      }
+
+      function closeOb() {
+        stopAuto(); clearTimeout(twT);
+        wrap.classList.add('ob-closing');
+        setTimeout(function() {
           if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
           document.body.style.overflow = '';
-        }, 320);
+          setTimeout(function() {
+            if (typeof showToast === 'function') showToast('Bienvenue sur Chronos-Services !');
+          }, 200);
+        }, 380);
       }
 
-      function go(n) {
-        if (n < 0 || n >= total) return;
-        slides[cur].classList.remove('on');
-        cur = n;
-        slides[cur].classList.add('on');
-        updateAll();
+      function startAuto() {
+        clearInterval(autoT);
+        autoT = setInterval(function() { if (cur < TOTAL - 1) goTo(cur + 1); else clearInterval(autoT); }, 5000);
       }
+      function stopAuto() { clearInterval(autoT); }
 
-      slides.forEach(function (sl) {
-        sl.querySelector('.ob-next-btn').addEventListener('click', function () {
-          if (cur === total - 1) close(); else go(cur + 1);
-        });
-        sl.querySelector('.ob-skip-btn').addEventListener('click', close);
-        var prev = sl.querySelector('.ob-prev-btn');
-        if (prev) prev.addEventListener('click', function () { go(cur - 1); });
+      wrap.querySelectorAll('.ob-next').forEach(function(b) {
+        b.addEventListener('click', function() { stopAuto(); if (cur === TOTAL - 1) closeOb(); else { goTo(cur + 1); startAuto(); } });
       });
+      wrap.querySelectorAll('.ob-prev').forEach(function(b) {
+        b.addEventListener('click', function() { stopAuto(); goTo(cur - 1); startAuto(); });
+      });
+      wrap.querySelectorAll('.ob-skip').forEach(function(b) { b.addEventListener('click', closeOb); });
 
       var tsX = 0;
-      wrap.addEventListener('touchstart', function (e) { tsX = e.touches[0].clientX; }, { passive: true });
-      wrap.addEventListener('touchend', function (e) {
+      wrap.addEventListener('touchstart', function(e) { tsX = e.touches[0].clientX; }, { passive: true });
+      wrap.addEventListener('touchend', function(e) {
         var dx = e.changedTouches[0].clientX - tsX;
-        if (Math.abs(dx) > 44) { if (dx < 0) go(cur + 1); else go(cur - 1); }
+        if (Math.abs(dx) > 44) { stopAuto(); dx < 0 ? goTo(Math.min(cur + 1, TOTAL - 1)) : goTo(Math.max(cur - 1, 0)); startAuto(); }
       }, { passive: true });
 
-      document.addEventListener('keydown', function (e) {
+      document.addEventListener('keydown', function(e) {
         if (!document.getElementById('csOb')) return;
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(cur + 1);
-        if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(cur - 1);
-        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(cur + 1);
+        if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(cur - 1);
+        if (e.key === 'Escape') closeOb();
       });
 
       document.body.style.overflow = 'hidden';
-      updateAll();
+      updateNav();
+      var twEl0 = document.getElementById('obTw0');
+      if (twEl0) setTimeout(function() { typewrite(twEl0, TITLES[0]); }, 300);
+      startAuto();
     })();
 
     /* ─── SLIDER PRINCIPAL (5 slides) ───────────────────── */
@@ -1059,7 +1504,6 @@
       function startAuto() { auto = setInterval(function () { go(cur + 1); }, 4000); }
       function stopAuto()  { clearInterval(auto); }
 
-      /* Drag souris */
       outer.addEventListener('mousedown', function (e) {
         startX = e.clientX;
         outer.classList.add('dragging');
@@ -1073,7 +1517,6 @@
         startAuto();
       });
 
-      /* Swipe tactile */
       outer.addEventListener('touchstart', function (e) {
         startX = e.touches[0].clientX;
         stopAuto();
@@ -1084,12 +1527,10 @@
         startAuto();
       }, { passive: true });
 
-      /* Dots cliquables */
       dotsEl.forEach(function (d, i) {
         d.addEventListener('click', function () { stopAuto(); go(i); startAuto(); });
       });
 
-      /* Init */
       go(0);
       startAuto();
     })();
@@ -1158,20 +1599,6 @@
       if (!el) return;
       el.addEventListener('touchstart', function () { el.style.animationPlayState = 'paused'; }, { passive: true });
       el.addEventListener('touchend',   function () { el.style.animationPlayState = 'running'; });
-    });
-
-    window.addEventListener('load', function () {
-      var observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (m) {
-          m.removedNodes.forEach(function (n) {
-            if (n.id === 'csOb') {
-              setTimeout(function () { showToast('Bienvenue sur Chronos-Services !'); }, 200);
-              observer.disconnect();
-            }
-          });
-        });
-      });
-      observer.observe(document.body, { childList: true });
     });
   </script>
 </body>
