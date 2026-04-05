@@ -65,44 +65,74 @@
         /* FORM */
         form { display: flex; flex-direction: column; gap: 15px; }
         label { font-size: clamp(13px, 1.8vw, 15px); font-weight: 600; color: #094102; position: relative; display: block; }
+
+        /* ── STYLE A : validation inline ── */
         input, select, textarea {
-            width: 100%; padding: clamp(8px, 1.8vw, 12px); margin-top: 5px; border: 1px solid #ccc;
-            border-radius: 6px; font-size: clamp(13px, 1.4vw, 15px); background: linear-gradient(90deg, #fff, #f9f9f9);
-            transition: border-color 0.3s; font-family: 'Poppins', sans-serif;
+            width: 100%; padding: clamp(8px, 1.8vw, 12px); margin-top: 5px;
+            border: 1.5px solid #ccc;
+            border-radius: 6px; font-size: clamp(13px, 1.4vw, 15px);
+            background: linear-gradient(90deg, #fff, #f9f9f9);
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+            font-family: 'Poppins', sans-serif;
         }
-        input:focus, select:focus, textarea:focus { outline: none; border-color: #ff5700; box-shadow: 0 0 6px rgba(255,87,0,0.25); }
+        input:focus, select:focus, textarea:focus {
+            outline: none; border-color: #094102;
+            box-shadow: 0 0 0 3px rgba(9,65,2,0.1);
+        }
+        /* Champ en erreur */
+        input.field-error, select.field-error, textarea.field-error {
+            border-color: #E53E3E !important;
+            background: #fff8f8 !important;
+            box-shadow: 0 0 0 3px rgba(229,62,62,0.12) !important;
+            animation: shake-field 0.35s ease;
+        }
+        /* Champ valide après correction */
+        input.field-ok, select.field-ok, textarea.field-ok {
+            border-color: #2E7D32 !important;
+            box-shadow: 0 0 0 3px rgba(46,125,50,0.1) !important;
+        }
+        @keyframes shake-field {
+            0%,100%{transform:translateX(0)}
+            20%{transform:translateX(-5px)}
+            40%{transform:translateX(5px)}
+            60%{transform:translateX(-3px)}
+            80%{transform:translateX(3px)}
+        }
+        /* Message d'erreur inline */
+        .field-msg {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: #C53030;
+            font-weight: 500;
+            margin-top: 5px;
+            animation: msgIn 0.2s ease;
+        }
+        .field-msg.show { display: flex; }
+        .field-msg svg { flex-shrink: 0; width: 13px; height: 13px; }
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
         textarea { resize: vertical; }
         .section-help { font-size: 13px; color: #666; margin: 8px 0 16px; padding: 10px; background: #f5f5f5; border-radius: 6px; border-left: 3px solid #094102; }
 
         /* AI PRE-FILL BANNER */
-        /* ── Bandeau pré-remplissage : sobre et élégant ── */
-        .prefill-banner {
-            border-left: 3px solid #094102;
-            background: #f9fdf9;
-            padding: 12px 16px;
-            margin-bottom: 18px;
-            display: none;
-        }
+        .prefill-banner { border-left: 3px solid #094102; background: #f9fdf9; padding: 12px 16px; margin-bottom: 18px; display: none; }
         .prefill-banner.show { display: block; }
-        .prefill-banner-title {
-            font-size: 0.82rem; font-weight: 600; color: #094102;
-            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
-        }
-        .prefill-banner-sub {
-            font-size: 0.78rem; color: #666; margin-bottom: 10px;
-        }
-        .prefill-banner-fields {
-            display: flex; flex-direction: column; gap: 3px;
-        }
-        .prefill-tag {
-            font-size: 0.78rem; color: #333;
-            display: flex; align-items: center; gap: 6px;
-        }
-        .prefill-tag::before {
-            content: '✓';
-            color: #094102; font-weight: 700; font-size: 0.72rem;
-            flex-shrink: 0;
-        }
+        .prefill-banner-title { font-size: 0.82rem; font-weight: 600; color: #094102; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+        .prefill-banner-sub { font-size: 0.78rem; color: #666; margin-bottom: 10px; }
+        .prefill-banner-fields { display: flex; flex-direction: column; gap: 3px; }
+        .prefill-tag { font-size: 0.78rem; color: #333; display: flex; align-items: center; gap: 6px; }
+        .prefill-tag::before { content: '✓'; color: #094102; font-weight: 700; font-size: 0.72rem; flex-shrink: 0; }
+
+        /* NOTICE PHOTO */
+        .notice-photo { background: #fffbe6; border: 1px solid #f0c040; border-radius: 8px; padding: 14px 16px; margin-bottom: 20px; }
+        .notice-photo-title { font-weight: 600; color: #094102; font-size: 14px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+        .notice-photo p { font-size: 13px; color: #444; margin: 0 0 4px; line-height: 1.65; font-weight: 400; }
+        .notice-photo small { font-size: 12px; color: #777; display: block; margin-bottom: 10px; }
 
         /* BUTTONS */
         .nav-button {
@@ -144,41 +174,23 @@
         #form-message.sending { background: #fffbe6; color: #ff8a00; border: 1px solid #ff8a00; }
 
         /* CV PREVIEW */
-        /* ── CV PREVIEW : noir et blanc, minimaliste ── */
         .cv-preview-wrapper { font-family: 'Poppins', sans-serif; max-width: 100%; margin-bottom: 8px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; }
-
-        /* En-tête : fond noir sobre */
         .cv-preview-header { background: #111; padding: 20px 22px 16px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
         .cv-preview-avatar { width: 48px; height: 48px; border-radius: 50%; background: #fff; border: none; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; color: #111; text-transform: uppercase; flex-shrink: 0; }
         .cv-preview-name { font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0 0 2px; line-height: 1.2; word-break: break-word; }
         .cv-preview-poste { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin: 0; font-weight: 400; }
         .cv-preview-badge { background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); font-size: 0.68rem; font-weight: 500; padding: 2px 8px; border-radius: 3px; display: inline-block; margin-top: 5px; letter-spacing: 0.03em; }
-
-        /* Barre contacts */
         .cv-preview-contact-bar { background: #fff; border-bottom: 1px solid #e8e8e8; display: flex; flex-wrap: wrap; }
         .cv-contact-item { display: flex; align-items: center; gap: 6px; padding: 7px 14px; font-size: 0.74rem; color: #333; border-right: 1px solid #ebebeb; flex: 1 1 auto; min-width: 120px; word-break: break-all; }
         .cv-contact-item:last-child { border-right: none; }
-        .cv-contact-icon { font-size: 0.75rem; opacity: 0.4; flex-shrink: 0; }
-
-        /* Corps 2 colonnes */
         .cv-preview-body { display: grid; grid-template-columns: 185px 1fr; background: #fff; }
         .cv-sidebar { background: #fafafa; border-right: 1px solid #ebebeb; padding: 16px 14px; display: flex; flex-direction: column; gap: 16px; }
         .cv-main-content { background: #fff; padding: 16px 18px; display: flex; flex-direction: column; gap: 16px; }
-
-        /* Titres de section */
         .cv-section-title { font-size: 0.63rem; font-weight: 700; color: #111; text-transform: uppercase; letter-spacing: 0.12em; border-bottom: 1px solid #222; padding-bottom: 4px; margin-bottom: 9px; }
-        .cv-section-title.accent { color: #111; border-bottom-color: #111; }
-
-        /* Tags compétences : sobre, noir et blanc */
         .cv-tag-list { display: flex; flex-wrap: wrap; gap: 4px; }
         .cv-tag { background: #fff; color: #222; font-size: 0.68rem; padding: 2px 7px; border-radius: 2px; border: 1px solid #ccc; font-weight: 400; }
-        .cv-tag.info { background: #fff; color: #222; border-color: #ccc; }
-        .cv-tag.domain { background: #fff; color: #222; border-color: #ccc; }
-
         .cv-sidebar-text { font-size: 0.74rem; color: #444; line-height: 1.55; }
         .cv-sidebar-label { font-size: 0.62rem; font-weight: 600; color: #777; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
-
-        /* Expériences */
         .cv-exp-item { padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid #f0f0f0; position: relative; padding-left: 10px; }
         .cv-exp-item::before { content: ''; position: absolute; left: 0; top: 7px; width: 3px; height: 3px; border-radius: 50%; background: #999; }
         .cv-exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
@@ -186,20 +198,13 @@
         .cv-exp-entreprise { font-size: 0.74rem; color: #333; font-weight: 500; margin: 0 0 1px; }
         .cv-exp-dates { font-size: 0.68rem; color: #999; margin: 0 0 5px; }
         .cv-exp-taches { font-size: 0.72rem; color: #555; line-height: 1.5; margin: 0; white-space: pre-line; }
-
-        /* Formations */
         .cv-form-item { padding-bottom: 9px; margin-bottom: 9px; border-bottom: 1px solid #f0f0f0; padding-left: 10px; position: relative; }
         .cv-form-item::before { content: ''; position: absolute; left: 0; top: 7px; width: 3px; height: 3px; border-radius: 50%; background: #999; }
         .cv-form-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .cv-form-diplome { font-size: 0.8rem; font-weight: 600; color: #111; margin: 0 0 1px; }
         .cv-form-detail { font-size: 0.7rem; color: #666; margin: 0; }
-
-        /* Objectif */
         .cv-objectif-text { font-size: 0.76rem; color: #333; line-height: 1.65; border-left: 2px solid #ccc; padding-left: 10px; margin: 0; }
-
-        /* Commande / prix */
         .cv-price-pill { display: inline-block; background: #f5f5f5; border: 1px solid #ddd; border-radius: 3px; padding: 4px 12px; font-size: 0.78rem; font-weight: 600; color: #111; margin-top: 4px; }
-
         .cv-empty { font-size: 0.72rem; color: #bbb; font-style: italic; }
 
         /* PAYMENT MODAL */
@@ -228,12 +233,7 @@
         .pdf-btn:hover { background: linear-gradient(90deg, #e64a00, #ff7700); transform: translateY(-2px); }
 
         /* DOWNLOAD TOAST */
-        #downloadToast {
-            display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            z-index: 10001; background: linear-gradient(135deg, #094102, #0A7303);
-            color: white; padding: 16px 20px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-            font-weight: 600; font-size: 14px; text-align: center; max-width: calc(100vw - 40px); line-height: 1.5;
-        }
+        #downloadToast { display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 10001; background: linear-gradient(135deg, #094102, #0A7303); color: white; padding: 16px 20px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); font-weight: 600; font-size: 14px; text-align: center; max-width: calc(100vw - 40px); line-height: 1.5; }
         #downloadToast.show { display: block; animation: toastIn 0.4s ease; }
         @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(-20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
@@ -245,185 +245,68 @@
         .image-container { text-align: center; margin-bottom: 20px; }
         .image-container img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
 
-        /* ===================== SCANNER FAB ===================== */
-        #scanFab {
-            position: fixed; bottom: 28px; right: 24px; z-index: 1500;
-            width: 52px; height: 52px; border-radius: 8px;
-            background: linear-gradient(135deg, #094102 0%, #0a6b03 100%);
-            border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 14px rgba(9,65,2,0.5); transition: transform 0.2s, box-shadow 0.2s;
-            overflow: visible;
-        }
+        /* SCANNER FAB */
+        #scanFab { position: fixed; bottom: 28px; right: 24px; z-index: 1500; width: 52px; height: 52px; border-radius: 8px; background: linear-gradient(135deg, #094102 0%, #0a6b03 100%); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(9,65,2,0.5); transition: transform 0.2s, box-shadow 0.2s; overflow: visible; }
         #scanFab:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(9,65,2,0.6); }
         #scanFab svg { width: 22px; height: 22px; fill: white; pointer-events: none; }
-        .fab-pulse { display: none; }
-        .fab-tooltip {
-            position: absolute; right: 62px; bottom: 50%; transform: translateY(50%);
-            background: #1a1a1a; color: #fff; font-size: 0.75rem; font-weight: 500;
-            padding: 5px 10px; border-radius: 4px; white-space: nowrap;
-            opacity: 0; pointer-events: none; transition: opacity 0.2s; font-family: 'Poppins', sans-serif;
-        }
+        .fab-tooltip { position: absolute; right: 62px; bottom: 50%; transform: translateY(50%); background: #1a1a1a; color: #fff; font-size: 0.75rem; font-weight: 500; padding: 5px 10px; border-radius: 4px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; font-family: 'Poppins', sans-serif; }
         #scanFab:hover .fab-tooltip { opacity: 1; }
 
-        /* ===================== SCANNER OVERLAY ===================== */
-        #scannerOverlay {
-            display: none; position: fixed; inset: 0; z-index: 3000;
-            background: rgba(5, 22, 4, 0.96);
-            align-items: center; justify-content: center;
-            padding: 20px;
-        }
+        /* SCANNER OVERLAY */
+        #scannerOverlay { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(5,22,4,0.96); align-items: center; justify-content: center; padding: 20px; }
         #scannerOverlay.show { display: flex; }
-
-        .scanner-panel {
-            width: 100%; max-width: 560px;
-            background: #0f1f0e;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 28px 28px 24px;
-            display: flex; flex-direction: column; gap: 20px;
-            max-height: calc(100vh - 40px); overflow-y: auto;
-        }
-
-        .scanner-header {
-            display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
-            padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.07);
-        }
-        .scanner-title {
-            font-size: 1.05rem; font-weight: 600; color: #fff; letter-spacing: 0.01em;
-        }
+        .scanner-panel { width: 100%; max-width: 560px; background: #0f1f0e; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 20px; max-height: calc(100vh - 40px); overflow-y: auto; }
+        .scanner-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .scanner-title { font-size: 1.05rem; font-weight: 600; color: #fff; letter-spacing: 0.01em; }
         .scanner-sub { font-size: 0.76rem; color: rgba(255,255,255,0.4); margin-top: 3px; }
-        .scanner-close-btn {
-            background: none; border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 6px; width: 32px; height: 32px; cursor: pointer;
-            color: rgba(255,255,255,0.6); font-size: 1rem;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; transition: all 0.2s; font-family: 'Poppins', sans-serif;
-        }
+        .scanner-close-btn { background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; width: 32px; height: 32px; cursor: pointer; color: rgba(255,255,255,0.6); font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; font-family: 'Poppins', sans-serif; }
         .scanner-close-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
-
-        /* Drop zone */
-        .drop-zone {
-            border: 1.5px dashed rgba(255,255,255,0.2); border-radius: 8px;
-            padding: 28px 20px; display: flex; flex-direction: column;
-            align-items: center; gap: 10px;
-            background: rgba(255,255,255,0.02); cursor: pointer;
-            transition: all 0.2s; text-align: center;
-        }
-        .drop-zone:hover, .drop-zone.dragover {
-            border-color: rgba(255,87,0,0.6); background: rgba(255,87,0,0.04);
-        }
-        .drop-zone-icon { display: none; }
+        .drop-zone { border: 1.5px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 28px 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; background: rgba(255,255,255,0.02); cursor: pointer; transition: all 0.2s; text-align: center; }
+        .drop-zone:hover, .drop-zone.dragover { border-color: rgba(255,87,0,0.6); background: rgba(255,87,0,0.04); }
         .drop-zone-text { color: rgba(255,255,255,0.75); font-size: 0.88rem; font-weight: 500; }
         .drop-zone-sub { color: rgba(255,255,255,0.35); font-size: 0.73rem; }
         .drop-zone-types { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
-        .type-badge {
-            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 4px; padding: 2px 10px; font-size: 0.68rem;
-            color: rgba(255,255,255,0.5); font-weight: 500; letter-spacing: 0.02em;
-        }
+        .type-badge { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 2px 10px; font-size: 0.68rem; color: rgba(255,255,255,0.5); font-weight: 500; letter-spacing: 0.02em; }
         #fileInputScanner { display: none; }
-
-        /* File preview — sobre, pas d'icône emoji */
-        .file-preview {
-            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px; padding: 12px 14px;
-            align-items: center; gap: 12px; display: none;
-        }
+        .file-preview { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px 14px; align-items: center; gap: 12px; display: none; }
         .file-preview.show { display: flex; }
-        .file-preview-icon { display: none; }
         .file-preview-info { flex: 1; min-width: 0; }
-        .file-preview-name {
-            color: #fff; font-weight: 500; font-size: 0.85rem;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        }
+        .file-preview-name { color: #fff; font-weight: 500; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .file-preview-size { color: rgba(255,255,255,0.35); font-size: 0.72rem; margin-top: 2px; }
-        .file-preview-remove {
-            background: none; border: none; color: rgba(255,255,255,0.3);
-            font-size: 1rem; cursor: pointer; padding: 2px 6px; flex-shrink: 0;
-            transition: color 0.2s;
-        }
+        .file-preview-remove { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 1rem; cursor: pointer; padding: 2px 6px; flex-shrink: 0; transition: color 0.2s; }
         .file-preview-remove:hover { color: rgba(255,87,0,0.8); }
-
-        /* Bouton analyser */
-        #btnAnalyze {
-            background: #ff5700; color: #fff; border: none; border-radius: 6px;
-            padding: 12px 20px; font-size: 0.9rem; font-weight: 600;
-            cursor: pointer; width: 100%; transition: background 0.2s; display: none;
-            font-family: 'Poppins', sans-serif; letter-spacing: 0.02em;
-        }
+        #btnAnalyze { background: #ff5700; color: #fff; border: none; border-radius: 6px; padding: 12px 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s; display: none; font-family: 'Poppins', sans-serif; letter-spacing: 0.02em; }
         #btnAnalyze.show { display: block; }
         #btnAnalyze:hover:not(:disabled) { background: #e64a00; }
         #btnAnalyze:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        /* Barre de progression */
         .analysis-progress { display: none; flex-direction: column; gap: 10px; }
         .analysis-progress.show { display: flex; }
         .analysis-bar-wrap { background: rgba(255,255,255,0.08); border-radius: 2px; height: 3px; overflow: hidden; }
         .analysis-bar { height: 100%; border-radius: 2px; background: #ff5700; transition: width 0.5s ease; width: 0%; }
         .analysis-step-row { display: flex; align-items: center; gap: 10px; }
-        .analysis-step-icon {
-            width: 20px; height: 20px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.65rem; font-weight: 700; flex-shrink: 0;
-            background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.3); transition: all 0.3s;
-        }
+        .analysis-step-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; flex-shrink: 0; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.3); transition: all 0.3s; }
         .analysis-step-icon.done { background: #094102; color: #fff; }
         .analysis-step-icon.active { background: #ff5700; color: #fff; }
-        @keyframes iconPulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
         .analysis-step-label { color: rgba(255,255,255,0.4); font-size: 0.79rem; transition: color 0.3s; }
         .analysis-step-label.active { color: rgba(255,255,255,0.9); font-weight: 500; }
         .analysis-step-label.done { color: rgba(255,255,255,0.25); }
-
-        /* Erreur */
-        .scan-error {
-            border-left: 3px solid #ff5700; background: rgba(255,87,0,0.06);
-            border-radius: 0 6px 6px 0; padding: 10px 12px;
-            color: rgba(255,200,180,0.9); font-size: 0.8rem; display: none; line-height: 1.5;
-        }
+        .scan-error { border-left: 3px solid #ff5700; background: rgba(255,87,0,0.06); border-radius: 0 6px 6px 0; padding: 10px 12px; color: rgba(255,200,180,0.9); font-size: 0.8rem; display: none; line-height: 1.5; }
         .scan-error.show { display: block; }
-
-        /* Résultats détectés */
         .scan-results { display: none; flex-direction: column; gap: 14px; }
         .scan-results.show { display: flex; }
-        .scan-results-title {
-            color: rgba(255,255,255,0.5); font-size: 0.68rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.1em;
-        }
+        .scan-results-title { color: rgba(255,255,255,0.5); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
         .scan-results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .result-card {
-            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 6px; padding: 10px 12px;
-        }
+        .result-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; padding: 10px 12px; }
         .result-card.full { grid-column: 1 / -1; }
-        .result-card-label {
-            font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em;
-            color: rgba(255,255,255,0.35); font-weight: 600; margin-bottom: 3px;
-        }
+        .result-card-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); font-weight: 600; margin-bottom: 3px; }
         .result-card-check { color: #4caf50; font-size: 0.7rem; margin-left: 4px; }
         .result-card-value { font-size: 0.8rem; color: rgba(255,255,255,0.8); font-weight: 400; line-height: 1.4; }
         .result-card-value.empty { color: rgba(255,255,255,0.2); font-style: italic; }
-
-        /* Boutons résultats */
-        .scan-apply-btn {
-            background: #094102; color: #fff; border: none; border-radius: 6px;
-            padding: 12px 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer;
-            width: 100%; transition: background 0.2s; font-family: 'Poppins', sans-serif;
-        }
+        .scan-apply-btn { background: #094102; color: #fff; border: none; border-radius: 6px; padding: 12px 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s; font-family: 'Poppins', sans-serif; }
         .scan-apply-btn:hover { background: #0a5c03; }
-        .scan-retry-btn {
-            background: none; color: rgba(255,255,255,0.45);
-            border: 1px solid rgba(255,255,255,0.12); border-radius: 6px;
-            padding: 10px 20px; font-size: 0.82rem; font-weight: 500;
-            cursor: pointer; width: 100%; transition: all 0.2s; font-family: 'Poppins', sans-serif;
-        }
+        .scan-retry-btn { background: none; color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 10px 20px; font-size: 0.82rem; font-weight: 500; cursor: pointer; width: 100%; transition: all 0.2s; font-family: 'Poppins', sans-serif; }
         .scan-retry-btn:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.25); }
-
-        /* Conseil */
-        .scan-tip {
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding-top: 14px;
-        }
-        .scan-tip-icon { display: none; }
+        .scan-tip { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px; }
         .scan-tip-text { color: rgba(255,255,255,0.3); font-size: 0.73rem; line-height: 1.6; }
 
         /* RESPONSIVE */
@@ -448,28 +331,21 @@
             #scanFab svg { width: 20px; height: 20px; }
             .cv-preview-header { padding: 14px 14px 12px; }
             .cv-main-content { padding: 14px; }
-            .scan-results-grid { grid-template-columns: 1fr; }
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 </head>
 <body>
 
-<!-- ===================== MAIN FORM ===================== -->
 <div class="container">
     <button class="back-btn" onclick="history.back()">← Retour à l'accueil</button>
-
     <div class="image-container">
         <img src="public/Business-Facebook-Cover-05.jpg" alt="Formulaire CV">
     </div>
-
     <h1>Remplissez ce formulaire pour obtenir votre CV professionnel</h1>
-
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
-
     <div class="step-indicators">
         <div class="step-indicator active" data-step="1"><span>Informations<br>personnelles</span></div>
         <div class="step-indicator" data-step="2"><span>Compétences</span></div>
@@ -479,7 +355,6 @@
         <div class="step-indicator" data-step="6"><span>Vérification</span></div>
     </div>
 
-    <!-- Bandeau pré-remplissage IA -->
     <div class="prefill-banner" id="prefillBanner">
         <div class="prefill-banner-title">Pré-remplissage automatique effectué</div>
         <div class="prefill-banner-sub">Vérifiez et complétez les champs si nécessaire.</div>
@@ -492,40 +367,80 @@
         <div class="step-content active" data-step="1">
             <div class="step-title">Informations personnelles</div>
             <div class="section-help">Cette section contient vos informations de contact.</div>
-            <label>Nom et Prénom <span class="help-icon">?</span><span class="help-tooltip">Écrivez votre nom en majuscules suivi de votre prénom.</span>
+
+            <label>Nom et Prénom <span style="color:#E53E3E">*</span>
+                <span class="help-icon">?</span><span class="help-tooltip">Écrivez votre nom en majuscules suivi de votre prénom.</span>
                 <input type="text" name="nom_prenom" id="f_nom_prenom" placeholder="Ex : MAVOUNGOU Jeanne" required>
+                <div class="field-msg" id="msg_nom_prenom">
+                    <svg viewBox="0 0 20 20" fill="#C53030"><circle cx="10" cy="10" r="9"/><rect x="9" y="5" width="2" height="6" fill="#fff"/><rect x="9" y="13" width="2" height="2" fill="#fff"/></svg>
+                    Ce champ est obligatoire pour continuer
+                </div>
             </label>
-            <label>Email <span class="help-icon">?</span><span class="help-tooltip">Utilisez une adresse email professionnelle.</span>
+
+            <label>Email <span style="color:#E53E3E">*</span>
+                <span class="help-icon">?</span><span class="help-tooltip">Utilisez une adresse email professionnelle.</span>
                 <input type="email" name="email" id="f_email" placeholder="Ex : mavoungouj@email.com" required>
+                <div class="field-msg" id="msg_email">
+                    <svg viewBox="0 0 20 20" fill="#C53030"><circle cx="10" cy="10" r="9"/><rect x="9" y="5" width="2" height="6" fill="#fff"/><rect x="9" y="13" width="2" height="2" fill="#fff"/></svg>
+                    Ce champ est obligatoire pour continuer
+                </div>
             </label>
-            <label>Téléphone <span class="help-icon">?</span><span class="help-tooltip">Incluez votre indicatif pays.</span>
+
+            <label>Téléphone <span style="color:#E53E3E">*</span>
+                <span class="help-icon">?</span><span class="help-tooltip">Incluez votre indicatif pays.</span>
                 <input type="text" name="telephone" id="f_telephone" placeholder="Ex : +241 60 00 00 00" required>
+                <div class="field-msg" id="msg_telephone">
+                    <svg viewBox="0 0 20 20" fill="#C53030"><circle cx="10" cy="10" r="9"/><rect x="9" y="5" width="2" height="6" fill="#fff"/><rect x="9" y="13" width="2" height="2" fill="#fff"/></svg>
+                    Ce champ est obligatoire pour continuer
+                </div>
             </label>
-            <label>Adresse <span class="help-icon">?</span><span class="help-tooltip">Indiquez votre ville et pays.</span>
+
+            <label>Adresse <span style="color:#E53E3E">*</span>
+                <span class="help-icon">?</span><span class="help-tooltip">Indiquez votre ville et pays.</span>
                 <input type="text" name="adresse" id="f_adresse" placeholder="Ex : Libreville, Gabon" required>
+                <div class="field-msg" id="msg_adresse">
+                    <svg viewBox="0 0 20 20" fill="#C53030"><circle cx="10" cy="10" r="9"/><rect x="9" y="5" width="2" height="6" fill="#fff"/><rect x="9" y="13" width="2" height="2" fill="#fff"/></svg>
+                    Ce champ est obligatoire pour continuer
+                </div>
             </label>
-            <label>N°ONE / PNPE <span class="help-icon">?</span><span class="help-tooltip">Numéro PNPE/ONE si applicable.</span>
+
+            <label>N°ONE / PNPE
+                <span class="help-icon">?</span><span class="help-tooltip">Numéro PNPE/ONE si applicable.</span>
                 <input type="text" name="numero_one_pnpe" id="f_numero_one_pnpe" placeholder="Optionnel">
             </label>
-            <label>Poste recherché / Occupé <span class="help-icon">?</span><span class="help-tooltip">Titre exact du poste.</span>
+
+            <label>Poste recherché / Occupé <span style="color:#E53E3E">*</span>
+                <span class="help-icon">?</span><span class="help-tooltip">Titre exact du poste.</span>
                 <input type="text" name="poste_recherche" id="f_poste_recherche" placeholder="Ex : Agent Administratif" required>
+                <div class="field-msg" id="msg_poste_recherche">
+                    <svg viewBox="0 0 20 20" fill="#C53030"><circle cx="10" cy="10" r="9"/><rect x="9" y="5" width="2" height="6" fill="#fff"/><rect x="9" y="13" width="2" height="2" fill="#fff"/></svg>
+                    Ce champ est obligatoire pour continuer
+                </div>
             </label>
+
             <label>N° du modèle de CV &amp; la formule
                 <div style="display:flex;gap:1rem;align-items:center;margin-top:5px;">
                     <input type="text" id="modeleCvFormule" name="modele_cv_formule" placeholder="Ex : N°030 - Formule N°1" style="margin-top:0;">
                     <button type="button" id="btnCatalogueCV">Consulter le catalogue</button>
                 </div>
             </label>
+
             <label>Objectifs Professionnels
                 <textarea name="objectifs" id="f_objectifs" rows="3" placeholder="Décrivez vos objectifs professionnels"></textarea>
             </label>
-            <label>Niveau d'urgence <span style="color:#FF5700;">*</span>
+
+            <label>Niveau d'urgence <span style="color:#E53E3E">*</span>
                 <select name="niveau_urgence" id="niveauUrgence" required>
                     <option value="">Sélectionnez le délai souhaité</option>
                     <option value="Normal - Sous 48 heures">Normal - Sous 48 heures</option>
                     <option value="Premium - Priorité absolue (+50% de frais)">Premium - Priorité absolue (+50% de frais)</option>
                 </select>
+                <div class="field-msg" id="msg_niveauUrgence">
+                    <svg viewBox="0 0 20 20" fill="#C53030"><circle cx="10" cy="10" r="9"/><rect x="9" y="5" width="2" height="6" fill="#fff"/><rect x="9" y="13" width="2" height="2" fill="#fff"/></svg>
+                    Veuillez sélectionner un niveau d'urgence
+                </div>
             </label>
+
             <div class="urgence-info" id="urgenceInfo" style="display:none;"></div>
             <div class="price-display" id="priceDisplay">
                 <div class="price-title">Montant à payer</div>
@@ -603,10 +518,18 @@
                 <div class="section-help">Mentionnez vos activités extra-professionnelles pertinentes.</div>
                 <textarea name="centres_interet" id="f_centres_interet" rows="3" placeholder="Ex : • Sport : Football en club&#10;• Culture : Lecture, théâtre"></textarea>
             </div>
-            <div>
+            <div style="margin-bottom:24px;">
                 <div style="font-weight:700;color:#094102;text-transform:uppercase;font-size:13px;margin-bottom:8px;">Informations complémentaires</div>
                 <div class="section-help">Ajoutez toute information pertinente non mentionnée ailleurs.</div>
                 <textarea name="informations_complementaires" id="f_informations_complementaires" rows="3" placeholder="Ex : • Permis B&#10;• Disponibilité immédiate&#10;• Mobile sur Libreville"></textarea>
+            </div>
+            <div class="notice-photo">
+                <div class="notice-photo-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#094102" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    Vous souhaitez une photo sur votre CV ?
+                </div>
+                <p>Une fois le formulaire validé et envoyé, vous pourrez envoyer votre photo directement par WhatsApp au <strong>+241 65 37 08 82</strong> en précisant votre nom et prénom.</p>
+                <small>La photo n'est pas obligatoire. Elle sera intégrée au modèle choisi une fois reçue.</small>
             </div>
             <div style="display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
                 <button type="button" id="resetFormBtn" style="background:#fff;color:#d94c00;border:2px solid #d94c00;border-radius:8px;padding:10px 22px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;">Réinitialiser le formulaire</button>
@@ -614,7 +537,7 @@
             <div id="form-message"></div>
         </div>
 
-        <!-- STEP 6 – Prévisualisation + Envoi -->
+        <!-- STEP 6 -->
         <div class="step-content" data-step="6">
             <div class="step-title">Prévisualisation de vos informations</div>
             <div class="cv-preview-wrapper" id="cvPreviewContainer">
@@ -670,7 +593,7 @@
     </form>
 </div>
 
-<!-- ===================== PAYMENT MODAL ===================== -->
+<!-- PAYMENT MODAL -->
 <div class="payment-modal" id="paymentModal">
     <div class="payment-content">
         <button class="close-modal" onclick="closePaymentModal()" type="button">&times;</button>
@@ -705,10 +628,9 @@
     </div>
 </div>
 
-<!-- DOWNLOAD TOAST (unique, hors modal) -->
 <div id="downloadToast"></div>
 
-<!-- ===================== SCANNER FAB ===================== -->
+<!-- SCANNER FAB -->
 <button id="scanFab" type="button" onclick="openScanner()">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6h16v2H4zm0 10h16v2H4zm-2-5h2v2H2zm20 0h2v2h-2zm-4-5h2v8h-2zm-12 0h2v8H6z"/>
@@ -716,11 +638,9 @@
     <div class="fab-tooltip">Scanner un CV</div>
 </button>
 
-<!-- ===================== SCANNER OVERLAY ===================== -->
+<!-- SCANNER OVERLAY -->
 <div id="scannerOverlay">
     <div class="scanner-panel">
-
-        <!-- En-tête -->
         <div class="scanner-header">
             <div>
                 <div class="scanner-title">Importer un document CV</div>
@@ -728,8 +648,6 @@
             </div>
             <button class="scanner-close-btn" type="button" onclick="closeScanner()">✕</button>
         </div>
-
-        <!-- Zone de dépôt -->
         <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInputScanner').click()">
             <div class="drop-zone-text">Glissez votre fichier ici ou cliquez pour parcourir</div>
             <div class="drop-zone-types">
@@ -740,8 +658,6 @@
             <div class="drop-zone-sub">Taille maximale : 10 Mo</div>
         </div>
         <input type="file" id="fileInputScanner" accept=".pdf,.jpg,.jpeg,.png">
-
-        <!-- Fichier sélectionné -->
         <div class="file-preview" id="filePreview">
             <div class="file-preview-info">
                 <div class="file-preview-name" id="filePreviewName">document.pdf</div>
@@ -749,11 +665,7 @@
             </div>
             <button class="file-preview-remove" type="button" onclick="removeFile()">Supprimer</button>
         </div>
-
-        <!-- Bouton analyser -->
         <button id="btnAnalyze" type="button" onclick="analyzeDocument()">Analyser le document</button>
-
-        <!-- Progression -->
         <div class="analysis-progress" id="analysisProgress">
             <div class="analysis-bar-wrap"><div class="analysis-bar" id="analysisBar"></div></div>
             <div class="analysis-step-row"><div class="analysis-step-icon" id="step-icon-1">1</div><div class="analysis-step-label" id="step-label-1">Lecture du document</div></div>
@@ -761,56 +673,111 @@
             <div class="analysis-step-row"><div class="analysis-step-icon" id="step-icon-3">3</div><div class="analysis-step-label" id="step-label-3">Analyse par l'IA</div></div>
             <div class="analysis-step-row"><div class="analysis-step-icon" id="step-icon-4">4</div><div class="analysis-step-label" id="step-label-4">Préparation du formulaire</div></div>
         </div>
-
-        <!-- Erreur -->
         <div class="scan-error" id="scanError"></div>
-
-        <!-- Résultats -->
         <div class="scan-results" id="scanResults">
             <div class="scan-results-title">Informations détectées</div>
             <div class="scan-results-grid" id="resultsGrid"></div>
             <button class="scan-apply-btn" type="button" onclick="applyResults()">Appliquer dans le formulaire</button>
             <button class="scan-retry-btn" type="button" onclick="resetScanner()">Importer un autre document</button>
         </div>
-
-        <!-- Note -->
         <div class="scan-tip">
             <div class="scan-tip-text">Pour de meilleurs résultats, utilisez un PDF créé numériquement. Les scans et photos doivent être nets. Vous pourrez modifier les champs après import.</div>
         </div>
-
     </div>
 </div>
 
-<!-- ===================== SCRIPTS ===================== -->
 <script>
-/* ==================================================
-   CONFIGURATION – Groq API via proxy Netlify
-   La clé est stockée dans Netlify > Environment Variables > GROQ_API_KEY
-   Ne jamais mettre la clé directement ici.
-================================================== */
 var GROQ_MODEL     = 'llama-3.3-70b-versatile';
 var GROQ_PROXY_URL = '/.netlify/functions/groq-proxy';
 
-/* ==================================================
-   FORM STATE
-================================================== */
 var currentStep = 1;
 var totalSteps = 6;
 var experienceCounter = 1;
 var formationCounter = 1;
 var latestInvoiceNumber = null;
 
-/* ==================================================
-   INVOICE / UTILITIES
-================================================== */
+/* ════════════════════════════════════════
+   STYLE A — VALIDATION INLINE
+   ════════════════════════════════════════ */
+
+// Définition des champs obligatoires par étape
+var requiredByStep = {
+    1: [
+        { id: 'f_nom_prenom',    msgId: 'msg_nom_prenom',      label: 'Nom et Prénom' },
+        { id: 'f_email',         msgId: 'msg_email',           label: 'Email' },
+        { id: 'f_telephone',     msgId: 'msg_telephone',       label: 'Téléphone' },
+        { id: 'f_adresse',       msgId: 'msg_adresse',         label: 'Adresse' },
+        { id: 'f_poste_recherche', msgId: 'msg_poste_recherche', label: 'Poste recherché' },
+        { id: 'niveauUrgence',   msgId: 'msg_niveauUrgence',   label: 'Niveau d\'urgence' }
+    ]
+    // Les étapes 2-5 n'ont pas de champs obligatoires
+};
+
+function showFieldError(fieldId, msgId) {
+    var el = document.getElementById(fieldId);
+    var msg = document.getElementById(msgId);
+    if (el) { el.classList.add('field-error'); el.classList.remove('field-ok'); }
+    if (msg) { msg.classList.add('show'); }
+}
+
+function clearFieldError(fieldId, msgId) {
+    var el = document.getElementById(fieldId);
+    var msg = document.getElementById(msgId);
+    if (el) { el.classList.remove('field-error'); if (el.value && el.value.trim()) el.classList.add('field-ok'); }
+    if (msg) { msg.classList.remove('show'); }
+}
+
+// Attacher les listeners "oninput" pour effacer l'erreur dès que l'utilisateur tape
+function attachLiveValidation() {
+    var allFields = requiredByStep[1] || [];
+    allFields.forEach(function(f) {
+        var el = document.getElementById(f.id);
+        if (!el) return;
+        var eventName = (el.tagName === 'SELECT') ? 'change' : 'input';
+        el.addEventListener(eventName, function() {
+            if (el.value && el.value.trim()) {
+                clearFieldError(f.id, f.msgId);
+            }
+        });
+    });
+}
+
+function validateStep(step) {
+    var fields = requiredByStep[step];
+    if (!fields || fields.length === 0) return true;
+
+    var firstError = null;
+    var hasError = false;
+
+    fields.forEach(function(f) {
+        var el = document.getElementById(f.id);
+        if (!el) return;
+        var val = el.value ? el.value.trim() : '';
+        if (!val) {
+            showFieldError(f.id, f.msgId);
+            if (!firstError) firstError = el;
+            hasError = true;
+        } else {
+            clearFieldError(f.id, f.msgId);
+        }
+    });
+
+    // Scroll vers le premier champ en erreur
+    if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstError.focus();
+    }
+
+    return !hasError;
+}
+
+/* ════════════════════════════════════════ */
+
 function generateInvoiceNumber() {
     var d = new Date();
     return 'CV-' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0') + '-' + String(Math.floor(Math.random()*1000)).padStart(3,'0');
 }
 
-/* ==================================================
-   URGENCE
-================================================== */
 function handleUrgenceChange(e) {
     var info = document.getElementById('urgenceInfo');
     var pd = document.getElementById('priceDisplay');
@@ -830,9 +797,6 @@ function handleUrgenceChange(e) {
     }
 }
 
-/* ==================================================
-   STEP NAVIGATION
-================================================== */
 function updateProgressBar() {
     document.getElementById('progressBar').style.width = ((currentStep - 1) / (totalSteps - 1) * 100) + '%';
 }
@@ -856,29 +820,25 @@ function showStep(step) {
     updateProgressBar();
     updateStepIndicators();
     if (step === 6) updateVerificationData();
-    // Bandeau pré-remplissage : visible uniquement à l'étape 1
     var pb = document.getElementById('prefillBanner');
     if (pb) { if (step === 1 && pb.classList.contains('show')) { pb.style.display = 'block'; } else if (step !== 1) { pb.style.display = 'none'; } }
 }
 
-function validateCurrentStep() {
-    var content = document.querySelector('.step-content[data-step="' + currentStep + '"]');
-    if (!content) return true;
-    var req = content.querySelectorAll('[required]');
-    var ok = true;
-    req.forEach(function(f) { if (!f.value.trim()) { ok = false; f.style.borderColor = '#dc3545'; } else f.style.borderColor = ''; });
-    var msg = document.getElementById('form-message');
-    if (!ok && msg) { msg.textContent = 'Veuillez remplir tous les champs obligatoires.'; msg.className = 'error'; }
-    else if (msg) { msg.textContent = ''; msg.className = ''; }
-    return ok;
+function nextStep() {
+    if (validateStep(currentStep) && currentStep < totalSteps) {
+        currentStep++;
+        showStep(currentStep);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+function prevStep() {
+    if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 }
 
-function nextStep() { if (validateCurrentStep() && currentStep < totalSteps) { currentStep++; showStep(currentStep); } }
-function prevStep() { if (currentStep > 1) { currentStep--; showStep(currentStep); } }
-
-/* ==================================================
-   DYNAMIC FIELDS
-================================================== */
 function addLangue() {
     var c = document.getElementById('languesFields');
     var i = document.createElement('input'); i.type='text'; i.name='langues[]'; i.placeholder='Ex : Anglais (intermédiaire)'; i.style.marginTop='8px';
@@ -917,9 +877,6 @@ function addFormation() {
     c.appendChild(d);
 }
 
-/* ==================================================
-   CV PREVIEW (Step 6)
-================================================== */
 function updateVerificationData() {
     var form = document.getElementById('mainForm');
     var fd = new FormData(form);
@@ -974,9 +931,6 @@ function updateVerificationData() {
     else { document.getElementById('cv-urgence').textContent = 'Non sélectionné'; document.getElementById('cv-prix').textContent = '— FCFA'; }
 }
 
-/* ==================================================
-   FORM SUBMISSION
-================================================== */
 function structureMessage() {
     var form = document.getElementById('mainForm');
     var fd = new FormData(form);
@@ -1007,7 +961,7 @@ function structureMessage() {
 
 function handleFormSubmit(e) {
     e.preventDefault();
-    if (!validateCurrentStep()) return;
+    if (!validateStep(currentStep)) return;
     structureMessage();
     latestInvoiceNumber = generateInvoiceNumber();
     document.getElementById('invoiceNumberHidden').value = latestInvoiceNumber;
@@ -1032,9 +986,6 @@ function handleFormSubmit(e) {
         .finally(function() { btn.disabled = false; });
 }
 
-/* ==================================================
-   PAYMENT MODAL
-================================================== */
 function showPaymentModal(fd) {
     var modal = document.getElementById('paymentModal');
     document.getElementById('clientName').textContent = fd.get('nom_prenom') || 'Client';
@@ -1056,6 +1007,9 @@ function closePaymentModal() {
 
 function clearFormAndLocalStorage() {
     document.getElementById('mainForm').reset();
+    // Nettoyer toutes les erreurs visuelles
+    document.querySelectorAll('.field-error').forEach(function(el) { el.classList.remove('field-error', 'field-ok'); });
+    document.querySelectorAll('.field-msg').forEach(function(el) { el.classList.remove('show'); });
     currentStep = 1; experienceCounter = 1; formationCounter = 1;
     showStep(1);
     var msg = document.getElementById('form-message');
@@ -1065,9 +1019,6 @@ function clearFormAndLocalStorage() {
     var pb = document.getElementById('prefillBanner'); if(pb) pb.classList.remove('show');
 }
 
-/* ==================================================
-   PDF INVOICE
-================================================== */
 function downloadInvoicePDF() {
     try {
         if (typeof window.jspdf === 'undefined') { alert('Bibliothèque PDF non chargée. Actualisez la page.'); return; }
@@ -1080,7 +1031,6 @@ function downloadInvoicePDF() {
         var inv = document.getElementById('invoiceNumber').textContent || 'N/A';
         var tot = document.getElementById('totalAmount').textContent || 'N/A';
         var isPrem = document.getElementById('premiumCharge').style.display !== 'none';
-
         doc.setFillColor(9, 65, 2); doc.rect(0, 0, pw, 25, 'F');
         doc.setTextColor(255, 255, 255); doc.setFontSize(17); doc.setFont(undefined, 'bold');
         doc.text('FACTURE DE SERVICE CV', pw / 2, 16, { align: 'center' });
@@ -1105,16 +1055,15 @@ function downloadInvoicePDF() {
         doc.setTextColor(0, 0, 0); doc.setFontSize(11); doc.setFont(undefined, 'normal');
         doc.text('Airtel Money: 077 101 378', m + 5, y); y += 8; doc.text('Moov Money: 065 370 882', m + 5, y); y += 8;
         doc.setFont(undefined, 'bold'); doc.text('Bénéficiaire: Nel MANKOU', m, y); y += 15;
-        doc.setFillColor(255, 251, 230); doc.rect(m, y, pw - 2 * m, 18, 'F');
+        doc.setFillColor(255, 251, 230); doc.rect(m, y, pw - 2 * m, 24, 'F');
         doc.setTextColor(153, 102, 0); doc.setFontSize(9); doc.setFont(undefined, 'bold'); doc.text('NOTE:', m + 3, y + 5); doc.setFont(undefined, 'normal');
         doc.text('Vous recevrez le document Word/PDF une fois la rédaction terminée.', m + 3, y + 11);
+        doc.text('Photo souhaitée ? Envoyez-la par WhatsApp au +241 65 37 08 82 avec votre nom.', m + 3, y + 18);
         doc.setTextColor(100, 100, 100); doc.setFontSize(8);
         doc.text('Document généré le ' + new Date().toLocaleDateString('fr-FR'), m, ph - 12);
         doc.text('Service de rédaction CV – Chronos-Services', pw - m, ph - 12, { align: 'right' });
         var fn = (cn || 'client').replace(/[^a-zA-Z0-9\-_]/g, '_').slice(0, 40);
         doc.save('Facture_CV_' + fn + '_' + new Date().toISOString().slice(0, 10) + '.pdf');
-
-        // Toast de confirmation
         var toast = document.getElementById('downloadToast');
         toast.innerHTML = '<strong>✅ Facture téléchargée avec succès !</strong><br>Envoyez-la par WhatsApp au <strong>+241 65 37 08 82</strong> pour confirmer votre commande.';
         toast.classList.add('show');
@@ -1126,11 +1075,9 @@ function downloadInvoicePDF() {
     }
 }
 
-/* ==================================================
-   DOM READY
-================================================== */
 document.addEventListener('DOMContentLoaded', function() {
     showStep(1);
+    attachLiveValidation();
     document.getElementById('niveauUrgence').addEventListener('change', handleUrgenceChange);
     document.getElementById('nextBtn').addEventListener('click', nextStep);
     document.getElementById('prevBtn').addEventListener('click', prevStep);
@@ -1140,11 +1087,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.step-indicator').forEach(function(ind, idx) {
         ind.addEventListener('click', function() {
             var ns = idx + 1;
-            if (ns < currentStep || validateCurrentStep()) { currentStep = ns; showStep(currentStep); }
+            if (ns < currentStep || validateStep(currentStep)) { currentStep = ns; showStep(currentStep); }
         });
     });
 
-    // Catalogue CV
     var mi = document.getElementById('modeleCvFormule');
     var bc = document.getElementById('btnCatalogueCV');
     var chosenModel = localStorage.getItem('chosenCvModel');
@@ -1153,24 +1099,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (chosenModel && mi) { mi.value = chosenModel; localStorage.removeItem('chosenCvModel'); }
     if (bc) { bc.addEventListener('click', function() { var fd2 = new FormData(document.getElementById('mainForm')); var dt2 = {}; fd2.forEach(function(v, k) { dt2[k] = v; }); localStorage.setItem('formDataBackup', JSON.stringify(dt2)); localStorage.setItem('returnToForm', 'true'); window.location.href = 'catalogue de CV.html'; }); }
 
-    // Scanner
     initScanner();
 });
 
-/* ==================================================
+/* ════════════════════════════════════════
    SCANNER
-================================================== */
+   ════════════════════════════════════════ */
 var selectedFile = null;
 var extractedData = null;
 
-function openScanner() {
-    document.getElementById('scannerOverlay').classList.add('show');
-    document.body.style.overflow = 'hidden';
-}
-function closeScanner() {
-    document.getElementById('scannerOverlay').classList.remove('show');
-    document.body.style.overflow = 'auto';
-}
+function openScanner() { document.getElementById('scannerOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; }
+function closeScanner() { document.getElementById('scannerOverlay').classList.remove('show'); document.body.style.overflow = 'auto'; }
 
 function initScanner() {
     var dz = document.getElementById('dropZone');
@@ -1227,10 +1166,6 @@ function setAnalysisStep(num) {
     }
 }
 
-/* ==================================================
-   PIPELINE : PDF.js → Tesseract OCR → Groq LLaMA 3
-================================================== */
-
 async function analyzeDocument() {
     if (!selectedFile) { showScanError('Veuillez sélectionner un fichier.'); return; }
     document.getElementById('scanError').classList.remove('show');
@@ -1244,41 +1179,22 @@ async function analyzeDocument() {
         var isImage = selectedFile.name.match(/\.(jpg|jpeg|png)$/i);
         var isPDF   = selectedFile.name.match(/\.pdf$/i);
         var textContent = '';
-
-        // ── ÉTAPE 1 : Lecture fichier ──────────────────────────────────────
         var base64 = await fileToBase64(selectedFile);
         await delay(300);
         setAnalysisStep(2);
-
-        // ── ÉTAPE 2 : Extraction du texte ─────────────────────────────────
-        if (isPDF) {
-            // PDF numérique → PDF.js (rapide, gratuit, hors-ligne)
-            updateStepLabel(2, '📄 Extraction PDF.js…');
-            textContent = await extractTextFromPDF(base64);
-        }
+        if (isPDF) { updateStepLabel(2, '📄 Extraction PDF.js…'); textContent = await extractTextFromPDF(base64); }
         if (isImage || (isPDF && textContent.trim().length < 50)) {
-            // Image OU PDF scanné (sans texte) → Tesseract OCR
             updateStepLabel(2, '🔍 OCR en cours (Tesseract)…');
             var ocrText = await runOCR(selectedFile);
-            if (ocrText && ocrText.trim().length > textContent.trim().length) {
-                textContent = ocrText;
-            }
+            if (ocrText && ocrText.trim().length > textContent.trim().length) textContent = ocrText;
         }
-
-        if (!textContent || textContent.trim().length < 20) {
-            throw new Error('Impossible d\'extraire du texte de ce document. Essayez un PDF numérique ou une image plus nette.');
-        }
-
+        if (!textContent || textContent.trim().length < 20) throw new Error('Impossible d\'extraire du texte. Essayez un PDF numérique ou une image plus nette.');
         await delay(200);
         setAnalysisStep(3);
-
-        // ── ÉTAPE 3 : Analyse IA via Groq + LLaMA 3 ──────────────────────
         updateStepLabel(3, '🤖 Analyse IA (Groq / LLaMA 3)…');
         var aiResult = await callGroqAPI(textContent);
         await delay(300);
         setAnalysisStep(4);
-
-        // ── ÉTAPE 4 : Pré-remplissage ─────────────────────────────────────
         extractedData = aiResult;
         await delay(400);
         document.getElementById('analysisBar').style.width = '100%';
@@ -1287,24 +1203,18 @@ async function analyzeDocument() {
             var lb = document.getElementById('step-label-' + i); lb.classList.remove('active'); lb.classList.add('done');
         }
         showResults(aiResult);
-
     } catch (err) {
         console.error(err);
         document.getElementById('analysisProgress').classList.remove('show');
         showScanError('Erreur : ' + (err.message || 'Réessayez.'));
     } finally {
         btn.disabled = false; btn.textContent = '🔍 Analyser avec l\'IA';
-        // Remettre labels par défaut
         updateStepLabel(2, 'Extraction du texte (PDF.js / OCR)…');
         updateStepLabel(3, 'Analyse IA (Groq / LLaMA 3)…');
     }
 }
 
-function updateStepLabel(num, text) {
-    var el = document.getElementById('step-label-' + num);
-    if (el) el.textContent = text;
-}
-
+function updateStepLabel(num, text) { var el = document.getElementById('step-label-' + num); if (el) el.textContent = text; }
 function delay(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
 
 function fileToBase64(file) {
@@ -1316,13 +1226,11 @@ function fileToBase64(file) {
     });
 }
 
-/* ── PDF.js : extraction texte PDF numérique ── */
 async function extractTextFromPDF(base64) {
     try {
         if (typeof pdfjsLib === 'undefined') {
             await loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
-            window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-                'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
         }
         var binary = atob(base64);
         var arr = new Uint8Array(binary.length);
@@ -1332,7 +1240,6 @@ async function extractTextFromPDF(base64) {
         for (var p = 1; p <= Math.min(pdfDoc.numPages, 8); p++) {
             var page = await pdfDoc.getPage(p);
             var content = await page.getTextContent();
-            // Reconstituer les lignes avec espaces intelligents
             var lastY = null;
             content.items.forEach(function(item) {
                 if (lastY !== null && Math.abs(item.transform[5] - lastY) > 5) text += '\n';
@@ -1342,18 +1249,12 @@ async function extractTextFromPDF(base64) {
             text += '\n';
         }
         return text.trim();
-    } catch (e) {
-        console.warn('PDF.js extraction failed:', e);
-        return '';
-    }
+    } catch (e) { console.warn('PDF.js extraction failed:', e); return ''; }
 }
 
-/* ── Tesseract.js : OCR pour images et PDFs scannés ── */
 async function runOCR(file) {
     try {
-        if (typeof Tesseract === 'undefined') {
-            await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
-        }
+        if (typeof Tesseract === 'undefined') await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
         updateStepLabel(2, '🔍 OCR en cours… (peut prendre 10-30s)');
         var result = await Tesseract.recognize(file, 'fra+eng', {
             logger: function(m) {
@@ -1365,10 +1266,7 @@ async function runOCR(file) {
             }
         });
         return result.data.text || '';
-    } catch (e) {
-        console.warn('Tesseract OCR failed:', e);
-        return '';
-    }
+    } catch (e) { console.warn('Tesseract OCR failed:', e); return ''; }
 }
 
 function loadScript(src) {
@@ -1379,97 +1277,44 @@ function loadScript(src) {
     });
 }
 
-/* ── Groq API : LLaMA 3 analyse le texte extrait ── */
 async function callGroqAPI(textContent) {
-    var systemPrompt = 'Tu es un assistant expert en lecture de CV francophones (notamment africains). ' +
-        'Analyse le texte fourni et extrais les informations du CV. ' +
-        'Réponds UNIQUEMENT en JSON valide, sans aucun texte avant ou après, sans balises markdown. ' +
-        'Structure JSON exacte à respecter :\n' +
-        '{"nom_prenom":"","email":"","telephone":"","adresse":"","numero_one_pnpe":"","poste_recherche":"",' +
-        '"objectifs":"","langues":[],"competences_informatiques":[],"domaines_competences":[],' +
-        '"experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],' +
-        '"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],' +
-        '"centres_interet":"","informations_complementaires":""}\n' +
-        'Règles importantes :\n' +
-        '- Pour langues, competences_informatiques, domaines_competences : retourne des tableaux de chaînes simples\n' +
-        '- Pour experiences et formations : retourne des tableaux d\'objets\n' +
-        '- Si une information est absente du texte, laisse la valeur vide ("" ou [])\n' +
-        '- Ne jamais inventer d\'informations qui ne sont pas dans le texte\n' +
-        '- numero_one_pnpe : chercher un numéro PNPE, ONE, ou tout numéro d\'enregistrement emploi';
-
-    var userMessage = 'Voici le texte extrait du CV :\n\n' + textContent.slice(0, 8000) +
-        '\n\nExtrais toutes les informations présentes dans ce CV.';
-
-    var payload = {
-        model: GROQ_MODEL,
-        messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userMessage }
-        ],
-        temperature: 0.1,
-        max_tokens: 2048,
-        response_format: { type: 'json_object' }  // Force JSON pur
-    };
-
-    // Appel via proxy Netlify — clé cachée côté serveur
-    var response = await fetch(GROQ_PROXY_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    });
-
+    var systemPrompt = 'Tu es un assistant expert en lecture de CV francophones (notamment africains). Analyse le texte fourni et extrais les informations du CV. Réponds UNIQUEMENT en JSON valide, sans aucun texte avant ou après, sans balises markdown. Structure JSON exacte à respecter :\n{"nom_prenom":"","email":"","telephone":"","adresse":"","numero_one_pnpe":"","poste_recherche":"","objectifs":"","langues":[],"competences_informatiques":[],"domaines_competences":[],"experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"centres_interet":"","informations_complementaires":""}\nRègles importantes :\n- Pour langues, competences_informatiques, domaines_competences : retourne des tableaux de chaînes simples\n- Pour experiences et formations : retourne des tableaux d\'objets\n- Si une information est absente du texte, laisse la valeur vide ("" ou [])\n- Ne jamais inventer d\'informations qui ne sont pas dans le texte\n- numero_one_pnpe : chercher un numéro PNPE, ONE, ou tout numéro d\'enregistrement emploi';
+    var userMessage = 'Voici le texte extrait du CV :\n\n' + textContent.slice(0, 8000) + '\n\nExtrais toutes les informations présentes dans ce CV.';
+    var payload = { model: GROQ_MODEL, messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: userMessage }], temperature: 0.1, max_tokens: 2048, response_format: { type: 'json_object' } };
+    var response = await fetch(GROQ_PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
     if (!response.ok) {
         var errData = await response.json().catch(function() { return {}; });
         var errMsg = 'Erreur Groq API';
         if (errData.error) {
-            if (errData.error.code === 'invalid_api_key') errMsg = 'Clé Groq invalide. Vérifiez GROQ_API_KEY dans le code.';
+            if (errData.error.code === 'invalid_api_key') errMsg = 'Clé Groq invalide.';
             else if (errData.error.code === 'rate_limit_exceeded') errMsg = 'Limite Groq atteinte, réessayez dans quelques secondes.';
             else errMsg = errData.error.message || errMsg;
         }
         throw new Error(errMsg);
     }
-
     var data = await response.json();
-    var raw = data.choices && data.choices[0] && data.choices[0].message
-        ? data.choices[0].message.content || ''
-        : '';
+    var raw = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content || '' : '';
     raw = raw.replace(/```json|```/g, '').trim();
-
     var parsed = JSON.parse(raw);
-    // Normaliser : s'assurer que les tableaux sont bien des tableaux
-    ['langues','competences_informatiques','domaines_competences'].forEach(function(k) {
-        if (!Array.isArray(parsed[k])) parsed[k] = parsed[k] ? [String(parsed[k])] : [];
-    });
-    ['experiences','formations'].forEach(function(k) {
-        if (!Array.isArray(parsed[k])) parsed[k] = [];
-    });
+    ['langues','competences_informatiques','domaines_competences'].forEach(function(k) { if (!Array.isArray(parsed[k])) parsed[k] = parsed[k] ? [String(parsed[k])] : []; });
+    ['experiences','formations'].forEach(function(k) { if (!Array.isArray(parsed[k])) parsed[k] = []; });
     return parsed;
 }
 
 function showResults(data) {
     document.getElementById('analysisProgress').classList.remove('show');
     document.getElementById('scanResults').classList.add('show');
-    var grid = document.getElementById('resultsGrid');
-    grid.innerHTML = '';
-
+    var grid = document.getElementById('resultsGrid'); grid.innerHTML = '';
     function card(label, value, full) {
         var isEmpty = !value || (Array.isArray(value) && value.length === 0) || (typeof value === 'string' && !value.trim());
         var disp = isEmpty ? 'Non détecté' : (Array.isArray(value) ? value.join(', ') : value);
-        var d = document.createElement('div');
-        d.className = 'result-card' + (full ? ' full' : '');
-        d.innerHTML = '<div class="result-card-label">' + label + (!isEmpty ? '<span class="result-card-check">✓</span>' : '') + '</div>' +
-                      '<div class="result-card-value' + (isEmpty ? ' empty' : '') + '">' + disp + '</div>';
+        var d = document.createElement('div'); d.className = 'result-card' + (full ? ' full' : '');
+        d.innerHTML = '<div class="result-card-label">' + label + (!isEmpty ? '<span class="result-card-check">✓</span>' : '') + '</div><div class="result-card-value' + (isEmpty ? ' empty' : '') + '">' + disp + '</div>';
         grid.appendChild(d);
     }
-
-    card('Nom & Prénom', data.nom_prenom);
-    card('Email', data.email);
-    card('Téléphone', data.telephone);
-    card('Adresse', data.adresse);
-    card('Poste', data.poste_recherche);
-    card('N° ONE/PNPE', data.numero_one_pnpe);
-    card('Langues', data.langues);
-    card('Informatique', data.competences_informatiques);
+    card('Nom & Prénom', data.nom_prenom); card('Email', data.email); card('Téléphone', data.telephone); card('Adresse', data.adresse);
+    card('Poste', data.poste_recherche); card('N° ONE/PNPE', data.numero_one_pnpe);
+    card('Langues', data.langues); card('Informatique', data.competences_informatiques);
     if (data.domaines_competences && data.domaines_competences.length) card('Domaines', data.domaines_competences, true);
     if (data.objectifs) card('Objectifs', data.objectifs, true);
     if (data.experiences && data.experiences.length) card('Expériences', data.experiences.length + ' expérience(s) détectée(s)');
@@ -1480,23 +1325,15 @@ function applyResults() {
     if (!extractedData) return;
     var d = extractedData;
     var prefilled = [];
-
     function setField(id, value) {
         if (!value || (typeof value === 'string' && !value.trim())) return;
         var el = document.getElementById(id);
-        if (el) { el.value = value; el.style.borderColor = '#094102'; prefilled.push(id); }
+        if (el) { el.value = value; el.classList.add('field-ok'); el.classList.remove('field-error'); prefilled.push(id); }
     }
-
-    setField('f_nom_prenom', d.nom_prenom);
-    setField('f_email', d.email);
-    setField('f_telephone', d.telephone);
-    setField('f_adresse', d.adresse);
-    setField('f_numero_one_pnpe', d.numero_one_pnpe);
-    setField('f_poste_recherche', d.poste_recherche);
-    setField('f_objectifs', d.objectifs);
-    setField('f_centres_interet', d.centres_interet);
-    setField('f_informations_complementaires', d.informations_complementaires);
-
+    setField('f_nom_prenom', d.nom_prenom); setField('f_email', d.email); setField('f_telephone', d.telephone);
+    setField('f_adresse', d.adresse); setField('f_numero_one_pnpe', d.numero_one_pnpe);
+    setField('f_poste_recherche', d.poste_recherche); setField('f_objectifs', d.objectifs);
+    setField('f_centres_interet', d.centres_interet); setField('f_informations_complementaires', d.informations_complementaires);
     if (d.langues && d.langues.length) {
         var lc = document.getElementById('languesFields'); lc.innerHTML = '';
         d.langues.forEach(function(l, i) { var inp = document.createElement('input'); inp.type='text'; inp.name='langues[]'; inp.value=l; if(i>0) inp.style.marginTop='8px'; lc.appendChild(inp); });
@@ -1540,15 +1377,11 @@ function applyResults() {
         });
         prefilled.push('Formations (' + d.formations.length + ')');
     }
-
     var banner = document.getElementById('prefillBanner');
     var tags = document.getElementById('prefillTagsContainer');
     var labelMap = { 'f_nom_prenom': 'Nom & Prénom', 'f_email': 'Email', 'f_telephone': 'Téléphone', 'f_adresse': 'Adresse', 'f_numero_one_pnpe': 'N° ONE/PNPE', 'f_poste_recherche': 'Poste', 'f_objectifs': 'Objectifs', 'f_centres_interet': 'Centres d\'intérêt', 'f_informations_complementaires': 'Infos complémentaires' };
-    tags.innerHTML = prefilled.map(function(t) {
-        return '<div class="prefill-tag">' + (labelMap[t] || t) + '</div>';
-    }).join('');
+    tags.innerHTML = prefilled.map(function(t) { return '<div class="prefill-tag">' + (labelMap[t] || t) + '</div>'; }).join('');
     banner.classList.add('show');
-
     closeScanner();
     currentStep = 1; showStep(1);
     window.scrollTo({ top: 0, behavior: 'smooth' });

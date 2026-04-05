@@ -96,6 +96,105 @@ select {
 .note { font-size: 0.76rem; color: var(--muted); background: #f8f8f8; border-left: 3px solid var(--border); padding: 10px 14px; border-radius: 0 4px 4px 0; margin-top: 10px; line-height: 1.55; }
 .note strong { color: var(--green); }
 
+/* ══════════════════════════════════════
+   CARD RENOUVEAU — PROPOSITION B
+══════════════════════════════════════ */
+.renouveau-card {
+  background: var(--bg-card);
+  border-radius: 6px;
+  border: 1.5px solid #ffb894;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.renouveau-head {
+  background: #fff8f4;
+  padding: 16px 24px 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #ffd5b8;
+}
+.renouveau-head-left { flex: 1; min-width: 0; }
+.renouveau-head-title { font-size: 0.92rem; font-weight: 600; color: #7a3000; }
+.renouveau-head-sub { font-size: 0.76rem; color: #b05030; margin-top: 2px; font-weight: 400; }
+.renouveau-badge {
+  font-size: 0.62rem; font-weight: 700;
+  background: var(--orange); color: #fff;
+  padding: 2px 9px; border-radius: 3px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+/* TOGGLE */
+.toggle-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 24px;
+  background: #fff8f4;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.toggle-row:hover { background: #fff0e8; }
+
+.toggle-switch {
+  position: relative; width: 40px; height: 22px; flex-shrink: 0;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+.toggle-track {
+  position: absolute; inset: 0;
+  background: #ccc; border-radius: 11px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.toggle-track::after {
+  content: '';
+  position: absolute; left: 3px; top: 3px;
+  width: 16px; height: 16px;
+  background: #fff; border-radius: 50%;
+  transition: transform 0.2s;
+}
+.toggle-switch input:checked + .toggle-track { background: var(--orange); }
+.toggle-switch input:checked + .toggle-track::after { transform: translateX(18px); }
+
+.toggle-label {
+  font-size: 0.84rem; font-weight: 600; color: #7a3000;
+  line-height: 1.35;
+}
+
+/* RENOUVEAU EXPANDED BODY */
+.renouveau-body {
+  display: none;
+  padding: 18px 24px 20px;
+  border-top: 1px solid #ffd5b8;
+  background: #fffaf7;
+  animation: fadeUp 0.2s ease;
+}
+.renouveau-body.open { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.renouveau-model-row { display: flex; gap: 10px; align-items: stretch; }
+.renouveau-model-row input { flex: 1; }
+
+.cat-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: linear-gradient(90deg, var(--green), #0d6b07);
+  color: #fff; border: none; border-radius: 5px;
+  padding: 10px 14px; font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem; font-weight: 700; cursor: pointer;
+  text-decoration: none; white-space: nowrap;
+  transition: opacity 0.15s, transform 0.15s;
+  flex-shrink: 0;
+}
+.cat-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* ══════════════════════════════════════ */
+
 /* RUBRIQUE SELECTOR */
 .rubrique-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 @media(max-width:520px) { .rubrique-grid { grid-template-columns: 1fr 1fr; } }
@@ -122,10 +221,19 @@ select {
   width: 5px; height: 8px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(40deg);
 }
 
+/* Note rubriques quand renouveau actif */
+.rub-renouveau-note {
+  display: none;
+  font-size: 0.74rem; color: #b05030;
+  background: #fff8f4; border-left: 3px solid #ffb894;
+  padding: 8px 12px; border-radius: 0 4px 4px 0;
+  margin-bottom: 12px; line-height: 1.5;
+}
+.rub-renouveau-note.show { display: block; }
+
 /* SECTION CONTENT */
 .sec-content { display: none; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); animation: fadeUp 0.2s ease; }
 .sec-content.open { display: block; }
-@keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
 .sec-title { font-size: 0.72rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #e8e8e8; }
 
 /* EXP / FM BLOCKS */
@@ -147,14 +255,7 @@ select {
 .add-link:hover { color: var(--orange-dark); text-decoration: underline; }
 
 /* PRICE DISPLAY */
-.price-display {
-  background: #f8f8f8;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  padding: 14px 18px;
-  margin-top: 16px;
-  display: none;
-}
+.price-display { background: #f8f8f8; border: 1px solid var(--border); border-radius: 5px; padding: 14px 18px; margin-top: 16px; display: none; }
 .price-display.show { display: block; }
 .price-rows { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
 .price-row { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--muted); }
@@ -180,9 +281,7 @@ select {
   border: 2px solid var(--border); background: #fff;
   flex-shrink: 0; transition: all 0.15s; position: relative;
 }
-.urg-item input:checked + .urg-label .urg-radio-dot {
-  border-color: var(--green); background: var(--green);
-}
+.urg-item input:checked + .urg-label .urg-radio-dot { border-color: var(--green); background: var(--green); }
 .urg-item input:checked + .urg-label .urg-radio-dot::after {
   content: ''; position: absolute; top: 3px; left: 3px;
   width: 6px; height: 6px; border-radius: 50%; background: #fff;
@@ -191,62 +290,24 @@ select {
 .urg-desc { font-size: 0.74rem; color: var(--muted); padding-left: 26px; }
 
 /* PRICE HINT */
-.price-hint {
-  margin-top: 14px;
-  font-size: 0.76rem;
-  color: var(--muted);
-  background: #f8f8f8;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 10px 14px;
-  text-align: center;
-}
+.price-hint { margin-top: 14px; font-size: 0.76rem; color: var(--muted); background: #f8f8f8; border: 1px solid var(--border); border-radius: 4px; padding: 10px 14px; text-align: center; }
 
 /* SCANNER BUTTON */
-.scanner-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 13px 16px;
-  background: #fff;
-  color: var(--green);
-  border: 2px solid var(--green);
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.84rem;
-  font-weight: 600;
-  width: 100%;
-  transition: all 0.2s;
-  text-align: left;
+.scanner-btn-b {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 16px; background: #f9f9f9; color: var(--green);
+  border: 1.5px dashed #bbb; border-radius: 5px;
+  cursor: pointer; font-family: 'Poppins', sans-serif;
+  text-align: left; width: 100%; transition: all 0.2s;
 }
-.scanner-btn:hover {
-  background: var(--green);
-  color: #fff;
-}
-.scanner-btn:hover .scanner-btn-badge {
-  background: #fff;
-  color: var(--orange);
-}
-.scanner-btn-label { flex: 1; }
-.scanner-btn-arrow {
-  font-size: 1rem;
-  flex-shrink: 0;
-  color: var(--orange);
-  transition: transform 0.2s;
-}
-.scanner-btn:hover .scanner-btn-arrow { transform: translateX(3px); }
-.scanner-btn-badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  background: var(--orange);
-  color: #fff;
-  padding: 2px 7px;
-  border-radius: 2px;
-  letter-spacing: 0.04em;
-  flex-shrink: 0;
-}
+.scanner-btn-b:hover { border-color: var(--green); background: #f0f7ee; }
+.sb-icon-b { font-size: 20px; flex-shrink: 0; line-height: 1; }
+.sb-text-b { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.sb-title-b { font-size: 0.84rem; font-weight: 600; color: var(--green); }
+.sb-desc-b { font-size: 0.73rem; color: var(--muted); line-height: 1.5; }
+.scanner-btn-badge { font-size: 0.65rem; font-weight: 700; background: var(--orange); color: #fff; padding: 2px 7px; border-radius: 2px; letter-spacing: 0.04em; flex-shrink: 0; }
+.scanner-btn-arrow-b { color: #bbb; font-size: 0.95rem; flex-shrink: 0; transition: transform 0.2s; }
+.scanner-btn-b:hover .scanner-btn-arrow-b { transform: translateX(3px); color: var(--green); }
 
 /* SUBMIT */
 .submit-zone { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; margin-top: 4px; }
@@ -354,16 +415,7 @@ select {
 .sc-apply:hover { background: #0a5c02; }
 .sc-retry { background: none; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 10px; font-size: 0.78rem; font-weight: 500; cursor: pointer; width: 100%; font-family: 'Poppins', sans-serif; transition: all 0.18s; }
 .sc-retry:hover { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.2); }
-/* INSTRUCTION SELECTOR */
-.sc-instr-item {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 10px 12px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.15s;
-  background: rgba(255,255,255,0.03);
-}
+.sc-instr-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; cursor: pointer; transition: all 0.15s; background: rgba(255,255,255,0.03); }
 .sc-instr-item:hover { border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.05); }
 .sc-instr-item input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--orange); cursor: pointer; }
 .sc-instr-item:has(input:checked) { border-color: var(--orange); background: rgba(255,87,0,0.07); }
@@ -372,12 +424,18 @@ select {
 .sc-instr-desc { font-size: 0.7rem; color: rgba(255,255,255,0.35); line-height: 1.4; }
 .sc-tip { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px; font-size: 0.7rem; color: rgba(255,255,255,0.25); line-height: 1.6; }
 
-@media(max-width: 600px) {
+/* RESPONSIVE */
+@media(max-width:600px) {
   .banner { padding: 32px 20px 44px; }
   .card-head, .card-body { padding-left: 18px; padding-right: 18px; }
+  .renouveau-head { padding-left: 18px; padding-right: 18px; }
+  .toggle-row { padding-left: 18px; padding-right: 18px; }
+  .renouveau-body { padding-left: 18px; padding-right: 18px; }
+  .renouveau-model-row { flex-direction: column; }
+  .cat-btn { width: 100%; justify-content: center; }
   .submit-zone { padding: 20px 18px; }
 }
-@media(max-width: 400px) {
+@media(max-width:400px) {
   .header { padding: 0 16px; }
   .header-tag { display: none; }
 }
@@ -406,20 +464,56 @@ select {
 
   <!-- SCANNER -->
   <div class="card">
-    <div class="card-head">
-      <div>
-        <div class="card-head-title">Importer un nouveau document</div>
-        <div class="card-head-sub">L'IA extrait les informations de votre document et pré-remplit les champs concernés</div>
+    <div class="card-head" style="align-items:flex-start;">
+      <div style="flex:1;">
+        <div class="card-head-title">Avez-vous un document à importer ? <span style="font-size:.7rem;font-weight:400;color:var(--muted);">(optionnel)</span></div>
+        <div class="card-head-sub">Contrat, diplôme, attestation — l'IA pré-remplit les champs à votre place</div>
       </div>
+      <div class="card-head-right"><span class="badge-optional">Optionnel</span></div>
     </div>
     <div class="card-body">
-      <button class="scanner-btn" type="button" onclick="openScanner()">
-        <span class="scanner-btn-label">Importer un contrat, diplôme ou attestation (PDF ou image)</span>
+      <button class="scanner-btn-b" type="button" onclick="openScanner()">
+        <span class="sb-icon-b">📄</span>
+        <span class="sb-text-b">
+          <span class="sb-title-b">Importer un fichier pour gagner du temps</span>
+          <span class="sb-desc-b">PDF, JPG ou PNG · max 10 Mo · l'IA remplit les champs automatiquement</span>
+        </span>
         <span class="scanner-btn-badge">IA</span>
-        <span class="scanner-btn-arrow">→</span>
+        <span class="scanner-btn-arrow-b">→</span>
       </button>
-      <div class="note" style="margin-top:10px;">
-        L'IA lit votre document et pré-remplit automatiquement les champs concernés.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CARD RENOUVEAU DE MODÈLE — OPTION B
+  ══════════════════════════════════════ -->
+  <div class="renouveau-card" id="renouveauCard">
+    <div class="renouveau-head">
+      <div class="renouveau-head-left">
+        <div class="renouveau-head-title">Le client souhaite-t-il changer de modèle CV ?</div>
+        <div class="renouveau-head-sub">Activez si un nouveau design est demandé</div>
+      </div>
+      <div class="renouveau-badge">Nouveau</div>
+    </div>
+
+    <label class="toggle-row" for="toggleRenouveau">
+      <div class="toggle-switch">
+        <input type="checkbox" id="toggleRenouveau" onchange="handleRenouveauToggle(this.checked)">
+        <div class="toggle-track"></div>
+      </div>
+      <div class="toggle-label">Oui — ce client souhaite opter pour un nouveau modèle CV</div>
+    </label>
+
+    <div class="renouveau-body" id="renouveauBody">
+      <div class="field" style="margin-bottom:0;">
+        <label>Numéro du nouveau modèle souhaité <span class="opt">(si déjà choisi)</span></label>
+        <div class="renouveau-model-row">
+          <input type="text" name="nouveau_modele" id="f_nouveau_modele" placeholder="Ex : N°018 — Formule N°2">
+          <a class="cat-btn" href="catalogue de CV.html?source=maj" id="catBtnRenouveau">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Consulter le catalogue
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -453,7 +547,7 @@ select {
             <input type="email" name="email" id="f_email" placeholder="Ex : jeanne@email.com">
           </div>
           <div class="field">
-            <label>Numéro de modèle CV <span class="opt">(si connu)</span></label>
+            <label>Numéro de modèle CV actuel <span class="opt">(si connu)</span></label>
             <input type="text" name="modele_cv" id="f_modele" placeholder="Ex : N°030 — Formule N°1">
           </div>
         </div>
@@ -469,34 +563,40 @@ select {
         <div class="card-head-num">02</div>
         <div>
           <div class="card-head-title">Rubriques à mettre à jour</div>
-          <div class="card-head-sub">Cochez uniquement ce qui a changé</div>
+          <div class="card-head-sub" id="rubriquesSub">Cochez uniquement ce qui a changé</div>
         </div>
         <div class="card-head-right"><span class="badge-required">Requis</span></div>
       </div>
       <div class="card-body">
+
+        <!-- Note visible quand renouveau est actif -->
+        <div class="rub-renouveau-note" id="rubRenouveauNote">
+          Renouveau de modèle activé — cochez les rubriques à modifier ou ajouter dans le nouveau design. Le tarif reste fixé au renouveau complet.
+        </div>
+
         <div class="rubrique-grid">
           <div class="rub-item">
-            <input type="checkbox" id="rub_infos" name="rubriques[]" value="Informations personnelles" onchange="toggleSec('sec_infos',this.checked)">
+            <input type="checkbox" id="rub_infos" name="rubriques[]" value="Informations personnelles" onchange="toggleSec('sec_infos',this.checked);calcPrice()">
             <label class="rub-label" for="rub_infos"><span class="rub-check"></span>Infos personnelles</label>
           </div>
           <div class="rub-item">
-            <input type="checkbox" id="rub_poste" name="rubriques[]" value="Poste et objectifs" onchange="toggleSec('sec_poste',this.checked)">
+            <input type="checkbox" id="rub_poste" name="rubriques[]" value="Poste et objectifs" onchange="toggleSec('sec_poste',this.checked);calcPrice()">
             <label class="rub-label" for="rub_poste"><span class="rub-check"></span>Poste &amp; objectifs</label>
           </div>
           <div class="rub-item">
-            <input type="checkbox" id="rub_exp" name="rubriques[]" value="Expériences professionnelles" onchange="toggleSec('sec_exp',this.checked)">
+            <input type="checkbox" id="rub_exp" name="rubriques[]" value="Expériences professionnelles" onchange="toggleSec('sec_exp',this.checked);calcPrice()">
             <label class="rub-label" for="rub_exp"><span class="rub-check"></span>Expériences</label>
           </div>
           <div class="rub-item">
-            <input type="checkbox" id="rub_form" name="rubriques[]" value="Formation" onchange="toggleSec('sec_form',this.checked)">
+            <input type="checkbox" id="rub_form" name="rubriques[]" value="Formation" onchange="toggleSec('sec_form',this.checked);calcPrice()">
             <label class="rub-label" for="rub_form"><span class="rub-check"></span>Formation</label>
           </div>
           <div class="rub-item">
-            <input type="checkbox" id="rub_comp" name="rubriques[]" value="Compétences" onchange="toggleSec('sec_comp',this.checked)">
+            <input type="checkbox" id="rub_comp" name="rubriques[]" value="Compétences" onchange="toggleSec('sec_comp',this.checked);calcPrice()">
             <label class="rub-label" for="rub_comp"><span class="rub-check"></span>Compétences</label>
           </div>
           <div class="rub-item">
-            <input type="checkbox" id="rub_autres" name="rubriques[]" value="Autres informations" onchange="toggleSec('sec_autres',this.checked)">
+            <input type="checkbox" id="rub_autres" name="rubriques[]" value="Autres informations" onchange="toggleSec('sec_autres',this.checked);calcPrice()">
             <label class="rub-label" for="rub_autres"><span class="rub-check"></span>Autres informations</label>
           </div>
         </div>
@@ -650,12 +750,10 @@ select {
           </div>
         </div>
 
-        <!-- INDICE si pas encore de rubriques -->
         <div class="price-hint" id="priceHint">
           Le montant exact apparaîtra ici une fois vos rubriques cochées et le délai sélectionné.
         </div>
 
-        <!-- RÉCAPITULATIF PRIX -->
         <div class="price-display" id="priceDisplay">
           <div class="price-rows" id="priceRows"></div>
           <div class="price-note" id="priceNote"></div>
@@ -674,6 +772,7 @@ select {
     <input type="hidden" name="_subject" value="MISE À JOUR CV – Chronos Services">
     <input type="hidden" name="formatted_message" id="formatted_message">
     <input type="hidden" name="invoice_number" id="invHidden">
+    <input type="hidden" name="renouveau_modele" id="h_renouveau">
   </form>
 </div>
 
@@ -737,7 +836,6 @@ select {
       <button class="fp-rm" type="button" onclick="removeFile()">Supprimer</button>
     </div>
 
-    <!-- INSTRUCTION SELECTOR — visible après sélection du fichier -->
     <div id="scanInstructBox" style="display:none;">
       <div style="font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Que voulez-vous extraire ?</div>
       <div style="display:flex;flex-direction:column;gap:7px;" id="scanInstructList">
@@ -784,29 +882,51 @@ select {
 </div>
 
 <script>
-/* ── CONFIGURATION API ── */
+/* ── CONFIG ── */
 var GROQ_MODEL     = 'llama-3.3-70b-versatile';
 var GROQ_PROXY_URL = '/.netlify/functions/groq-proxy';
 
-/* ── TARIFICATION ────────────────────────────────────────────────────────────
-   1 section          → 1 000 FCFA normal  |  1 500 FCFA premium
-   2 sections         → 1 500 FCFA normal  |  2 250 FCFA premium
-   3 sections ou plus → 2 000 FCFA normal  |  3 000 FCFA premium
-   (plafond premium = 3 000 FCFA)
-────────────────────────────────────────────────────────────────────────── */
+/* ── TARIFICATION ──
+   Mise à jour normale :
+   1 section  → 1 000 FCFA normal | 1 500 premium
+   2 sections → 1 500 FCFA normal | 2 250 premium
+   3+         → 2 000 FCFA normal | 3 000 premium
+   Renouveau de modèle (toujours palier max) :
+               → 2 000 FCFA normal | 3 000 premium
+── */
+var PRICE_GRID = [0, 1000, 1500, 2000];
 
-var PRICE_GRID    = [0, 1000, 1500, 2000]; // index = nb sections (3+ → index 3)
-var TOTAL_RUBRIQUES = 6;
+/* ── ÉTAT RENOUVEAU ── */
+var renouveauActif = false;
 
+function handleRenouveauToggle(checked) {
+  renouveauActif = checked;
+  var body  = document.getElementById('renouveauBody');
+  var note  = document.getElementById('rubRenouveauNote');
+  var sub   = document.getElementById('rubriquesSub');
+
+  if (checked) {
+    body.classList.add('open');
+    note.classList.add('show');
+    sub.textContent = 'Indiquez les modifications à apporter dans le nouveau modèle';
+  } else {
+    body.classList.remove('open');
+    note.classList.remove('show');
+    sub.textContent = 'Cochez uniquement ce qui a changé';
+  }
+  calcPrice();
+}
+
+/* ── PRIX ── */
 function fmtFCFA(n) {
   return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + ' FCFA';
 }
 
 function getPalier(checked) {
-  if (checked === 0) return 0;
+  if (checked <= 0) return 0;
   if (checked === 1) return 1;
   if (checked === 2) return 2;
-  return 3; // 3 sections ou plus
+  return 3;
 }
 
 function calcPrice() {
@@ -815,62 +935,117 @@ function calcPrice() {
   var display = document.getElementById('priceDisplay');
   var rows    = document.getElementById('priceRows');
   var note    = document.getElementById('priceNote');
+  var hint    = document.getElementById('priceHint');
 
-  if (!urgence || checked === 0) {
-    display.classList.remove('show');
-    document.getElementById('priceHint').style.display = urgence ? 'block' : 'none';
+  /* Si renouveau actif — tarif verrouillé palier 3, affiché directement dans la section délai */
+  if (renouveauActif) {
+    if (!urgence) {
+      display.classList.remove('show');
+      hint.style.display = 'block';
+      hint.textContent = 'Sélectionnez un délai ci-dessous pour voir le montant.';
+      return;
+    }
+    hint.style.display = 'none';
+    var isPrem = urgence.value === 'premium';
+    var tarif  = isPrem ? 3000 : 2000;
+
+    rows.innerHTML = '';
+    addPriceRow(rows, 'Renouveau complet (nouveau modèle)', 2000);
+    if (isPrem) addPriceRow(rows, 'Supplément urgence (×1,5)', 1000);
+    var sep = document.createElement('div');
+    sep.className = 'price-row total';
+    sep.innerHTML = '<span>Total à payer</span><span>' + fmtFCFA(tarif) + '</span>';
+    rows.appendChild(sep);
+    note.textContent = isPrem ? 'Traitement prioritaire — priorité absolue.' : 'Livraison sous 48 heures.';
+    display.classList.add('show');
+
+    window._currentTotal   = tarif;
+    window._currentBase    = 2000;
+    window._currentIsPrem  = isPrem;
+    window._currentChecked = 'renouveau';
+    window._currentPalier  = 'Renouveau complet (nouveau modèle)';
+    window._currentSuppl   = isPrem ? 1000 : 0;
     return;
   }
-  document.getElementById('priceHint').style.display = 'none';
 
-  var isPrem  = urgence.value === 'premium';
-  var palier  = getPalier(checked);
-  var base    = PRICE_GRID[palier];
-  var tarif   = isPrem ? Math.min(Math.round(base * 1.5), 3000) : base;
-
-  var palierLabels = ['', 'Mise à jour simple (1 section)', 'Mise à jour moyenne (2 sections)', 'Mise à jour complète (3 sections ou +)'];
-  var palierLabel  = palierLabels[palier];
-
-  // Construire le récap
-  rows.innerHTML = '';
-
-  function addRow(label, val, isTotal) {
-    var div = document.createElement('div');
-    div.className = 'price-row' + (isTotal ? ' total' : '');
-    div.innerHTML = '<span>' + label + '</span><span>' + fmtFCFA(val) + '</span>';
-    rows.appendChild(div);
+  /* Mise à jour normale */
+  if (!urgence || checked === 0) {
+    display.classList.remove('show');
+    hint.style.display = 'block';
+    hint.textContent = 'Le montant exact apparaîtra ici une fois vos rubriques cochées et le délai sélectionné.';
+    return;
   }
+  hint.style.display = 'none';
 
-  addRow(palierLabel, base);
-  if (isPrem) addRow('Supplément urgence (×1,5)', tarif - base);
+  var isPrem2  = urgence.value === 'premium';
+  var palier   = getPalier(checked);
+  var base     = PRICE_GRID[palier];
+  var tarif2   = isPrem2 ? Math.min(Math.round(base * 1.5), 3000) : base;
 
-  // Séparateur total
-  var sep = document.createElement('div');
-  sep.className = 'price-row total';
-  sep.innerHTML = '<span>Total à payer</span><span>' + fmtFCFA(tarif) + '</span>';
-  rows.appendChild(sep);
+  var labels = ['', 'Mise à jour simple (1 rubrique)', 'Mise à jour moyenne (2 rubriques)', 'Mise à jour complète (3 rubriques ou +)'];
 
-  note.textContent = isPrem
-    ? 'Traitement prioritaire — votre CV sera traité en priorité absolue.'
-    : 'Livraison sous 48 heures.';
-
+  rows.innerHTML = '';
+  addPriceRow(rows, labels[palier], base);
+  if (isPrem2) addPriceRow(rows, 'Supplément urgence (×1,5)', tarif2 - base);
+  var sep2 = document.createElement('div');
+  sep2.className = 'price-row total';
+  sep2.innerHTML = '<span>Total à payer</span><span>' + fmtFCFA(tarif2) + '</span>';
+  rows.appendChild(sep2);
+  note.textContent = isPrem2 ? 'Traitement prioritaire — priorité absolue.' : 'Livraison sous 48 heures.';
   display.classList.add('show');
 
-  // Mémoriser pour la facture et la modal
-  window._currentTotal   = tarif;
+  window._currentTotal   = tarif2;
   window._currentBase    = base;
-  window._currentIsPrem  = isPrem;
+  window._currentIsPrem  = isPrem2;
   window._currentChecked = checked;
-  window._currentPalier  = palierLabel;
-  window._currentSuppl   = tarif - base;
+  window._currentPalier  = labels[palier];
+  window._currentSuppl   = tarif2 - base;
 }
 
-// Connecter toutes les rubriques au calcul dès le chargement
+function addPriceRow(container, label, val) {
+  var div = document.createElement('div');
+  div.className = 'price-row';
+  div.innerHTML = '<span>' + label + '</span><span>' + fmtFCFA(val) + '</span>';
+  container.appendChild(div);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('input[name="rubriques[]"]').forEach(function(cb) {
     cb.addEventListener('change', calcPrice);
   });
+
+  /* ── RETOUR CATALOGUE : pré-remplissage automatique du modèle ── */
+  (function checkRetourCatalogue() {
+    var params   = new URLSearchParams(window.location.search);
+    var modele   = params.get('modele');
+    var source   = params.get('source');
+
+    if (modele && source === 'maj') {
+      /* Activer le toggle renouveau */
+      var toggle = document.getElementById('toggleRenouveau');
+      if (toggle && !toggle.checked) {
+        toggle.checked = true;
+        handleRenouveauToggle(true);
+      }
+      /* Remplir le champ */
+      var field = document.getElementById('f_nouveau_modele');
+      if (field) {
+        field.value = decodeURIComponent(modele);
+        field.style.borderColor = '#094102';
+      }
+      /* Nettoyer l'URL sans recharger la page */
+      var cleanUrl = window.location.pathname;
+      window.history.replaceState({}, '', cleanUrl);
+      /* Scroll vers le champ */
+      setTimeout(function() {
+        var card = document.getElementById('renouveauCard');
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 200);
+    }
+  })();
 });
+
+/* ── FORM LOGIC ── */
 var expCount = 1, fmCount = 1, latestInv = null, extractedData = null, selectedFile = null;
 
 function toggleSec(id, show) {
@@ -909,15 +1084,29 @@ function structureMessage() {
   var f = document.getElementById('updateForm');
   var fd = new FormData(f);
   var rubriques = fd.getAll('rubriques[]').filter(Boolean);
+  var isRenouveau = renouveauActif;
+  var nouveauModele = document.getElementById('f_nouveau_modele').value || '';
+
   var msg = '══════════════════════════════\n  DEMANDE DE MISE À JOUR CV\n══════════════════════════════\n\n';
+
+  if (isRenouveau) {
+    msg += '⚠️  RENOUVEAU DE MODÈLE DEMANDÉ\n';
+    if (nouveauModele) msg += 'Nouveau modèle : ' + nouveauModele + '\n';
+    msg += '\n';
+  }
+
   msg += '[ IDENTIFICATION ]\n';
   msg += 'Nom & Prénom  : ' + (fd.get('nom_prenom') || '-') + '\n';
   msg += 'Téléphone     : ' + (fd.get('telephone') || '-') + '\n';
   msg += 'Email         : ' + (fd.get('email') || '-') + '\n';
-  msg += 'Modèle CV     : ' + (fd.get('modele_cv') || 'Non précisé') + '\n\n';
-  msg += '[ RUBRIQUES MODIFIÉES ]\n';
-  rubriques.forEach(function(r) { msg += '  - ' + r + '\n'; });
-  msg += '\n';
+  msg += 'Modèle actuel : ' + (fd.get('modele_cv') || 'Non précisé') + '\n\n';
+
+  if (rubriques.length) {
+    msg += '[ RUBRIQUES ' + (isRenouveau ? 'À INTÉGRER DANS LE NOUVEAU MODÈLE' : 'MODIFIÉES') + ' ]\n';
+    rubriques.forEach(function(r) { msg += '  - ' + r + '\n'; });
+    msg += '\n';
+  }
+
   if (fd.get('maj_adresse') || fd.get('maj_numero_one')) {
     msg += '[ INFOS PERSONNELLES ]\n';
     if (fd.get('maj_adresse')) msg += 'Adresse    : ' + fd.get('maj_adresse') + '\n';
@@ -930,6 +1119,7 @@ function structureMessage() {
     if (fd.get('maj_objectifs')) msg += 'Objectifs :\n' + fd.get('maj_objectifs') + '\n';
     msg += '\n';
   }
+
   var hasExp = false;
   for (var i = 1; i <= expCount; i++) {
     var ep = fd.get('exp_' + i + '_dates'), eq = fd.get('exp_' + i + '_poste');
@@ -944,6 +1134,7 @@ function structureMessage() {
     }
   }
   if (hasExp) msg += '\n';
+
   var hasFm = false;
   for (var j = 1; j <= fmCount; j++) {
     var fa = fd.get('fm_' + j + '_diplome'), fb = fd.get('fm_' + j + '_etab');
@@ -958,6 +1149,7 @@ function structureMessage() {
     }
   }
   if (hasFm) msg += '\n';
+
   if (fd.get('maj_langues') || fd.get('maj_logiciels') || fd.get('maj_domaines')) {
     msg += '[ COMPÉTENCES ]\n';
     if (fd.get('maj_langues')) msg += 'Langues :\n' + fd.get('maj_langues') + '\n';
@@ -973,15 +1165,16 @@ function structureMessage() {
   }
   if (fd.get('message_libre')) msg += '[ MESSAGE DU CLIENT ]\n' + fd.get('message_libre') + '\n\n';
 
-  // Délai + montant calculé
   var urgVal   = fd.get('urgence') || 'Non sélectionné';
   var urgLabel = urgVal === 'premium' ? 'Premium – Priorité absolue' : 'Normal – Sous 48h';
   var total    = window._currentTotal;
   msg += '[ DÉLAI & MONTANT ]\n';
-  msg += 'Délai   : ' + urgLabel + '\n';
-  if (total) msg += 'Total   : ' + fmtFCFA(total) + '\n';
-  msg += 'Rubriques concernées : ' + (window._currentChecked || '?') + '\n';
+  msg += 'Type      : ' + (isRenouveau ? 'Renouveau complet' : 'Mise à jour') + '\n';
+  msg += 'Délai     : ' + urgLabel + '\n';
+  if (total) msg += 'Total     : ' + fmtFCFA(total) + '\n';
+
   document.getElementById('formatted_message').value = msg;
+  document.getElementById('h_renouveau').value = isRenouveau ? (nouveauModele || 'Oui — modèle non précisé') : '';
 }
 
 function genInv() {
@@ -994,15 +1187,25 @@ document.getElementById('updateForm').addEventListener('submit', function(e) {
   var rubs = document.querySelectorAll('input[name="rubriques[]"]:checked');
   var urg  = document.querySelector('input[name="urgence"]:checked');
   var msg  = document.getElementById('form-message');
-  if (!rubs.length) { msg.textContent = 'Veuillez sélectionner au moins une rubrique à mettre à jour.'; msg.className = 'error'; return; }
-  if (!urg)         { msg.textContent = 'Veuillez choisir un délai de livraison.'; msg.className = 'error'; return; }
+
+  if (!renouveauActif && !rubs.length) {
+    msg.textContent = 'Veuillez sélectionner au moins une rubrique à mettre à jour, ou activer l\'option Renouveau de modèle.';
+    msg.className = 'error'; return;
+  }
+  if (!urg) {
+    msg.textContent = 'Veuillez choisir un délai de livraison.';
+    msg.className = 'error'; return;
+  }
+
   calcPrice();
   structureMessage();
   latestInv = genInv();
   document.getElementById('invHidden').value = latestInv;
+
   var btn = document.getElementById('submitBtn');
   btn.disabled = true;
   msg.textContent = 'Envoi en cours…'; msg.className = 'sending';
+
   var fd = new FormData(document.getElementById('updateForm'));
   fetch(document.getElementById('updateForm').action, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
     .then(function(r) {
@@ -1015,14 +1218,13 @@ document.getElementById('updateForm').addEventListener('submit', function(e) {
 
 function showModal() {
   var isPrem   = window._currentIsPrem  || false;
-  var total    = window._currentTotal   || (isPrem ? 1500 : 1000);
-  var base     = window._currentBase    || (isPrem ? 1000 : 1000);
+  var total    = window._currentTotal   || (isPrem ? 3000 : 2000);
+  var base     = window._currentBase    || 2000;
   var suppl    = window._currentSuppl   || 0;
-  var palier   = window._currentPalier  || 'Mise à jour';
-
-  var nom   = document.getElementById('f_nom_prenom').value || '-';
-  var tel   = document.getElementById('f_telephone').value  || '-';
-  var email = document.getElementById('f_email').value      || '';
+  var palier   = window._currentPalier  || 'Mise à jour CV';
+  var nom      = document.getElementById('f_nom_prenom').value || '-';
+  var tel      = document.getElementById('f_telephone').value  || '-';
+  var email    = document.getElementById('f_email').value      || '';
 
   document.getElementById('m_name').textContent    = nom;
   document.getElementById('m_contact').textContent = tel + (email ? ' · ' + email : '');
@@ -1030,7 +1232,6 @@ function showModal() {
 
   var detailEl = document.getElementById('m_detail_lines');
   detailEl.innerHTML = '';
-
   function mline(label, val, isTotal) {
     var div = document.createElement('div');
     div.className = 'modal-line';
@@ -1038,7 +1239,6 @@ function showModal() {
     div.innerHTML = '<span>' + label + '</span><span' + (isTotal ? ' style="color:var(--orange)"' : '') + '>' + fmtFCFA(val) + '</span>';
     detailEl.appendChild(div);
   }
-
   mline(palier, base);
   if (isPrem && suppl > 0) mline('Supplément urgence (×1,5)', suppl);
   mline('Total à payer', total, true);
@@ -1054,18 +1254,19 @@ function downloadPDF() {
     var jsPDF = window.jspdf.jsPDF;
     var doc = new jsPDF();
     var pw = doc.internal.pageSize.width, ph = doc.internal.pageSize.height, m = 20, y = 30;
-    var cn     = document.getElementById('m_name').textContent    || 'N/A';
-    var cc     = document.getElementById('m_contact').textContent || 'N/A';
-    var inv    = document.getElementById('m_inv').textContent     || 'N/A';
+    var cn  = document.getElementById('m_name').textContent    || 'N/A';
+    var cc  = document.getElementById('m_contact').textContent || 'N/A';
+    var inv = document.getElementById('m_inv').textContent     || 'N/A';
     var isPrem = window._currentIsPrem  || false;
-    var total  = window._currentTotal   || (isPrem ? 1500 : 1000);
-    var base   = window._currentBase    || 1000;
+    var total  = window._currentTotal   || (isPrem ? 3000 : 2000);
+    var base   = window._currentBase    || 2000;
     var suppl  = window._currentSuppl   || 0;
     var palier = window._currentPalier  || 'Mise à jour CV';
+    var isRen  = renouveauActif;
 
     doc.setFillColor(9,65,2); doc.rect(0,0,pw,25,'F');
     doc.setTextColor(255,255,255); doc.setFontSize(15); doc.setFont(undefined,'bold');
-    doc.text('MISE À JOUR CV — CHRONOS SERVICES', pw/2, 16, {align:'center'});
+    doc.text((isRen ? 'RENOUVEAU CV' : 'MISE À JOUR CV') + ' — CHRONOS SERVICES', pw/2, 16, {align:'center'});
     doc.setTextColor(0,0,0); y=40;
     doc.setFontSize(11); doc.setFont(undefined,'bold'); doc.text(inv, m, y);
     doc.text('Date : ' + new Date().toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'numeric'}), pw-m-72, y); y+=20;
@@ -1073,6 +1274,13 @@ function downloadPDF() {
     doc.setTextColor(9,65,2); doc.setFontSize(11); doc.setFont(undefined,'bold'); doc.text('CLIENT', m+5, y+4);
     doc.setTextColor(0,0,0); doc.setFont(undefined,'normal'); doc.setFontSize(10);
     y+=12; doc.text('Nom : ' + cn, m+5, y); y+=6; doc.text('Contact : ' + cc, m+5, y); y+=18;
+    if (isRen) {
+      var nm = document.getElementById('f_nouveau_modele').value || 'Non précisé';
+      doc.setFillColor(255,243,238); doc.rect(m,y-5,pw-2*m,14,'F');
+      doc.setTextColor(122,48,0); doc.setFontSize(9); doc.setFont(undefined,'bold');
+      doc.text('RENOUVEAU DE MODÈLE — Nouveau modèle : ' + nm, m+4, y+3);
+      doc.setTextColor(0,0,0); y+=18;
+    }
     doc.setTextColor(9,65,2); doc.setFontSize(11); doc.setFont(undefined,'bold'); doc.text('DÉTAIL DU SERVICE', m, y); y+=10;
     doc.setFillColor(238,238,238); doc.rect(m,y,pw-2*m,7,'F');
     doc.setTextColor(0,0,0); doc.setFontSize(9); doc.setFont(undefined,'bold');
@@ -1090,12 +1298,12 @@ function downloadPDF() {
     doc.setFont(undefined,'bold'); doc.text('Bénéficiaire : Nel MANKOU', m, y); y+=16;
     doc.setFillColor(232,248,232); doc.rect(m,y,pw-2*m,12,'F');
     doc.setTextColor(9,65,2); doc.setFontSize(8); doc.setFont(undefined,'normal');
-    doc.text('Votre CV mis à jour vous sera envoyé par WhatsApp après confirmation du paiement.', m+3, y+8);
+    doc.text('Votre CV vous sera envoyé par WhatsApp après confirmation du paiement.', m+3, y+8);
     doc.setTextColor(160,160,160); doc.setFontSize(7);
     doc.text('Document généré le ' + new Date().toLocaleDateString('fr-FR'), m, ph-10);
     doc.text('Chronos Services — Rédaction CV', pw-m, ph-10, {align:'right'});
     var fn = cn.replace(/[^a-zA-Z0-9\-_]/g,'_').slice(0,40);
-    doc.save('Facture_MAJ_CV_' + fn + '_' + new Date().toISOString().slice(0,10) + '.pdf');
+    doc.save('Facture_' + (isRen ? 'RENOUVEAU' : 'MAJ') + '_CV_' + fn + '_' + new Date().toISOString().slice(0,10) + '.pdf');
     var t = document.getElementById('toast');
     t.innerHTML = 'Facture téléchargée. Envoyez-la par WhatsApp au <strong>+241 65 37 08 82</strong> pour confirmer.';
     t.classList.add('show');
@@ -1103,7 +1311,7 @@ function downloadPDF() {
   } catch(err) { console.error(err); alert('Erreur PDF. Actualisez et réessayez.'); }
 }
 
-
+/* ── SCANNER ── */
 function openScanner() { document.getElementById('scannerOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; }
 function closeScanner() { document.getElementById('scannerOverlay').classList.remove('show'); document.body.style.overflow = ''; }
 
@@ -1170,69 +1378,21 @@ async function runOCR(file) {
   } catch(e){ console.warn(e); return ''; }
 }
 async function callGroq(text) {
-  // Récupérer l'instruction choisie par le client
   var instrEl = document.querySelector('input[name="sc_instruct"]:checked');
   var instruct = instrEl ? instrEl.value : 'auto';
-
   var prompts = {
-    auto:
-      'Tu es un assistant expert en lecture de documents professionnels francophones. ' +
-      'Analyse le texte fourni et extrais toutes les informations utiles pour mettre à jour un CV. ' +
-      'Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. ' +
-      'Structure EXACTE à respecter :\n' +
-      '{"type_document":"","experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}' +
-      '\ntype_document = "experience", "formation", "competences", "infos" ou "mixte".' +
-      '\nPour chaque expérience distincte, crée UN objet séparé dans le tableau experiences.' +
-      '\nPour chaque diplôme/formation distinct, crée UN objet séparé dans le tableau formations.' +
-      '\nNe jamais regrouper plusieurs expériences ou formations dans un seul objet.' +
-      '\nSi une information est absente, laisse la valeur vide. Ne jamais inventer.',
-
-    experience:
-      'Tu es un assistant expert. Extrais toutes les expériences professionnelles de ce document.' +
-      'Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. ' +
-      'Structure EXACTE :\n' +
-      '{"type_document":"experience","experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}' +
-      '\nCrée UN objet par expérience distincte. Ne jamais regrouper. Ne jamais inventer.',
-
-    formation:
-      'Tu es un assistant expert. Extrais toutes les formations et diplômes de ce document. ' +
-      'Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. ' +
-      'Structure EXACTE :\n' +
-      '{"type_document":"formation","experiences":[],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}' +
-      '\nCrée UN objet par diplôme/formation distinct. Ne jamais regrouper. Ne jamais inventer.',
-
-    competences:
-      'Tu es un assistant expert. Extrais uniquement les compétences de ce document. ' +
-      'Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. ' +
-      'Structure EXACTE :\n' +
-      '{"type_document":"competences","experiences":[],"formations":[],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}' +
-      '\nlangues = langues séparées par virgule. logiciels = logiciels/outils séparés par virgule. domaines = domaines de compétences. Ne jamais inventer.',
-
-    infos:
-      'Tu es un assistant expert. Extrais uniquement les informations personnelles de contact. ' +
-      'Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. ' +
-      'Structure EXACTE :\n' +
-      '{"type_document":"infos","experiences":[],"formations":[],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}' +
-      '\nCherche : nom et prénom, téléphone, adresse, email. Ne jamais inventer.'
+    auto: 'Tu es un assistant expert en lecture de documents professionnels francophones. Analyse le texte fourni et extrais toutes les informations utiles pour mettre à jour un CV. Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. Structure EXACTE :\n{"type_document":"","experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}\ntype_document = "experience", "formation", "competences", "infos" ou "mixte". Crée UN objet séparé par expérience et par formation. Si une information est absente, laisse vide. Ne jamais inventer.',
+    experience: 'Tu es un assistant expert. Extrais toutes les expériences professionnelles de ce document. Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. Structure EXACTE :\n{"type_document":"experience","experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}\nCrée UN objet par expérience distincte. Ne jamais inventer.',
+    formation: 'Tu es un assistant expert. Extrais toutes les formations et diplômes de ce document. Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. Structure EXACTE :\n{"type_document":"formation","experiences":[],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}\nCrée UN objet par diplôme/formation distinct. Ne jamais inventer.',
+    competences: 'Tu es un assistant expert. Extrais uniquement les compétences de ce document. Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. Structure EXACTE :\n{"type_document":"competences","experiences":[],"formations":[],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}\nNe jamais inventer.',
+    infos: 'Tu es un assistant expert. Extrais uniquement les informations personnelles de contact. Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. Structure EXACTE :\n{"type_document":"infos","experiences":[],"formations":[],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}\nNe jamais inventer.'
   };
-
-  var payload = {
-    model: GROQ_MODEL,
-    messages: [
-      { role: 'system', content: prompts[instruct] || prompts.auto },
-      { role: 'user', content: 'Texte du document :\n\n' + text.slice(0, 8000) }
-    ],
-    temperature: 0.1,
-    max_tokens: 2048,
-    response_format: { type: 'json_object' }
-  };
-
+  var payload = { model: GROQ_MODEL, messages: [{ role: 'system', content: prompts[instruct] || prompts.auto }, { role: 'user', content: 'Texte du document :\n\n' + text.slice(0, 8000) }], temperature: 0.1, max_tokens: 2048, response_format: { type: 'json_object' } };
   var r = await fetch(GROQ_PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
   if (!r.ok) { var ed = await r.json().catch(function(){return{};}); throw new Error((ed.error && ed.error.message) || 'Erreur Groq API'); }
   var data = await r.json(), raw = data.choices[0].message.content || '';
   raw = raw.replace(/```json|```/g, '').trim();
   var p = JSON.parse(raw);
-  // Normaliser : s'assurer que experiences et formations sont bien des tableaux
   if (!Array.isArray(p.experiences)) p.experiences = p.experiences ? [p.experiences] : [];
   if (!Array.isArray(p.formations))  p.formations  = p.formations  ? [p.formations]  : [];
   return p;
@@ -1263,7 +1423,6 @@ function showSR(d) {
   document.getElementById('apBox').classList.remove('show');
   document.getElementById('scResults').classList.add('show');
   var g = document.getElementById('srGrid'); g.innerHTML = '';
-
   function card(lbl, val, full) {
     var empty = !val || (typeof val === 'string' && !val.trim());
     var dsp = empty ? 'Non détecté' : val;
@@ -1271,21 +1430,15 @@ function showSR(d) {
     el.innerHTML = '<div class="sr-field">' + lbl + (!empty ? '<span class="sr-check">&#x2713;</span>' : '') + '</div><div class="sr-val' + (empty ? ' empty' : '') + '">' + dsp + '</div>';
     g.appendChild(el);
   }
-
   var typeLabels = { experience: 'Expérience professionnelle', formation: 'Diplôme / Formation', competences: 'Compétences', infos: 'Informations personnelles', mixte: 'Document mixte' };
   card('Type détecté', typeLabels[d.type_document] || 'Document professionnel', true);
-
   if (d.experiences && d.experiences.length) {
     card('Expériences', d.experiences.length + ' expérience(s) détectée(s)', true);
-    d.experiences.forEach(function(e, i) {
-      if (e.poste || e.entreprise) card('Expérience ' + (i+1), (e.poste || '') + (e.entreprise ? ' — ' + e.entreprise : '') + (e.dates ? ' (' + e.dates + ')' : ''), true);
-    });
+    d.experiences.forEach(function(e, i) { if (e.poste || e.entreprise) card('Expérience ' + (i+1), (e.poste || '') + (e.entreprise ? ' — ' + e.entreprise : '') + (e.dates ? ' (' + e.dates + ')' : ''), true); });
   }
   if (d.formations && d.formations.length) {
     card('Formations', d.formations.length + ' formation(s) détectée(s)', true);
-    d.formations.forEach(function(f, i) {
-      if (f.diplome || f.etablissement) card('Formation ' + (i+1), (f.diplome || '') + (f.etablissement ? ' — ' + f.etablissement : '') + (f.date ? ' (' + f.date + ')' : ''), true);
-    });
+    d.formations.forEach(function(f, i) { if (f.diplome || f.etablissement) card('Formation ' + (i+1), (f.diplome || '') + (f.etablissement ? ' — ' + f.etablissement : '') + (f.date ? ' (' + f.date + ')' : ''), true); });
   }
   if (d.langues || d.logiciels || d.domaines) {
     if (d.langues)   card('Langues', d.langues);
@@ -1303,38 +1456,21 @@ function showSR(d) {
 function applyResults() {
   if (!extractedData) return;
   var d = extractedData;
-
-  function sfId(id, val) {
-    if (!val || !val.trim()) return;
-    var el = document.getElementById(id);
-    if (el) { el.value = (el.value ? el.value + '\n' : '') + val.trim(); el.style.borderColor = '#094102'; }
-  }
-  function sfIfEmpty(id, val) {
-    if (!val || !val.trim()) return;
-    var el = document.getElementById(id);
-    if (el && !el.value.trim()) { el.value = val; el.style.borderColor = '#094102'; }
-  }
-
-  // ── Expériences — UN bloc par expérience ─────────────────────────────────
+  function sfId(id, val) { if (!val || !val.trim()) return; var el = document.getElementById(id); if (el) { el.value = (el.value ? el.value + '\n' : '') + val.trim(); el.style.borderColor = '#094102'; } }
+  function sfIfEmpty(id, val) { if (!val || !val.trim()) return; var el = document.getElementById(id); if (el && !el.value.trim()) { el.value = val; el.style.borderColor = '#094102'; } }
   if (d.experiences && d.experiences.length) {
     var hasExp = d.experiences.some(function(e){ return e.poste || e.entreprise || e.dates; });
     if (hasExp) {
-      document.getElementById('rub_exp').checked = true;
-      toggleSec('sec_exp', true);
-      var ef = document.getElementById('expContainer');
-      ef.innerHTML = '';
-      expCount = 0;
+      document.getElementById('rub_exp').checked = true; toggleSec('sec_exp', true);
+      var ef = document.getElementById('expContainer'); ef.innerHTML = ''; expCount = 0;
       d.experiences.forEach(function(exp) {
         if (!exp.poste && !exp.entreprise && !exp.dates) return;
         expCount++;
-        var div = document.createElement('div');
-        div.className = 'exp-block'; div.id = 'exp_' + expCount;
+        var div = document.createElement('div'); div.className = 'exp-block'; div.id = 'exp_' + expCount;
         div.innerHTML = (expCount > 1 ? '<button class="remove-btn" type="button" onclick="this.parentNode.remove()">Supprimer</button>' : '') +
           '<div class="block-title">Expérience ' + expCount + '</div>' +
-          '<div class="row2">' +
-            '<div class="field"><label>Période</label><input type="text" name="exp_' + expCount + '_dates" value="' + esc(exp.dates || '') + '" style="border-color:#094102"></div>' +
-            '<div class="field"><label>Poste occupé</label><input type="text" name="exp_' + expCount + '_poste" value="' + esc(exp.poste || '') + '" style="border-color:#094102"></div>' +
-          '</div>' +
+          '<div class="row2"><div class="field"><label>Période</label><input type="text" name="exp_' + expCount + '_dates" value="' + esc(exp.dates || '') + '" style="border-color:#094102"></div>' +
+          '<div class="field"><label>Poste occupé</label><input type="text" name="exp_' + expCount + '_poste" value="' + esc(exp.poste || '') + '" style="border-color:#094102"></div></div>' +
           '<div class="field"><label>Entreprise et lieu</label><input type="text" name="exp_' + expCount + '_entreprise" value="' + esc(exp.entreprise || '') + '" style="border-color:#094102"></div>' +
           '<div class="field"><label>Tâches principales</label><textarea name="exp_' + expCount + '_taches" rows="3" style="border-color:#094102">' + esc(exp.taches || '') + '</textarea></div>';
         ef.appendChild(div);
@@ -1342,66 +1478,33 @@ function applyResults() {
       if (expCount === 0) { expCount = 1; ef.innerHTML = '<div class="exp-block" id="exp_1"><div class="block-title">Expérience 1</div><div class="row2"><div class="field"><label>Période</label><input type="text" name="exp_1_dates"></div><div class="field"><label>Poste</label><input type="text" name="exp_1_poste"></div></div><div class="field"><label>Entreprise</label><input type="text" name="exp_1_entreprise"></div><div class="field"><label>Tâches</label><textarea name="exp_1_taches" rows="3"></textarea></div></div>'; }
     }
   }
-
-  // ── Formations — UN bloc par formation ───────────────────────────────────
   if (d.formations && d.formations.length) {
     var hasFm = d.formations.some(function(f){ return f.diplome || f.etablissement; });
     if (hasFm) {
-      document.getElementById('rub_form').checked = true;
-      toggleSec('sec_form', true);
-      var ff = document.getElementById('fmContainer');
-      ff.innerHTML = '';
-      fmCount = 0;
+      document.getElementById('rub_form').checked = true; toggleSec('sec_form', true);
+      var ff = document.getElementById('fmContainer'); ff.innerHTML = ''; fmCount = 0;
       d.formations.forEach(function(fm) {
         if (!fm.diplome && !fm.etablissement) return;
         fmCount++;
-        var div = document.createElement('div');
-        div.className = 'fm-block'; div.id = 'fm_' + fmCount;
+        var div = document.createElement('div'); div.className = 'fm-block'; div.id = 'fm_' + fmCount;
         div.innerHTML = (fmCount > 1 ? '<button class="remove-btn" type="button" onclick="this.parentNode.remove()">Supprimer</button>' : '') +
           '<div class="block-title">Formation ' + fmCount + '</div>' +
-          '<div class="row2">' +
-            '<div class="field"><label>Diplôme / Formation</label><input type="text" name="fm_' + fmCount + '_diplome" value="' + esc(fm.diplome || '') + '" style="border-color:#094102"></div>' +
-            '<div class="field"><label>Filière / Série</label><input type="text" name="fm_' + fmCount + '_serie" value="' + esc(fm.serie || '') + '" style="border-color:#094102"></div>' +
-          '</div>' +
-          '<div class="row2">' +
-            '<div class="field"><label>Année et lieu</label><input type="text" name="fm_' + fmCount + '_date" value="' + esc(fm.date || '') + '" style="border-color:#094102"></div>' +
-            '<div class="field"><label>Établissement</label><input type="text" name="fm_' + fmCount + '_etab" value="' + esc(fm.etablissement || '') + '" style="border-color:#094102"></div>' +
-          '</div>';
+          '<div class="row2"><div class="field"><label>Diplôme / Formation</label><input type="text" name="fm_' + fmCount + '_diplome" value="' + esc(fm.diplome || '') + '" style="border-color:#094102"></div>' +
+          '<div class="field"><label>Filière / Série</label><input type="text" name="fm_' + fmCount + '_serie" value="' + esc(fm.serie || '') + '" style="border-color:#094102"></div></div>' +
+          '<div class="row2"><div class="field"><label>Année et lieu</label><input type="text" name="fm_' + fmCount + '_date" value="' + esc(fm.date || '') + '" style="border-color:#094102"></div>' +
+          '<div class="field"><label>Établissement</label><input type="text" name="fm_' + fmCount + '_etab" value="' + esc(fm.etablissement || '') + '" style="border-color:#094102"></div></div>';
         ff.appendChild(div);
       });
       if (fmCount === 0) { fmCount = 1; ff.innerHTML = '<div class="fm-block" id="fm_1"><div class="block-title">Formation 1</div><div class="row2"><div class="field"><label>Diplôme</label><input type="text" name="fm_1_diplome"></div><div class="field"><label>Filière</label><input type="text" name="fm_1_serie"></div></div><div class="row2"><div class="field"><label>Date</label><input type="text" name="fm_1_date"></div><div class="field"><label>Établissement</label><input type="text" name="fm_1_etab"></div></div></div>'; }
     }
   }
-
-  // ── Compétences ───────────────────────────────────────────────────────────
-  if (d.langues || d.logiciels || d.domaines) {
-    document.getElementById('rub_comp').checked = true;
-    toggleSec('sec_comp', true);
-    sfId('f_langues', d.langues);
-    sfId('f_logiciels', d.logiciels);
-    sfId('f_domaines', d.domaines);
-  }
-
-  // ── Informations personnelles ─────────────────────────────────────────────
-  if (d.nom_prenom || d.telephone || d.email || d.adresse) {
-    document.getElementById('rub_infos').checked = true;
-    toggleSec('sec_infos', true);
-    sfIfEmpty('f_nom_prenom', d.nom_prenom);
-    sfIfEmpty('f_telephone', d.telephone);
-    sfIfEmpty('f_email', d.email);
-    sfId('f_adresse', d.adresse);
-  }
-
-  // ── Infos complémentaires ─────────────────────────────────────────────────
-  if (d.infos_comp && d.infos_comp.trim()) {
-    document.getElementById('rub_autres').checked = true;
-    toggleSec('sec_autres', true);
-    sfId('f_infos_comp', d.infos_comp);
-  }
-
+  if (d.langues || d.logiciels || d.domaines) { document.getElementById('rub_comp').checked = true; toggleSec('sec_comp', true); sfId('f_langues', d.langues); sfId('f_logiciels', d.logiciels); sfId('f_domaines', d.domaines); }
+  if (d.nom_prenom || d.telephone || d.email || d.adresse) { document.getElementById('rub_infos').checked = true; toggleSec('sec_infos', true); sfIfEmpty('f_nom_prenom', d.nom_prenom); sfIfEmpty('f_telephone', d.telephone); sfIfEmpty('f_email', d.email); sfId('f_adresse', d.adresse); }
+  if (d.infos_comp && d.infos_comp.trim()) { document.getElementById('rub_autres').checked = true; toggleSec('sec_autres', true); sfId('f_infos_comp', d.infos_comp); }
   document.getElementById('prefillBanner').classList.add('show');
   closeScanner();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  calcPrice();
 }
 function resetScanner() {
   selectedFile = null; extractedData = null;
@@ -1409,7 +1512,6 @@ function resetScanner() {
   document.getElementById('fileInputScanner').value = '';
   document.getElementById('scanInstructBox').style.display = 'none';
   document.getElementById('apBar').style.width = '0%';
-  // Remettre "auto" par défaut
   var defRadio = document.querySelector('input[name="sc_instruct"][value="auto"]');
   if (defRadio) defRadio.checked = true;
   for (var i=1;i<=4;i++) { var ic=document.getElementById('ai'+i); ic.classList.remove('active','done'); ic.textContent=i; document.getElementById('al'+i).classList.remove('active','done'); }
@@ -1417,4 +1519,4 @@ function resetScanner() {
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 </script>
 </body>
-</html>
+</html> 
