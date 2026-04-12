@@ -6,24 +6,20 @@
   <title>Catalogue CV — Chronos-Services</title>
   <meta name="description" content="43 modèles CV professionnels Word & PowerPoint. Trouvez le design qui vous correspond." />
 
-  <!-- ═══ OPEN GRAPH — prévisualisation WhatsApp / Facebook / LinkedIn ═══ -->
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Chronos-Services" />
   <meta property="og:title"       content="Catalogue CV — Chronos-Services" />
   <meta property="og:description" content="43 modèles CV professionnels Word & PowerPoint. Trouvez le design parfait pour décrocher votre prochain poste." />
   <meta property="og:url"         content="https://chronos-services.netlify.app/catalogue%20de%20cv" />
-  <!-- Image de prévisualisation : remplacez par votre vraie URL d'image (1200×630 px recommandé) -->
   <meta property="og:image"       content="https://chronos-services.netlify.app/Logo/og-cover.jpg" />
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:locale"      content="fr_FR" />
 
-  <!-- Twitter Card (aussi lu par WhatsApp dans certains cas) -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Catalogue CV — Chronos-Services" />
   <meta name="twitter:description" content="43 modèles CV professionnels Word & PowerPoint. Trouvez le design parfait pour décrocher votre prochain poste." />
   <meta name="twitter:image"       content="https://chronos-services.netlify.app/Logo/og-cover.jpg" />
-  <!-- ════════════════════════════════════════════════════════════════════ -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,27 +27,27 @@
 
   <style>
     /* ============================================================
-       VARIABLES
+       VARIABLES — vert uni, sans orange
     ============================================================ */
     :root {
       --green:       #094102;
       --green-mid:   #0d5203;
       --green-light: rgba(9,65,2,.08);
-      --orange:      #FF5700;
-      --orange-dim:  rgba(255,87,0,.12);
-      --bg:          #f0f2ee;
-      --bg2:         #e8ebe5;
+      --green-pale:  #e8f0e6;
+      --accent:      #2a7a1a;        /* vert clair pour CTA secondaires */
+      --bg:          #f2f4f0;
+      --bg2:         #e9ece6;
       --surface:     #ffffff;
       --text:        #111810;
       --text-2:      #4a5240;
       --text-3:      #8a9480;
       --border:      #dde0d8;
-      --grad:        linear-gradient(135deg, #094102 0%, #FF5700 100%);
-      --grad-rev:    linear-gradient(135deg, #FF5700 0%, #094102 100%);
-      --shadow-xs:   0 1px 3px rgba(9,65,2,.08);
-      --shadow-sm:   0 3px 10px rgba(9,65,2,.1);
-      --shadow-md:   0 8px 24px rgba(9,65,2,.12);
-      --shadow-lg:   0 16px 40px rgba(9,65,2,.15);
+      --grad:        linear-gradient(135deg, #094102 0%, #1a6b09 100%);
+      --grad-rev:    linear-gradient(135deg, #1a6b09 0%, #094102 100%);
+      --shadow-xs:   0 1px 3px rgba(9,65,2,.07);
+      --shadow-sm:   0 3px 10px rgba(9,65,2,.09);
+      --shadow-md:   0 8px 24px rgba(9,65,2,.11);
+      --shadow-lg:   0 16px 40px rgba(9,65,2,.14);
       --r-sm: 10px;
       --r-md: 16px;
       --r-lg: 22px;
@@ -88,14 +84,74 @@
       padding: 10px 20px;
     }
 
+    /* Theme toggle — pill style */
     .theme-toggle {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--bg2); border: 1.5px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-2); cursor: pointer; transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg2);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-pill);
+      padding: 5px 6px 5px 12px;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
       flex-shrink: 0;
     }
-    .theme-toggle:hover { background: var(--green-light); color: var(--green); border-color: var(--green); }
+    .theme-toggle:hover { background: var(--green-light); border-color: var(--green); }
+    .theme-toggle__label {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text-2);
+      transition: color .2s;
+      user-select: none;
+    }
+    .theme-toggle:hover .theme-toggle__label { color: var(--green); }
+    /* The switch track */
+    .theme-switch {
+      width: 36px; height: 22px;
+      border-radius: 11px;
+      background: var(--border);
+      position: relative;
+      transition: background .25s;
+      flex-shrink: 0;
+    }
+    /* Thumb */
+    .theme-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--surface);
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+      transition: transform .25s cubic-bezier(.4,0,.2,1), background .25s;
+    }
+    /* Icon inside thumb — sun/moon via background-image SVG */
+    .theme-switch-icon {
+      position: absolute;
+      top: 50%; left: 3px;
+      transform: translateY(-50%);
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+      transition: transform .25s cubic-bezier(.4,0,.2,1);
+      z-index: 1;
+    }
+    /* Active (dark) state */
+    [data-theme="dark"] .theme-switch {
+      background: var(--green);
+    }
+    [data-theme="dark"] .theme-switch::after {
+      transform: translateX(14px);
+      background: var(--surface);
+    }
+    [data-theme="dark"] .theme-switch-icon {
+      transform: translateX(14px) translateY(-50%);
+    }
+    [data-theme="dark"] .theme-toggle__label { color: #d4e8cc; }
+    [data-theme="dark"] .theme-toggle { background: #2a3a24; border-color: #3a4e34; }
+    [data-theme="dark"] .theme-toggle:hover { background: #3a4e34; border-color: #5a7a50; }
 
     .back-btn {
       display: inline-flex;
@@ -114,7 +170,7 @@
     .back-btn svg { flex-shrink: 0; }
 
     /* ============================================================
-       HERO HEADER
+       HERO HEADER — vert uni, sans orbe orange
     ============================================================ */
     .hero {
       background: var(--green);
@@ -124,25 +180,24 @@
       text-align: center;
     }
 
-    /* Animated gradient orbs */
     .hero::before, .hero::after {
       content: '';
       position: absolute;
       border-radius: 50%;
-      filter: blur(60px);
-      opacity: .35;
-      animation: drift 12s ease-in-out infinite alternate;
+      filter: blur(70px);
+      opacity: .18;
+      animation: drift 14s ease-in-out infinite alternate;
     }
     .hero::before {
-      width: 300px; height: 300px;
-      background: var(--orange);
-      top: -80px; right: -60px;
+      width: 340px; height: 340px;
+      background: #3aac1a;
+      top: -100px; right: -80px;
     }
     .hero::after {
-      width: 200px; height: 200px;
-      background: #2e9e08;
-      bottom: -60px; left: -40px;
-      animation-delay: -6s;
+      width: 220px; height: 220px;
+      background: #1a6b09;
+      bottom: -70px; left: -50px;
+      animation-delay: -7s;
     }
     @keyframes drift {
       from { transform: translate(0,0) scale(1); }
@@ -155,8 +210,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
       color: rgba(255,255,255,.9);
       font-size: .75rem;
       font-weight: 600;
@@ -166,7 +221,12 @@
       border-radius: var(--r-pill);
       margin-bottom: 16px;
     }
-    .hero__badge span { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+    .hero__badge span {
+      width: 6px; height: 6px;
+      background: #6dd94a;
+      border-radius: 50%; display: inline-block;
+      animation: pulse 2s infinite;
+    }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 
     .hero__title {
@@ -180,14 +240,11 @@
     }
     .hero__title em {
       font-style: normal;
-      background: linear-gradient(90deg, #ffb347, var(--orange));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #a8e890;
     }
 
     .hero__sub {
-      color: rgba(255,255,255,.7);
+      color: rgba(255,255,255,.65);
       font-size: .95rem;
       max-width: 420px;
       margin: 0 auto;
@@ -195,7 +252,7 @@
     }
 
     /* ============================================================
-       STATS STRIP (floating below hero)
+       STATS STRIP
     ============================================================ */
     .stats-strip {
       display: grid;
@@ -217,23 +274,20 @@
       border: 1px solid var(--border);
     }
     .stat-pill.accent {
-      background: var(--grad);
+      background: var(--green);
       border-color: transparent;
     }
     .stat-pill__num {
       font-family: 'Sora', sans-serif;
       font-size: 1.5rem;
       font-weight: 800;
-      background: var(--grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--green);
       line-height: 1;
       margin-bottom: 4px;
     }
-    .stat-pill.accent .stat-pill__num { background: none; -webkit-text-fill-color: white; color: white; }
+    .stat-pill.accent .stat-pill__num { color: white; }
     .stat-pill__label { font-size: .65rem; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
-    .stat-pill.accent .stat-pill__label { color: rgba(255,255,255,.8); }
+    .stat-pill.accent .stat-pill__label { color: rgba(255,255,255,.75); }
 
     /* ============================================================
        MAIN WRAPPER
@@ -263,7 +317,6 @@
       align-items: center;
     }
 
-    /* Search */
     .search-box {
       flex: 1 1 200px;
       position: relative;
@@ -295,7 +348,6 @@
     }
     .search-box input::placeholder { color: var(--text-3); }
 
-    /* Clear search button */
     .search-clear {
       position: absolute;
       right: 12px;
@@ -315,7 +367,6 @@
     }
     .search-clear.visible { display: flex; }
 
-    /* Filter pills */
     .filters {
       display: flex;
       gap: 8px;
@@ -352,7 +403,9 @@
     }
     .filter-pill:hover { border-color: var(--green); color: var(--green); background: var(--green-light); }
     .filter-pill.active { background: var(--green); border-color: var(--green); color: white; }
-    .filter-pill.active.orange { background: var(--orange); border-color: var(--orange); }
+    /* PowerPoint pill : vert moyen au lieu d'orange */
+    .filter-pill.ppt-pill { }
+    .filter-pill.ppt-pill.active { background: var(--accent); border-color: var(--accent); }
 
     /* ============================================================
        TOOLBAR ROW
@@ -383,7 +436,6 @@
 
     .toolbar__right { display: flex; align-items: center; gap: 10px; }
 
-    /* Sort select */
     .sort-select {
       height: 36px;
       padding: 0 12px;
@@ -399,7 +451,6 @@
     }
     .sort-select:focus { border-color: var(--green); }
 
-    /* View toggle */
     .view-toggle {
       display: flex;
       background: var(--bg2);
@@ -449,13 +500,12 @@
       border-color: rgba(9,65,2,.3);
     }
 
-    /* Card number badge */
     .cv-card__num {
       position: absolute;
       top: 10px;
       left: 10px;
       z-index: 2;
-      background: rgba(0,0,0,.55);
+      background: rgba(0,0,0,.5);
       backdrop-filter: blur(6px);
       color: white;
       font-family: 'Sora', sans-serif;
@@ -466,7 +516,6 @@
       letter-spacing: .03em;
     }
 
-    /* Share button — appears on hover */
     .cv-card__share {
       position: absolute;
       top: 10px;
@@ -487,14 +536,10 @@
       opacity: 0;
       transform: scale(.7);
     }
-    .cv-card:hover .cv-card__share {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .cv-card:hover .cv-card__share { opacity: 1; transform: scale(1); }
     .cv-card__share:hover { color: var(--green); background: white; }
     .grid.list .cv-card__share { top: 8px; right: 8px; opacity: 1; transform: scale(1); }
 
-    /* Image zone */
     .cv-card__img {
       aspect-ratio: 3/4;
       background: var(--bg2);
@@ -525,11 +570,10 @@
     }
     .cv-card__img-placeholder svg { opacity: .4; }
 
-    /* Quick preview overlay */
     .cv-card__overlay {
       position: absolute;
       inset: 0;
-      background: rgba(9,65,2,.75);
+      background: rgba(9,65,2,.72);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -552,10 +596,7 @@
     }
     .cv-card__overlay-btn:hover { transform: scale(1.05); }
 
-    /* Card body */
-    .cv-card__body {
-      padding: 14px;
-    }
+    .cv-card__body { padding: 14px; }
     .cv-card__title {
       font-family: 'Sora', sans-serif;
       font-size: .88rem;
@@ -578,12 +619,12 @@
       text-transform: uppercase;
       letter-spacing: .04em;
     }
-    .tag.word    { background: rgba(9,65,2,.1);    color: var(--green); }
-    .tag.ppt     { background: var(--orange-dim);  color: var(--orange); }
-    .tag.moderne { background: #e8f4fd; color: #1a6fa8; }
-    .tag.classique { background: #fef3e2; color: #92560a; }
-    .tag.creatif { background: #f3e8ff; color: #6b21a8; }
-    .tag.minimal { background: #f0fdf4; color: #166534; }
+    .tag.word     { background: rgba(9,65,2,.1);      color: var(--green); }
+    .tag.ppt      { background: rgba(42,122,26,.12);  color: var(--accent); }
+    .tag.moderne  { background: rgba(255,87,0,.1);    color: #c94400; }
+    .tag.classique{ background: rgba(255,87,0,.1);    color: #c94400; }
+    .tag.creatif  { background: rgba(255,87,0,.1);    color: #c94400; }
+    .tag.minimal  { background: rgba(255,87,0,.1);    color: #c94400; }
 
     .cv-card__actions {
       display: grid;
@@ -610,18 +651,14 @@
     }
     .btn-sm.outline:hover { border-color: var(--green); color: var(--green); background: var(--green-light); }
     .btn-sm.solid {
-      background: var(--grad);
+      background: var(--green);
       color: white;
       border-color: transparent;
     }
-    .btn-sm.solid:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-sm.solid:hover { background: var(--green-mid); transform: translateY(-1px); }
 
-    /* LIST mode card adjustments */
-    .grid.list .cv-card {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
+    /* LIST mode */
+    .grid.list .cv-card { display: flex; flex-direction: row; align-items: center; }
     .grid.list .cv-card__num { top: 8px; left: 8px; }
     .grid.list .cv-card__overlay { display: none; }
     .grid.list .cv-card__body {
@@ -655,7 +692,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--grad);
+      background: var(--green);
       color: white;
       font-weight: 700;
       font-size: .85rem;
@@ -674,7 +711,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.7);
+      background: rgba(0,0,0,.65);
       backdrop-filter: blur(6px);
       z-index: 200;
       align-items: center;
@@ -693,13 +730,13 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 30px 80px rgba(0,0,0,.3);
+      box-shadow: 0 30px 80px rgba(0,0,0,.28);
       animation: slideUp .3s cubic-bezier(.2,0,.2,1);
     }
     @keyframes slideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
 
     .modal__header {
-      background: var(--grad);
+      background: var(--green);
       padding: 16px 20px;
       display: flex;
       align-items: center;
@@ -725,9 +762,8 @@
       border: none;
       font-size: 1.2rem;
     }
-    .modal__close:hover { background: rgba(255,255,255,.3); }
+    .modal__close:hover { background: rgba(255,255,255,.28); }
 
-    /* Image zone + zoom wrapper */
     .modal__img-outer {
       flex: 1;
       position: relative;
@@ -766,7 +802,6 @@
     .modal__img.zoomed { cursor: grab; }
     .modal__img.dragging { transition: none !important; }
 
-    /* Zoom controls */
     .zoom-controls {
       position: absolute;
       bottom: 12px;
@@ -777,16 +812,16 @@
     }
     .zoom-btn {
       width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+      background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
       color: white; border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       font-size: 1rem; font-weight: 700; transition: background .15s;
       user-select: none;
     }
-    .zoom-btn:hover { background: rgba(0,0,0,.8); }
+    .zoom-btn:hover { background: rgba(0,0,0,.75); }
     .zoom-level {
       height: 30px; padding: 0 8px; border-radius: 15px;
-      background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+      background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
       color: white; font-size: .68rem; font-weight: 700;
       display: flex; align-items: center; font-family: 'Sora', sans-serif;
     }
@@ -815,8 +850,8 @@
     }
     .modal__btn.outline { background: var(--bg); border-color: var(--border); color: var(--text-2); }
     .modal__btn.outline:hover { border-color: var(--green); color: var(--green); }
-    .modal__btn.solid { background: var(--grad); color: white; }
-    .modal__btn.solid:hover { opacity: .88; }
+    .modal__btn.solid { background: var(--green); color: white; }
+    .modal__btn.solid:hover { background: var(--green-mid); }
 
     /* ============================================================
        TOAST
@@ -854,7 +889,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: var(--grad);
+      background: var(--green);
       color: white;
       display: flex;
       align-items: center;
@@ -892,22 +927,10 @@
       padding: 3px 10px 3px 8px;
       border-radius: var(--r-pill);
     }
-    .active-tag button {
-      color: rgba(255,255,255,.7);
-      font-size: .8rem;
-      line-height: 1;
-      cursor: pointer;
-      transition: color .15s;
-    }
+    .active-tag button { color: rgba(255,255,255,.7); font-size: .8rem; line-height: 1; cursor: pointer; transition: color .15s; }
     .active-tag button:hover { color: white; }
-    .clear-all-btn {
-      font-size: .72rem;
-      color: var(--text-3);
-      cursor: pointer;
-      text-decoration: underline;
-      transition: color .2s;
-    }
-    .clear-all-btn:hover { color: var(--orange); }
+    .clear-all-btn { font-size: .72rem; color: var(--text-3); cursor: pointer; text-decoration: underline; transition: color .2s; }
+    .clear-all-btn:hover { color: var(--green); }
 
     /* ============================================================
        SHARE MODAL
@@ -916,7 +939,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.65);
+      background: rgba(0,0,0,.6);
       backdrop-filter: blur(8px);
       z-index: 300;
       align-items: center;
@@ -931,11 +954,11 @@
       width: 100%;
       max-width: 400px;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,.3);
+      box-shadow: 0 30px 80px rgba(0,0,0,.28);
       animation: slideUp .28s cubic-bezier(.2,0,.2,1);
     }
     .share-modal__header {
-      background: var(--grad);
+      background: var(--green);
       padding: 18px 20px 14px;
       position: relative;
     }
@@ -947,7 +970,7 @@
       display: flex; align-items: center; justify-content: center;
       transition: background .2s;
     }
-    .share-modal__close:hover { background: rgba(255,255,255,.3); }
+    .share-modal__close:hover { background: rgba(255,255,255,.28); }
     .share-modal__htitle {
       font-family: 'Sora', sans-serif;
       font-size: .8rem; font-weight: 600;
@@ -957,14 +980,14 @@
     }
     .share-card {
       display: flex; align-items: center; gap: 12px;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
       border-radius: var(--r-md);
       padding: 10px 14px;
     }
     .share-card__icon {
       width: 40px; height: 40px; border-radius: var(--r-sm);
-      background: rgba(255,255,255,.2);
+      background: rgba(255,255,255,.18);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; color: white;
     }
@@ -972,7 +995,7 @@
     .share-card__meta { display:flex; gap:5px; }
     .share-card__tag {
       font-size:.62rem; font-weight:600; padding:2px 8px; border-radius:var(--r-pill);
-      background:rgba(255,255,255,.2); color:rgba(255,255,255,.9);
+      background:rgba(255,255,255,.18); color:rgba(255,255,255,.9);
       text-transform:uppercase; letter-spacing:.04em;
     }
 
@@ -989,7 +1012,7 @@
     .share-link-input:focus { border-color:var(--green); }
     .share-copy-btn {
       height:40px; padding:0 14px; border-radius:var(--r-sm);
-      background:var(--grad); color:white;
+      background:var(--green); color:white;
       font-family:'Sora',sans-serif; font-size:.78rem; font-weight:700;
       border:none; cursor:pointer;
       display:flex; align-items:center; gap:5px;
@@ -999,10 +1022,7 @@
     .share-copy-btn:hover { opacity:.85; }
     .share-copy-btn.copied { background:#16a34a; }
 
-    .share-platforms-label {
-      font-size:.72rem; font-weight:600; color:var(--text-3);
-      text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;
-    }
+    .share-platforms-label { font-size:.72rem; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
     .share-platforms { display:grid; grid-template-columns:repeat(5,1fr); gap:7px; }
     .share-platform-btn {
       display:flex; flex-direction:column; align-items:center; gap:5px;
@@ -1012,36 +1032,24 @@
       font-size:.62rem; font-weight:600; color:var(--text-2);
     }
     .share-platform-btn:hover { transform:translateY(-3px); box-shadow:var(--shadow-sm); border-color:transparent; }
-    .platform-icon {
-      width:36px; height:36px; border-radius:var(--r-sm);
-      display:flex; align-items:center; justify-content:center;
-    }
+    .platform-icon { width:36px; height:36px; border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; }
     .share-platform-btn.whatsapp:hover { background:#e7fbe7; border-color:#25D366; color:#128C7E; }
     .share-platform-btn.whatsapp .platform-icon { background:#25D366; }
     .share-platform-btn.facebook:hover { background:#e7f0ff; border-color:#1877F2; color:#1877F2; }
     .share-platform-btn.facebook .platform-icon { background:#1877F2; }
-    .share-platform-btn.email:hover { background:#fff4e6; border-color:var(--orange); color:var(--orange); }
-    .share-platform-btn.email .platform-icon { background:var(--orange); }
+    .share-platform-btn.email:hover { background:var(--green-light); border-color:var(--green); color:var(--green); }
+    .share-platform-btn.email .platform-icon { background:var(--green); }
+    .share-platform-btn.native .platform-icon { background:var(--accent); }
     .share-platform-btn.native:hover { background:var(--green-light); border-color:var(--green); color:var(--green); }
     .share-platform-btn:nth-child(5):hover { background:#e7f0f8; border-color:#0A66C2; color:#0A66C2; }
-    .share-platform-btn.native .platform-icon { background:var(--green); }
 
     .share-divider { border:none; border-top:1px solid var(--border); margin:16px 0; }
 
     .share-qr-section { display:flex; align-items:center; gap:14px; }
-    .share-qr-wrap {
-      width:72px; height:72px; border-radius:var(--r-sm);
-      border:1.5px solid var(--border); background:white;
-      display:flex; align-items:center; justify-content:center;
-      flex-shrink:0; overflow:hidden;
-    }
+    .share-qr-wrap { width:72px; height:72px; border-radius:var(--r-sm); border:1.5px solid var(--border); background:white; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
     .share-qr-info strong { font-size:.8rem; display:block; margin-bottom:3px; color:var(--text); }
     .share-qr-info p { font-size:.72rem; color:var(--text-3); line-height:1.3; }
-    .share-qr-download {
-      margin-top:5px; font-size:.7rem; font-weight:600;
-      color:var(--green); cursor:pointer; background:none; border:none;
-      padding:0; text-decoration:underline; text-underline-offset:2px;
-    }
+    .share-qr-download { margin-top:5px; font-size:.7rem; font-weight:600; color:var(--green); cursor:pointer; background:none; border:none; padding:0; text-decoration:underline; text-underline-offset:2px; }
 
     @media (max-width: 480px) {
       .share-backdrop { align-items:flex-end; padding:0; }
@@ -1052,72 +1060,30 @@
     }
 
     /* ============================================================
-       RESPONSIVE — TOUS SUPPORTS
+       RESPONSIVE
     ============================================================ */
-    @media (min-width: 1100px) {
-      .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-    }
-    @media (min-width: 900px) {
-      .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-      .controls__top { flex-wrap: nowrap; }
-    }
-    @media (min-width: 768px) and (max-width: 899px) {
-      .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
-      .main { padding: 0 18px 60px; }
-    }
-    @media (min-width: 600px) and (max-width: 767px) {
-      .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
-      .main { padding: 0 16px 60px; }
-      .hero { padding: 40px 16px 72px; }
-      .stats-strip { max-width: 480px; }
-    }
-    @media (min-width: 600px) {
-      .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-    }
-    @media (min-width: 480px) and (max-width: 599px) {
-      .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .hero__title { font-size: 1.9rem; }
-      .stats-strip { max-width: 440px; }
-      .toolbar { flex-wrap: nowrap; }
-    }
+    @media (min-width: 900px) { .controls__top { flex-wrap: nowrap; } }
+    @media (min-width: 768px) and (max-width: 899px) { .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; } .main { padding: 0 18px 60px; } }
+    @media (min-width: 600px) and (max-width: 767px) { .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; } .main { padding: 0 16px 60px; } .hero { padding: 40px 16px 72px; } .stats-strip { max-width: 480px; } }
+    @media (min-width: 600px) { .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } }
+    @media (min-width: 480px) and (max-width: 599px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } .hero__title { font-size: 1.9rem; } .stats-strip { max-width: 440px; } .toolbar { flex-wrap: nowrap; } }
     @media (max-width: 599px) {
-      .hero { padding: 36px 16px 70px; }
-      .hero__title { font-size: 1.8rem; }
-      .hero__sub { font-size: .88rem; }
+      .hero { padding: 36px 16px 70px; } .hero__title { font-size: 1.8rem; } .hero__sub { font-size: .88rem; }
       .stats-strip { padding: 0 16px; gap: 8px; margin-top: -30px; }
-      .stat-pill { padding: 12px 8px; }
-      .stat-pill__num { font-size: 1.2rem; }
-      .stat-pill__label { font-size: .58rem; }
-      .back-bar { padding: 8px 14px; }
-      .back-btn { font-size: .78rem; padding: 6px 11px; }
-      .main { padding: 0 14px 80px; }
-      .controls { padding: 12px; border-radius: var(--r-lg); }
-      .controls__top { flex-wrap: wrap; gap: 8px; }
-      .search-box input { height: 40px; font-size: .85rem; }
-      .filters {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 4px;
-        margin-bottom: -4px;
-        gap: 6px;
-      }
-      .filters::-webkit-scrollbar { display: none; }
-      .filters__label { flex-shrink: 0; }
+      .stat-pill { padding: 12px 8px; } .stat-pill__num { font-size: 1.2rem; } .stat-pill__label { font-size: .58rem; }
+      .back-bar { padding: 8px 14px; } .back-btn { font-size: .78rem; padding: 6px 11px; }
+      .main { padding: 0 14px 80px; } .controls { padding: 12px; border-radius: var(--r-lg); }
+      .controls__top { flex-wrap: wrap; gap: 8px; } .search-box input { height: 40px; font-size: .85rem; }
+      .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 4px; margin-bottom: -4px; gap: 6px; }
+      .filters::-webkit-scrollbar { display: none; } .filters__label { flex-shrink: 0; }
       .filter-pill { flex-shrink: 0; height: 30px; font-size: .74rem; padding: 0 11px; }
-      .toolbar { flex-wrap: wrap; gap: 8px; }
-      .results-badge { font-size: .76rem; padding: 5px 11px; }
-      .toolbar__right { gap: 7px; }
-      .sort-select { height: 32px; font-size: .74rem; padding: 0 9px; }
+      .toolbar { flex-wrap: wrap; gap: 8px; } .results-badge { font-size: .76rem; padding: 5px 11px; }
+      .toolbar__right { gap: 7px; } .sort-select { height: 32px; font-size: .74rem; padding: 0 9px; }
       #compareModeBtn { height: 32px !important; font-size: .7rem !important; padding: 0 10px; }
       .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .cv-card__body { padding: 10px; }
-      .cv-card__title { font-size: .78rem; }
-      .cv-card__tags { gap: 4px; margin-bottom: 8px; }
-      .tag { font-size: .6rem; padding: 2px 6px; }
-      .cv-card__actions { grid-template-columns: 1fr; gap: 5px; }
-      .btn-sm { height: 32px; font-size: .72rem; }
+      .cv-card__body { padding: 10px; } .cv-card__title { font-size: .78rem; }
+      .cv-card__tags { gap: 4px; margin-bottom: 8px; } .tag { font-size: .6rem; padding: 2px 6px; }
+      .cv-card__actions { grid-template-columns: 1fr; gap: 5px; } .btn-sm { height: 32px; font-size: .72rem; }
       .grid.list { grid-template-columns: 1fr; gap: 8px; }
       .grid.list .cv-card__img { height: 90px; width: 70px; }
       .grid.list .cv-card__body { flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
@@ -1125,37 +1091,23 @@
       .active-filters { gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
       .modal { max-width: 100%; border-radius: var(--r-xl) var(--r-xl) 0 0; }
       .modal-backdrop { align-items: flex-end; padding: 0; }
-      .modal__header { padding: 13px 16px; }
-      .modal__title { font-size: .9rem; }
-      .modal__footer { padding: 12px 16px; gap: 8px; }
-      .modal__btn { height: 40px; font-size: .8rem; }
-      .similar-section { padding: 12px 14px; }
-      .similar-chip { padding: 6px 8px; }
-      .compare-bar { padding: 10px 14px; }
-      .compare-slot { padding: 5px 8px; font-size: .72rem; }
+      .modal__header { padding: 13px 16px; } .modal__title { font-size: .9rem; }
+      .modal__footer { padding: 12px 16px; gap: 8px; } .modal__btn { height: 40px; font-size: .8rem; }
+      .similar-section { padding: 12px 14px; } .similar-chip { padding: 6px 8px; }
+      .compare-bar { padding: 10px 14px; } .compare-slot { padding: 5px 8px; font-size: .72rem; }
       .compare-action-btn { height: 32px; font-size: .72rem; padding: 0 11px; }
     }
     @media (max-width: 380px) {
-      .hero__title { font-size: 1.5rem; }
-      .hero__badge { font-size: .68rem; padding: 4px 11px; }
-      .stats-strip { grid-template-columns: 1fr 1fr; }
-      .stats-strip .stat-pill:last-child { grid-column: 1 / -1; }
+      .hero__title { font-size: 1.5rem; } .hero__badge { font-size: .68rem; padding: 4px 11px; }
+      .stats-strip { grid-template-columns: 1fr 1fr; } .stats-strip .stat-pill:last-child { grid-column: 1 / -1; }
       .grid { grid-template-columns: 1fr; gap: 10px; }
-      .toolbar { flex-direction: column; align-items: flex-start; }
-      .toolbar__right { width: 100%; justify-content: flex-end; }
+      .toolbar { flex-direction: column; align-items: flex-start; } .toolbar__right { width: 100%; justify-content: flex-end; }
       .back-btn span { display: none; }
       .modal__header { flex-wrap: wrap; gap: 6px; }
-      .compare-bar__slots { flex-wrap: wrap; }
-      .compare-bar__actions { width: 100%; justify-content: flex-end; }
+      .compare-bar__slots { flex-wrap: wrap; } .compare-bar__actions { width: 100%; justify-content: flex-end; }
       .share-platforms { grid-template-columns: repeat(3, 1fr); }
     }
-    @media (max-width: 320px) {
-      .hero__title { font-size: 1.3rem; }
-      .stat-pill__num { font-size: 1rem; }
-      .grid { gap: 8px; }
-      .cv-card__body { padding: 8px; }
-      .share-platforms { grid-template-columns: repeat(2, 1fr); }
-    }
+    @media (max-width: 320px) { .hero__title { font-size: 1.3rem; } .stat-pill__num { font-size: 1rem; } .grid { gap: 8px; } .cv-card__body { padding: 8px; } .share-platforms { grid-template-columns: repeat(2, 1fr); } }
 
     /* ============================================================
        DARK MODE
@@ -1169,6 +1121,7 @@
       --text-3:      #8ab07e;
       --border:      #3a4e34;
       --green-light: rgba(255,255,255,.08);
+      --green-pale:  #1a2e18;
       --shadow-xs:   0 1px 3px rgba(0,0,0,.4);
       --shadow-sm:   0 3px 10px rgba(0,0,0,.4);
       --shadow-md:   0 8px 24px rgba(0,0,0,.5);
@@ -1177,11 +1130,10 @@
     [data-theme="dark"] .back-bar { background: #1e2820; border-color: #3a4e34; }
     [data-theme="dark"] .back-btn { color: #ffffff; background: #2a3a24; border-color: #3a4e34; }
     [data-theme="dark"] .back-btn:hover { background: #3a4e34; border-color: #5a7a50; color: #ffffff; }
-    [data-theme="dark"] .theme-toggle { background: #2a3a24; border-color: #3a4e34; color: #ffffff; }
-    [data-theme="dark"] .theme-toggle:hover { background: #3a4e34; border-color: #5a7a50; color: #ffffff; }
     [data-theme="dark"] .stat-pill { background: #1e2820; border-color: #3a4e34; }
     [data-theme="dark"] .stat-pill__label { color: #8ab07e; }
-    [data-theme="dark"] .stat-pill__num { background: linear-gradient(135deg, #7ecb6a 0%, #FF8040 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    [data-theme="dark"] .stat-pill__num { color: #7ecb6a; }
+    [data-theme="dark"] .stat-pill.accent .stat-pill__num { color: white; }
     [data-theme="dark"] .controls { background: #1e2820; border-color: #3a4e34; }
     [data-theme="dark"] .search-box input { background: #151d13; border-color: #3a4e34; color: #ffffff; }
     [data-theme="dark"] .search-box input::placeholder { color: #8ab07e; }
@@ -1192,8 +1144,7 @@
     [data-theme="dark"] .filter-pill { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
     [data-theme="dark"] .filter-pill:hover { border-color: #7ecb6a; color: #ffffff; background: rgba(126,203,106,.12); }
     [data-theme="dark"] .filter-pill.active { background: var(--green); border-color: var(--green); color: #ffffff; }
-    [data-theme="dark"] .filter-pill.active.orange { background: var(--orange); border-color: var(--orange); }
-    [data-theme="dark"] .toolbar { background: transparent; }
+    [data-theme="dark"] .filter-pill.ppt-pill.active { background: var(--accent); border-color: var(--accent); }
     [data-theme="dark"] .results-badge { background: #1e2820; border-color: #3a4e34; color: #d4e8cc; }
     [data-theme="dark"] .results-badge strong { color: #7ecb6a; }
     [data-theme="dark"] .sort-select { background: #1e2820; border-color: #3a4e34; color: #ffffff; }
@@ -1205,7 +1156,7 @@
     [data-theme="dark"] .view-btn:hover:not(.active) { color: #d4e8cc; }
     [data-theme="dark"] .active-filters__label { color: #8ab07e; }
     [data-theme="dark"] .clear-all-btn { color: #8ab07e; }
-    [data-theme="dark"] .clear-all-btn:hover { color: var(--orange); }
+    [data-theme="dark"] .clear-all-btn:hover { color: #7ecb6a; }
     [data-theme="dark"] .cv-card { background: #1e2820; border-color: #3a4e34; }
     [data-theme="dark"] .cv-card__title { color: #ffffff; }
     [data-theme="dark"] .cv-card__body { background: #1e2820; }
@@ -1214,19 +1165,16 @@
     [data-theme="dark"] .cv-card__share { background: rgba(30,40,32,.85); color: #d4e8cc; }
     [data-theme="dark"] .cv-card__share:hover { color: #ffffff; background: #2a3a24; }
     [data-theme="dark"] .tag.word     { background: rgba(126,203,106,.15); color: #7ecb6a; }
-    [data-theme="dark"] .tag.ppt      { background: rgba(255,87,0,.18);    color: #FF8040; }
-    [data-theme="dark"] .tag.moderne  { background: #1a2535; color: #6baed6; }
-    [data-theme="dark"] .tag.classique{ background: #2a1f0a; color: #f6b84d; }
-    [data-theme="dark"] .tag.creatif  { background: #1f1430; color: #c084fc; }
-    [data-theme="dark"] .tag.minimal  { background: #0d1f12; color: #4ade80; }
+    [data-theme="dark"] .tag.ppt      { background: rgba(126,203,106,.1);  color: #a0d48a; }
+    [data-theme="dark"] .tag.moderne  { background: rgba(255,87,0,.15);    color: #ff8c55; }
+    [data-theme="dark"] .tag.classique{ background: rgba(255,87,0,.15);    color: #ff8c55; }
+    [data-theme="dark"] .tag.creatif  { background: rgba(255,87,0,.15);    color: #ff8c55; }
+    [data-theme="dark"] .tag.minimal  { background: rgba(255,87,0,.15);    color: #ff8c55; }
     [data-theme="dark"] .modal { background: #1e2820; }
     [data-theme="dark"] .modal__img-outer { background: #151d13; }
     [data-theme="dark"] .modal__footer { background: #1e2820; border-color: #3a4e34; }
     [data-theme="dark"] .modal__btn.outline { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
     [data-theme="dark"] .modal__btn.outline:hover { border-color: #7ecb6a; color: #ffffff; }
-    [data-theme="dark"] .modal__footer > div { border-color: #3a4e34; }
-    [data-theme="dark"] .modal__footer + div .btn-sm.outline,
-    [data-theme="dark"] div[style*="border-top"] .btn-sm.outline { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
     [data-theme="dark"] .similar-section { background: #1e2820; border-color: #3a4e34; }
     [data-theme="dark"] .similar-label { color: #8ab07e; }
     [data-theme="dark"] .similar-chip { background: #151d13; border-color: #3a4e34; }
@@ -1245,10 +1193,10 @@
     [data-theme="dark"] .share-platforms-label { color: #8ab07e; }
     [data-theme="dark"] #shareMessage { background: #151d13 !important; border-color: #3a4e34 !important; color: #ffffff !important; }
     [data-theme="dark"] #shareMsgCnt { color: #8ab07e; }
-    [data-theme="dark"] .compare-bar { background: #1e2820; border-color: var(--orange); }
+    [data-theme="dark"] .compare-bar { background: #1e2820; border-color: var(--green); }
     [data-theme="dark"] .compare-slot { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
-    [data-theme="dark"] .compare-slot.filled { border-color: var(--orange); }
-    [data-theme="dark"] .compare-slot__num   { color: var(--orange); }
+    [data-theme="dark"] .compare-slot.filled { border-color: var(--accent); }
+    [data-theme="dark"] .compare-slot__num   { color: var(--accent); }
     [data-theme="dark"] .compare-action-btn.cancel { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
     [data-theme="dark"] .compare-modal-inner { background: #1e2820; }
     [data-theme="dark"] .compare-modal-body  { background: #1e2820; }
@@ -1262,7 +1210,7 @@
     /* ============================================================
        COMPARE MODE
     ============================================================ */
-    .cv-card.compare-selected { border-color: var(--orange) !important; box-shadow: 0 0 0 3px rgba(255,87,0,.2) !important; }
+    .cv-card.compare-selected { border-color: var(--accent) !important; box-shadow: 0 0 0 3px rgba(42,122,26,.2) !important; }
     .cv-card__compare-check {
       position: absolute; top: 46px; left: 10px; z-index: 2;
       width: 20px; height: 20px; border-radius: 4px;
@@ -1271,17 +1219,17 @@
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; transition: all .15s;
     }
-    .cv-card__compare-check.checked { background: var(--orange); border-color: var(--orange); }
+    .cv-card__compare-check.checked { background: var(--green); border-color: var(--green); }
     .cv-card__compare-check svg { display: none; }
     .cv-card__compare-check.checked svg { display: block; }
 
     .compare-bar {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
-      background: var(--surface); border-top: 2px solid var(--orange);
+      background: var(--surface); border-top: 2px solid var(--green);
       padding: 12px 20px;
       display: flex; align-items: center; justify-content: space-between;
       gap: 12px; flex-wrap: wrap;
-      box-shadow: 0 -8px 24px rgba(0,0,0,.15);
+      box-shadow: 0 -8px 24px rgba(0,0,0,.12);
       transform: translateY(100%);
       transition: transform .3s cubic-bezier(.2,0,.2,1);
     }
@@ -1293,10 +1241,10 @@
       border-radius: var(--r-sm); padding: 6px 10px;
       font-size:.78rem; font-weight:600; min-width:0;
     }
-    .compare-slot.filled { border-color: var(--orange); }
-    .compare-slot__num { color: var(--orange); font-family:'Sora',sans-serif; font-weight:800; }
+    .compare-slot.filled { border-color: var(--green); }
+    .compare-slot__num { color: var(--green); font-family:'Sora',sans-serif; font-weight:800; }
     .compare-slot__remove { color:var(--text-3); cursor:pointer; font-size:.9rem; transition:color .15s; border:none; background:none; }
-    .compare-slot__remove:hover { color:#e53e3e; }
+    .compare-slot__remove:hover { color:#c53030; }
     .compare-slot.empty { opacity:.4; }
     .compare-bar__actions { display:flex; gap:8px; flex-shrink:0; }
     .compare-action-btn {
@@ -1304,19 +1252,19 @@
       font-family:'Sora',sans-serif; font-size:.78rem; font-weight:700;
       cursor:pointer; transition:all .2s; border:none;
     }
-    .compare-action-btn.go { background:var(--orange); color:white; }
+    .compare-action-btn.go { background: var(--green); color:white; }
     .compare-action-btn.go:hover { opacity:.85; }
     .compare-action-btn.cancel { background:var(--bg); color:var(--text-2); border:1.5px solid var(--border); }
     .compare-count-badge {
       display:inline-flex; align-items:center; justify-content:center;
-      background:var(--orange); color:white;
+      background: rgba(255,255,255,.25); color:white;
       width:18px; height:18px; border-radius:50%;
       font-size:.65rem; font-weight:800; font-family:'Sora',sans-serif;
     }
 
     .compare-backdrop {
       display:none; position:fixed; inset:0;
-      background:rgba(0,0,0,.8); backdrop-filter:blur(8px);
+      background:rgba(0,0,0,.75); backdrop-filter:blur(8px);
       z-index:500; align-items:center; justify-content:center; padding:16px;
     }
     .compare-backdrop.open { display:flex; animation:fadeIn .25s ease; }
@@ -1324,13 +1272,13 @@
       background:var(--surface); border-radius:var(--r-xl);
       width:100%; max-width:900px; max-height:90vh;
       overflow:hidden; display:flex; flex-direction:column;
-      box-shadow:0 30px 80px rgba(0,0,0,.4);
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
       animation:slideUp .3s cubic-bezier(.2,0,.2,1);
     }
-    .compare-modal-header { background:var(--grad); padding:16px 20px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+    .compare-modal-header { background: var(--green); padding:16px 20px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
     .compare-modal-title { font-family:'Sora',sans-serif; font-size:1rem; font-weight:700; color:white; }
     .compare-modal-close { width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.15); color:white; border:none; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; }
-    .compare-modal-close:hover { background:rgba(255,255,255,.3); }
+    .compare-modal-close:hover { background:rgba(255,255,255,.28); }
     .compare-modal-body { flex:1; overflow-y:auto; padding:20px; }
     .compare-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
     .compare-item { background:var(--bg); border-radius:var(--r-lg); border:1.5px solid var(--border); overflow:hidden; }
@@ -1339,11 +1287,10 @@
     .compare-item__info { padding:12px; }
     .compare-item__title { font-family:'Sora',sans-serif; font-size:.85rem; font-weight:700; margin-bottom:6px; }
     .compare-item__tags { display:flex; gap:4px; flex-wrap:wrap; margin-bottom:10px; }
-    .compare-item__select { width:100%; height:34px; border-radius:var(--r-sm); background:var(--grad); color:white; border:none; font-family:'Sora',sans-serif; font-size:.75rem; font-weight:700; cursor:pointer; transition:opacity .2s; }
+    .compare-item__select { width:100%; height:34px; border-radius:var(--r-sm); background: var(--green); color:white; border:none; font-family:'Sora',sans-serif; font-size:.75rem; font-weight:700; cursor:pointer; transition:opacity .2s; }
     .compare-item__select:hover { opacity:.85; }
     @media (max-width:599px) {
       .compare-grid { grid-template-columns:1fr 1fr; }
-      .compare-bar { padding:10px 14px; }
       .compare-modal-inner { border-radius: var(--r-xl) var(--r-xl) 0 0; max-height: 85vh; }
       .compare-backdrop { align-items: flex-end; padding: 0; }
     }
@@ -1363,25 +1310,27 @@
     .similar-chip__info { min-width:0; }
     .similar-chip__title { font-size:.72rem; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:80px; }
     .similar-chip__tag { font-size:.6rem; color:var(--text-3); }
-
   </style>
 </head>
 <body>
 
   <!-- ── BACK BAR ── -->
-  <div class="back-bar">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <a href="index.html" class="back-btn">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-          <path d="M19 12H5M12 5l-7 7 7 7"/>
-        </svg>
-        Retour à l'accueil
-      </a>
-      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Thème sombre/clair" aria-label="Basculer le thème">
-        <svg class="icon-moon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun"  width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
-    </div>
+  <div class="back-bar" style="display:flex;align-items:center;justify-content:space-between;">
+    <a href="index.html" class="back-btn">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Retour à l'accueil
+    </a>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Thème sombre/clair" aria-label="Basculer le thème">
+      <span class="theme-toggle__label" id="themeLabel">Dark</span>
+      <span class="theme-switch" id="themeSwitch">
+        <span class="theme-switch-icon">
+          <svg class="icon-moon" width="10" height="10" fill="none" stroke="#8a9480" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="10" height="10" fill="none" stroke="#a8e890" stroke-width="2" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+      </span>
+    </button>
   </div>
 
   <!-- ── HERO ── -->
@@ -1419,7 +1368,6 @@
   <!-- ── MAIN ── -->
   <main class="main">
 
-    <!-- Controls -->
     <div class="controls">
       <div class="controls__top">
         <div class="search-box">
@@ -1431,7 +1379,6 @@
         </div>
       </div>
 
-      <!-- Filter pills -->
       <div class="filters">
         <span class="filters__label">Format</span>
         <button class="filter-pill active" data-group="format" data-val="">Tous</button>
@@ -1439,7 +1386,7 @@
           <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="1" width="7" height="9" rx="1"/></svg>
           Word
         </button>
-        <button class="filter-pill orange" data-group="format" data-val="powerpoint">
+        <button class="filter-pill ppt-pill" data-group="format" data-val="powerpoint">
           <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="1" width="7" height="9" rx="1"/><path d="M4 4h3"/><path d="M4 6h2"/></svg>
           PowerPoint
         </button>
@@ -1453,13 +1400,11 @@
       </div>
     </div>
 
-    <!-- Active filters display -->
     <div class="active-filters" id="activeFilters">
       <span class="active-filters__label">Filtres actifs :</span>
       <button class="clear-all-btn" onclick="clearAllFilters()">Tout effacer</button>
     </div>
 
-    <!-- Toolbar -->
     <div class="toolbar">
       <div class="results-badge">
         <strong id="resultsNum">43</strong> modèles trouvés
@@ -1492,10 +1437,8 @@
       </div>
     </div>
 
-    <!-- Grid -->
     <div class="grid" id="grid"></div>
 
-    <!-- Empty state -->
     <div class="empty" id="emptyState">
       <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
         <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
@@ -1536,7 +1479,6 @@
         </div>
       </div>
 
-      <!-- Share row -->
       <div style="padding:10px 18px 8px;display:flex;align-items:center;justify-content:flex-end;border-top:1px solid var(--border);">
         <button class="btn-sm outline" style="height:30px;font-size:.7rem;" onclick="state.currentPreview && openShare(state.currentPreview.id)">
           <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="2.5" r="1.5"/><circle cx="3" cy="6" r="1.5"/><circle cx="9" cy="9.5" r="1.5"/><line x1="4.27" y1="6.75" x2="7.74" y2="8.77"/><line x1="7.73" y1="3.22" x2="4.27" y2="5.25"/></svg>
@@ -1544,7 +1486,6 @@
         </button>
       </div>
 
-      <!-- Similar models -->
       <div class="similar-section" id="similarSection"></div>
 
       <div class="modal__footer">
@@ -1760,23 +1701,17 @@
     function applyFilters() {
       const q = state.search.toLowerCase().trim();
       let res = RAW_MODELS.filter(m => {
-        const matchQ = !q ||
-          m.title.toLowerCase().includes(q) ||
-          m.number.includes(q) ||
-          m.format.includes(q) ||
-          m.style.includes(q);
+        const matchQ = !q || m.title.toLowerCase().includes(q) || m.number.includes(q) || m.format.includes(q) || m.style.includes(q);
         const matchF = !state.format || m.format === state.format;
         const matchS = !state.style  || m.style  === state.style;
         return matchQ && matchF && matchS;
       });
-
       res = [...res].sort((a,b) => {
         if (state.sort === 'num-asc')  return a.number.localeCompare(b.number);
         if (state.sort === 'num-desc') return b.number.localeCompare(a.number);
         if (state.sort === 'alpha')    return a.title.localeCompare(b.title);
         return 0;
       });
-
       state.filtered = res;
       render();
       updateStats();
@@ -1787,57 +1722,36 @@
     function render() {
       const grid  = document.getElementById('grid');
       const empty = document.getElementById('emptyState');
-
-      if (!state.filtered.length) {
-        grid.innerHTML = '';
-        empty.classList.add('visible');
-        return;
-      }
+      if (!state.filtered.length) { grid.innerHTML = ''; empty.classList.add('visible'); return; }
       empty.classList.remove('visible');
-
       grid.className = 'grid' + (state.view === 'list' ? ' list' : '');
-
       const styleLabels = {moderne:'Moderne',classique:'Classique',creatif:'Créatif',minimal:'Minimal'};
-
       grid.innerHTML = state.filtered.map((m, i) => {
         const fmtLabel = m.format === 'word' ? 'Word' : 'PowerPoint';
-
         return `
-          <div class="cv-card" data-id="${m.id}" style="animation-delay:${i*30}ms"
-               onclick="previewModel('${m.id}')">
+          <div class="cv-card" data-id="${m.id}" style="animation-delay:${i*30}ms" onclick="previewModel('${m.id}')">
             <span class="cv-card__num">N°${m.number}</span>
-
-            <button class="cv-card__share"
-                    onclick="event.stopPropagation();openShare('${m.id}')"
-                    aria-label="Partager ${m.title}" title="Partager">
+            <button class="cv-card__share" onclick="event.stopPropagation();openShare('${m.id}')" aria-label="Partager ${m.title}" title="Partager">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
                 <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
               </svg>
             </button>
-
             <button class="cv-card__compare-check ${state.compareList.includes(m.id)?'checked':''}"
-                    id="chk-${m.id}"
-                    onclick="event.stopPropagation();toggleCompare('${m.id}')"
-                    style="display:${state.compareMode?'flex':'none'}"
-                    title="Ajouter à la comparaison">
+                    id="chk-${m.id}" onclick="event.stopPropagation();toggleCompare('${m.id}')"
+                    style="display:${state.compareMode?'flex':'none'}" title="Ajouter à la comparaison">
               <svg width="10" height="10" fill="none" stroke="white" stroke-width="3"><polyline points="9,2 4,8 1,5"/></svg>
             </button>
-
             <div class="cv-card__img">
               <img src="${m.image}" alt="${m.title}" loading="lazy"
                    onerror="this.parentElement.innerHTML='<div class=\\'cv-card__img-placeholder\\'><svg width=\\'32\\' height=\\'32\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.5\\'><path d=\\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\\'/><polyline points=\\'14,2 14,8 20,8\\'/></svg><span>Aperçu indisponible</span></div>'" />
               <div class="cv-card__overlay">
                 <div class="cv-card__overlay-btn">
-                  <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                  </svg>
+                  <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                   Aperçu
                 </div>
               </div>
             </div>
-
             <div class="cv-card__body">
               <div class="cv-card__info">
                 <div class="cv-card__title">${m.title}</div>
@@ -1861,96 +1775,61 @@
       }).join('');
     }
 
-    /* ── STATS ── */
     function updateStats() {
       document.getElementById('statTotal').textContent    = RAW_MODELS.length;
       document.getElementById('statFiltered').textContent = state.filtered.length;
       document.getElementById('resultsNum').textContent   = state.filtered.length;
     }
 
-    /* ── ACTIVE FILTERS DISPLAY ── */
     function renderActiveFilters() {
       const bar = document.getElementById('activeFilters');
       const tags = [];
       if (state.format) tags.push({label: state.format === 'word' ? 'Word' : 'PowerPoint', clear: () => { state.format=''; resetFilterGroup('format'); applyFilters(); }});
-      if (state.style)  {
-        const sl = {moderne:'Moderne',classique:'Classique',creatif:'Créatif',minimal:'Minimal'};
-        tags.push({label: sl[state.style]||state.style, clear: () => { state.style=''; resetFilterGroup('style'); applyFilters(); }});
-      }
+      if (state.style)  { const sl = {moderne:'Moderne',classique:'Classique',creatif:'Créatif',minimal:'Minimal'}; tags.push({label: sl[state.style]||state.style, clear: () => { state.style=''; resetFilterGroup('style'); applyFilters(); }}); }
       if (state.search) tags.push({label: `"${state.search}"`, clear: () => { state.search=''; document.getElementById('searchInput').value=''; updateClearBtn(); applyFilters(); }});
-
       if (!tags.length) { bar.classList.remove('visible'); return; }
       bar.classList.add('visible');
-
-      const innerHTML = tags.map((t,i) => `
-        <span class="active-tag">
-          ${t.label}
-          <button onclick="clearActiveTag(${i})" aria-label="Retirer ce filtre">×</button>
-        </span>`).join('');
-
+      const innerHTML = tags.map((t,i) => `<span class="active-tag">${t.label}<button onclick="clearActiveTag(${i})" aria-label="Retirer ce filtre">×</button></span>`).join('');
       window._activeTags = tags;
       const clearBtn = bar.querySelector('.clear-all-btn');
       bar.innerHTML = `<span class="active-filters__label">Filtres actifs :</span>${innerHTML}`;
       bar.appendChild(clearBtn);
     }
 
-    window.clearActiveTag = function(i) {
-      if (window._activeTags && window._activeTags[i]) window._activeTags[i].clear();
-    };
+    window.clearActiveTag = function(i) { if (window._activeTags && window._activeTags[i]) window._activeTags[i].clear(); };
 
     function resetFilterGroup(group) {
       document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
       document.querySelector(`[data-group="${group}"][data-val=""]`).classList.add('active');
     }
 
-    /* ── SEARCH ── */
     let debounceTimer;
     document.getElementById('searchInput').addEventListener('input', function() {
-      state.search = this.value;
-      updateClearBtn();
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(applyFilters, 260);
+      state.search = this.value; updateClearBtn();
+      clearTimeout(debounceTimer); debounceTimer = setTimeout(applyFilters, 260);
     });
 
-    function updateClearBtn() {
-      document.getElementById('searchClear').classList.toggle('visible', state.search.length > 0);
-    }
+    function updateClearBtn() { document.getElementById('searchClear').classList.toggle('visible', state.search.length > 0); }
+    function clearSearch() { state.search = ''; document.getElementById('searchInput').value = ''; updateClearBtn(); applyFilters(); }
 
-    function clearSearch() {
-      state.search = '';
-      document.getElementById('searchInput').value = '';
-      updateClearBtn();
-      applyFilters();
-    }
-
-    /* ── FILTER PILLS ── */
     document.querySelectorAll('.filter-pill').forEach(btn => {
       btn.addEventListener('click', function() {
-        const group = this.dataset.group;
-        const val   = this.dataset.val;
+        const group = this.dataset.group; const val = this.dataset.val;
         document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        state[group] = val;
-        applyFilters();
+        this.classList.add('active'); state[group] = val; applyFilters();
       });
     });
 
     function clearAllFilters() {
       state.search = ''; state.format = ''; state.style = '';
-      document.getElementById('searchInput').value = '';
-      updateClearBtn();
+      document.getElementById('searchInput').value = ''; updateClearBtn();
       document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.filter-pill[data-val=""]').forEach(b => b.classList.add('active'));
       applyFilters();
     }
 
-    /* ── SORT ── */
-    document.getElementById('sortSelect').addEventListener('change', function() {
-      state.sort = this.value;
-      applyFilters();
-    });
+    document.getElementById('sortSelect').addEventListener('change', function() { state.sort = this.value; applyFilters(); });
 
-    /* ── VIEW TOGGLE ── */
     function setView(v) {
       state.view = v;
       document.getElementById('viewGrid').classList.toggle('active', v === 'grid');
@@ -1960,259 +1839,122 @@
 
     /* ── PREVIEW MODAL ── */
     function previewModel(id) {
-      const m = RAW_MODELS.find(x => x.id === id);
-      if (!m) return;
+      const m = RAW_MODELS.find(x => x.id === id); if (!m) return;
       state.currentPreview = m;
-
       document.getElementById('modalTitle').textContent = m.title;
-
-      const img = document.getElementById('modalImg');
-      img.alt = m.title;
-      img.src = '';
-
+      const img = document.getElementById('modalImg'); img.alt = m.title; img.src = '';
       img.onerror = function() {
-        document.getElementById('modalImgWrap').innerHTML = `
-          <div style="text-align:center;color:var(--text-3);padding:40px 20px;">
-            <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2"
-                 style="margin:0 auto 12px;opacity:.4;display:block;">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14,2 14,8 20,8"/>
-            </svg>
-            <p style="font-weight:600;margin-bottom:4px;color:var(--text-2)">Aperçu non disponible</p>
-            <p style="font-size:.82rem">Disponible prochainement</p>
-          </div>`;
+        document.getElementById('modalImgWrap').innerHTML = `<div style="text-align:center;color:var(--text-3);padding:40px 20px;"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" style="margin:0 auto 12px;opacity:.4;display:block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg><p style="font-weight:600;margin-bottom:4px;color:var(--text-2)">Aperçu non disponible</p><p style="font-size:.82rem">Disponible prochainement</p></div>`;
         document.getElementById('zoomControls').style.display = 'none';
       };
-
-      img.onload = function() {
-        document.getElementById('zoomControls').style.display = 'flex';
-      };
-
+      img.onload = function() { document.getElementById('zoomControls').style.display = 'flex'; };
       img.src = m.image;
-
       renderSimilar(m);
-
       const idx = state.filtered.findIndex(x => x.id === m.id);
-      document.getElementById('modalNavIndex').textContent =
-        idx >= 0 ? `${idx+1} / ${state.filtered.length}` : '';
-
-      state.zoomLevel = 1;
-      pan.x = 0; pan.y = 0;
-      img.style.transform = 'scale(1)';
-      img.classList.remove('zoomed');
-      img.style.cursor = 'zoom-in';
+      document.getElementById('modalNavIndex').textContent = idx >= 0 ? `${idx+1} / ${state.filtered.length}` : '';
+      state.zoomLevel = 1; pan.x = 0; pan.y = 0;
+      img.style.transform = 'scale(1)'; img.classList.remove('zoomed'); img.style.cursor = 'zoom-in';
       document.getElementById('zoomLevel').textContent = '100%';
       document.getElementById('zoomControls').style.display = 'flex';
-
       document.getElementById('modalBackdrop').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
-      document.getElementById('modalBackdrop').classList.remove('open');
-      document.body.style.overflow = '';
-      state.currentPreview = null;
-    }
+    function closeModal() { document.getElementById('modalBackdrop').classList.remove('open'); document.body.style.overflow = ''; state.currentPreview = null; }
+    function closeModalOnOutside(e) { if (e.target === document.getElementById('modalBackdrop')) closeModal(); }
+    function selectFromModal() { if (state.currentPreview) selectModel(state.currentPreview.id); }
 
-    function closeModalOnOutside(e) {
-      if (e.target === document.getElementById('modalBackdrop')) closeModal();
-    }
-
-    function selectFromModal() {
-      if (state.currentPreview) selectModel(state.currentPreview.id);
-    }
-
-    /* ── SELECT MODEL — PATCH 1 ── */
     function selectModel(id) {
-      const m = RAW_MODELS.find(x => x.id === id);
-      if (!m) return;
+      const m = RAW_MODELS.find(x => x.id === id); if (!m) return;
       closeModal();
-      /* Détecter si on vient du formulaire de mise à jour */
-      const params = new URLSearchParams(window.location.search);
-      const source = params.get('source');
+      const params = new URLSearchParams(window.location.search); const source = params.get('source');
       if (source === 'maj') {
-        /* Retour vers le formulaire de mise à jour avec le modèle pré-sélectionné */
         const modeleStr = encodeURIComponent(`N°${m.number} — ${m.title}`);
         showToast(`"${m.title}" sélectionné — retour au formulaire…`);
-        setTimeout(() => {
-          window.location.href = `formulaire-mise-a-jour-cv.html?source=maj&modele=${modeleStr}`;
-        }, 700);
+        setTimeout(() => { window.location.href = `formulaire-mise-a-jour-cv.html?source=maj&modele=${modeleStr}`; }, 700);
         return;
       }
-      /* Comportement par défaut — formulaire création CV */
-      try {
-        localStorage.setItem('chosenCvModel', `N°${m.number} - ${m.title}`);
-        localStorage.setItem('chosenCvFormat', m.format);
-        localStorage.setItem('chosenCvStyle', m.style);
-      } catch(e) {}
+      try { localStorage.setItem('chosenCvModel', `N°${m.number} - ${m.title}`); localStorage.setItem('chosenCvFormat', m.format); localStorage.setItem('chosenCvStyle', m.style); } catch(e) {}
       showToast(`"${m.title}" sélectionné ✓`);
       setTimeout(() => {
         const card = document.querySelector(`[data-id="${id}"]`);
-        if (card) {
-          card.style.borderColor = 'var(--green)';
-          card.style.boxShadow = '0 0 0 3px rgba(9,65,2,.2)';
-          setTimeout(() => { card.style.borderColor=''; card.style.boxShadow=''; }, 2500);
-        }
+        if (card) { card.style.borderColor = 'var(--green)'; card.style.boxShadow = '0 0 0 3px rgba(9,65,2,.2)'; setTimeout(() => { card.style.borderColor=''; card.style.boxShadow=''; }, 2500); }
       }, 100);
       setTimeout(() => { window.location.href = 'formulaire-cv-scanner.html'; }, 800);
     }
 
-    /* ── TOAST ── */
     let toastTimer;
     function showToast(msg) {
-      clearTimeout(toastTimer);
-      const t = document.getElementById('toast');
+      clearTimeout(toastTimer); const t = document.getElementById('toast');
       document.getElementById('toastMsg').textContent = msg;
-      t.classList.add('show');
-      toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+      t.classList.add('show'); toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
     }
 
-    /* ── SCROLL TO TOP ── */
     const scrollTopBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-    });
+    window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('visible', window.scrollY > 400); });
 
-    /* ── Ctrl+F shortcut ── */
     document.addEventListener('keydown', e => {
-      if ((e.ctrlKey||e.metaKey) && e.key==='f') {
-        e.preventDefault();
-        document.getElementById('searchInput').focus();
-      }
+      if ((e.ctrlKey||e.metaKey) && e.key==='f') { e.preventDefault(); document.getElementById('searchInput').focus(); }
     });
 
-    /* ── INIT ── */
     applyFilters();
 
-    /* ── DEEP LINK — PATCH 2 ── */
     (function checkDeepLink() {
-      const params  = new URLSearchParams(window.location.search);
+      const params = new URLSearchParams(window.location.search);
       const modelId = params.get('model') || params.get('m');
       const source  = params.get('source');
-      /* Si on vient du formulaire de mise à jour, afficher la bannière */
       if (source === 'maj') {
         const banner = document.createElement('div');
         banner.id = 'majBanner';
-        banner.style.cssText = [
-          'position:fixed', 'top:57px', 'left:0', 'right:0', 'z-index:40',
-          'background:#fff8f4', 'border-bottom:1px solid #ffb894',
-          'padding:8px 20px', 'display:flex', 'align-items:center',
-          'justify-content:space-between', 'gap:12px',
-          'font-family:"DM Sans",sans-serif', 'font-size:.8rem',
-          'color:#7a3000'
-        ].join(';');
-        banner.innerHTML = `
-          <span>
-            <strong style="font-weight:700;">Sélection de modèle</strong>
-            — Cliquez sur <strong style="color:#FF5700">Choisir</strong> sur le modèle souhaité pour revenir au formulaire de mise à jour.
-          </span>
-          <a href="formulaire-mise-a-jour-cv.html" style="font-size:.75rem;font-weight:600;color:#7a3000;text-decoration:underline;white-space:nowrap;flex-shrink:0;">
-            ← Retour sans choisir
-          </a>`;
+        banner.style.cssText = ['position:fixed','top:57px','left:0','right:0','z-index:40','background:#f0f7ee','border-bottom:1px solid #b2d4a8','padding:8px 20px','display:flex','align-items:center','justify-content:space-between','gap:12px','font-family:"DM Sans",sans-serif','font-size:.8rem','color:#2a4a22'].join(';');
+        banner.innerHTML = `<span><strong style="font-weight:700;">Sélection de modèle</strong> — Cliquez sur <strong style="color:var(--green)">Choisir</strong> sur le modèle souhaité pour revenir au formulaire de mise à jour.</span><a href="formulaire-mise-a-jour-cv.html" style="font-size:.75rem;font-weight:600;color:#2a4a22;text-decoration:underline;white-space:nowrap;flex-shrink:0;">← Retour sans choisir</a>`;
         document.body.appendChild(banner);
-        const hero = document.querySelector('.hero');
-        if (hero) hero.style.marginTop = banner.offsetHeight + 'px';
+        const hero = document.querySelector('.hero'); if (hero) hero.style.marginTop = banner.offsetHeight + 'px';
       }
       if (modelId) {
         const m = RAW_MODELS.find(x => x.id === modelId);
-        if (m) {
-          setTimeout(() => {
-            const card = document.querySelector(`[data-id="${modelId}"]`);
-            if (card) { card.scrollIntoView({behavior:'smooth', block:'center'}); }
-            previewModel(modelId);
-          }, 400);
-        }
+        if (m) { setTimeout(() => { const card = document.querySelector(`[data-id="${modelId}"]`); if (card) { card.scrollIntoView({behavior:'smooth', block:'center'}); } previewModel(modelId); }, 400); }
       }
     })();
 
-    /* ================================================================
-       ZOOM + PAN
-    ================================================================ */
+    /* ── ZOOM + PAN ── */
     let pan = { x: 0, y: 0 };
-
-    function zoomImg(dir) {
-      state.zoomLevel = Math.min(4, Math.max(1, state.zoomLevel + dir * 0.5));
-      applyZoom();
-    }
-    function toggleZoom() {
-      state.zoomLevel = state.zoomLevel > 1 ? 1 : 2;
-      applyZoom();
-    }
-    function resetZoom() {
-      state.zoomLevel = 1;
-      pan.x = 0; pan.y = 0;
-      applyZoom();
-    }
-
+    function zoomImg(dir) { state.zoomLevel = Math.min(4, Math.max(1, state.zoomLevel + dir * 0.5)); applyZoom(); }
+    function toggleZoom() { state.zoomLevel = state.zoomLevel > 1 ? 1 : 2; applyZoom(); }
+    function resetZoom() { state.zoomLevel = 1; pan.x = 0; pan.y = 0; applyZoom(); }
     function clampPan() {
-      const img   = document.getElementById('modalImg');
-      const outer = document.getElementById('modalImgOuter');
-      if (!img || !outer) return;
-      const imgW = img.offsetWidth;
-      const imgH = img.offsetHeight;
-      const outerW = outer.clientWidth;
-      const outerH = outer.clientHeight;
-      const maxX = Math.max(0, (imgW * state.zoomLevel - outerW)  / 2);
-      const maxY = Math.max(0, (imgH * state.zoomLevel - outerH) / 2);
-      pan.x = Math.min(maxX, Math.max(-maxX, pan.x));
-      pan.y = Math.min(maxY, Math.max(-maxY, pan.y));
+      const img = document.getElementById('modalImg'); const outer = document.getElementById('modalImgOuter'); if (!img || !outer) return;
+      const maxX = Math.max(0, (img.offsetWidth * state.zoomLevel - outer.clientWidth)  / 2);
+      const maxY = Math.max(0, (img.offsetHeight * state.zoomLevel - outer.clientHeight) / 2);
+      pan.x = Math.min(maxX, Math.max(-maxX, pan.x)); pan.y = Math.min(maxY, Math.max(-maxY, pan.y));
     }
-
     function applyZoom() {
-      const img = document.getElementById('modalImg');
-      if (!img) return;
-      if (state.zoomLevel <= 1) { pan.x = 0; pan.y = 0; }
-      clampPan();
-      const tx = pan.x / state.zoomLevel;
-      const ty = pan.y / state.zoomLevel;
-      img.style.transform = `scale(${state.zoomLevel}) translate(${tx}px, ${ty}px)`;
-      img.classList.toggle('zoomed', state.zoomLevel > 1);
-      img.style.cursor = state.zoomLevel > 1 ? 'grab' : 'zoom-in';
+      const img = document.getElementById('modalImg'); if (!img) return;
+      if (state.zoomLevel <= 1) { pan.x = 0; pan.y = 0; } clampPan();
+      img.style.transform = `scale(${state.zoomLevel}) translate(${pan.x / state.zoomLevel}px, ${pan.y / state.zoomLevel}px)`;
+      img.classList.toggle('zoomed', state.zoomLevel > 1); img.style.cursor = state.zoomLevel > 1 ? 'grab' : 'zoom-in';
       document.getElementById('zoomLevel').textContent = Math.round(state.zoomLevel * 100) + '%';
     }
 
-    /* ── PAN souris ── */
     (function() {
       const outer = document.getElementById('modalImgOuter');
-      let dragging = false;
-      let startX = 0, startY = 0;
-      let startPanX = 0, startPanY = 0;
-      let didDrag = false;
-
+      let dragging = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0, didDrag = false;
       outer.addEventListener('mousedown', function(e) {
-        if (e.target.closest('.zoom-controls')) return;
-        if (state.zoomLevel <= 1) return;
-        e.preventDefault();
-        dragging = true;
-        didDrag = false;
-        startX = e.clientX;
-        startY = e.clientY;
-        startPanX = pan.x;
-        startPanY = pan.y;
-        const img = document.getElementById('modalImg');
-        if (img) { img.style.cursor = 'grabbing'; img.classList.add('dragging'); }
+        if (e.target.closest('.zoom-controls')) return; if (state.zoomLevel <= 1) return;
+        e.preventDefault(); dragging = true; didDrag = false;
+        startX = e.clientX; startY = e.clientY; startPanX = pan.x; startPanY = pan.y;
+        const img = document.getElementById('modalImg'); if (img) { img.style.cursor = 'grabbing'; img.classList.add('dragging'); }
       });
-
       window.addEventListener('mousemove', function(e) {
-        if (!dragging) return;
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
+        if (!dragging) return; const dx = e.clientX - startX; const dy = e.clientY - startY;
         if (Math.abs(dx) > 2 || Math.abs(dy) > 2) didDrag = true;
-        pan.x = startPanX + dx;
-        pan.y = startPanY + dy;
-        applyZoom();
+        pan.x = startPanX + dx; pan.y = startPanY + dy; applyZoom();
       });
-
       window.addEventListener('mouseup', function() {
-        if (!dragging) return;
-        dragging = false;
+        if (!dragging) return; dragging = false;
         const img = document.getElementById('modalImg');
-        if (img) {
-          img.classList.remove('dragging');
-          img.style.cursor = state.zoomLevel > 1 ? 'grab' : 'zoom-in';
-        }
+        if (img) { img.classList.remove('dragging'); img.style.cursor = state.zoomLevel > 1 ? 'grab' : 'zoom-in'; }
       });
-
       outer._getDidDrag = () => didDrag;
     })();
 
@@ -2223,95 +1965,52 @@
       toggleZoom();
     }
 
-    /* ── PAN tactile ── */
     (function() {
       const outer = document.getElementById('modalImgOuter');
-      let lastDist = 0;
-      let lastTX = 0, lastTY = 0;
-      let touchPanning = false;
-
+      let lastDist = 0, lastTX = 0, lastTY = 0, touchPanning = false;
       outer.addEventListener('touchstart', function(e) {
-        if (e.touches.length === 2) {
-          touchPanning = false;
-          lastDist = Math.hypot(
-            e.touches[0].pageX - e.touches[1].pageX,
-            e.touches[0].pageY - e.touches[1].pageY
-          );
-        } else if (e.touches.length === 1 && state.zoomLevel > 1) {
-          touchPanning = true;
-          lastTX = e.touches[0].clientX;
-          lastTY = e.touches[0].clientY;
-        }
+        if (e.touches.length === 2) { touchPanning = false; lastDist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY); }
+        else if (e.touches.length === 1 && state.zoomLevel > 1) { touchPanning = true; lastTX = e.touches[0].clientX; lastTY = e.touches[0].clientY; }
       }, { passive: true });
-
       outer.addEventListener('touchmove', function(e) {
         if (e.touches.length === 2) {
-          const dist = Math.hypot(
-            e.touches[0].pageX - e.touches[1].pageX,
-            e.touches[0].pageY - e.touches[1].pageY
-          );
-          const delta = (dist - lastDist) / 80;
-          state.zoomLevel = Math.min(4, Math.max(1, state.zoomLevel + delta));
-          applyZoom();
-          lastDist = dist;
+          const dist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
+          state.zoomLevel = Math.min(4, Math.max(1, state.zoomLevel + (dist - lastDist) / 80)); applyZoom(); lastDist = dist;
         } else if (e.touches.length === 1 && touchPanning) {
-          pan.x += e.touches[0].clientX - lastTX;
-          pan.y += e.touches[0].clientY - lastTY;
-          lastTX = e.touches[0].clientX;
-          lastTY = e.touches[0].clientY;
-          applyZoom();
+          pan.x += e.touches[0].clientX - lastTX; pan.y += e.touches[0].clientY - lastTY;
+          lastTX = e.touches[0].clientX; lastTY = e.touches[0].clientY; applyZoom();
         }
       }, { passive: true });
-
-      outer.addEventListener('touchend', function(e) {
-        if (e.touches.length < 1) touchPanning = false;
-      }, { passive: true });
+      outer.addEventListener('touchend', function(e) { if (e.touches.length < 1) touchPanning = false; }, { passive: true });
     })();
 
-    /* ── Molette souris ── */
     document.getElementById('modalImgOuter').addEventListener('wheel', function(e) {
-      if (!document.getElementById('modalBackdrop').classList.contains('open')) return;
-      e.preventDefault();
-      const oldZoom = state.zoomLevel;
-      state.zoomLevel = Math.min(4, Math.max(1, state.zoomLevel - e.deltaY / 250));
+      if (!document.getElementById('modalBackdrop').classList.contains('open')) return; e.preventDefault();
+      const oldZoom = state.zoomLevel; state.zoomLevel = Math.min(4, Math.max(1, state.zoomLevel - e.deltaY / 250));
       if (state.zoomLevel === oldZoom) return;
-
       if (oldZoom > 1 && state.zoomLevel > 1) {
-        const outer = document.getElementById('modalImgOuter');
-        const rect  = outer.getBoundingClientRect();
-        const cx = e.clientX - rect.left - rect.width  / 2;
-        const cy = e.clientY - rect.top  - rect.height / 2;
-        const ratio = state.zoomLevel / oldZoom;
-        pan.x = cx + (pan.x - cx) * ratio;
-        pan.y = cy + (pan.y - cy) * ratio;
-      } else if (state.zoomLevel <= 1) {
-        pan.x = 0; pan.y = 0;
-      }
-
+        const outer = document.getElementById('modalImgOuter'); const rect = outer.getBoundingClientRect();
+        const cx = e.clientX - rect.left - rect.width / 2; const cy = e.clientY - rect.top - rect.height / 2;
+        const ratio = state.zoomLevel / oldZoom; pan.x = cx + (pan.x - cx) * ratio; pan.y = cy + (pan.y - cy) * ratio;
+      } else if (state.zoomLevel <= 1) { pan.x = 0; pan.y = 0; }
       applyZoom();
     }, { passive: false });
 
-    /* ── Flèches clavier ── */
     document.addEventListener('keydown', function(e) {
       if (!document.getElementById('modalBackdrop').classList.contains('open')) return;
       if (state.zoomLevel > 1) {
         const step = 50;
-        if (e.key === 'ArrowUp')                      { pan.y += step; applyZoom(); e.preventDefault(); return; }
-        if (e.key === 'ArrowDown')                    { pan.y -= step; applyZoom(); e.preventDefault(); return; }
-        if (e.key === 'ArrowLeft'  && !e.shiftKey)    { pan.x += step; applyZoom(); e.preventDefault(); return; }
-        if (e.key === 'ArrowRight' && !e.shiftKey)    { pan.x -= step; applyZoom(); e.preventDefault(); return; }
+        if (e.key === 'ArrowUp')    { pan.y += step; applyZoom(); e.preventDefault(); return; }
+        if (e.key === 'ArrowDown')  { pan.y -= step; applyZoom(); e.preventDefault(); return; }
+        if (e.key === 'ArrowLeft'  && !e.shiftKey) { pan.x += step; applyZoom(); e.preventDefault(); return; }
+        if (e.key === 'ArrowRight' && !e.shiftKey) { pan.x -= step; applyZoom(); e.preventDefault(); return; }
       }
     });
 
-    /* ================================================================
-       SLIDESHOW NAV
-    ================================================================ */
     function slidePreview(dir) {
       if (!state.currentPreview) return;
-      const arr = state.filtered;
-      const idx = arr.findIndex(x => x.id === state.currentPreview.id);
-      const next = arr[(idx + dir + arr.length) % arr.length];
-      previewModel(next.id);
+      const arr = state.filtered; const idx = arr.findIndex(x => x.id === state.currentPreview.id);
+      previewModel(arr[(idx + dir + arr.length) % arr.length].id);
     }
 
     document.addEventListener('keydown', function(e) {
@@ -2320,324 +2019,145 @@
       if (e.key === 'ArrowLeft')  slidePreview(-1);
     });
 
-    /* ================================================================
-       SIMILAR MODELS
-    ================================================================ */
     function renderSimilar(m) {
       const sec = document.getElementById('similarSection');
-      const similars = RAW_MODELS.filter(x =>
-        x.id !== m.id && (x.format === m.format || x.style === m.style)
-      ).slice(0, 6);
-
+      const similars = RAW_MODELS.filter(x => x.id !== m.id && (x.format === m.format || x.style === m.style)).slice(0, 6);
       if (!similars.length) { sec.innerHTML = ''; return; }
-
-      sec.innerHTML = `
-        <div class="similar-label">Vous aimerez aussi</div>
-        <div class="similar-strip">
-          ${similars.map(s => `
-            <div class="similar-chip" onclick="previewModel('${s.id}')">
-              <div class="similar-chip__img">
-                <img src="${s.image}" alt="${s.title}" loading="lazy"
-                     onerror="this.style.display='none'"/>
-              </div>
-              <div class="similar-chip__info">
-                <div class="similar-chip__title">${s.title}</div>
-                <div class="similar-chip__tag">${s.format==='word'?'Word':'PPT'} · ${s.style}</div>
-              </div>
-            </div>`).join('')}
-        </div>`;
+      sec.innerHTML = `<div class="similar-label">Vous aimerez aussi</div><div class="similar-strip">${similars.map(s => `<div class="similar-chip" onclick="previewModel('${s.id}')"><div class="similar-chip__img"><img src="${s.image}" alt="${s.title}" loading="lazy" onerror="this.style.display='none'"/></div><div class="similar-chip__info"><div class="similar-chip__title">${s.title}</div><div class="similar-chip__tag">${s.format==='word'?'Word':'PPT'} · ${s.style}</div></div></div>`).join('')}</div>`;
     }
 
-    /* ================================================================
-       COMPARE MODE
-    ================================================================ */
+    /* ── COMPARE MODE ── */
     function toggleCompareMode() {
-      state.compareMode = !state.compareMode;
-      state.compareList = [];
+      state.compareMode = !state.compareMode; state.compareList = [];
       document.getElementById('compareModeLabel').textContent = state.compareMode ? '✕ Quitter' : 'Comparer';
       document.getElementById('compareBar').classList.toggle('visible', state.compareMode);
-      render();
-      if (state.compareMode) showToast('Sélectionnez 2 à 3 modèles à comparer');
+      render(); if (state.compareMode) showToast('Sélectionnez 2 à 3 modèles à comparer');
     }
-
     function toggleCompare(id) {
-      if (!state.compareMode) return;
-      const idx = state.compareList.indexOf(id);
-      if (idx === -1) {
-        if (state.compareList.length >= 3) { showToast('Maximum 3 modèles à la fois'); return; }
-        state.compareList.push(id);
-      } else {
-        state.compareList.splice(idx, 1);
-      }
-      updateCompareBar();
-      render();
+      if (!state.compareMode) return; const idx = state.compareList.indexOf(id);
+      if (idx === -1) { if (state.compareList.length >= 3) { showToast('Maximum 3 modèles à la fois'); return; } state.compareList.push(id); }
+      else { state.compareList.splice(idx, 1); }
+      updateCompareBar(); render();
     }
-
     function updateCompareBar() {
-      const slots = document.getElementById('compareSlots');
-      const badge = document.getElementById('compareBadge');
-      const goBtn = document.getElementById('compareGoBtn');
-      badge.textContent = state.compareList.length;
-      goBtn.disabled = state.compareList.length < 2;
-
-      const maxSlots = 3;
-      slots.innerHTML = Array.from({length: maxSlots}).map((_, i) => {
-        const id = state.compareList[i];
-        const m  = id ? RAW_MODELS.find(x => x.id === id) : null;
-        return m
-          ? `<div class="compare-slot filled">
-               <span class="compare-slot__num">N°${m.number}</span>
-               <span style="font-size:.75rem;color:var(--text-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80px;">${m.title}</span>
-               <button class="compare-slot__remove" onclick="toggleCompare('${m.id}')" title="Retirer">×</button>
-             </div>`
-          : `<div class="compare-slot empty" style="font-size:.72rem;color:var(--text-3);">Slot ${i+1}</div>`;
+      const slots = document.getElementById('compareSlots'); const badge = document.getElementById('compareBadge'); const goBtn = document.getElementById('compareGoBtn');
+      badge.textContent = state.compareList.length; goBtn.disabled = state.compareList.length < 2;
+      slots.innerHTML = Array.from({length: 3}).map((_, i) => {
+        const id = state.compareList[i]; const m = id ? RAW_MODELS.find(x => x.id === id) : null;
+        return m ? `<div class="compare-slot filled"><span class="compare-slot__num">N°${m.number}</span><span style="font-size:.75rem;color:var(--text-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80px;">${m.title}</span><button class="compare-slot__remove" onclick="toggleCompare('${m.id}')" title="Retirer">×</button></div>`
+                 : `<div class="compare-slot empty" style="font-size:.72rem;color:var(--text-3);">Slot ${i+1}</div>`;
       }).join('');
     }
-
     function cancelCompare() {
-      state.compareMode = false;
-      state.compareList = [];
+      state.compareMode = false; state.compareList = [];
       document.getElementById('compareModeLabel').textContent = 'Comparer';
-      document.getElementById('compareBar').classList.remove('visible');
-      render();
+      document.getElementById('compareBar').classList.remove('visible'); render();
     }
-
     function openCompareModal() {
       if (state.compareList.length < 2) return;
       const styleLabels = {moderne:'Moderne',classique:'Classique',creatif:'Créatif',minimal:'Minimal'};
       document.getElementById('compareGrid').innerHTML = state.compareList.map(id => {
-        const m = RAW_MODELS.find(x => x.id === id);
-        if (!m) return '';
-        return `
-          <div class="compare-item">
-            <div class="compare-item__img">
-              <img src="${m.image}" alt="${m.title}" loading="lazy"
-                   onerror="this.style.display='none'"/>
-            </div>
-            <div class="compare-item__info">
-              <div class="compare-item__title">${m.title}</div>
-              <div class="compare-item__tags">
-                <span class="tag ${m.format==='word'?'word':'ppt'}">${m.format==='word'?'Word':'PowerPoint'}</span>
-                <span class="tag ${m.style}">${styleLabels[m.style]||m.style}</span>
-              </div>
-              <button class="compare-item__select" onclick="closeCompareModal();selectModel('${m.id}')">
-                Choisir ce modèle
-              </button>
-            </div>
-          </div>`;
+        const m = RAW_MODELS.find(x => x.id === id); if (!m) return '';
+        return `<div class="compare-item"><div class="compare-item__img"><img src="${m.image}" alt="${m.title}" loading="lazy" onerror="this.style.display='none'"/></div><div class="compare-item__info"><div class="compare-item__title">${m.title}</div><div class="compare-item__tags"><span class="tag ${m.format==='word'?'word':'ppt'}">${m.format==='word'?'Word':'PowerPoint'}</span><span class="tag ${m.style}">${styleLabels[m.style]||m.style}</span></div><button class="compare-item__select" onclick="closeCompareModal();selectModel('${m.id}')">Choisir ce modèle</button></div></div>`;
       }).join('');
-      document.getElementById('compareBackdrop').classList.add('open');
-      document.body.style.overflow = 'hidden';
+      document.getElementById('compareBackdrop').classList.add('open'); document.body.style.overflow = 'hidden';
     }
+    function closeCompareModal() { document.getElementById('compareBackdrop').classList.remove('open'); document.body.style.overflow = ''; }
+    function closeCompareOnOutside(e) { if (e.target === document.getElementById('compareBackdrop')) closeCompareModal(); }
 
-    function closeCompareModal() {
-      document.getElementById('compareBackdrop').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function closeCompareOnOutside(e) {
-      if (e.target === document.getElementById('compareBackdrop')) closeCompareModal();
-    }
-
-    /* ================================================================
-       SHARE SYSTEM
-    ================================================================ */
+    /* ── SHARE SYSTEM ── */
     let shareTarget = null;
-
     const SITE_BASE = 'https://chronos-services.netlify.app/catalogue%20de%20cv';
-
-    function buildShareURL(model) {
-      return `${SITE_BASE}?model=${model.id}&format=${model.format}&style=${model.style}`;
-    }
-
+    function buildShareURL(model) { return `${SITE_BASE}?model=${model.id}&format=${model.format}&style=${model.style}`; }
     function buildShareText(model) {
-      const fmtLabel    = model.format === 'word' ? 'Word' : 'PowerPoint';
+      const fmtLabel = model.format === 'word' ? 'Word' : 'PowerPoint';
       const styleLabels = { moderne:'Moderne', classique:'Classique', creatif:'Créatif', minimal:'Minimal' };
-      const style       = styleLabels[model.style] || model.style;
-      const userMsg     = (document.getElementById('shareMessage')?.value || '').trim();
-      const intro = userMsg ? userMsg : 'Je pense qu\'il peut te correspondre !';
-      return `${intro}\n\nDécouvrez le ${model.title} sur Chronos-Services !\nFormat : ${fmtLabel}\nStyle : ${style}\n`;
+      const userMsg = (document.getElementById('shareMessage')?.value || '').trim();
+      return `${userMsg || 'Je pense qu\'il peut te correspondre !'}\n\nDécouvrez le ${model.title} sur Chronos-Services !\nFormat : ${fmtLabel}\nStyle : ${styleLabels[model.style]||model.style}\n`;
     }
-
     function openShare(id) {
-      const m = RAW_MODELS.find(x => x.id === id);
-      if (!m) return;
-      shareTarget = m;
-
-      const fmtLabel    = m.format === 'word' ? 'Word' : 'PowerPoint';
+      const m = RAW_MODELS.find(x => x.id === id); if (!m) return; shareTarget = m;
+      const fmtLabel = m.format === 'word' ? 'Word' : 'PowerPoint';
       const styleLabels = { moderne:'Moderne', classique:'Classique', creatif:'Créatif', minimal:'Minimal' };
-      const style       = styleLabels[m.style] || m.style;
-      const url         = buildShareURL(m);
-
+      const url = buildShareURL(m);
       document.getElementById('shareCardTitle').textContent = m.title;
-      document.getElementById('shareCardMeta').innerHTML = `
-        <span class="share-card__tag">${fmtLabel}</span>
-        <span class="share-card__tag">${style}</span>`;
-
+      document.getElementById('shareCardMeta').innerHTML = `<span class="share-card__tag">${fmtLabel}</span><span class="share-card__tag">${styleLabels[m.style]||m.style}</span>`;
       document.getElementById('shareLinkInput').value = url;
-
-      const ogTitle = `${m.title} — Chronos-Services`;
-      const ogDesc  = `Modèle CV professionnel · Format ${fmtLabel} · Style ${style}. Téléchargez-le sur Chronos-Services.`;
+      const ogTitle = `${m.title} — Chronos-Services`; const ogDesc = `Modèle CV professionnel · Format ${fmtLabel} · Style ${styleLabels[m.style]||m.style}. Téléchargez-le sur Chronos-Services.`;
       document.querySelector('meta[property="og:title"]')?.setAttribute('content', ogTitle);
       document.querySelector('meta[property="og:description"]')?.setAttribute('content', ogDesc);
       document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
       document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', ogTitle);
       document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', ogDesc);
       document.title = ogTitle;
-
-      const copyBtn = document.getElementById('shareCopyBtn');
-      copyBtn.classList.remove('copied');
-      document.getElementById('shareCopyLabel').textContent = 'Copier';
-
-      document.getElementById('nativeShareBtn').style.display =
-        navigator.share ? 'flex' : 'none';
-
+      const copyBtn = document.getElementById('shareCopyBtn'); copyBtn.classList.remove('copied'); document.getElementById('shareCopyLabel').textContent = 'Copier';
+      document.getElementById('nativeShareBtn').style.display = navigator.share ? 'flex' : 'none';
       generateQR(url);
-
-      document.getElementById('shareBackdrop').classList.add('open');
-      document.body.style.overflow = 'hidden';
+      document.getElementById('shareBackdrop').classList.add('open'); document.body.style.overflow = 'hidden';
     }
-
     function closeShare() {
-      document.getElementById('shareBackdrop').classList.remove('open');
-      document.body.style.overflow = '';
-      const msgEl = document.getElementById('shareMessage');
-      if (msgEl) { msgEl.value = ''; document.getElementById('shareMsgCnt').textContent = '0/200'; }
+      document.getElementById('shareBackdrop').classList.remove('open'); document.body.style.overflow = '';
+      const msgEl = document.getElementById('shareMessage'); if (msgEl) { msgEl.value = ''; document.getElementById('shareMsgCnt').textContent = '0/200'; }
       shareTarget = null;
     }
-
-    function closeShareOnOutside(e) {
-      if (e.target === document.getElementById('shareBackdrop')) closeShare();
-    }
-
+    function closeShareOnOutside(e) { if (e.target === document.getElementById('shareBackdrop')) closeShare(); }
     function copyShareLink() {
-      if (!shareTarget) return;
-      const url = buildShareURL(shareTarget);
-      const btn  = document.getElementById('shareCopyBtn');
-      const lbl  = document.getElementById('shareCopyLabel');
-
-      navigator.clipboard.writeText(url).then(() => {
-        btn.classList.add('copied');
-        lbl.textContent = 'Copié ✓';
-        showToast('Lien copié dans le presse-papiers ✓');
-        setTimeout(() => { btn.classList.remove('copied'); lbl.textContent = 'Copier'; }, 2500);
-      }).catch(() => {
-        const inp = document.getElementById('shareLinkInput');
-        inp.select();
-        document.execCommand('copy');
-        btn.classList.add('copied');
-        lbl.textContent = 'Copié ✓';
-        showToast('Lien copié ✓');
-        setTimeout(() => { btn.classList.remove('copied'); lbl.textContent = 'Copier'; }, 2500);
-      });
+      if (!shareTarget) return; const url = buildShareURL(shareTarget); const btn = document.getElementById('shareCopyBtn'); const lbl = document.getElementById('shareCopyLabel');
+      navigator.clipboard.writeText(url).then(() => { btn.classList.add('copied'); lbl.textContent = 'Copié ✓'; showToast('Lien copié dans le presse-papiers ✓'); setTimeout(() => { btn.classList.remove('copied'); lbl.textContent = 'Copier'; }, 2500); }).catch(() => { const inp = document.getElementById('shareLinkInput'); inp.select(); document.execCommand('copy'); btn.classList.add('copied'); lbl.textContent = 'Copié ✓'; showToast('Lien copié ✓'); setTimeout(() => { btn.classList.remove('copied'); lbl.textContent = 'Copier'; }, 2500); });
     }
-
-    function shareWhatsApp() {
-      if (!shareTarget) return;
-      const text = buildShareText(shareTarget) + buildShareURL(shareTarget);
-      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-      closeShare();
-    }
-
-    function shareFacebook() {
-      if (!shareTarget) return;
-      const url = buildShareURL(shareTarget);
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
-      closeShare();
-    }
-
+    function shareWhatsApp() { if (!shareTarget) return; window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText(shareTarget) + buildShareURL(shareTarget))}`, '_blank'); closeShare(); }
+    function shareFacebook() { if (!shareTarget) return; window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(buildShareURL(shareTarget))}`, '_blank', 'width=600,height=400'); closeShare(); }
     function shareEmail() {
-      if (!shareTarget) return;
-      const m          = shareTarget;
-      const fmtLabel   = m.format === 'word' ? 'Word' : 'PowerPoint';
-      const styleLabels = { moderne:'Moderne', classique:'Classique', creatif:'Créatif', minimal:'Minimal' };
-      const style      = styleLabels[m.style] || m.style;
-      const url        = buildShareURL(m);
-      const userMsg    = (document.getElementById('shareMessage')?.value || '').trim();
-
+      if (!shareTarget) return; const m = shareTarget;
+      const fmtLabel = m.format === 'word' ? 'Word' : 'PowerPoint'; const styleLabels = { moderne:'Moderne', classique:'Classique', creatif:'Créatif', minimal:'Minimal' };
+      const url = buildShareURL(m); const userMsg = (document.getElementById('shareMessage')?.value || '').trim();
       const subject = encodeURIComponent(`${m.title} — Chronos-Services`);
-      const body    = encodeURIComponent(
-        (userMsg ? userMsg + '\n\n' : 'Bonjour,\n\nJe vous partage ce modèle de CV professionnel.\n\n') +
-        `${m.title}\nFormat : ${fmtLabel}  |  Style : ${style}\n\n` +
-        `Voir le modèle : ${url}\n\n` +
-        `Chronos-Services`
-      );
-      window.location.href = `mailto:?subject=${subject}&body=${body}`;
-      closeShare();
+      const body = encodeURIComponent((userMsg ? userMsg + '\n\n' : 'Bonjour,\n\nJe vous partage ce modèle de CV professionnel.\n\n') + `${m.title}\nFormat : ${fmtLabel}  |  Style : ${styleLabels[m.style]||m.style}\n\nVoir le modèle : ${url}\n\nChronos-Services`);
+      window.location.href = `mailto:?subject=${subject}&body=${body}`; closeShare();
     }
-
-    function shareLinkedIn() {
-      if (!shareTarget) return;
-      const url = buildShareURL(shareTarget);
-      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank', 'width=600,height=500');
-      closeShare();
-    }
-
+    function shareLinkedIn() { if (!shareTarget) return; window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(buildShareURL(shareTarget))}`, '_blank', 'width=600,height=500'); closeShare(); }
     function nativeShare() {
       if (!shareTarget || !navigator.share) return;
-      const fmtLabel = shareTarget.format === 'word' ? 'Word' : 'PowerPoint';
-      navigator.share({
-        title: `${shareTarget.title} — Chronos-Services`,
-        text:  buildShareText(shareTarget),
-        url:   buildShareURL(shareTarget)
-      }).then(() => {
-        closeShare();
-        showToast('Partagé avec succès ✓');
-      }).catch(() => {});
+      navigator.share({ title: `${shareTarget.title} — Chronos-Services`, text: buildShareText(shareTarget), url: buildShareURL(shareTarget) }).then(() => { closeShare(); showToast('Partagé avec succès ✓'); }).catch(() => {});
     }
-
     function generateQR(url) {
-      const wrap = document.getElementById('shareQrWrap');
-      const size = 64;
-      const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(url)}&bgcolor=ffffff&color=094102&margin=2`;
-      wrap.innerHTML = `<img src="${apiUrl}" width="${size}" height="${size}" alt="QR Code"
-        style="border-radius:4px;"
-        onerror="this.parentElement.innerHTML='<span style=\\'font-size:.6rem;color:var(--text-3);text-align:center;padding:4px;\\'>QR<br>indisponible</span>'"
-      />`;
+      const wrap = document.getElementById('shareQrWrap'); const size = 64;
+      wrap.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(url)}&bgcolor=ffffff&color=094102&margin=2" width="${size}" height="${size}" alt="QR Code" style="border-radius:4px;" onerror="this.parentElement.innerHTML='<span style=\\'font-size:.6rem;color:var(--text-3);text-align:center;padding:4px;\\'>QR<br>indisponible</span>'"/>`;
     }
-
     function downloadQR() {
-      if (!shareTarget) return;
-      const url = buildShareURL(shareTarget);
-      const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}&bgcolor=ffffff&color=094102&margin=10`;
-      const a = document.createElement('a');
-      a.href = apiUrl;
-      a.download = `QR-${shareTarget.id}-${shareTarget.format}.png`;
-      a.target = '_blank';
-      a.click();
+      if (!shareTarget) return; const url = buildShareURL(shareTarget);
+      const a = document.createElement('a'); a.href = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}&bgcolor=ffffff&color=094102&margin=10`; a.download = `QR-${shareTarget.id}-${shareTarget.format}.png`; a.target = '_blank'; a.click();
       showToast('Téléchargement du QR code…');
     }
 
-    /* ================================================================
-       DARK MODE
-    ================================================================ */
+    /* ── DARK MODE ── */
+    function applyThemeUI(isDark) {
+      document.querySelector('.icon-moon').style.display = isDark ? 'none'  : 'block';
+      document.querySelector('.icon-sun').style.display  = isDark ? 'block' : 'none';
+      const lbl = document.getElementById('themeLabel');
+      if (lbl) lbl.textContent = isDark ? 'Light' : 'Dark';
+    }
     function toggleTheme() {
       const isDark = document.body.getAttribute('data-theme') === 'dark';
       document.body.setAttribute('data-theme', isDark ? '' : 'dark');
-      document.querySelector('.icon-moon').style.display = isDark ? 'block' : 'none';
-      document.querySelector('.icon-sun').style.display  = isDark ? 'none'  : 'block';
+      applyThemeUI(!isDark);
       try { sessionStorage.setItem('cvTheme', isDark ? '' : 'dark'); } catch(e){}
     }
     (function() {
       const saved = sessionStorage.getItem('cvTheme');
       if (saved === 'dark') {
         document.body.setAttribute('data-theme', 'dark');
-        const moon = document.querySelector('.icon-moon');
-        const sun  = document.querySelector('.icon-sun');
-        if (moon) moon.style.display = 'none';
-        if (sun)  sun.style.display  = 'block';
+        applyThemeUI(true);
       }
     })();
 
-    /* ================================================================
-       ESCAPE KEY
-    ================================================================ */
+    /* ── ESCAPE KEY ── */
     document.addEventListener('keydown', function(e) {
       if (e.key !== 'Escape') return;
       if (document.getElementById('compareBackdrop').classList.contains('open')) { closeCompareModal(); return; }
       if (document.getElementById('shareBackdrop').classList.contains('open'))   { closeShare(); return; }
       closeModal();
     });
-
   </script>
 </body>
 </html>

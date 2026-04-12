@@ -96,9 +96,7 @@ select {
 .note { font-size: 0.76rem; color: var(--muted); background: #f8f8f8; border-left: 3px solid var(--border); padding: 10px 14px; border-radius: 0 4px 4px 0; margin-top: 10px; line-height: 1.55; }
 .note strong { color: var(--green); }
 
-/* ══════════════════════════════════════
-   CARD RENOUVEAU — PROPOSITION B
-══════════════════════════════════════ */
+/* RENOUVEAU CARD */
 .renouveau-card {
   background: var(--bg-card);
   border-radius: 6px;
@@ -192,8 +190,6 @@ select {
   flex-shrink: 0;
 }
 .cat-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-
-/* ══════════════════════════════════════ */
 
 /* RUBRIQUE SELECTOR */
 .rubrique-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -484,9 +480,7 @@ select {
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       CARD RENOUVEAU DE MODÈLE — OPTION B
-  ══════════════════════════════════════ -->
+  <!-- RENOUVEAU DE MODÈLE -->
   <div class="renouveau-card" id="renouveauCard">
     <div class="renouveau-head">
       <div class="renouveau-head-left">
@@ -569,7 +563,6 @@ select {
       </div>
       <div class="card-body">
 
-        <!-- Note visible quand renouveau est actif -->
         <div class="rub-renouveau-note" id="rubRenouveauNote">
           Renouveau de modèle activé — cochez les rubriques à modifier ou ajouter dans le nouveau design. Le tarif reste fixé au renouveau complet.
         </div>
@@ -601,13 +594,35 @@ select {
           </div>
         </div>
 
-        <!-- SEC infos -->
+        <!-- ════════════════════════════════
+             SEC INFOS PERSONNELLES — ENRICHI
+        ════════════════════════════════ -->
         <div class="sec-content" id="sec_infos">
           <div class="sec-title">Informations personnelles</div>
           <div class="row2">
             <div class="field">
-              <label>Nouvelle adresse</label>
+              <label>Nouveau téléphone <span class="opt">(si modifié)</span></label>
+              <input type="tel" name="maj_telephone" id="f_maj_telephone" placeholder="Ex : +241 60 00 00 00">
+            </div>
+            <div class="field">
+              <label>Nouvel email <span class="opt">(si modifié)</span></label>
+              <input type="email" name="maj_email" id="f_maj_email" placeholder="Ex : jeanne@email.com">
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label>Nouvelle adresse <span class="opt">(si modifiée)</span></label>
               <input type="text" name="maj_adresse" id="f_adresse" placeholder="Ex : Libreville, Gabon">
+            </div>
+            <div class="field">
+              <label>Nationalité <span class="opt">(si modifiée)</span></label>
+              <input type="text" name="maj_nationalite" id="f_nationalite" placeholder="Ex : Gabonaise">
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label>Date de naissance <span class="opt">(si modifiée)</span></label>
+              <input type="text" name="maj_naissance" id="f_naissance" placeholder="Ex : 12 mars 1995">
             </div>
             <div class="field">
               <label>N° ONE / PNPE <span class="opt">(si modifié)</span></label>
@@ -886,14 +901,7 @@ select {
 var GROQ_MODEL     = 'llama-3.3-70b-versatile';
 var GROQ_PROXY_URL = '/.netlify/functions/groq-proxy';
 
-/* ── TARIFICATION ──
-   Mise à jour normale :
-   1 section  → 1 000 FCFA normal | 1 500 premium
-   2 sections → 1 500 FCFA normal | 2 250 premium
-   3+         → 2 000 FCFA normal | 3 000 premium
-   Renouveau de modèle (toujours palier max) :
-               → 2 000 FCFA normal | 3 000 premium
-── */
+/* ── TARIFICATION ── */
 var PRICE_GRID = [0, 1000, 1500, 2000];
 
 /* ── ÉTAT RENOUVEAU ── */
@@ -904,7 +912,6 @@ function handleRenouveauToggle(checked) {
   var body  = document.getElementById('renouveauBody');
   var note  = document.getElementById('rubRenouveauNote');
   var sub   = document.getElementById('rubriquesSub');
-
   if (checked) {
     body.classList.add('open');
     note.classList.add('show');
@@ -921,14 +928,12 @@ function handleRenouveauToggle(checked) {
 function fmtFCFA(n) {
   return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + ' FCFA';
 }
-
 function getPalier(checked) {
   if (checked <= 0) return 0;
   if (checked === 1) return 1;
   if (checked === 2) return 2;
   return 3;
 }
-
 function calcPrice() {
   var checked = document.querySelectorAll('input[name="rubriques[]"]:checked').length;
   var urgence = document.querySelector('input[name="urgence"]:checked');
@@ -937,7 +942,6 @@ function calcPrice() {
   var note    = document.getElementById('priceNote');
   var hint    = document.getElementById('priceHint');
 
-  /* Si renouveau actif — tarif verrouillé palier 3, affiché directement dans la section délai */
   if (renouveauActif) {
     if (!urgence) {
       display.classList.remove('show');
@@ -948,7 +952,6 @@ function calcPrice() {
     hint.style.display = 'none';
     var isPrem = urgence.value === 'premium';
     var tarif  = isPrem ? 3000 : 2000;
-
     rows.innerHTML = '';
     addPriceRow(rows, 'Renouveau complet (nouveau modèle)', 2000);
     if (isPrem) addPriceRow(rows, 'Supplément urgence (×1,5)', 1000);
@@ -958,7 +961,6 @@ function calcPrice() {
     rows.appendChild(sep);
     note.textContent = isPrem ? 'Traitement prioritaire — priorité absolue.' : 'Livraison sous 48 heures.';
     display.classList.add('show');
-
     window._currentTotal   = tarif;
     window._currentBase    = 2000;
     window._currentIsPrem  = isPrem;
@@ -968,7 +970,6 @@ function calcPrice() {
     return;
   }
 
-  /* Mise à jour normale */
   if (!urgence || checked === 0) {
     display.classList.remove('show');
     hint.style.display = 'block';
@@ -976,14 +977,11 @@ function calcPrice() {
     return;
   }
   hint.style.display = 'none';
-
   var isPrem2  = urgence.value === 'premium';
   var palier   = getPalier(checked);
   var base     = PRICE_GRID[palier];
   var tarif2   = isPrem2 ? Math.min(Math.round(base * 1.5), 3000) : base;
-
-  var labels = ['', 'Mise à jour simple (1 rubrique)', 'Mise à jour moyenne (2 rubriques)', 'Mise à jour complète (3 rubriques ou +)'];
-
+  var labels   = ['', 'Mise à jour simple (1 rubrique)', 'Mise à jour moyenne (2 rubriques)', 'Mise à jour complète (3 rubriques ou +)'];
   rows.innerHTML = '';
   addPriceRow(rows, labels[palier], base);
   if (isPrem2) addPriceRow(rows, 'Supplément urgence (×1,5)', tarif2 - base);
@@ -993,7 +991,6 @@ function calcPrice() {
   rows.appendChild(sep2);
   note.textContent = isPrem2 ? 'Traitement prioritaire — priorité absolue.' : 'Livraison sous 48 heures.';
   display.classList.add('show');
-
   window._currentTotal   = tarif2;
   window._currentBase    = base;
   window._currentIsPrem  = isPrem2;
@@ -1001,7 +998,6 @@ function calcPrice() {
   window._currentPalier  = labels[palier];
   window._currentSuppl   = tarif2 - base;
 }
-
 function addPriceRow(container, label, val) {
   var div = document.createElement('div');
   div.className = 'price-row';
@@ -1014,29 +1010,16 @@ document.addEventListener('DOMContentLoaded', function() {
     cb.addEventListener('change', calcPrice);
   });
 
-  /* ── RETOUR CATALOGUE : pré-remplissage automatique du modèle ── */
   (function checkRetourCatalogue() {
-    var params   = new URLSearchParams(window.location.search);
-    var modele   = params.get('modele');
-    var source   = params.get('source');
-
+    var params  = new URLSearchParams(window.location.search);
+    var modele  = params.get('modele');
+    var source  = params.get('source');
     if (modele && source === 'maj') {
-      /* Activer le toggle renouveau */
       var toggle = document.getElementById('toggleRenouveau');
-      if (toggle && !toggle.checked) {
-        toggle.checked = true;
-        handleRenouveauToggle(true);
-      }
-      /* Remplir le champ */
+      if (toggle && !toggle.checked) { toggle.checked = true; handleRenouveauToggle(true); }
       var field = document.getElementById('f_nouveau_modele');
-      if (field) {
-        field.value = decodeURIComponent(modele);
-        field.style.borderColor = '#094102';
-      }
-      /* Nettoyer l'URL sans recharger la page */
-      var cleanUrl = window.location.pathname;
-      window.history.replaceState({}, '', cleanUrl);
-      /* Scroll vers le champ */
+      if (field) { field.value = decodeURIComponent(modele); field.style.borderColor = '#094102'; }
+      window.history.replaceState({}, '', window.location.pathname);
       setTimeout(function() {
         var card = document.getElementById('renouveauCard');
         if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1081,10 +1064,10 @@ function addFm() {
 }
 
 function structureMessage() {
-  var f = document.getElementById('updateForm');
+  var f  = document.getElementById('updateForm');
   var fd = new FormData(f);
-  var rubriques = fd.getAll('rubriques[]').filter(Boolean);
-  var isRenouveau = renouveauActif;
+  var rubriques     = fd.getAll('rubriques[]').filter(Boolean);
+  var isRenouveau   = renouveauActif;
   var nouveauModele = document.getElementById('f_nouveau_modele').value || '';
 
   var msg = '══════════════════════════════\n  DEMANDE DE MISE À JOUR CV\n══════════════════════════════\n\n';
@@ -1107,12 +1090,24 @@ function structureMessage() {
     msg += '\n';
   }
 
-  if (fd.get('maj_adresse') || fd.get('maj_numero_one')) {
+  /* ── INFOS PERSONNELLES (section enrichie) ── */
+  var majTel  = fd.get('maj_telephone') || '';
+  var majMail = fd.get('maj_email') || '';
+  var majAdr  = fd.get('maj_adresse') || '';
+  var majNat  = fd.get('maj_nationalite') || '';
+  var majNais = fd.get('maj_naissance') || '';
+  var majOne  = fd.get('maj_numero_one') || '';
+  if (majTel || majMail || majAdr || majNat || majNais || majOne) {
     msg += '[ INFOS PERSONNELLES ]\n';
-    if (fd.get('maj_adresse')) msg += 'Adresse    : ' + fd.get('maj_adresse') + '\n';
-    if (fd.get('maj_numero_one')) msg += 'N° ONE     : ' + fd.get('maj_numero_one') + '\n';
+    if (majTel)  msg += 'Nouveau téléphone  : ' + majTel + '\n';
+    if (majMail) msg += 'Nouvel email       : ' + majMail + '\n';
+    if (majAdr)  msg += 'Nouvelle adresse   : ' + majAdr + '\n';
+    if (majNat)  msg += 'Nationalité        : ' + majNat + '\n';
+    if (majNais) msg += 'Date de naissance  : ' + majNais + '\n';
+    if (majOne)  msg += 'N° ONE / PNPE      : ' + majOne + '\n';
     msg += '\n';
   }
+
   if (fd.get('maj_poste') || fd.get('maj_objectifs')) {
     msg += '[ POSTE & OBJECTIFS ]\n';
     if (fd.get('maj_poste')) msg += 'Poste : ' + fd.get('maj_poste') + '\n';
@@ -1187,7 +1182,6 @@ document.getElementById('updateForm').addEventListener('submit', function(e) {
   var rubs = document.querySelectorAll('input[name="rubriques[]"]:checked');
   var urg  = document.querySelector('input[name="urgence"]:checked');
   var msg  = document.getElementById('form-message');
-
   if (!renouveauActif && !rubs.length) {
     msg.textContent = 'Veuillez sélectionner au moins une rubrique à mettre à jour, ou activer l\'option Renouveau de modèle.';
     msg.className = 'error'; return;
@@ -1196,16 +1190,13 @@ document.getElementById('updateForm').addEventListener('submit', function(e) {
     msg.textContent = 'Veuillez choisir un délai de livraison.';
     msg.className = 'error'; return;
   }
-
   calcPrice();
   structureMessage();
   latestInv = genInv();
   document.getElementById('invHidden').value = latestInv;
-
   var btn = document.getElementById('submitBtn');
   btn.disabled = true;
   msg.textContent = 'Envoi en cours…'; msg.className = 'sending';
-
   var fd = new FormData(document.getElementById('updateForm'));
   fetch(document.getElementById('updateForm').action, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
     .then(function(r) {
@@ -1217,19 +1208,17 @@ document.getElementById('updateForm').addEventListener('submit', function(e) {
 });
 
 function showModal() {
-  var isPrem   = window._currentIsPrem  || false;
-  var total    = window._currentTotal   || (isPrem ? 3000 : 2000);
-  var base     = window._currentBase    || 2000;
-  var suppl    = window._currentSuppl   || 0;
-  var palier   = window._currentPalier  || 'Mise à jour CV';
-  var nom      = document.getElementById('f_nom_prenom').value || '-';
-  var tel      = document.getElementById('f_telephone').value  || '-';
-  var email    = document.getElementById('f_email').value      || '';
-
+  var isPrem = window._currentIsPrem  || false;
+  var total  = window._currentTotal   || (isPrem ? 3000 : 2000);
+  var base   = window._currentBase    || 2000;
+  var suppl  = window._currentSuppl   || 0;
+  var palier = window._currentPalier  || 'Mise à jour CV';
+  var nom    = document.getElementById('f_nom_prenom').value || '-';
+  var tel    = document.getElementById('f_telephone').value  || '-';
+  var email  = document.getElementById('f_email').value      || '';
   document.getElementById('m_name').textContent    = nom;
   document.getElementById('m_contact').textContent = tel + (email ? ' · ' + email : '');
   document.getElementById('m_inv').textContent     = 'Facture N° ' + (latestInv || genInv());
-
   var detailEl = document.getElementById('m_detail_lines');
   detailEl.innerHTML = '';
   function mline(label, val, isTotal) {
@@ -1242,7 +1231,6 @@ function showModal() {
   mline(palier, base);
   if (isPrem && suppl > 0) mline('Supplément urgence (×1,5)', suppl);
   mline('Total à payer', total, true);
-
   document.getElementById('payModal').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
@@ -1263,7 +1251,6 @@ function downloadPDF() {
     var suppl  = window._currentSuppl   || 0;
     var palier = window._currentPalier  || 'Mise à jour CV';
     var isRen  = renouveauActif;
-
     doc.setFillColor(9,65,2); doc.rect(0,0,pw,25,'F');
     doc.setTextColor(255,255,255); doc.setFontSize(15); doc.setFont(undefined,'bold');
     doc.text((isRen ? 'RENOUVEAU CV' : 'MISE À JOUR CV') + ' — CHRONOS SERVICES', pw/2, 16, {align:'center'});
@@ -1312,7 +1299,7 @@ function downloadPDF() {
 }
 
 /* ── SCANNER ── */
-function openScanner() { document.getElementById('scannerOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; }
+function openScanner()  { document.getElementById('scannerOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; }
 function closeScanner() { document.getElementById('scannerOverlay').classList.remove('show'); document.body.style.overflow = ''; }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1378,9 +1365,9 @@ async function runOCR(file) {
   } catch(e){ console.warn(e); return ''; }
 }
 async function callGroq(text) {
-  var instrEl = document.querySelector('input[name="sc_instruct"]:checked');
+  var instrEl  = document.querySelector('input[name="sc_instruct"]:checked');
   var instruct = instrEl ? instrEl.value : 'auto';
-  var prompts = {
+  var prompts  = {
     auto: 'Tu es un assistant expert en lecture de documents professionnels francophones. Analyse le texte fourni et extrais toutes les informations utiles pour mettre à jour un CV. Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. Structure EXACTE :\n{"type_document":"","experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}\ntype_document = "experience", "formation", "competences", "infos" ou "mixte". Crée UN objet séparé par expérience et par formation. Si une information est absente, laisse vide. Ne jamais inventer.',
     experience: 'Tu es un assistant expert. Extrais toutes les expériences professionnelles de ce document. Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. Structure EXACTE :\n{"type_document":"experience","experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}\nCrée UN objet par expérience distincte. Ne jamais inventer.',
     formation: 'Tu es un assistant expert. Extrais toutes les formations et diplômes de ce document. Réponds UNIQUEMENT en JSON valide sans texte ni balises markdown. Structure EXACTE :\n{"type_document":"formation","experiences":[],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"langues":"","logiciels":"","domaines":"","nom_prenom":"","telephone":"","adresse":"","email":"","infos_comp":""}\nCrée UN objet par diplôme/formation distinct. Ne jamais inventer.',
@@ -1499,7 +1486,16 @@ function applyResults() {
     }
   }
   if (d.langues || d.logiciels || d.domaines) { document.getElementById('rub_comp').checked = true; toggleSec('sec_comp', true); sfId('f_langues', d.langues); sfId('f_logiciels', d.logiciels); sfId('f_domaines', d.domaines); }
-  if (d.nom_prenom || d.telephone || d.email || d.adresse) { document.getElementById('rub_infos').checked = true; toggleSec('sec_infos', true); sfIfEmpty('f_nom_prenom', d.nom_prenom); sfIfEmpty('f_telephone', d.telephone); sfIfEmpty('f_email', d.email); sfId('f_adresse', d.adresse); }
+  if (d.nom_prenom || d.telephone || d.email || d.adresse) {
+    document.getElementById('rub_infos').checked = true; toggleSec('sec_infos', true);
+    sfIfEmpty('f_nom_prenom', d.nom_prenom);
+    sfIfEmpty('f_telephone', d.telephone);
+    sfIfEmpty('f_email', d.email);
+    /* Pré-remplissage des nouveaux champs infos depuis le scanner */
+    sfIfEmpty('f_maj_telephone', d.telephone);
+    sfIfEmpty('f_maj_email', d.email);
+    sfId('f_adresse', d.adresse);
+  }
   if (d.infos_comp && d.infos_comp.trim()) { document.getElementById('rub_autres').checked = true; toggleSec('sec_autres', true); sfId('f_infos_comp', d.infos_comp); }
   document.getElementById('prefillBanner').classList.add('show');
   closeScanner();
@@ -1519,4 +1515,4 @@ function resetScanner() {
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 </script>
 </body>
-</html> 
+</html>
