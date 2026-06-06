@@ -332,10 +332,201 @@
             .cv-preview-header { padding: 14px 14px 12px; }
             .cv-main-content { padding: 14px; }
         }
+
+        /* ── ONBOARDING ── */
+        #obOverlay{
+            display:none;position:fixed;inset:0;z-index:9999;
+            background:rgba(4,18,3,.85);
+            align-items:center;justify-content:center;padding:12px;
+        }
+        #obOverlay.show{display:flex}
+
+        .ob-modal{
+            background:#fff;border-radius:14px;width:100%;max-width:360px;
+            box-shadow:0 16px 40px rgba(0,0,0,.4);
+            animation:obIn .3s cubic-bezier(.34,1.4,.64,1);
+            display:flex;flex-direction:column;
+            /* taille fixe selon viewport */
+            max-height:min(520px, calc(100vh - 24px));
+        }
+        @keyframes obIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+
+        /* HEADER */
+        .ob-head{
+            background:linear-gradient(135deg,#094102,#0a7303);
+            padding:10px 14px 8px;text-align:center;position:relative;flex-shrink:0;
+            border-radius:14px 14px 0 0;
+        }
+        .ob-head h2{color:#fff;font-size:.8rem;font-weight:700;margin:0 20px;line-height:1.25}
+        .ob-head p{color:rgba(255,255,255,.55);font-size:.62rem;margin:2px 0 0}
+        .ob-x{
+            position:absolute;top:7px;right:9px;background:rgba(255,255,255,.18);
+            border:none;color:#fff;font-size:.72rem;width:20px;height:20px;
+            border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
+            font-family:'Poppins',sans-serif;transition:background .2s;
+        }
+        .ob-x:hover{background:rgba(255,255,255,.32)}
+        .ob-dots{display:flex;justify-content:center;gap:5px;padding:6px 0 0}
+        .ob-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:all .35s}
+        .ob-dot.active{background:#ff5700;width:16px;border-radius:3px}
+
+        /* SLIDES — chaque slide = exactement la zone disponible, sans scroll */
+        .ob-slides-wrap{flex:1;overflow:hidden;position:relative;min-height:0}
+        .ob-slides{display:flex;width:100%;height:100%;transition:transform .38s cubic-bezier(.25,.46,.45,.94)}
+        .ob-slide{
+            min-width:100%;height:100%;
+            padding:14px 16px 12px;
+            box-sizing:border-box;
+            display:flex;flex-direction:column;justify-content:center;gap:8px;
+        }
+
+        /* Titre slide */
+        .ob-sh{display:flex;align-items:center;gap:6px}
+        .ob-si{font-size:1.1rem;flex-shrink:0}
+        .ob-slide h3{font-size:.78rem;font-weight:700;color:#094102;margin:0;line-height:1.25}
+        .ob-desc{font-size:.67rem;color:#555;line-height:1.45;margin:0}
+
+        /* Bloc FAB */
+        .ob-fab-row{
+            display:flex;align-items:center;gap:10px;
+            background:#f0f7f0;border-radius:8px;padding:8px 11px;border:1px solid #cfe8cf;
+        }
+        .ob-fab-btn{
+            width:30px;height:30px;border-radius:7px;flex-shrink:0;
+            background:linear-gradient(135deg,#094102,#0a6b03);
+            display:flex;align-items:center;justify-content:center;
+            box-shadow:0 3px 8px rgba(9,65,2,.5);
+            animation:obBounce 2s ease infinite;
+        }
+        @keyframes obBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px);box-shadow:0 6px 12px rgba(9,65,2,.45)}}
+        .ob-fab-btn svg{width:14px;height:14px;fill:#fff}
+        .ob-fab-txt{font-size:.64rem;color:#333;line-height:1.4;flex:1}
+        .ob-fab-txt strong{color:#e65100}
+
+        /* Avertissement */
+        .ob-warn{
+            display:flex;align-items:flex-start;gap:6px;
+            background:#fff8e1;border:1px solid #ffe082;border-radius:7px;padding:6px 9px;
+        }
+        .ob-warn-ic{font-size:.8rem;flex-shrink:0;margin-top:1px}
+        .ob-warn-tx{font-size:.63rem;color:#6d4c00;line-height:1.4}
+        .ob-warn-tx strong{color:#094102}
+
+        /* Typing demo */
+        .ob-type-demo{background:#f8f8f8;border-radius:7px;padding:8px 10px;border:1px solid #e8e8e8}
+        .ob-fr{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+        .ob-fr:last-child{margin-bottom:0}
+        .ob-fl{font-size:.6rem;font-weight:600;color:#094102;width:55px;flex-shrink:0}
+        .ob-fi{
+            flex:1;background:#fff;border:1.5px solid #e0e0e0;border-radius:4px;
+            padding:3px 20px 3px 7px;font-size:.62rem;color:#333;font-family:'Poppins',sans-serif;
+            position:relative;min-height:22px;display:flex;align-items:center;
+            transition:border-color .2s;
+        }
+        .ob-fi.filled{border-color:#094102}
+        .ob-fi.filled::after{content:'✓';position:absolute;right:5px;color:#094102;font-size:.6rem;font-weight:700}
+        .ob-tt{display:inline-block}
+
+        /* Étapes inline */
+        .ob-steps-pill{
+            background:#f0f7f0;border:1px solid #cfe8cf;border-radius:7px;
+            padding:6px 10px;font-size:.62rem;color:#333;line-height:1.5;text-align:center;
+        }
+        .ob-steps-pill strong{color:#094102}
+
+        /* FOOTER */
+        .ob-foot{
+            padding:8px 16px 12px;display:flex;align-items:center;
+            justify-content:space-between;gap:8px;flex-shrink:0;border-top:1px solid #f0f0f0;
+        }
+        .ob-skip{background:none;border:none;color:#bbb;font-size:.64rem;cursor:pointer;font-family:'Poppins',sans-serif;padding:3px;transition:color .2s}
+        .ob-skip:hover{color:#888}
+        .ob-pg{font-size:.6rem;color:#ccc}
+        .ob-next{
+            background:linear-gradient(90deg,#094102,#ff5700);color:#fff;border:none;
+            border-radius:7px;padding:7px 16px;font-size:.72rem;font-weight:600;
+            cursor:pointer;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:4px;
+            transition:transform .2s,box-shadow .2s;
+        }
+        .ob-next:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(255,87,0,.3)}
+        .ob-next svg{width:11px;height:11px;fill:#fff;flex-shrink:0}
+
+        /* Responsive paysage */
+        @media(max-height:420px){
+            .ob-modal{max-height:calc(100vh - 16px)}
+            .ob-slide{padding:8px 14px;gap:5px}
+            .ob-head{padding:7px 12px 5px}
+            .ob-head h2{font-size:.72rem}
+            .ob-foot{padding:5px 14px 8px}
+            .ob-fab-row{padding:5px 8px}
+            .ob-type-demo{padding:5px 8px}
+            .ob-warn{padding:4px 7px}
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+
+<!-- ONBOARDING -->
+<div id="obOverlay" class="show" role="dialog" aria-modal="true">
+  <div class="ob-modal">
+
+    <div class="ob-head">
+      <button class="ob-x" onclick="obClose()">✕</button>
+      <h2>Bienvenue ! Lisez ceci avant de commencer 👋</h2>
+      <p>2 infos importantes</p>
+      <div class="ob-dots">
+        <div class="ob-dot active" onclick="obGo(0)"></div>
+        <div class="ob-dot" onclick="obGo(1)"></div>
+      </div>
+    </div>
+
+    <div class="ob-slides-wrap">
+      <div class="ob-slides" id="obSlides">
+
+        <!-- SLIDE 1 -->
+        <div class="ob-slide">
+          <div class="ob-sh"><span class="ob-si">🤖</span><h3>Scanner IA — importez votre CV</h3></div>
+          <p class="ob-desc">L'IA lit votre CV et remplit tout le formulaire automatiquement. Accepte PDF et Word (.docx).</p>
+          <div class="ob-fab-row">
+            <div class="ob-fab-btn">
+              <svg viewBox="0 0 24 24"><path d="M3 5h2V3H3v2zm0 8h2v-2H3v2zm4 8h2v-2H7v2zm-4-4h2v-2H3v2zm10-16H9v2h4V1zm6 0v2h2V3h-2zm-6 20h2v-2h-2v2zm8-8h2v-2h-2v2zm0-8V3h-2v2h2zm0 16h2v-2h-2v2zM7 5h2V3H7v2zm4 4h2v-2h-2v2zm-4 4h2v-2H7v2z"/></svg>
+            </div>
+            <div class="ob-fab-txt">Le bouton est <strong>vert foncé en bas à droite</strong> — il se confond avec le fond. Cherchez l'icône scanner !</div>
+          </div>
+          <div class="ob-warn">
+            <span class="ob-warn-ic">💡</span>
+            <span class="ob-warn-tx">Sans CV existant ? Remplissez directement les <strong>6 étapes</strong> du formulaire.</span>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="ob-slide">
+          <div class="ob-sh"><span class="ob-si">✨</span><h3>Remplissage automatique en 1 clic</h3></div>
+          <p class="ob-desc">Après l'analyse IA, cliquez <strong>"Appliquer"</strong> — tous vos champs se remplissent instantanément.</p>
+          <div class="ob-type-demo">
+            <div class="ob-fr"><div class="ob-fl">Nom</div><div class="ob-fi" id="obF1"><span class="ob-tt" id="obT1"></span></div></div>
+            <div class="ob-fr"><div class="ob-fl">Email</div><div class="ob-fi" id="obF2"><span class="ob-tt" id="obT2"></span></div></div>
+            <div class="ob-fr"><div class="ob-fl">Téléphone</div><div class="ob-fi" id="obF3"><span class="ob-tt" id="obT3"></span></div></div>
+          </div>
+          <div class="ob-steps-pill">
+            <strong>6 étapes :</strong> Infos · Compétences · Expériences · Formation · Compléments · Vérification
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="ob-foot">
+      <button class="ob-skip" id="obSkip" onclick="obClose()">Passer</button>
+      <span class="ob-pg" id="obPg">1 / 2</span>
+      <button class="ob-next" id="obNext" onclick="obNext()">
+        Suivant <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </button>
+    </div>
+
+  </div>
+</div>
 
 <div class="container">
     <button class="back-btn" onclick="history.back()">← Retour à l'accueil</button>
@@ -1405,6 +1596,74 @@ function resetScanner() {
 function escapeHtml(str) {
     return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+(function(){
+  var OBK='chronos_ob5',cur=0,tot=2,timers=[];
+  var demo=[
+    {t:'obT1',f:'obF1',v:'OBAME Jean-Pierre',d:0},
+    {t:'obT2',f:'obF2',v:'jeanpierre@email.com',d:520},
+    {t:'obT3',f:'obF3',v:'+241 07 12 34 56',d:1040}
+  ];
+  function typeIt(tid,fid,val,delay){
+    var tm=setTimeout(function(){
+      var te=document.getElementById(tid),fe=document.getElementById(fid);
+      if(!te||!fe)return;
+      fe.classList.remove('filled');te.textContent='';
+      var i=0,iv=setInterval(function(){
+        if(i<val.length){te.textContent+=val[i++];}
+        else{clearInterval(iv);fe.classList.add('filled');}
+      },46);
+      timers.push(iv);
+    },delay);timers.push(tm);
+  }
+  function stopT(){timers.forEach(function(x){clearTimeout(x);clearInterval(x);});timers=[];}
+  function startTyping(){
+    stopT();
+    demo.forEach(function(d){
+      var te=document.getElementById(d.t),fe=document.getElementById(d.f);
+      if(te&&fe){te.textContent='';fe.classList.remove('filled');}
+      typeIt(d.t,d.f,d.v,d.d+400);
+    });
+  }
+  window.obGo=function(idx){
+    cur=idx;
+    var sl=document.getElementById('obSlides');
+    if(sl)sl.style.transform='translateX(-'+(cur*100)+'%)';
+    document.querySelectorAll('.ob-dot').forEach(function(d,i){d.classList.toggle('active',i===cur);});
+    var pg=document.getElementById('obPg');if(pg)pg.textContent=(cur+1)+' / '+tot;
+    var nx=document.getElementById('obNext'),sk=document.getElementById('obSkip');
+    if(cur===tot-1){
+      nx.innerHTML='Commencer <svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:#fff;vertical-align:middle"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>';
+      if(sk)sk.style.visibility='hidden';
+      startTyping();
+    }else{
+      nx.innerHTML='Suivant <svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:#fff;vertical-align:middle"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>';
+      if(sk)sk.style.visibility='visible';
+      stopT();
+    }
+  };
+  window.obNext=function(){if(cur<tot-1)obGo(cur+1);else obClose();};
+  window.obClose=function(){
+    var o=document.getElementById('obOverlay');
+    if(o){o.style.opacity='0';o.style.transition='opacity .22s';
+      setTimeout(function(){o.classList.remove('show');o.style.opacity='';o.style.transition='';},230);}
+    try{localStorage.setItem(OBK,'1');}catch(e){}
+    stopT();
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    var seen=false;try{seen=!!localStorage.getItem(OBK);}catch(e){}
+    var o=document.getElementById('obOverlay');if(!o)return;
+    if(seen){o.classList.remove('show');return;}
+    o.addEventListener('click',function(e){if(e.target===o)obClose();});
+    document.addEventListener('keydown',function(e){
+      if(!o.classList.contains('show'))return;
+      if(e.key==='ArrowRight')obNext();
+      if(e.key==='ArrowLeft'&&cur>0)obGo(cur-1);
+      if(e.key==='Escape')obClose();
+    });
+  });
+})();
+
 </script>
 </body>
 </html>
