@@ -213,6 +213,135 @@
     @keyframes fadeOut{from{opacity:1;}to{opacity:0;pointer-events:none;}}
 
     /* RESPONSIVE INDEX */
+    /* ── Badge "Clients existants" ── */
+    .badge-client {
+      display: inline-flex;
+      align-items: center;
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      color: #7a3800;
+      background: #fff3e0;
+      border: 1px solid #ffb347;
+      border-radius: 100px;
+      padding: 2px 8px;
+      white-space: nowrap;
+      vertical-align: middle;
+      line-height: 1.4;
+    }
+    /* Légère teinte dorée sur la carte mise à jour */
+    .quick-item--update {
+      border-left: 3px solid #ffb347;
+    }
+    .quick-item__icon--update {
+      background: linear-gradient(135deg, rgba(255,179,71,.15) 0%, rgba(255,87,0,.1) 100%) !important;
+      color: #c26a00 !important;
+    }
+
+    /* ── Modale douce "Êtes-vous client ?" ── */
+    #majModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.52);
+      z-index: 300;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    #majModal.open { display: flex; }
+    #majModal .maj-sheet {
+      background: var(--surface);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      width: 100%;
+      max-width: 480px;
+      padding: 28px 20px 32px;
+      animation: slideUp .3s ease;
+    }
+    #majModal .maj-handle {
+      width: 40px; height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 0 auto 22px;
+    }
+    #majModal .maj-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,179,71,.2), rgba(255,87,0,.15));
+      display: flex; align-items: center; justify-content: center;
+      color: #c26a00;
+      margin: 0 auto 14px;
+      font-size: 1.4rem;
+    }
+    #majModal .maj-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    #majModal .maj-desc {
+      font-size: .82rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+    #majModal .maj-desc strong { color: var(--text); }
+    #majModal .maj-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    #majModal .maj-btn-yes {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      background: var(--grad);
+      color: white;
+      border-radius: var(--radius-md);
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: .92rem;
+      cursor: pointer;
+      border: none;
+      transition: opacity .2s;
+      text-decoration: none;
+    }
+    #majModal .maj-btn-yes:hover { opacity: .88; }
+    #majModal .maj-btn-no {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      background: transparent;
+      color: var(--orange);
+      border: 1.5px solid var(--orange);
+      border-radius: var(--radius-md);
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: .92rem;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      text-decoration: none;
+    }
+    #majModal .maj-btn-no:hover { background: #fff3ee; }
+    #majModal .maj-btn-cancel {
+      text-align: center;
+      font-size: .8rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+      width: 100%;
+      font-family: inherit;
+    }
+    #majModal .maj-btn-cancel:hover { color: var(--text); }
+
     @media(min-width:481px){.header{padding:14px calc((100vw - 480px)/2 + 20px);}.main{max-width:480px;}.bottom-nav__inner{max-width:480px;}}
     @media(max-width:768px){:root{--col-margin:16px;--gutter:16px;}.logo{font-size:.95rem;gap:8px;}.logo__icon{width:32px;height:32px;}.header__btn{width:36px;height:36px;}.search-input{height:40px;font-size:.85rem;}.stats-row{gap:10px;}.stat-card{padding:14px 10px;}.stat-card__value{font-size:1.3rem;}.stat-card__label{font-size:.65rem;}.section-title{font-size:1rem;margin-bottom:14px;}.service-chip{flex:0 0 72px;width:72px;}.service-chip__icon{width:56px;height:56px;}.service-chip__label{font-size:.63rem;width:70px;}.quick-item{padding:12px 14px;gap:12px;}.quick-item__icon{width:40px;height:40px;}.quick-item__title{font-size:.85rem;}.quick-item__desc{font-size:.73rem;}.contact-strip{padding:16px;gap:10px;}.contact-strip__info{font-size:.75rem;}.contact-strip__btn{font-size:.78rem;padding:9px 14px;}.bottom-nav{padding:6px 0 10px;}.bottom-nav__label{font-size:.6rem;}.bottom-nav__icon-wrap{width:32px;height:32px;}}
     @media(max-width:480px){:root{--col-margin:14px;--gutter:14px;}body{padding-bottom:75px;}.header{padding:12px var(--col-margin);}.logo{font-size:.9rem;gap:7px;}.logo__icon{width:30px;height:30px;}.search-input{height:38px;font-size:.82rem;padding:0 38px 0 38px;}.search-icon{left:12px;width:16px;height:16px;}.main{padding:16px var(--col-margin) 0;gap:20px;}.stats-row{gap:8px;}.stat-card{padding:12px 8px;border-radius:var(--radius-sm);}.stat-card__value{font-size:1.2rem;}.stat-card__label{font-size:.62rem;}.service-chip{flex:0 0 68px;width:68px;}.service-chip__icon{width:52px;height:52px;}.service-chip__label{font-size:.6rem;width:66px;}.services-marquee-track{gap:16px;}.section-title{font-size:.95rem;margin-bottom:12px;}.quick-item{padding:11px 13px;gap:10px;border-radius:var(--radius-sm);}.quick-item__icon{width:38px;height:38px;border-radius:10px;}.quick-item__title{font-size:.82rem;}.quick-item__desc{font-size:.7rem;}.contact-strip{padding:14px;border-radius:var(--radius-lg);gap:8px;}.contact-strip__info{font-size:.72rem;}.contact-strip__btn{font-size:.74rem;padding:8px 12px;}.bottom-nav{padding:5px 0 8px;}.bottom-nav__inner{padding:0 8px;}.bottom-nav__item{gap:3px;}.bottom-nav__label{font-size:.58rem;}.bottom-nav__icon-wrap{width:30px;height:30px;border-radius:8px;}.modal-sheet{padding:20px 16px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;}.modal-title{font-size:1rem;}}
@@ -1288,7 +1417,7 @@
       <h2 class="section-title">Accès Rapide</h2>
       <div class="quick-list">
         <a href="formulaire-cv-scanner.html" class="quick-item"><div class="quick-item__icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div><div class="quick-item__text"><div class="quick-item__title">Demande de CV</div><div class="quick-item__desc">Remplir le formulaire professionnel</div></div><svg class="quick-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,6 15,12 9,18"/></svg></a>
-        <a href="formulaire-mise-a-jour-cv.html" class="quick-item"><div class="quick-item__icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><polyline points="7,12 9,14 13,10"/></svg></div><div class="quick-item__text"><div class="quick-item__title">Mise à jour CV</div><div class="quick-item__desc">Modifier votre CV existant chez nous</div></div><svg class="quick-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,6 15,12 9,18"/></svg></a>
+        <a href="#" onclick="openMajModal(event)" class="quick-item quick-item--update"><div class="quick-item__icon quick-item__icon--update"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><polyline points="7,12 9,14 13,10"/></svg></div><div class="quick-item__text"><div class="quick-item__title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">Mise à jour CV <span class="badge-client">Déjà client ?</span></div><div class="quick-item__desc">J'ai déjà un CV chez Chronos-Services</div></div><svg class="quick-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,6 15,12 9,18"/></svg></a>
         <a href="formulaire-lettre.html" class="quick-item"><div class="quick-item__icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3,7 12,13 21,7"/></svg></div><div class="quick-item__text"><div class="quick-item__title">Lettre de motivation</div><div class="quick-item__desc">Personnalisée pour votre poste</div></div><svg class="quick-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,6 15,12 9,18"/></svg></a>
         <a href="catalogue de CV.html" class="quick-item"><div class="quick-item__icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div><div class="quick-item__text"><div class="quick-item__title">Catalogue de CV</div><div class="quick-item__desc">Plus de 40 modèles professionnels</div></div><svg class="quick-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,6 15,12 9,18"/></svg></a>
       </div>
@@ -1311,6 +1440,28 @@
       <a href="catalogue de CV.html" class="bottom-nav__item"><div class="bottom-nav__icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div><span class="bottom-nav__label">Catalogue</span></a>
     </div>
   </nav>
+
+  <!-- MODALE MISE À JOUR CV — Confirmation client existant -->
+  <div id="majModal" onclick="majModalBackdrop(event)">
+    <div class="maj-sheet">
+      <div class="maj-handle"></div>
+      <div class="maj-icon">🔄</div>
+      <div class="maj-title">Vous avez déjà un CV chez nous ?</div>
+      <div class="maj-desc">
+        Ce formulaire est <strong>réservé aux clients existants</strong> qui souhaitent mettre à jour leur CV déjà réalisé par Chronos-Services.<br><br>
+        Vous n'avez pas encore de CV chez nous ? Utilisez le formulaire de <strong>Demande de CV</strong>.
+      </div>
+      <div class="maj-btns">
+        <a href="formulaire-mise-a-jour-cv.html" class="maj-btn-yes" onclick="event.stopPropagation()">
+          Oui, j'ai déjà un CV chez vous
+        </a>
+        <a href="formulaire-cv-scanner.html" class="maj-btn-no" onclick="event.stopPropagation()">
+          Non, je veux un nouveau CV
+        </a>
+        <button class="maj-btn-cancel" onclick="closeMajModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
 
   <!-- MODAL AIDE -->
   <div class="modal-backdrop" id="helpModal" onclick="closeModalOnBackdrop(event,'helpModal')">
@@ -1583,6 +1734,20 @@
     function openModal(id)  { document.getElementById(id).classList.add('open'); }
     function closeModal(id) { document.getElementById(id).classList.remove('open'); }
     function closeModalOnBackdrop(e, id) { if (e.target === document.getElementById(id)) closeModal(id); }
+
+    /* ── Modale Mise à jour CV ── */
+    function openMajModal(e) {
+      e.preventDefault();
+      document.getElementById('majModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMajModal() {
+      document.getElementById('majModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function majModalBackdrop(e) {
+      if (e.target === document.getElementById('majModal')) closeMajModal();
+    }
 
     function showToast(msg) {
       const existing = document.querySelector('.toast');
