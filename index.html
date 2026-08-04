@@ -510,78 +510,68 @@
       transform: translateX(-28px);
     }
     #csOb .ob-illus {
-      flex: 0 0 52%;
+      flex: 0 0 50%;
       min-height: 0;
       overflow: hidden;
       position: relative;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
       background: #f5f3ee;
+      padding: 18px 24px 0;
     }
     #csOb .ob-illus svg {
       display: block;
       width: 100%;
       height: 100%;
+      max-width: 300px;
+      max-height: 100%;
+      margin: 0 auto;
     }
     #csOb .ob-illus::before {
       content: '';
       position: absolute;
       border-radius: 50%;
       z-index: 0;
-      width: 220px; height: 220px;
+      width: 240px; height: 240px;
       top: 50%; left: 50%;
-      transform: translate(-50%, -54%);
+      transform: translate(-50%, -50%);
     }
-    #csOb .s0 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.09) 0%, transparent 70%); }
-    #csOb .s1 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.09) 0%, transparent 70%); }
-    #csOb .s2 .ob-illus::before { background: radial-gradient(circle, rgba(255,87,0,.09) 0%, transparent 70%); }
-    #csOb .s3 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.08) 0%, transparent 70%); }
-    #csOb .s4 .ob-illus::before { background: radial-gradient(circle, rgba(255,87,0,.08) 0%, transparent 70%); }
-    #csOb .s5 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.09) 0%, transparent 70%); }
-    #csOb .s6 .ob-illus::before { background: radial-gradient(circle, rgba(37,211,102,.10) 0%, transparent 70%); }
+    #csOb .s0 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.10) 0%, transparent 70%); }
+    #csOb .s1 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.10) 0%, transparent 70%); }
+    #csOb .s2 .ob-illus::before { background: radial-gradient(circle, rgba(255,87,0,.10) 0%, transparent 70%); }
+    #csOb .s3 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.09) 0%, transparent 70%); }
+    #csOb .s4 .ob-illus::before { background: radial-gradient(circle, rgba(255,87,0,.09) 0%, transparent 70%); }
+    #csOb .s5 .ob-illus::before { background: radial-gradient(circle, rgba(9,65,2,.10) 0%, transparent 70%); }
+    #csOb .s6 .ob-illus::before { background: radial-gradient(circle, rgba(37,211,102,.11) 0%, transparent 70%); }
     #csOb .ob-bottom {
       flex: 1;
       min-height: 0;
       background: #fff;
       border-radius: 24px 24px 0 0;
-      padding: 18px 22px 0;
+      padding: 20px 22px 0;
       display: flex;
       flex-direction: column;
       box-shadow: 0 -4px 20px rgba(9,65,2,.07);
     }
     #csOb .ob-eyebrow {
-      font-size: .58rem;
+      font-size: .6rem;
       font-weight: 700;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: #FF5700;
-      margin-bottom: 4px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all .4s .05s ease;
+      margin-bottom: 6px;
     }
     #csOb .ob-title {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(.92rem, 3.5vw, 1.12rem);
+      font-size: clamp(.95rem, 3.5vw, 1.18rem);
       font-weight: 800;
       color: #094102;
-      line-height: 1.22;
-      margin-bottom: 7px;
-      min-height: 54px;
+      line-height: 1.25;
+      margin-bottom: 8px;
     }
-    #csOb .ob-title .ob-cursor {
-      display: inline-block;
-      width: 2px;
-      height: .88em;
-      background: #FF5700;
-      vertical-align: middle;
-      margin-left: 1px;
-      animation: obBlink .65s step-start infinite;
-    }
-    @keyframes obBlink { 0%,100%{opacity:1;} 50%{opacity:0;} }
     #csOb .ob-desc {
-      font-size: clamp(.72rem, 2.5vw, .78rem);
+      font-size: clamp(.74rem, 2.5vw, .82rem);
       color: #6b7280;
       line-height: 1.6;
       flex: 1;
@@ -589,9 +579,6 @@
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 3;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all .4s .2s ease;
     }
     #csOb .ob-desc strong { color: #094102; }
     #csOb .ob-chip {
@@ -600,24 +587,18 @@
       gap: 5px;
       padding: 5px 13px;
       border-radius: 100px;
-      font-size: .62rem;
+      font-size: .64rem;
       font-weight: 700;
       border: 1.5px solid currentColor;
       width: fit-content;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: all .4s .32s ease;
     }
     #csOb .ob-chip.g { color: #094102; }
     #csOb .ob-chip.o { color: #FF5700; }
-    #csOb .ob-slide.active .ob-eyebrow,
-    #csOb .ob-slide.active .ob-desc,
-    #csOb .ob-slide.active .ob-chip { opacity: 1; transform: none; }
     #csOb .ob-nav {
       flex-shrink: 0;
       display: flex;
@@ -627,100 +608,124 @@
       background: #fff;
       border-top: 1px solid #f3f4f6;
     }
-    #csOb .ob-dots-row { display: flex; gap: 5px; align-items: center; }
+    #csOb .ob-dots-row { display: flex; gap: 5px; align-items: center; margin-bottom: 10px; }
     #csOb .ob-dot {
       width: 6px; height: 6px;
-      border-radius: 3px;
-      background: #e5e7eb;
-      transition: all .35s cubic-bezier(.23,1,.32,1);
+      border-radius: 2px;
+      background: #d8ddd4;
+      transition: all .3s cubic-bezier(.23,1,.32,1);
       cursor: pointer;
     }
-    #csOb .ob-dot.on  { width: 20px; background: #094102; }
-    #csOb .ob-dot.done { background: #bbf7d0; }
-    #csOb .ob-nav-r { display: flex; align-items: center; gap: 8px; }
+    #csOb .ob-dot.on  { width: 8px; height: 8px; border-radius: 3px; background: #094102; }
+    #csOb .ob-dot.done { background: #a9d6a0; }
+    #csOb .ob-nav-r { display: flex; align-items: center; gap: 10px; }
+
+    /* --- Bouton "Passer" : pilule outline vert --- */
     #csOb .ob-skip {
-      font-size: .74rem;
-      color: #9ca3af;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      padding: 4px 8px;
-    }
-    #csOb .ob-skip:hover { color: #6b7280; }
-    #csOb .ob-prev {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      border: 1.5px solid #e5e7eb;
+      height: 40px;
+      padding: 0 20px;
+      border-radius: 100px;
       background: #fff;
-      color: #374151;
+      border: 1.5px solid #094102;
+      color: #094102;
+      font-family: 'Sora', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: background .2s, transform .15s;
+      white-space: nowrap;
+    }
+    #csOb .ob-skip:hover { background: #f0fdf4; }
+    #csOb .ob-skip:active { transform: scale(.96); }
+
+    /* --- Bouton précédent : pilule outline ronde --- */
+    #csOb .ob-prev {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid #094102;
+      background: #fff;
+      color: #094102;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all .2s;
-      font-size: .8rem;
-      font-family: inherit;
+      flex-shrink: 0;
     }
-    #csOb .ob-prev:hover { border-color: #094102; color: #094102; }
+    #csOb .ob-prev:hover { background: #f0fdf4; }
+    #csOb .ob-prev:active { transform: scale(.94); }
+
+    /* --- Bouton "Suivant / Commencer" : pilule pleine + badge double chevron --- */
     #csOb .ob-next {
-      height: 38px;
-      padding: 0 18px;
+      height: 44px;
+      padding: 0 4px 0 20px;
       border-radius: 100px;
-      background: linear-gradient(135deg, #094102, #1e7a06);
+      background: #094102;
       color: #fff;
       font-family: 'Sora', sans-serif;
-      font-size: .74rem;
+      font-size: .8rem;
       font-weight: 700;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
       box-shadow: 0 4px 14px rgba(9,65,2,.28);
       transition: opacity .2s, transform .15s;
       white-space: nowrap;
     }
-    #csOb .ob-next:hover { opacity: .88; transform: translateY(-1px); }
+    #csOb .ob-next:hover { opacity: .9; transform: translateY(-1px); }
     #csOb .ob-next:active { transform: scale(.97); }
-    #csOb .ob-next.last { background: linear-gradient(135deg, #094102, #FF5700); }
-    #csOb .ob-slide.active .ob-perso  { animation: obPersoIn .6s cubic-bezier(.22,1,.36,1) forwards; }
-    #csOb .ob-slide.active .ob-scene  { animation: obPersoIn .6s .1s cubic-bezier(.22,1,.36,1) forwards; }
-    #csOb .ob-slide.active .ob-scene2 { animation: obPersoIn .6s .18s cubic-bezier(.22,1,.36,1) forwards; }
-    #csOb .ob-slide.active .ob-bob    { animation: obPersoIn .6s .08s cubic-bezier(.22,1,.36,1) forwards, obBob 3.5s ease-in-out infinite .7s; }
-    #csOb .ob-perso, #csOb .ob-scene, #csOb .ob-scene2, #csOb .ob-bob { opacity: 0; }
-    @keyframes obPersoIn { from{opacity:0;transform:translateY(14px) scale(.96);} to{opacity:1;transform:translateY(0) scale(1);} }
-    @keyframes obBob { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+    #csOb .ob-next.last { background: linear-gradient(120deg, #094102 55%, #FF5700 140%); }
+    #csOb .ob-next__icon {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    #csOb .ob-next__icon svg { display: block; }
     #csOb.ob-closing { animation: obClose .35s ease forwards; }
     @keyframes obClose { from{opacity:1;transform:scale(1);} to{opacity:0;transform:scale(.94);pointer-events:none;} }
 
     @media(max-width:480px){
-      #csOb .ob-illus { flex: 0 0 50%; }
-      #csOb .ob-bottom { padding: 14px 16px 0; }
-      #csOb .ob-nav { padding: 8px 16px calc(8px + env(safe-area-inset-bottom,0px)); }
+      #csOb .ob-illus { flex: 0 0 46%; padding: 14px 18px 0; }
+      #csOb .ob-illus svg{ max-width: 240px; }
+      #csOb .ob-bottom { padding: 16px 16px 0; }
+      #csOb .ob-nav { padding: 10px 16px calc(10px + env(safe-area-inset-bottom,0px)); }
     }
     @media(max-width:375px){
-      #csOb .ob-illus { flex: 0 0 44%; }
-      #csOb .ob-title { font-size: .9rem; min-height: 44px; }
-      #csOb .ob-desc { font-size: .7rem; -webkit-line-clamp: 2; }
-      #csOb .ob-chip { font-size: .58rem; padding: 4px 10px; }
-      #csOb .ob-next { font-size: .7rem; padding: 0 14px; }
+      #csOb .ob-illus { flex: 0 0 40%; padding: 10px 14px 0; }
+      #csOb .ob-illus svg{ max-width: 200px; }
+      #csOb .ob-title { font-size: .92rem; }
+      #csOb .ob-desc { font-size: .72rem; -webkit-line-clamp: 3; }
+      #csOb .ob-chip { font-size: .6rem; padding: 4px 10px; }
+      #csOb .ob-next { font-size: .72rem; padding: 0 16px; height: 36px; }
+      #csOb .ob-prev { width: 34px; height: 34px; }
     }
     @media(max-width:320px){
-      #csOb .ob-illus { flex: 0 0 40%; }
+      #csOb .ob-illus { flex: 0 0 36%; }
+      #csOb .ob-illus svg{ max-width: 170px; }
       #csOb .ob-chip { display: none; }
       #csOb .ob-desc { -webkit-line-clamp: 2; }
+      #csOb .ob-title{ font-size:.86rem; }
     }
     @media(min-width:860px){
       #csOb .ob-slide { flex-direction: row; }
-      #csOb .ob-illus { flex: 0 0 52%; max-height: 100vh; height: calc(100dvh - 7px); }
+      #csOb .ob-illus { flex: 0 0 50%; max-height: 100vh; height: calc(100dvh - 7px); padding: 0; }
+      #csOb .ob-illus svg{ max-width: 380px; }
       #csOb .ob-bottom { padding: clamp(28px,4vw,56px) clamp(28px,4vw,52px) 0; justify-content: center; }
-      #csOb .ob-nav { position: fixed; bottom: 0; right: 0; width: 48%; padding: 12px clamp(28px,4vw,52px) 20px; background: #fff; border-top: 1px solid #f3f4f6; }
+      #csOb .ob-nav { position: fixed; bottom: 0; right: 0; width: 50%; padding: 12px clamp(28px,4vw,52px) 18px; background: #fff; border-top: 1px solid #f3f4f6; }
       #csOb .ob-desc { -webkit-line-clamp: 5; }
     }
     @media(orientation:landscape) and (max-height:500px){
       #csOb .ob-slide { flex-direction: row; }
-      #csOb .ob-illus { flex: 0 0 45%; max-height: 100vh; height: 100%; }
+      #csOb .ob-illus { flex: 0 0 40%; max-height: 100vh; height: 100%; padding: 0 10px; }
+      #csOb .ob-illus svg{ max-width: 160px; }
       #csOb .ob-bottom { padding: 8px 18px 0; }
       #csOb .ob-desc { -webkit-line-clamp: 2; }
       #csOb .ob-chip { display: none; }
@@ -730,7 +735,7 @@
 <body>
 
   <!-- ====================================================
-       NOUVEL ONBOARDING CHRONOS-SERVICES
+       NOUVEL ONBOARDING CHRONOS-SERVICES — navigation manuelle
   ==================================================== -->
   <div id="csOb" role="dialog" aria-modal="true" aria-label="Présentation Chronos Services">
     <div class="ob-topbar"></div>
@@ -739,64 +744,48 @@
     <!-- ══ SLIDE 0 : Bienvenue ══ -->
     <div class="ob-slide s0 active">
       <div class="ob-illus">
-        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
-          <defs>
-            <clipPath id="phoneClip0">
-              <rect x="133" y="19" width="80" height="170" rx="11"/>
-            </clipPath>
-          </defs>
-          <ellipse cx="190" cy="222" rx="130" ry="8" fill="rgba(9,65,2,.07)"/>
-          <g class="ob-scene ob-bob">
-            <rect x="129" y="14" width="90" height="182" rx="15" fill="#1e2532"/>
-            <rect x="133" y="19" width="80" height="170" rx="11" fill="#f0fdf4"/>
-            <rect x="157" y="14" width="34" height="5" rx="2.5" fill="#374151" opacity=".5"/>
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="130" cy="205" rx="95" ry="9" fill="rgba(9,65,2,.06)"/>
+          <!-- dossier -->
+          <rect x="55" y="98" width="130" height="90" rx="10" fill="#0d5203"/>
+          <path d="M55 108 h40 l10 -12 h40 v12 z" fill="#0a4602"/>
+          <rect x="62" y="112" width="116" height="70" rx="7" fill="#1a6b05"/>
+          <!-- feuilles qui s'envolent -->
+          <g>
+            <rect x="70" y="46" width="52" height="66" rx="6" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5" transform="rotate(-8 96 79)"/>
+            <line x1="80" y1="60" x2="112" y2="56" stroke="#dbe3d8" stroke-width="3" stroke-linecap="round" transform="rotate(-8 96 79)"/>
+            <line x1="80" y1="70" x2="106" y2="67" stroke="#eef1ec" stroke-width="3" stroke-linecap="round" transform="rotate(-8 96 79)"/>
+            <line x1="80" y1="80" x2="112" y2="76" stroke="#eef1ec" stroke-width="3" stroke-linecap="round" transform="rotate(-8 96 79)"/>
+            <line x1="80" y1="90" x2="98" y2="88" stroke="#eef1ec" stroke-width="3" stroke-linecap="round" transform="rotate(-8 96 79)"/>
           </g>
-          <g clip-path="url(#phoneClip0)" class="ob-scene ob-bob">
-            <rect x="133" y="19" width="80" height="34" fill="#094102"/>
-            <text x="173" y="30" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="white">Chronos-Services</text>
-            <text x="173" y="42" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6" fill="rgba(255,255,255,.85)">Votre CV est prêt ✓</text>
-            <circle cx="155" cy="72" r="12" fill="#d1d5db"/>
-            <circle cx="155" cy="68" r="6" fill="#9ca3af"/>
-            <ellipse cx="155" cy="82" rx="10" ry="6" fill="#9ca3af"/>
-            <rect x="172" y="64" width="36" height="4" rx="2" fill="#e5e7eb"/>
-            <rect x="172" y="72" width="28" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="133" y="92" width="80" height="1" fill="#f0f0f0"/>
-            <rect x="139" y="98" width="68" height="3.5" rx="1.5" fill="#e5e7eb"/>
-            <rect x="139" y="106" width="56" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="139" y="113" width="62" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="133" y="122" width="80" height="1" fill="#f0f0f0"/>
-            <rect x="139" y="127" width="68" height="3.5" rx="1.5" fill="#e5e7eb"/>
-            <rect x="139" y="135" width="48" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="139" y="142" width="58" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="139" y="152" width="52" height="14" rx="7" fill="#FF5700" opacity=".9"/>
-            <text x="165" y="162" text-anchor="middle" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="white">Modèle N°030</text>
-            <text x="139" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#094102">Word</text>
-            <text x="158" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#6b7280">PPT</text>
-            <text x="174" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#dc2626">PDF</text>
+          <g>
+            <rect x="132" y="38" width="52" height="66" rx="6" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5" transform="rotate(9 158 71)"/>
+            <circle cx="146" cy="55" r="7" fill="#dbe3d8" transform="rotate(9 158 71)"/>
+            <line x1="140" y1="72" x2="172" y2="68" stroke="#eef1ec" stroke-width="3" stroke-linecap="round" transform="rotate(9 158 71)"/>
+            <line x1="140" y1="82" x2="166" y2="79" stroke="#eef1ec" stroke-width="3" stroke-linecap="round" transform="rotate(9 158 71)"/>
+            <line x1="140" y1="92" x2="172" y2="88" stroke="#eef1ec" stroke-width="3" stroke-linecap="round" transform="rotate(9 158 71)"/>
           </g>
-          <g class="ob-bob">
-            <rect x="232" y="58" width="112" height="34" rx="11" fill="white" stroke="rgba(9,65,2,.14)" stroke-width="1"/>
-            <circle cx="250" cy="75" r="8" fill="#094102"/>
-            <text x="250" y="79" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="white">✓</text>
-            <text x="262" y="70" font-family="Sora,sans-serif" font-size="8.5" font-weight="700" fill="#094102">562+ clients</text>
-            <text x="262" y="83" font-family="DM Sans,sans-serif" font-size="7.5" fill="#6b7280">accompagnés</text>
-          </g>
-          <text x="40" y="85" font-family="sans-serif" font-size="13" fill="#FF5700" opacity=".5">★</text>
-          <text x="330" y="110" font-family="sans-serif" font-size="9" fill="#094102" opacity=".45">★</text>
+          <!-- badge check flottant -->
+          <circle cx="196" cy="60" r="20" fill="#FF5700"/>
+          <path d="M187 60 l6 6 12 -13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- petites étoiles -->
+          <circle cx="40" cy="70" r="3" fill="#FF5700" opacity=".55"/>
+          <circle cx="220" cy="130" r="3.5" fill="#0d5203" opacity=".4"/>
+          <circle cx="46" cy="150" r="2.5" fill="#0d5203" opacity=".5"/>
         </svg>
       </div>
       <div class="ob-bottom">
-        <div class="ob-eyebrow">Bienvenue sur Chronos-Services</div>
-        <div class="ob-title" id="obTw0"></div>
+        <div class="ob-dots-row" id="obDots0"></div>
+        <div class="ob-eyebrow">Bienvenue sur Chronos Services</div>
+        <div class="ob-title">Votre CV rédigé par des professionnels</div>
         <div class="ob-desc">Vous nous transmettez vos infos via formulaire — <strong>nos experts rédigent et mettent en forme votre CV</strong> de A à Z. Professionnel, soigné, prêt à décrocher un entretien.</div>
         <span class="ob-chip g">✓ 562+ clients accompagnés depuis 2021</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots-row" id="obDots0"></div>
+        <button class="ob-skip">Passer</button>
         <div class="ob-nav-r">
-          <button class="ob-skip">Passer</button>
-          <button class="ob-prev" style="opacity:0;pointer-events:none">←</button>
-          <button class="ob-next">Suivant →</button>
+          <button class="ob-prev" style="opacity:0;pointer-events:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
+          <button class="ob-next"><span class="ob-next__label">Suivant</span><span class="ob-next__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,4 15,12 7,20"/><polyline points="13,4 21,12 13,20"/></svg></span></button>
         </div>
       </div>
     </div>
@@ -804,89 +793,41 @@
     <!-- ══ SLIDE 1 : Formulaire ══ -->
     <div class="ob-slide s1">
       <div class="ob-illus">
-        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
-          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
-          <g class="ob-scene">
-            <rect x="148" y="22" width="84" height="170" rx="14" fill="#1e2532"/>
-            <rect x="152" y="26" width="76" height="162" rx="11" fill="#f8fafc"/>
-            <rect x="168" y="22" width="44" height="5" rx="2.5" fill="#374151"/>
-            <rect x="152" y="26" width="76" height="28" rx="11" fill="#094102"/>
-            <rect x="152" y="46" width="76" height="8" fill="#094102"/>
-            <text x="190" y="38" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="white">Formulaire CV</text>
-            <text x="190" y="49" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(255,255,255,.75)">Étape 2 / 6</text>
-            <rect x="158" y="62" width="64" height="13" rx="6.5" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
-            <text x="164" y="72" font-family="DM Sans,sans-serif" font-size="6.5" fill="#374151">Jean Dupont</text>
-            <rect x="158" y="79" width="64" height="13" rx="6.5" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
-            <text x="164" y="89" font-family="DM Sans,sans-serif" font-size="6.5" fill="#374151">Chef de projet</text>
-            <rect x="158" y="96" width="64" height="13" rx="6.5" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
-            <text x="164" y="106" font-family="DM Sans,sans-serif" font-size="6.5" fill="#374151">Libreville, Gabon</text>
-            <rect x="158" y="113" width="64" height="13" rx="6.5" fill="#f3f4f6" stroke="#094102" stroke-width="1.5"/>
-            <text x="164" y="123" font-family="DM Sans,sans-serif" font-size="6.5" fill="#9ca3af">Expériences...</text>
-            <rect x="158" y="132" width="64" height="4" rx="2" fill="#e5e7eb"/>
-            <rect x="158" y="132" width="32" height="4" rx="2" fill="#094102"/>
-            <rect x="164" y="141" width="52" height="14" rx="7" fill="#FF5700"/>
-            <text x="190" y="151" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="white">Continuer →</text>
-          </g>
-          <!-- Jeune femme lunettes rondes, cheveux courts, veste verte, peau medium -->
-          <g class="ob-perso">
-            <ellipse cx="270" cy="217" rx="11" ry="5" fill="#2d2d2d"/>
-            <ellipse cx="294" cy="217" rx="11" ry="5" fill="#2d2d2d"/>
-            <rect x="262" y="172" width="13" height="47" rx="6.5" fill="#1e3a5f"/>
-            <rect x="284" y="172" width="13" height="47" rx="6.5" fill="#1e3a5f"/>
-            <path d="M255 118 Q252 172 262 180 L297 180 Q307 172 304 118 Q296 126 279 126 Q262 126 255 118Z" fill="#2d7a3a"/>
-            <path d="M268 118 L273 130 L279 126 L285 130 L290 118" fill="#246830" stroke="none"/>
-            <rect x="275" y="118" width="8" height="20" rx="2" fill="#f9fafb"/>
-            <rect x="247" y="118" width="11" height="38" rx="5.5" fill="#2d7a3a"/>
-            <ellipse cx="252" cy="158" rx="7" ry="7" fill="#c8864a"/>
-            <rect x="301" y="118" width="11" height="38" rx="5.5" fill="#2d7a3a"/>
-            <ellipse cx="307" cy="158" rx="7" ry="7" fill="#c8864a"/>
-            <rect x="274" y="104" width="12" height="18" rx="6" fill="#c8864a"/>
-            <ellipse cx="280" cy="82" rx="22" ry="23" fill="#c8864a"/>
-            <ellipse cx="258" cy="84" rx="5" ry="7" fill="#c8864a"/>
-            <ellipse cx="302" cy="84" rx="5" ry="7" fill="#c8864a"/>
-            <ellipse cx="280" cy="62" rx="22" ry="11" fill="#2d1a00"/>
-            <path d="M258 72 Q263 66 270 68 Q266 75 260 77Z" fill="#2d1a00"/>
-            <path d="M302 72 Q297 66 290 68 Q294 75 300 77Z" fill="#2d1a00"/>
-            <path d="M265 74 Q271 70 276 73" fill="none" stroke="#2d1a00" stroke-width="2" stroke-linecap="round"/>
-            <path d="M284 73 Q289 70 295 74" fill="none" stroke="#2d1a00" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="272" cy="82" r="9" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
-            <circle cx="290" cy="82" r="9" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
-            <line x1="281" y1="81" x2="283" y2="81" stroke="#1f2937" stroke-width="2"/>
-            <line x1="258" y1="82" x2="263" y2="82" stroke="#1f2937" stroke-width="1.8"/>
-            <line x1="299" y1="82" x2="303" y2="82" stroke="#1f2937" stroke-width="1.8"/>
-            <ellipse cx="272" cy="83" rx="5.5" ry="6" fill="white"/>
-            <ellipse cx="290" cy="83" rx="5.5" ry="6" fill="white"/>
-            <ellipse cx="273" cy="84" rx="3.5" ry="4" fill="#2d1a0a"/>
-            <ellipse cx="291" cy="84" rx="3.5" ry="4" fill="#2d1a0a"/>
-            <ellipse cx="273" cy="84" rx="1.8" ry="2" fill="#0a0a0a"/>
-            <ellipse cx="291" cy="84" rx="1.8" ry="2" fill="#0a0a0a"/>
-            <circle cx="275" cy="82" r="1.2" fill="white"/>
-            <circle cx="293" cy="82" r="1.2" fill="white"/>
-            <ellipse cx="281" cy="91" rx="2.5" ry="2" fill="#b07840" opacity=".5"/>
-            <path d="M272 97 Q281 104 290 97" fill="white"/>
-            <path d="M272 97 Q281 104 290 97" fill="none" stroke="#c07040" stroke-width="1.4"/>
-            <ellipse cx="263" cy="91" rx="5" ry="3.5" fill="#f4a57a" opacity=".28"/>
-            <ellipse cx="297" cy="91" rx="5" ry="3.5" fill="#f4a57a" opacity=".28"/>
-          </g>
-          <g class="ob-bob">
-            <rect x="18" y="65" width="100" height="34" rx="11" fill="white" stroke="rgba(255,87,0,.2)" stroke-width="1"/>
-            <text x="68" y="79" text-anchor="middle" font-family="Sora,sans-serif" font-size="8.5" font-weight="700" fill="#FF5700">40+ modèles</text>
-            <text x="68" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#6b7280">disponibles</text>
-          </g>
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="130" cy="205" rx="95" ry="9" fill="rgba(9,65,2,.06)"/>
+          <!-- personnage simple qui remplit un formulaire -->
+          <ellipse cx="70" cy="120" rx="30" ry="34" fill="#c8864a"/>
+          <path d="M46 100 Q48 74 70 72 Q92 74 94 100 Q80 108 70 108 Q60 108 46 100Z" fill="#2d1a00"/>
+          <rect x="30" y="150" width="80" height="55" rx="14" fill="#0d5203"/>
+          <rect x="55" y="128" width="30" height="26" rx="10" fill="#c8864a"/>
+          <!-- bras vers le formulaire -->
+          <path d="M96 158 Q125 150 140 140" stroke="#0d5203" stroke-width="14" stroke-linecap="round" fill="none"/>
+          <circle cx="143" cy="137" r="9" fill="#c8864a"/>
+          <!-- carte formulaire -->
+          <rect x="140" y="60" width="100" height="132" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+          <rect x="140" y="60" width="100" height="24" rx="12" fill="#0d5203"/>
+          <rect x="140" y="72" width="100" height="12" fill="#0d5203"/>
+          <rect x="154" y="96" width="72" height="12" rx="6" fill="#eef1ec"/>
+          <rect x="154" y="114" width="72" height="12" rx="6" fill="#eef1ec"/>
+          <rect x="154" y="132" width="72" height="12" rx="6" fill="#eef1ec"/>
+          <rect x="154" y="150" width="42" height="6" rx="3" fill="#e5e7eb"/>
+          <rect x="154" y="150" width="24" height="6" rx="3" fill="#FF5700"/>
+          <rect x="160" y="164" width="60" height="16" rx="8" fill="#FF5700"/>
+          <path d="M182 172 l6 6 12 -12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="ob-bottom">
+        <div class="ob-dots-row" id="obDots1"></div>
         <div class="ob-eyebrow">Étape 1 — Formulaire</div>
-        <div class="ob-title" id="obTw1"></div>
-        <div class="ob-desc">6 étapes simples sur votre téléphone. Nos experts <strong>rédigent et mettent en forme</strong> — livré en Word, PowerPoint &amp; PDF sous 48h.</div>
+        <div class="ob-title">Vous remplissez, nous rédigeons</div>
+        <div class="ob-desc">6 étapes simples sur votre téléphone. Nos experts <strong>rédigent et mettent en forme</strong> livré en Word, PowerPoint &amp; PDF sous 48h.</div>
         <span class="ob-chip g">40+ modèles · Optimisé ATS · 48h chrono</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots-row" id="obDots1"></div>
+        <button class="ob-skip">Passer</button>
         <div class="ob-nav-r">
-          <button class="ob-skip">Passer</button>
-          <button class="ob-prev">←</button>
-          <button class="ob-next">Suivant →</button>
+          <button class="ob-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
+          <button class="ob-next"><span class="ob-next__label">Suivant</span><span class="ob-next__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,4 15,12 7,20"/><polyline points="13,4 21,12 13,20"/></svg></span></button>
         </div>
       </div>
     </div>
@@ -894,98 +835,43 @@
     <!-- ══ SLIDE 2 : Scanner IA ══ -->
     <div class="ob-slide s2">
       <div class="ob-illus">
-        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
-          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
-          <g class="ob-scene">
-            <rect x="12" y="38" width="82" height="110" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-            <rect x="12" y="38" width="82" height="20" rx="8" fill="#fee2e2"/>
-            <rect x="12" y="50" width="82" height="8" fill="#fee2e2"/>
-            <text x="53" y="51" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#dc2626">CV_ancien.pdf</text>
-            <circle cx="53" cy="72" r="10" fill="#fecaca"/>
-            <rect x="22" y="87" width="62" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="22" y="95" width="50" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="22" y="102" width="56" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="22" y="112" width="62" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="22" y="120" width="44" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="26" y="133" width="54" height="12" rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
-            <text x="53" y="142" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#dc2626">Dépassé</text>
-          </g>
-          <g class="ob-scene2">
-            <line x1="96" y1="96" x2="118" y2="96" stroke="#FF5700" stroke-width="2" stroke-dasharray="4 3"/>
-            <polygon points="118,91 130,96 118,101" fill="#FF5700"/>
-            <circle cx="152" cy="96" r="22" fill="white" stroke="#FF5700" stroke-width="2"/>
-            <text x="152" y="92" text-anchor="middle" font-family="Sora,sans-serif" font-size="11" font-weight="800" fill="#FF5700">IA</text>
-            <text x="152" y="104" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="#6b7280">Scanner</text>
-            <line x1="174" y1="96" x2="196" y2="96" stroke="#094102" stroke-width="2" stroke-dasharray="4 3"/>
-            <polygon points="196,91 208,96 196,101" fill="#094102"/>
-            <rect x="210" y="36" width="86" height="118" rx="8" fill="white" stroke="rgba(9,65,2,.3)" stroke-width="1.5"/>
-            <rect x="210" y="36" width="86" height="20" rx="8" fill="#f0fdf4"/>
-            <rect x="210" y="48" width="86" height="8" fill="#f0fdf4"/>
-            <text x="253" y="49" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#094102">Pré-rempli ✓</text>
-            <text x="220" y="67" font-family="DM Sans,sans-serif" font-size="7" fill="#374151">✓  Jean DUPONT</text>
-            <line x1="216" y1="72" x2="288" y2="72" stroke="#f0f2ee" stroke-width="1"/>
-            <text x="220" y="83" font-family="DM Sans,sans-serif" font-size="7" fill="#374151">✓  Chef de projet</text>
-            <line x1="216" y1="88" x2="288" y2="88" stroke="#f0f2ee" stroke-width="1"/>
-            <text x="220" y="99" font-family="DM Sans,sans-serif" font-size="7" fill="#374151">✓  3 expériences</text>
-            <line x1="216" y1="104" x2="288" y2="104" stroke="#f0f2ee" stroke-width="1"/>
-            <text x="220" y="115" font-family="DM Sans,sans-serif" font-size="7" fill="#374151">✓  2 formations</text>
-            <rect x="222" y="124" width="62" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.25)" stroke-width="1"/>
-            <text x="253" y="134" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#094102">Analyse ⚡ rapide</text>
-          </g>
-          <!-- Jeune homme lunettes carrées, cheveux courts rasés, peau foncée, pull orange -->
-          <g class="ob-perso">
-            <ellipse cx="318" cy="217" rx="11" ry="5" fill="#1c1c1c"/>
-            <ellipse cx="342" cy="217" rx="11" ry="5" fill="#1c1c1c"/>
-            <rect x="311" y="172" width="13" height="47" rx="6.5" fill="#374151"/>
-            <rect x="333" y="172" width="13" height="47" rx="6.5" fill="#374151"/>
-            <path d="M304 116 Q301 172 311 180 L346 180 Q356 172 353 116 Q345 124 328 124 Q311 124 304 116Z" fill="#ea580c"/>
-            <ellipse cx="328" cy="116" rx="13" ry="8" fill="#c2410c"/>
-            <rect x="295" y="116" width="11" height="38" rx="5.5" fill="#ea580c"/>
-            <ellipse cx="300" cy="156" rx="7" ry="7" fill="#7a3b10"/>
-            <rect x="351" y="116" width="11" height="38" rx="5.5" fill="#ea580c"/>
-            <ellipse cx="357" cy="156" rx="7" ry="7" fill="#7a3b10"/>
-            <rect x="322" y="102" width="12" height="18" rx="6" fill="#7a3b10"/>
-            <ellipse cx="328" cy="78" rx="22" ry="23" fill="#7a3b10"/>
-            <ellipse cx="306" cy="80" rx="5" ry="7" fill="#7a3b10"/>
-            <ellipse cx="350" cy="80" rx="5" ry="7" fill="#7a3b10"/>
-            <ellipse cx="328" cy="58" rx="22" ry="9" fill="#1a0a00"/>
-            <rect x="306" y="57" width="6" height="16" rx="3" fill="#1a0a00"/>
-            <rect x="344" y="57" width="6" height="16" rx="3" fill="#1a0a00"/>
-            <rect x="312" y="68" width="14" height="3.5" rx="1.75" fill="#1a0a00"/>
-            <rect x="332" y="68" width="14" height="3.5" rx="1.75" fill="#1a0a00"/>
-            <rect x="311" y="74" rx="3" ry="3" width="16" height="13" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
-            <rect x="331" y="74" rx="3" ry="3" width="16" height="13" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
-            <line x1="327" y1="80" x2="331" y2="80" stroke="#1f2937" stroke-width="2"/>
-            <line x1="306" y1="80" x2="311" y2="80" stroke="#1f2937" stroke-width="1.8"/>
-            <line x1="347" y1="80" x2="352" y2="80" stroke="#1f2937" stroke-width="1.8"/>
-            <ellipse cx="319" cy="81" rx="5" ry="5.5" fill="white"/>
-            <ellipse cx="339" cy="81" rx="5" ry="5.5" fill="white"/>
-            <ellipse cx="320" cy="82" rx="3.2" ry="3.6" fill="#2d1a0a"/>
-            <ellipse cx="340" cy="82" rx="3.2" ry="3.6" fill="#2d1a0a"/>
-            <ellipse cx="320" cy="82" rx="1.6" ry="1.8" fill="#0a0a0a"/>
-            <ellipse cx="340" cy="82" rx="1.6" ry="1.8" fill="#0a0a0a"/>
-            <circle cx="322" cy="80" r="1.1" fill="white"/>
-            <circle cx="342" cy="80" r="1.1" fill="white"/>
-            <ellipse cx="329" cy="89" rx="2.5" ry="2" fill="#5a2a00" opacity=".45"/>
-            <path d="M320 97 Q329 104 338 97" fill="white"/>
-            <path d="M320 97 Q329 104 338 97" fill="none" stroke="#5a2a00" stroke-width="1.4"/>
-            <ellipse cx="311" cy="89" rx="5" ry="3.5" fill="#c06030" opacity=".22"/>
-            <ellipse cx="347" cy="89" rx="5" ry="3.5" fill="#c06030" opacity=".22"/>
-          </g>
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="130" cy="205" rx="95" ry="9" fill="rgba(255,87,0,.06)"/>
+          <!-- téléphone -->
+          <rect x="80" y="30" width="100" height="170" rx="18" fill="#1e2532"/>
+          <rect x="88" y="42" width="84" height="146" rx="11" fill="#f0fdf4"/>
+          <rect x="118" y="34" width="24" height="5" rx="2.5" fill="#374151" opacity=".5"/>
+          <!-- document scanné dans l'écran -->
+          <rect x="98" y="56" width="64" height="80" rx="6" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+          <rect x="106" y="68" width="48" height="6" rx="3" fill="#dbe3d8"/>
+          <rect x="106" y="80" width="40" height="4" rx="2" fill="#eef1ec"/>
+          <rect x="106" y="90" width="44" height="4" rx="2" fill="#eef1ec"/>
+          <rect x="106" y="100" width="36" height="4" rx="2" fill="#eef1ec"/>
+          <rect x="106" y="114" width="48" height="4" rx="2" fill="#eef1ec"/>
+          <rect x="106" y="124" width="30" height="4" rx="2" fill="#eef1ec"/>
+          <!-- ligne de scan -->
+          <rect x="98" y="94" width="64" height="4" fill="#FF5700" opacity=".85"/>
+          <!-- badge IA -->
+          <circle cx="176" cy="150" r="24" fill="#FF5700"/>
+          <text x="176" y="147" text-anchor="middle" font-family="Sora,sans-serif" font-size="15" font-weight="800" fill="#fff">IA</text>
+          <text x="176" y="161" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#fff">scan</text>
+          <!-- check flottant -->
+          <circle cx="60" cy="70" r="15" fill="#0d5203"/>
+          <path d="M53 70 l5 5 9 -10" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="ob-bottom">
+        <div class="ob-dots-row" id="obDots2"></div>
         <div class="ob-eyebrow">Nouveauté — Scanner IA</div>
-        <div class="ob-title" id="obTw2"></div>
-        <div class="ob-desc">Prenez votre CV en photo. Notre IA extrait toutes vos infos et <strong>remplit le formulaire automatiquement</strong> — vous n'avez qu'à vérifier et envoyer.</div>
+        <div class="ob-title">Votre ancien CV importé en 1 clic</div>
+        <div class="ob-desc">Prenez votre CV en photo. Notre IA extrait toutes vos infos et <strong>remplit le formulaire automatiquement</strong> vous n'avez qu'à vérifier et envoyer.</div>
         <span class="ob-chip o">OCR intégré · Analyse rapide · 1 clic</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots-row" id="obDots2"></div>
+        <button class="ob-skip">Passer</button>
         <div class="ob-nav-r">
-          <button class="ob-skip">Passer</button>
-          <button class="ob-prev">←</button>
-          <button class="ob-next">Suivant →</button>
+          <button class="ob-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
+          <button class="ob-next"><span class="ob-next__label">Suivant</span><span class="ob-next__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,4 15,12 7,20"/><polyline points="13,4 21,12 13,20"/></svg></span></button>
         </div>
       </div>
     </div>
@@ -993,93 +879,43 @@
     <!-- ══ SLIDE 3 : Mise à jour ══ -->
     <div class="ob-slide s3">
       <div class="ob-illus">
-        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
-          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
-          <g class="ob-scene">
-            <rect x="18" y="45" width="96" height="140" rx="9" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-            <rect x="18" y="45" width="96" height="26" rx="9" fill="#f8fafc"/>
-            <rect x="18" y="63" width="96" height="8" fill="#f8fafc"/>
-            <text x="66" y="62" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="600" fill="#6b7280">CV actuel — v1</text>
-            <rect x="30" y="80" width="72" height="4" rx="2" fill="#f3f4f6"/>
-            <rect x="30" y="89" width="58" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="30" y="97" width="66" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="30" y="109" width="72" height="4" rx="2" fill="#f3f4f6"/>
-            <rect x="30" y="118" width="50" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="30" y="126" width="62" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="35" y="163" width="62" height="16" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
-            <text x="66" y="174" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="#dc2626">Dépassé</text>
-          </g>
-          <g class="ob-scene2">
-            <rect x="264" y="35" width="96" height="150" rx="9" fill="white" stroke="rgba(9,65,2,.35)" stroke-width="2"/>
-            <rect x="264" y="35" width="96" height="26" rx="9" fill="#f0fdf4"/>
-            <rect x="264" y="53" width="96" height="8" fill="#f0fdf4"/>
-            <text x="312" y="52" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="600" fill="#094102">CV mis à jour — v2</text>
-            <rect x="276" y="70" width="72" height="4" rx="2" fill="#f3f4f6"/>
-            <rect x="276" y="79" width="58" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="276" y="93" width="72" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
-            <text x="290" y="103" font-family="DM Sans,sans-serif" font-size="7" fill="#094102">✦ Nouveau poste</text>
-            <rect x="276" y="111" width="72" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
-            <text x="290" y="121" font-family="DM Sans,sans-serif" font-size="7" fill="#094102">✦ Formation MAJ</text>
-            <rect x="276" y="129" width="72" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
-            <text x="290" y="139" font-family="DM Sans,sans-serif" font-size="7" fill="#094102">✦ Nouvelle adresse</text>
-            <text x="312" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#9ca3af">Même design · 48h</text>
-          </g>
-          <!-- Jeune homme lunettes ovales, cheveux courts, peau claire, chemise bleu roi -->
-          <g class="ob-perso">
-            <ellipse cx="174" cy="217" rx="11" ry="5" fill="#1c1c1c"/>
-            <ellipse cx="198" cy="217" rx="11" ry="5" fill="#1c1c1c"/>
-            <rect x="167" y="172" width="13" height="47" rx="6.5" fill="#d4b896"/>
-            <rect x="189" y="172" width="13" height="47" rx="6.5" fill="#d4b896"/>
-            <path d="M160 116 Q157 172 167 180 L202 180 Q212 172 209 116 Q201 124 184 124 Q167 124 160 116Z" fill="#2563eb"/>
-            <path d="M173 116 L178 130 L184 126 L190 130 L195 116" fill="#1d4ed8" stroke="none"/>
-            <rect x="182" y="116" width="4" height="22" rx="1" fill="#1d4ed8"/>
-            <rect x="151" y="116" width="11" height="38" rx="5.5" fill="#2563eb"/>
-            <ellipse cx="156" cy="156" rx="7" ry="7" fill="#f5cba7"/>
-            <rect x="207" y="116" width="11" height="38" rx="5.5" fill="#2563eb"/>
-            <ellipse cx="213" cy="156" rx="7" ry="7" fill="#f5cba7"/>
-            <rect x="178" y="102" width="12" height="18" rx="6" fill="#f5cba7"/>
-            <ellipse cx="184" cy="78" rx="22" ry="23" fill="#f5cba7"/>
-            <ellipse cx="162" cy="80" rx="5" ry="7" fill="#f5cba7"/>
-            <ellipse cx="206" cy="80" rx="5" ry="7" fill="#f5cba7"/>
-            <ellipse cx="184" cy="58" rx="22" ry="10" fill="#3b1a00"/>
-            <rect x="162" y="57" width="6" height="18" rx="3" fill="#3b1a00"/>
-            <rect x="200" y="57" width="6" height="18" rx="3" fill="#3b1a00"/>
-            <ellipse cx="184" cy="56" rx="18" ry="6" fill="#4a2000"/>
-            <rect x="169" y="69" width="13" height="3" rx="1.5" fill="#3b1a00"/>
-            <rect x="188" y="69" width="13" height="3" rx="1.5" fill="#3b1a00"/>
-            <ellipse cx="176" cy="80" rx="10" ry="7" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
-            <ellipse cx="196" cy="80" rx="10" ry="7" fill="rgba(180,210,255,0.2)" stroke="#1f2937" stroke-width="2"/>
-            <line x1="186" y1="80" x2="188" y2="80" stroke="#1f2937" stroke-width="2"/>
-            <line x1="162" y1="80" x2="166" y2="80" stroke="#1f2937" stroke-width="1.8"/>
-            <line x1="206" y1="80" x2="210" y2="80" stroke="#1f2937" stroke-width="1.8"/>
-            <ellipse cx="176" cy="81" rx="5.5" ry="5.5" fill="white"/>
-            <ellipse cx="196" cy="81" rx="5.5" ry="5.5" fill="white"/>
-            <ellipse cx="177" cy="82" rx="3.4" ry="3.6" fill="#2d1a0a"/>
-            <ellipse cx="197" cy="82" rx="3.4" ry="3.6" fill="#2d1a0a"/>
-            <ellipse cx="177" cy="82" rx="1.7" ry="1.8" fill="#0a0a0a"/>
-            <ellipse cx="197" cy="82" rx="1.7" ry="1.8" fill="#0a0a0a"/>
-            <circle cx="179" cy="80" r="1.2" fill="white"/>
-            <circle cx="199" cy="80" r="1.2" fill="white"/>
-            <ellipse cx="185" cy="89" rx="2.5" ry="2" fill="#d4936a" opacity=".4"/>
-            <path d="M176 97 Q185 105 194 97" fill="white"/>
-            <path d="M176 97 Q185 105 194 97" fill="none" stroke="#d4936a" stroke-width="1.5"/>
-            <ellipse cx="165" cy="89" rx="5" ry="3.5" fill="#f4a57a" opacity=".28"/>
-            <ellipse cx="203" cy="89" rx="5" ry="3.5" fill="#f4a57a" opacity=".28"/>
-          </g>
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="130" cy="205" rx="95" ry="9" fill="rgba(9,65,2,.06)"/>
+          <!-- ancien CV -->
+          <rect x="24" y="46" width="82" height="120" rx="9" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+          <rect x="24" y="46" width="82" height="22" rx="9" fill="#fee2e2"/>
+          <rect x="24" y="60" width="82" height="8" fill="#fee2e2"/>
+          <rect x="36" y="80" width="58" height="5" rx="2.5" fill="#f3f4f6"/>
+          <rect x="36" y="90" width="46" height="4" rx="2" fill="#f3f4f6"/>
+          <rect x="36" y="99" width="52" height="4" rx="2" fill="#f3f4f6"/>
+          <rect x="34" y="132" width="52" height="14" rx="7" fill="#fee2e2"/>
+          <text x="60" y="142" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" font-weight="700" fill="#dc2626">Dépassé</text>
+          <!-- flèche de synchronisation -->
+          <path d="M112 90 a30 30 0 1 1 -4 40" fill="none" stroke="#0d5203" stroke-width="7" stroke-linecap="round"/>
+          <polygon points="112,78 112,102 128,90" fill="#0d5203"/>
+          <!-- nouveau CV -->
+          <rect x="154" y="38" width="82" height="120" rx="9" fill="#ffffff" stroke="#0d5203" stroke-width="2"/>
+          <rect x="154" y="38" width="82" height="22" rx="9" fill="#e3f3df"/>
+          <rect x="154" y="52" width="82" height="8" fill="#e3f3df"/>
+          <rect x="166" y="72" width="58" height="5" rx="2.5" fill="#dbe3d8"/>
+          <rect x="166" y="86" width="58" height="13" rx="6.5" fill="#e3f3df"/>
+          <rect x="166" y="103" width="58" height="13" rx="6.5" fill="#e3f3df"/>
+          <circle cx="243" cy="46" r="16" fill="#FF5700"/>
+          <path d="M235 46 l5 5 10 -10" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="ob-bottom">
+        <div class="ob-dots-row" id="obDots3"></div>
         <div class="ob-eyebrow">Déjà client ?</div>
-        <div class="ob-title" id="obTw3"></div>
-        <div class="ob-desc">Nouveau poste, formation, adresse ? Indiquez ce qui a changé — <strong>même design conservé</strong>, livré en Word ou PowerPoint &amp; PDF sous 48h.</div>
+        <div class="ob-title">Mise à jour de votre CV existant</div>
+        <div class="ob-desc">Nouveau poste, formation, adresse ? Indiquez ce qui a changé <strong>même design conservé</strong>, livré en Word ou PowerPoint &amp; PDF sous 48h.</div>
         <span class="ob-chip g">Modification rapide · Même design conservé</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots-row" id="obDots3"></div>
+        <button class="ob-skip">Passer</button>
         <div class="ob-nav-r">
-          <button class="ob-skip">Passer</button>
-          <button class="ob-prev">←</button>
-          <button class="ob-next">Suivant →</button>
+          <button class="ob-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
+          <button class="ob-next"><span class="ob-next__label">Suivant</span><span class="ob-next__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,4 15,12 7,20"/><polyline points="13,4 21,12 13,20"/></svg></span></button>
         </div>
       </div>
     </div>
@@ -1087,82 +923,37 @@
     <!-- ══ SLIDE 4 : Lettre de motivation ══ -->
     <div class="ob-slide s4">
       <div class="ob-illus">
-        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
-          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
-          <g class="ob-scene ob-bob">
-            <rect x="118" y="22" width="144" height="180" rx="10" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-            <text x="190" y="46" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#9ca3af">Madame, Monsieur,</text>
-            <rect x="130" y="55" width="120" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="130" y="63" width="106" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="130" y="70" width="114" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="130" y="88" width="120" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="130" y="96" width="86" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="130" y="103" width="108" height="3" rx="1.5" fill="#f3f4f6"/>
-            <text x="144" y="122" font-family="DM Sans,sans-serif" font-size="8" fill="#9ca3af">Cordialement,</text>
-            <rect x="130" y="130" width="50" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.25)" stroke-width="1"/>
-            <text x="155" y="140" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#094102">Leadership</text>
-            <rect x="186" y="130" width="60" height="14" rx="7" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
-            <text x="216" y="140" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#094102">Communication</text>
-            <rect x="130" y="150" width="82" height="15" rx="7.5" fill="rgba(255,87,0,.1)" stroke="rgba(255,87,0,.35)" stroke-width="1"/>
-            <text x="171" y="161" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" font-weight="700" fill="#FF5700">Candidature spontanée</text>
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="130" cy="205" rx="95" ry="9" fill="rgba(255,87,0,.06)"/>
+          <!-- enveloppe -->
+          <rect x="40" y="70" width="180" height="120" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+          <path d="M40 78 L130 140 L220 78" fill="none" stroke="#dbe3d8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="60" y="150" width="60" height="14" rx="7" fill="#e3f3df"/>
+          <text x="90" y="160" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" font-weight="700" fill="#0d5203">Leadership</text>
+          <rect x="128" y="150" width="72" height="14" rx="7" fill="#fff3ee"/>
+          <text x="164" y="160" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" font-weight="700" fill="#FF5700">Motivation</text>
+          <!-- stylo -->
+          <g transform="rotate(38 205 60)">
+            <rect x="192" y="20" width="16" height="80" rx="8" fill="#FF5700"/>
+            <polygon points="192,100 208,100 200,116" fill="#0d5203"/>
+            <rect x="192" y="20" width="16" height="16" rx="8" fill="#0d5203"/>
           </g>
-          <!-- Homme lunettes chemise bordeaux -->
-          <g class="ob-perso">
-            <ellipse cx="54" cy="217" rx="13" ry="6" fill="#1c1c1c"/>
-            <ellipse cx="82" cy="217" rx="13" ry="6" fill="#1c1c1c"/>
-            <rect x="46" y="170" width="17" height="49" rx="8.5" fill="#9ca3af"/>
-            <rect x="73" y="170" width="17" height="49" rx="8.5" fill="#9ca3af"/>
-            <rect x="30" y="110" width="76" height="68" rx="24" fill="#881337"/>
-            <ellipse cx="68" cy="110" rx="16" ry="10" fill="#f9fafb"/>
-            <polygon points="68,114 64,122 68,142 72,122" fill="#374151"/>
-            <rect x="8" y="116" width="26" height="48" rx="13" fill="#881337"/>
-            <ellipse cx="21" cy="166" rx="14" ry="13" fill="#f5cba7"/>
-            <rect x="102" y="116" width="26" height="48" rx="13" fill="#881337"/>
-            <ellipse cx="115" cy="166" rx="14" ry="13" fill="#f5cba7"/>
-            <rect x="58" y="96" width="20" height="20" rx="9" fill="#f5cba7"/>
-            <ellipse cx="68" cy="68" rx="36" ry="36" fill="#f5cba7"/>
-            <ellipse cx="32" cy="70" rx="8" ry="11" fill="#f5cba7"/>
-            <ellipse cx="104" cy="70" rx="8" ry="11" fill="#f5cba7"/>
-            <ellipse cx="68" cy="37" rx="35" ry="18" fill="#9ca3af"/>
-            <rect x="32" y="36" width="12" height="22" rx="6" fill="#9ca3af"/>
-            <rect x="92" y="36" width="12" height="22" rx="6" fill="#9ca3af"/>
-            <path d="M42 56 Q54 50 62 55" fill="none" stroke="#6b7280" stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M74 55 Q82 50 94 56" fill="none" stroke="#6b7280" stroke-width="3.5" stroke-linecap="round"/>
-            <circle cx="53" cy="70" r="13" fill="rgba(200,220,255,0.25)" stroke="#1f2937" stroke-width="3"/>
-            <circle cx="83" cy="70" r="13" fill="rgba(200,220,255,0.25)" stroke="#1f2937" stroke-width="3"/>
-            <line x1="66" y1="69" x2="70" y2="69" stroke="#1f2937" stroke-width="3"/>
-            <line x1="32" y1="68" x2="40" y2="69" stroke="#1f2937" stroke-width="2.5"/>
-            <line x1="96" y1="69" x2="104" y2="68" stroke="#1f2937" stroke-width="2.5"/>
-            <ellipse cx="53" cy="71" rx="7" ry="8" fill="white"/>
-            <ellipse cx="83" cy="71" rx="7" ry="8" fill="white"/>
-            <ellipse cx="54" cy="72" rx="4.5" ry="5.5" fill="#2d1a0a"/>
-            <ellipse cx="84" cy="72" rx="4.5" ry="5.5" fill="#2d1a0a"/>
-            <circle cx="56" cy="69" r="1.8" fill="white"/>
-            <circle cx="86" cy="69" r="1.8" fill="white"/>
-            <path d="M56 86 Q68 96 80 86" fill="white"/>
-            <path d="M56 86 Q68 96 80 86" fill="none" stroke="#d4936a" stroke-width="1.8"/>
-            <ellipse cx="38" cy="80" rx="7" ry="5" fill="#f4a57a" opacity=".35"/>
-            <ellipse cx="98" cy="80" rx="7" ry="5" fill="#f4a57a" opacity=".35"/>
-          </g>
-          <g class="ob-bob" style="animation-delay:.3s">
-            <rect x="280" y="28" width="84" height="36" rx="11" fill="white" stroke="rgba(255,87,0,.2)" stroke-width="1"/>
-            <text x="322" y="42" text-anchor="middle" font-family="Sora,sans-serif" font-size="8.5" font-weight="700" fill="#FF5700">⚡ Premium</text>
-            <text x="322" y="56" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#6b7280">Prioritaire</text>
-          </g>
+          <circle cx="46" cy="60" r="13" fill="#0d5203"/>
+          <path d="M40 60 l4 4 8 -9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="ob-bottom">
+        <div class="ob-dots-row" id="obDots4"></div>
         <div class="ob-eyebrow">Lettre de motivation</div>
-        <div class="ob-title" id="obTw4"></div>
+        <div class="ob-title">Lettre rédigée sur mesure pour vous</div>
         <div class="ob-desc">Nos experts rédigent une <strong>lettre personnalisée</strong> qui valorise votre profil. Candidature spontanée ou réponse à offre disponible.</div>
         <span class="ob-chip o">⚡ Option Premium : livraison prioritaire</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots-row" id="obDots4"></div>
+        <button class="ob-skip">Passer</button>
         <div class="ob-nav-r">
-          <button class="ob-skip">Passer</button>
-          <button class="ob-prev">←</button>
-          <button class="ob-next">Suivant →</button>
+          <button class="ob-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
+          <button class="ob-next"><span class="ob-next__label">Suivant</span><span class="ob-next__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,4 15,12 7,20"/><polyline points="13,4 21,12 13,20"/></svg></span></button>
         </div>
       </div>
     </div>
@@ -1170,98 +961,40 @@
     <!-- ══ SLIDE 5 : Catalogue ══ -->
     <div class="ob-slide s5">
       <div class="ob-illus">
-        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
-          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
-          <g class="ob-scene">
-            <rect x="22" y="36" width="72" height="108" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-            <rect x="22" y="36" width="72" height="48" rx="8" fill="#f8fafc"/>
-            <rect x="22" y="76" width="72" height="8" fill="#f8fafc"/>
-            <circle cx="58" cy="60" r="12" fill="#e5e7eb"/>
-            <rect x="32" y="92" width="52" height="3.5" rx="1.5" fill="#e5e7eb"/>
-            <rect x="32" y="100" width="40" height="3" rx="1.5" fill="#f3f4f6"/>
-            <text x="58" y="130" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" fill="#6b7280">N°018</text>
-          </g>
-          <g class="ob-bob">
-            <rect x="110" y="22" width="80" height="126" rx="9" fill="white" stroke="#FF5700" stroke-width="2.5"/>
-            <rect x="110" y="22" width="80" height="56" rx="9" fill="#fff3ee"/>
-            <rect x="110" y="70" width="80" height="8" fill="#fff3ee"/>
-            <circle cx="150" cy="50" r="14" fill="#fde8df"/>
-            <rect x="122" y="88" width="56" height="3.5" rx="1.5" fill="#e5e7eb"/>
-            <rect x="122" y="96" width="46" height="3" rx="1.5" fill="#f3f4f6"/>
-            <text x="150" y="122" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="#374151">N°030</text>
-            <rect x="118" y="128" width="64" height="18" rx="9" fill="#FF5700"/>
-            <text x="150" y="140" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="white">⭐ Populaire</text>
-          </g>
-          <g class="ob-scene">
-            <rect x="206" y="36" width="72" height="108" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
-            <rect x="206" y="36" width="72" height="48" rx="8" fill="#f0fdf4"/>
-            <rect x="206" y="76" width="72" height="8" fill="#f0fdf4"/>
-            <circle cx="242" cy="60" r="12" fill="#bbf7d0"/>
-            <rect x="216" y="92" width="52" height="3.5" rx="1.5" fill="#e5e7eb"/>
-            <rect x="216" y="100" width="40" height="3" rx="1.5" fill="#f3f4f6"/>
-            <text x="242" y="130" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" fill="#6b7280">N°001</text>
-          </g>
-          <g class="ob-scene2">
-            <rect x="16" y="162" width="280" height="28" rx="14" fill="white" stroke="#e5e7eb" stroke-width="1"/>
-            <rect x="22" y="167" width="54" height="18" rx="9" fill="#094102"/>
-            <text x="49" y="179" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" font-weight="700" fill="white">Tous (43)</text>
-            <rect x="82" y="167" width="50" height="18" rx="9" fill="#f3f4f6"/>
-            <text x="107" y="179" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#6b7280">Moderne</text>
-            <rect x="138" y="167" width="54" height="18" rx="9" fill="#f3f4f6"/>
-            <text x="165" y="179" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#6b7280">Classique</text>
-            <rect x="198" y="167" width="44" height="18" rx="9" fill="#f3f4f6"/>
-            <text x="220" y="179" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#6b7280">Créatif</text>
-            <text x="280" y="179" text-anchor="middle" font-family="Sora,sans-serif" font-size="7.5" font-weight="700" fill="#FF5700">Zoom ⊕</text>
-          </g>
-          <g class="ob-perso">
-            <rect x="296" y="168" width="14" height="46" rx="6.5" fill="#6b7280"/>
-            <rect x="316" y="168" width="14" height="46" rx="6.5" fill="#6b7280"/>
-            <ellipse cx="303" cy="216" rx="11" ry="5" fill="#2d2d2d"/>
-            <ellipse cx="323" cy="216" rx="11" ry="5" fill="#2d2d2d"/>
-            <rect x="286" y="106" width="58" height="68" rx="14" fill="#9ca3af"/>
-            <rect x="300" y="104" width="22" height="20" rx="5" fill="#f9fafb"/>
-            <polygon points="311,110 307,115 309,130 311,132 313,130 315,115" fill="#3b82f6"/>
-            <path d="M286 118 Q260 110 192 148" fill="none" stroke="#9ca3af" stroke-width="13" stroke-linecap="round"/>
-            <ellipse cx="189" cy="150" rx="9" ry="10" fill="#f4c5a0"/>
-            <ellipse cx="181" cy="147" rx="5" ry="4" fill="#f4c5a0"/>
-            <path d="M344 118 Q356 112 362 102" fill="none" stroke="#9ca3af" stroke-width="13" stroke-linecap="round"/>
-            <ellipse cx="364" cy="99" rx="9" ry="10" fill="#f4c5a0"/>
-            <rect x="304" y="90" width="14" height="18" rx="6" fill="#f4c5a0"/>
-            <ellipse cx="311" cy="74" rx="24" ry="26" fill="#f4c5a0"/>
-            <ellipse cx="287" cy="76" rx="5" ry="7" fill="#f4c5a0"/>
-            <ellipse cx="335" cy="76" rx="5" ry="7" fill="#f4c5a0"/>
-            <ellipse cx="311" cy="52" rx="24" ry="13" fill="#7a3b10"/>
-            <rect x="287" y="51" width="6" height="18" rx="3" fill="#7a3b10"/>
-            <rect x="330" y="51" width="6" height="18" rx="3" fill="#7a3b10"/>
-            <path d="M298 65 Q304 62 309 65" fill="none" stroke="#5a2a08" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M313 65 Q318 62 324 65" fill="none" stroke="#5a2a08" stroke-width="2.2" stroke-linecap="round"/>
-            <ellipse cx="304" cy="73" rx="5" ry="5.5" fill="white"/>
-            <ellipse cx="318" cy="73" rx="5" ry="5.5" fill="white"/>
-            <ellipse cx="305" cy="74" rx="3.2" ry="3.8" fill="#3d2b1a"/>
-            <ellipse cx="319" cy="74" rx="3.2" ry="3.8" fill="#3d2b1a"/>
-            <ellipse cx="305" cy="74" rx="1.6" ry="1.9" fill="#0d0d0d"/>
-            <ellipse cx="319" cy="74" rx="1.6" ry="1.9" fill="#0d0d0d"/>
-            <circle cx="307" cy="72" r="1.1" fill="white"/>
-            <circle cx="321" cy="72" r="1.1" fill="white"/>
-            <path d="M302 80 Q311 88 320 80" fill="white"/>
-            <path d="M302 80 Q311 88 320 80" fill="none" stroke="#d4936a" stroke-width="1.4"/>
-            <ellipse cx="297" cy="82" rx="5" ry="3.5" fill="#f4a57a" opacity=".3"/>
-            <ellipse cx="325" cy="82" rx="5" ry="3.5" fill="#f4a57a" opacity=".3"/>
-          </g>
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="130" cy="205" rx="95" ry="9" fill="rgba(9,65,2,.06)"/>
+          <rect x="26" y="34" width="82" height="98" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+          <rect x="26" y="34" width="82" height="42" rx="8" fill="#eef1ec"/>
+          <rect x="26" y="68" width="82" height="8" fill="#eef1ec"/>
+          <circle cx="67" cy="55" r="11" fill="#dbe3d8"/>
+          <rect x="38" y="86" width="46" height="5" rx="2.5" fill="#e5e7eb"/>
+          <rect x="38" y="96" width="34" height="4" rx="2" fill="#f3f4f6"/>
+          <rect x="140" y="18" width="94" height="118" rx="10" fill="#ffffff" stroke="#FF5700" stroke-width="2.5"/>
+          <rect x="140" y="18" width="94" height="50" rx="10" fill="#fff3ee"/>
+          <rect x="140" y="60" width="94" height="8" fill="#fff3ee"/>
+          <circle cx="187" cy="44" r="14" fill="#fde0d0"/>
+          <rect x="156" y="80" width="62" height="5" rx="2.5" fill="#e5e7eb"/>
+          <rect x="156" y="90" width="48" height="4" rx="2" fill="#f3f4f6"/>
+          <rect x="150" y="106" width="76" height="20" rx="10" fill="#FF5700"/>
+          <text x="188" y="120" text-anchor="middle" font-family="Sora,sans-serif" font-size="9" font-weight="700" fill="#fff">⭐ Populaire</text>
+          <rect x="40" y="150" width="86" height="34" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+          <circle cx="60" cy="167" r="9" fill="#e3f3df"/>
+          <rect x="76" y="160" width="40" height="5" rx="2.5" fill="#e5e7eb"/>
+          <rect x="76" y="170" width="28" height="4" rx="2" fill="#f3f4f6"/>
         </svg>
       </div>
       <div class="ob-bottom">
+        <div class="ob-dots-row" id="obDots5"></div>
         <div class="ob-eyebrow">Catalogue de CV</div>
-        <div class="ob-title" id="obTw5"></div>
-        <div class="ob-desc">43 modèles Word &amp; PowerPoint. Filtrez, zoomez, comparez. Notez le numéro dans votre formulaire — <strong>nous l'utilisons pour réaliser votre CV</strong>.</div>
+        <div class="ob-title">Choisissez votre design favori</div>
+        <div class="ob-desc">43 modèles Word &amp; PowerPoint. Filtrez, zoomez, comparez. Notez le numéro dans votre formulaire <strong>nous l'utilisons pour réaliser votre CV</strong>.</div>
         <span class="ob-chip g">Moderne · Classique · Créatif · Minimal</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots-row" id="obDots5"></div>
+        <button class="ob-skip">Passer</button>
         <div class="ob-nav-r">
-          <button class="ob-skip">Passer</button>
-          <button class="ob-prev">←</button>
-          <button class="ob-next">Suivant →</button>
+          <button class="ob-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
+          <button class="ob-next"><span class="ob-next__label">Suivant</span><span class="ob-next__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,4 15,12 7,20"/><polyline points="13,4 21,12 13,20"/></svg></span></button>
         </div>
       </div>
     </div>
@@ -1269,79 +1002,42 @@
     <!-- ══ SLIDE 6 : Paiement & Livraison ══ -->
     <div class="ob-slide s6">
       <div class="ob-illus">
-        <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:relative;z-index:1;">
-          <ellipse cx="190" cy="222" rx="130" ry="7" fill="rgba(9,65,2,.07)"/>
-          <defs>
-            <clipPath id="phoneClip6">
-              <rect x="133" y="19" width="80" height="170" rx="11"/>
-            </clipPath>
-            <clipPath id="payClip6">
-              <rect x="13" y="55" width="98" height="70" rx="10"/>
-            </clipPath>
-          </defs>
-          <rect x="13" y="55" width="98" height="70" rx="10" fill="white" stroke="#e5e7eb" stroke-width="1" class="ob-scene2"/>
-          <g clip-path="url(#payClip6)" class="ob-scene2">
-            <text x="62" y="74" text-anchor="middle" font-family="Sora,sans-serif" font-size="8" font-weight="700" fill="#374151">Paiement</text>
-            <rect x="20" y="79" width="84" height="18" rx="9" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
-            <text x="62" y="88" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#dc2626">Airtel Money</text>
-            <text x="62" y="97" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6" fill="#6b7280">0xx xxx xxxx</text>
-            <rect x="20" y="100" width="84" height="16" rx="8" fill="#f0fdf4" stroke="rgba(9,65,2,.2)" stroke-width="1"/>
-            <text x="62" y="111" text-anchor="middle" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#094102">Moov · 0xx xxx xxxx</text>
-          </g>
-          <g class="ob-scene ob-bob">
-            <rect x="129" y="14" width="90" height="182" rx="15" fill="#1e2532"/>
-            <rect x="133" y="19" width="80" height="170" rx="11" fill="#f0fdf4"/>
-            <rect x="157" y="14" width="34" height="5" rx="2.5" fill="#374151" opacity=".5"/>
-          </g>
-          <g clip-path="url(#phoneClip6)" class="ob-scene ob-bob">
-            <rect x="133" y="19" width="80" height="34" fill="#094102"/>
-            <text x="173" y="30" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="white">Chronos-Services</text>
-            <text x="173" y="42" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6" fill="rgba(255,255,255,.85)">Votre CV est prêt ✓</text>
-            <circle cx="155" cy="72" r="12" fill="#d1d5db"/>
-            <circle cx="155" cy="68" r="6" fill="#9ca3af"/>
-            <ellipse cx="155" cy="82" rx="10" ry="6" fill="#9ca3af"/>
-            <rect x="172" y="64" width="36" height="4" rx="2" fill="#e5e7eb"/>
-            <rect x="172" y="72" width="28" height="3.5" rx="1.5" fill="#f3f4f6"/>
-            <rect x="133" y="92" width="80" height="1" fill="#e5e7eb"/>
-            <rect x="139" y="98" width="68" height="3.5" rx="1.5" fill="#e5e7eb"/>
-            <rect x="139" y="106" width="56" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="139" y="113" width="62" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="133" y="122" width="80" height="1" fill="#e5e7eb"/>
-            <rect x="139" y="127" width="68" height="3.5" rx="1.5" fill="#e5e7eb"/>
-            <rect x="139" y="135" width="48" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="139" y="142" width="58" height="3" rx="1.5" fill="#f3f4f6"/>
-            <rect x="134" y="151" width="72" height="15" rx="7.5" fill="#25D366"/>
-            <text x="170" y="162" text-anchor="middle" font-family="Sora,sans-serif" font-size="6.2" font-weight="700" fill="white">Envoyé via WhatsApp ✓</text>
-            <text x="139" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#094102">Word</text>
-            <text x="158" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#6b7280">PPT</text>
-            <text x="174" y="182" font-family="Sora,sans-serif" font-size="6.5" font-weight="700" fill="#dc2626">PDF</text>
-          </g>
-          <g class="ob-scene2">
-            <rect x="244" y="42" width="8" height="8" rx="1.5" fill="#FF5700" transform="rotate(20 248 46)" opacity=".7"/>
-            <rect x="280" y="28" width="6" height="6" rx="1" fill="#094102" transform="rotate(-10 283 31)" opacity=".6"/>
-            <rect x="310" y="18" width="7" height="7" rx="1" fill="#25D366" transform="rotate(30 313 21)" opacity=".65"/>
-            <circle cx="260" cy="170" r="4" fill="#FF5700" opacity=".5"/>
-            <circle cx="300" cy="185" r="3" fill="#094102" opacity=".45"/>
-            <circle cx="320" cy="155" r="3.5" fill="#25D366" opacity=".5"/>
-            <rect x="330" y="80" width="6" height="6" rx="1" fill="#FF5700" transform="rotate(-20 333 83)" opacity=".55"/>
-            <rect x="350" y="120" width="5" height="5" rx="1" fill="#094102" transform="rotate(15 352 122)" opacity=".5"/>
-            <circle cx="345" cy="50" r="3" fill="#f59e0b" opacity=".6"/>
-            <rect x="225" y="100" width="5" height="5" rx="1" fill="#25D366" transform="rotate(25 227 102)" opacity=".5"/>
-          </g>
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="130" cy="205" rx="95" ry="9" fill="rgba(37,211,102,.08)"/>
+          <!-- téléphone avec cadenas -->
+          <rect x="80" y="26" width="100" height="172" rx="18" fill="#0d5203"/>
+          <rect x="88" y="38" width="84" height="148" rx="11" fill="#f0fdf4"/>
+          <rect x="118" y="30" width="24" height="5" rx="2.5" fill="#08340a" opacity=".6"/>
+          <rect x="100" y="58" width="60" height="46" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+          <rect x="112" y="70" width="36" height="5" rx="2.5" fill="#dbe3d8"/>
+          <rect x="112" y="82" width="28" height="4" rx="2" fill="#eef1ec"/>
+          <circle cx="130" cy="128" r="26" fill="#e3f3df"/>
+          <rect x="118" y="122" width="24" height="18" rx="4" fill="#0d5203"/>
+          <path d="M122 122 v-8 a8 8 0 0 1 16 0 v8" fill="none" stroke="#0d5203" stroke-width="5"/>
+          <circle cx="130" cy="130" r="3" fill="#fff"/>
+          <rect x="100" y="164" width="60" height="14" rx="7" fill="#25D366"/>
+          <text x="130" y="174" text-anchor="middle" font-family="Sora,sans-serif" font-size="7" font-weight="700" fill="#fff">Envoyé ✓</text>
+          <!-- badge WhatsApp -->
+          <circle cx="196" cy="150" r="22" fill="#25D366"/>
+          <path d="M196 138 a12 12 0 1 0 6 22 l7 2 -2 -7 a12 12 0 0 0 -11 -17Z" fill="#fff"/>
+          <!-- confettis -->
+          <rect x="40" y="60" width="7" height="7" rx="1.5" fill="#FF5700" transform="rotate(18 43 63)" opacity=".7"/>
+          <circle cx="46" cy="140" r="4" fill="#0d5203" opacity=".5"/>
+          <rect x="212" y="66" width="6" height="6" rx="1" fill="#25D366" transform="rotate(-15 215 69)" opacity=".7"/>
         </svg>
       </div>
       <div class="ob-bottom">
+        <div class="ob-dots-row" id="obDots6"></div>
         <div class="ob-eyebrow">Paiement &amp; Livraison</div>
-        <div class="ob-title" id="obTw6"></div>
+        <div class="ob-title">Simple, transparent et rapide</div>
         <div class="ob-desc">Payez via Airtel Money ou Moov Money. <strong>Facture PDF générée automatiquement</strong>. Votre CV vous est livré en Word ou PowerPoint &amp; PDF via WhatsApp.</div>
         <span class="ob-chip g">✓ Paiement mobile · Livraison rapide</span>
       </div>
       <div class="ob-nav">
-        <div class="ob-dots-row" id="obDots6"></div>
+        <button class="ob-skip">Passer</button>
         <div class="ob-nav-r">
-          <button class="ob-skip">Passer</button>
-          <button class="ob-prev">←</button>
-          <button class="ob-next last">C'est parti !</button>
+          <button class="ob-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
+          <button class="ob-next last"><span class="ob-next__label">Commencer</span><span class="ob-next__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,4 15,12 7,20"/><polyline points="13,4 21,12 13,20"/></svg></span></button>
         </div>
       </div>
     </div>
@@ -1431,7 +1127,7 @@
               <div class="cs-card__eyebrow">Mise à jour CV</div>
               <div class="cs-card__title">Mettre à jour<br>votre <em>CV existant</em></div>
               <div class="cs-card__row">
-                <div class="cs-card__desc">Nouveau poste, formation ou adresse — même design conservé</div>
+                <div class="cs-card__desc">Nouveau poste, formation ou adresse même design conservé</div>
                 <a href="formulaire-mise-a-jour-cv.html" class="cs-card__btn cs-card__btn--orange">Modifier</a>
               </div>
             </div>
@@ -1641,20 +1337,10 @@
   </div>
 
   <script>
-    /* ─── NOUVEL ONBOARDING ─────────────────────────────── */
+    /* ─── NOUVEL ONBOARDING — navigation 100% manuelle (Passer / ← / Suivant) ─── */
     (function () {
       var TOTAL = 7;
-      var TITLES = [
-        "Votre CV rédigé\npar des professionnels",
-        "Vous remplissez,\nnous rédigeons",
-        "Votre ancien CV\nimporté en 1 clic",
-        "Mise à jour\nde votre CV existant",
-        "Lettre rédigée\nsur mesure pour vous",
-        "Choisissez\nvotre design favori",
-        "Simple, transparent\net rapide"
-      ];
-
-      var cur = 0, autoT = null, twT = null, busy = false;
+      var cur = 0, busy = false;
       var wrap = document.getElementById('csOb');
       if (!wrap) return;
 
@@ -1664,7 +1350,7 @@
         for (var i = 0; i < TOTAL; i++) {
           var d = document.createElement('div');
           d.className = 'ob-dot' + (i === 0 ? ' on' : '');
-          (function(idx){ d.addEventListener('click', function(){ stopAuto(); goTo(idx); startAuto(); }); })(i);
+          (function(idx){ d.addEventListener('click', function(){ goTo(idx); }); })(i);
           row.appendChild(d);
         }
       }
@@ -1674,26 +1360,6 @@
           var p = idx % TOTAL;
           d.className = 'ob-dot' + (p === cur ? ' on' : p < cur ? ' done' : '');
         });
-      }
-
-      function typewrite(el, text) {
-        clearTimeout(twT);
-        el.innerHTML = '';
-        var chars = [], parts = text.split('\n');
-        parts.forEach(function(p, pi) {
-          for (var c of p) chars.push({ c: c, br: false });
-          if (pi < parts.length - 1) chars.push({ c: '', br: true });
-        });
-        var ci = 0, html = '';
-        function tick() {
-          if (ci >= chars.length) { el.innerHTML = html + '<span class="ob-cursor"></span>'; return; }
-          var item = chars[ci];
-          if (item.br) html += '<br>'; else html += item.c;
-          el.innerHTML = html;
-          ci++;
-          twT = setTimeout(tick, 34);
-        }
-        tick();
       }
 
       function goTo(n) {
@@ -1709,8 +1375,6 @@
           slides[cur].classList.add('active');
           updateDots();
           updateNav();
-          var twEl = document.getElementById('obTw' + cur);
-          if (twEl) typewrite(twEl, TITLES[cur]);
           document.getElementById('obProgFill').style.width = (cur / (TOTAL - 1) * 100) + '%';
           busy = false;
         }, 120);
@@ -1722,13 +1386,13 @@
           b.style.pointerEvents = cur === 0 ? 'none' : 'all';
         });
         wrap.querySelectorAll('.ob-next').forEach(function(b) {
-          b.textContent = cur === TOTAL - 1 ? "C'est parti !" : "Suivant →";
+          var label = b.querySelector('.ob-next__label');
+          if (label) label.textContent = cur === TOTAL - 1 ? "Commencer" : "Suivant";
           b.classList.toggle('last', cur === TOTAL - 1);
         });
       }
 
       function closeOb() {
-        stopAuto(); clearTimeout(twT);
         wrap.classList.add('ob-closing');
         setTimeout(function() {
           if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
@@ -1739,25 +1403,20 @@
         }, 380);
       }
 
-      function startAuto() {
-        clearInterval(autoT);
-        autoT = setInterval(function() { if (cur < TOTAL - 1) goTo(cur + 1); else clearInterval(autoT); }, 5000);
-      }
-      function stopAuto() { clearInterval(autoT); }
-
       wrap.querySelectorAll('.ob-next').forEach(function(b) {
-        b.addEventListener('click', function() { stopAuto(); if (cur === TOTAL - 1) closeOb(); else { goTo(cur + 1); startAuto(); } });
+        b.addEventListener('click', function() { if (cur === TOTAL - 1) closeOb(); else goTo(cur + 1); });
       });
       wrap.querySelectorAll('.ob-prev').forEach(function(b) {
-        b.addEventListener('click', function() { stopAuto(); goTo(cur - 1); startAuto(); });
+        b.addEventListener('click', function() { goTo(cur - 1); });
       });
       wrap.querySelectorAll('.ob-skip').forEach(function(b) { b.addEventListener('click', closeOb); });
 
+      /* Balayage tactile — navigation manuelle uniquement, pas de défilement auto */
       var tsX = 0;
       wrap.addEventListener('touchstart', function(e) { tsX = e.touches[0].clientX; }, { passive: true });
       wrap.addEventListener('touchend', function(e) {
         var dx = e.changedTouches[0].clientX - tsX;
-        if (Math.abs(dx) > 44) { stopAuto(); dx < 0 ? goTo(Math.min(cur + 1, TOTAL - 1)) : goTo(Math.max(cur - 1, 0)); startAuto(); }
+        if (Math.abs(dx) > 44) { dx < 0 ? goTo(Math.min(cur + 1, TOTAL - 1)) : goTo(Math.max(cur - 1, 0)); }
       }, { passive: true });
 
       document.addEventListener('keydown', function(e) {
@@ -1769,9 +1428,7 @@
 
       document.body.style.overflow = 'hidden';
       updateNav();
-      var twEl0 = document.getElementById('obTw0');
-      if (twEl0) setTimeout(function() { typewrite(twEl0, TITLES[0]); }, 300);
-      startAuto();
+      updateDots();
     })();
 
     /* ─── SLIDER PRINCIPAL (5 slides) ───────────────────── */
