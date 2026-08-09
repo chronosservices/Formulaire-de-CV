@@ -64,122 +64,6 @@
     .stat-card__value{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px;}
     .stat-card__label{font-size:.7rem;color:var(--text-muted);font-weight:500;line-height:1.2;}
 
-    /* ====================================================
-       SLIDER HERO — 5 slides (hero banner + 4 promo cards)
-    ==================================================== */
-    .cs-slider-section{width:100%;}
-    .cs-track-outer{overflow:hidden;border-radius:var(--radius-xl);position:relative;cursor:grab;-webkit-user-select:none;user-select:none;}
-    .cs-track-outer.dragging{cursor:grabbing;}
-    .cs-track{display:flex;gap:14px;transition:transform .65s cubic-bezier(.23,1,.32,1);will-change:transform;}
-
-    /* --- Carte de base --- */
-    .cs-card{
-      flex:0 0 100%;
-      border-radius:var(--radius-xl);
-      overflow:hidden;
-      position:relative;
-      min-height:190px;
-      max-height:340px;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-    }
-
-    /* --- Photo de fond : couvre toute la carte, même comportement pour toutes les slides --- */
-    .cs-card__photo{
-      position:absolute;
-      top:10%;
-      left:25%;
-      width:80%;
-      height:80%;
-      object-fit:contain;
-      object-position:right center;
-      border-radius:inherit;
-      z-index:0;
-      pointer-events:none;
-      opacity:1;
-      transition:all .3s cubic-bezier(.4,0,.2,1);
-    }
-    .cs-card__overlay-left{
-      position:absolute;
-      top:0; left:0; bottom:0;
-      width:58%;
-      background:linear-gradient(90deg,rgba(5,30,8,0.98) 85%,rgba(9,65,2,0.0) 100%);
-      z-index:2;
-      pointer-events:none;
-      border-radius:inherit;
-    }
-
-    /* --- Fallback couleur quand pas de photo --- */
-    .cs-card--hero    { background:linear-gradient(135deg,#094102 0%,#1a6b05 40%,#FF5700 100%); }
-    .cs-card--cv      { background:linear-gradient(135deg,#094102 0%,#1a6b05 45%,#FF5700 100%); }
-    .cs-card--update  { background:linear-gradient(135deg,#0d1a0b 0%,#094102 55%,#1d4a01 100%); }
-    .cs-card--lettre  { background:linear-gradient(135deg,#1a0a00 0%,#7a2d00 60%,#FF5700 100%); }
-    .cs-card--contact { background:linear-gradient(135deg,#094102 0%,#25D366 100%); }
-
-    /* --- Déco abstraite (cercles) --- */
-    .cs-card__deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
-    .cs-card__deco::before{content:'';position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.07);top:-70px;right:-55px;}
-    .cs-card__deco::after{content:'';position:absolute;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.04);bottom:-35px;left:-25px;}
-
-    /* --- Overlay sombre sur la photo — identique pour toutes les slides --- */
-    .cs-card__overlay{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top,rgba(9,65,2,.92) 0%,rgba(9,65,2,.5) 50%,transparent 100%);
-      z-index:2;
-    }
-
-    /* --- Badge en haut à gauche --- */
-    .cs-card__badge{position:absolute;top:16px;left:18px;z-index:3;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:4px 12px;font-size:.64rem;font-weight:700;color:white;font-family:'Sora',sans-serif;letter-spacing:.03em;}
-    .cs-card__badge-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;}
-
-    /* --- Icone en haut à droite --- */
-    .cs-card__icon{position:absolute;top:16px;right:18px;z-index:3;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:white;}
-
-    /* --- Contenu bas de carte --- */
-    .cs-card__content{position:relative;z-index:4;padding:18px 20px 20px;}
-    .cs-card__eyebrow{font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:4px;}
-    .cs-card__title{font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:800;color:white;line-height:1.2;margin-bottom:12px;}
-    .cs-card__title em{font-style:normal;color:#ffd0b0;}
-    .cs-card__row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-    .cs-card__desc{font-size:.74rem;color:rgba(255,255,255,.74);line-height:1.45;flex:1;}
-    .cs-card__btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:100px;font-family:'Sora',sans-serif;font-size:.76rem;font-weight:700;white-space:nowrap;flex-shrink:0;transition:transform .18s,opacity .18s;cursor:pointer;border:none;text-decoration:none;}
-    .cs-card__btn:active{transform:scale(.93);}
-    .cs-card__btn--white { background:white; color:#094102; }
-    .cs-card__btn--orange{ background:#FF5700; color:white; box-shadow:0 4px 14px rgba(255,87,0,.4); }
-    .cs-card__btn--green { background:#25D366; color:white; }
-
-    /* --- Barre de progression auto --- */
-    .cs-progress{position:absolute;bottom:0;left:0;height:3px;background:rgba(255,255,255,.38);border-radius:2px;z-index:5;animation:csProgress 4s linear infinite;}
-    @keyframes csProgress{from{width:0%}to{width:100%}}
-
-    /* --- Dots de navigation --- */
-    .cs-dots{display:flex;gap:6px;align-items:center;justify-content:center;margin-top:14px;}
-    .cs-dot{width:6px;height:6px;border-radius:3px;background:rgba(9,65,2,.2);transition:all .35s cubic-bezier(.23,1,.32,1);cursor:pointer;flex-shrink:0;}
-    .cs-dot.on{width:22px;background:#094102;}
-
-    /* --- Responsive slider --- */
-    @media(max-width:480px){
-      .cs-card{min-height:175px;}
-      .cs-card__title{font-size:.95rem;}
-      .cs-card__btn{font-size:.7rem;padding:8px 14px;}
-    }
-    @media(max-width:375px){
-      .cs-card{min-height:160px;}
-      .cs-card__content{padding:14px 14px 16px;}
-      .cs-card__desc{display:none;}
-      .cs-card__btn{font-size:.68rem;padding:7px 12px;}
-    }
-    @media(max-width:320px){
-      .cs-card{min-height:148px;}
-      .cs-card__title{font-size:.88rem;}
-      .cs-card__icon{display:none;}
-    }
-    /* ====================================================
-       FIN SLIDER
-    ==================================================== */
-
     .quick-list{display:flex;flex-direction:column;gap:10px;}
     .quick-item{background:var(--surface);border-radius:var(--radius-md);padding:14px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 8px rgba(9,65,2,.06);transition:transform .2s,box-shadow .2s;cursor:pointer;}
     .quick-item:hover{transform:translateX(4px);box-shadow:0 4px 16px rgba(9,65,2,.12);}
@@ -372,19 +256,10 @@
       border-radius: 2px;
       margin: 0 auto 22px;
     }
-    #majModal .maj-icon {
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255,179,71,.2), rgba(255,87,0,.15));
-      display: flex; align-items: center; justify-content: center;
-      color: #c26a00;
-      margin: 0 auto 14px;
-      font-size: 1.4rem;
-    }
     #majModal .maj-title {
       font-family: 'Sora', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 1.05rem;
+      font-weight: 800;
       color: var(--green-dark);
       text-align: center;
       margin-bottom: 8px;
@@ -394,50 +269,96 @@
       color: var(--text-muted);
       text-align: center;
       line-height: 1.55;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
     #majModal .maj-desc strong { color: var(--text); }
-    #majModal .maj-btns {
+
+    /* --- Cartes de choix illustrées --- */
+    #majModal .maj-choices {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0;
     }
-    #majModal .maj-btn-yes {
+    #majModal .maj-choice-card {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px;
-      background: var(--grad);
-      color: white;
+      gap: 14px;
+      padding: 16px;
       border-radius: var(--radius-md);
-      font-family: 'Sora', sans-serif;
-      font-weight: 700;
-      font-size: .92rem;
+      text-decoration: none;
       cursor: pointer;
+      transition: transform .15s, opacity .15s;
       border: none;
-      transition: opacity .2s;
-      text-decoration: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
     }
-    #majModal .maj-btn-yes:hover { opacity: .88; }
-    #majModal .maj-btn-no {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px;
-      background: transparent;
+    #majModal .maj-choice-card:active { transform: scale(.98); }
+    #majModal .maj-choice-card--primary {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      box-shadow: 0 8px 22px rgba(9,65,2,.28);
+    }
+    #majModal .maj-choice-card--primary:hover { opacity: .94; }
+    #majModal .maj-choice-card--neutral {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+    }
+    #majModal .maj-choice-card--neutral:hover { border-color: var(--orange-light); }
+    #majModal .maj-choice-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    #majModal .maj-choice-card--primary .maj-choice-icon {
+      background: rgba(255,255,255,.16);
+      color: #fff;
+    }
+    #majModal .maj-choice-card--neutral .maj-choice-icon {
+      background: linear-gradient(135deg, rgba(255,179,71,.22), rgba(255,87,0,.13));
       color: var(--orange);
-      border: 1.5px solid var(--orange);
-      border-radius: var(--radius-md);
+    }
+    #majModal .maj-choice-text { flex: 1; min-width: 0; }
+    #majModal .maj-choice-title {
       font-family: 'Sora', sans-serif;
       font-weight: 700;
-      font-size: .92rem;
-      cursor: pointer;
-      transition: background .2s, color .2s;
-      text-decoration: none;
+      font-size: .88rem;
+      line-height: 1.3;
+      margin-bottom: 2px;
     }
-    #majModal .maj-btn-no:hover { background: #fff3ee; }
+    #majModal .maj-choice-card--primary .maj-choice-title { color: #fff; }
+    #majModal .maj-choice-card--neutral .maj-choice-title { color: var(--text); }
+    #majModal .maj-choice-desc {
+      font-size: .74rem;
+      line-height: 1.4;
+    }
+    #majModal .maj-choice-card--primary .maj-choice-desc { color: rgba(255,255,255,.78); }
+    #majModal .maj-choice-card--neutral .maj-choice-desc { color: var(--text-muted); }
+    #majModal .maj-choice-chevron { flex-shrink: 0; }
+    #majModal .maj-choice-card--primary .maj-choice-chevron { color: rgba(255,255,255,.7); }
+    #majModal .maj-choice-card--neutral .maj-choice-chevron { color: var(--text-muted); }
+
+    #majModal .maj-or-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 14px 0;
+    }
+    #majModal .maj-or-divider::before,
+    #majModal .maj-or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    #majModal .maj-or-divider span {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
     #majModal .maj-btn-cancel {
       text-align: center;
       font-size: .8rem;
@@ -448,6 +369,7 @@
       border: none;
       width: 100%;
       font-family: inherit;
+      margin-top: 18px;
     }
     #majModal .maj-btn-cancel:hover { color: var(--text); }
 
@@ -1066,123 +988,6 @@
 
   <main class="main">
 
-    <section class="cs-slider-section">
-      <div class="cs-track-outer" id="csTrack">
-        <div class="cs-track" id="csInner">
-
-          <!-- ── SLIDE 1 : HERO BANNER ── -->
-          <div class="cs-card cs-card--hero">
-            <img class="cs-card__photo" src="Hero banner/Pack 2  Septembre Chronos-Services1 copie 3.jpg" alt="Chronos Services 2026" style="position:absolute;top:0;left:58%;width:42%;height:100%;object-fit:cover;object-position:left center;border-radius:inherit;z-index:0;pointer-events:none;opacity:1;" />
-            <div class="cs-card__deco"></div>
-            <div class="cs-card__overlay"></div>
-            <div class="cs-card__overlay-left"></div>
-            <div class="cs-card__badge">
-              <span class="cs-card__badge-dot"></span>Chronos-Services
-            </div>
-            <div class="cs-card__content">
-              <div class="cs-card__title">Un client satisfait,<br>c'est une publicité de plus<br>pour nos services.</div>
-              <div class="cs-card__row">
-                <div class="cs-card__desc">562+ clients · 40+ modèles · Livraison WhatsApp</div>
-                <a href="formulaire-cv-scanner.html" class="cs-card__btn cs-card__btn--orange">
-                  <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v12"/><polyline points="14,2 14,8 20,8"/></svg>
-                  Demande de CV
-                </a>
-              </div>
-            </div>
-            <div class="cs-progress"></div>
-          </div>
-
-          <!-- ── SLIDE 2 : Catalogue ── -->
-          <div class="cs-card cs-card--cv">
-            <img class="cs-card__photo" src="Galleries/demande de cv.png" alt="Catalogue" style="position:absolute;top:0;left:58%;width:42%;height:100%;object-fit:contain;object-position:left center;border-radius:inherit;z-index:0;pointer-events:none;opacity:1;" />
-            <div class="cs-card__deco"></div>
-            <div class="cs-card__overlay"></div>
-            <div class="cs-card__overlay-left"></div>
-            <div class="cs-card__badge">
-              <span class="cs-card__badge-dot"></span>Nouveau modèle
-            </div>
-            <div class="cs-card__content" style="position:relative;z-index:3;">
-              <div class="cs-card__eyebrow">Catalogue</div>
-              <div class="cs-card__title">Optimisé ATS &amp;<br><em>100 % professionnel</em></div>
-              <div class="cs-card__row">
-                <div class="cs-card__desc">40+ modèles · Livré en 48h · Word/PowerPoint et PDF</div>
-                <a href="formulaire-cv-scanner.html" class="cs-card__btn cs-card__btn--white">
-                  <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v12"/><polyline points="14,2 14,8 20,8"/></svg>
-                  Voir le catalogue
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── SLIDE 3 : Mise à jour CV ── -->
-          <div class="cs-card cs-card--update">
-            <img class="cs-card__photo" src="Galleries/ mise-a-jour-cv.png" alt="Mise à jour CV" style="position:absolute;top:0;left:55%;width:45%;height:100%;object-fit:contain;object-position:right center;border-radius:inherit;z-index:0;pointer-events:none;opacity:1;" />
-            <div class="cs-card__deco"></div>
-            <div class="cs-card__overlay"></div>
-            <div class="cs-card__overlay-left"></div>
-            <div class="cs-card__badge">
-              <span class="cs-card__badge-dot" style="background:#facc15;"></span>Déjà client ?
-            </div>
-            <div class="cs-card__content">
-              <div class="cs-card__eyebrow">Mise à jour CV</div>
-              <div class="cs-card__title">Mettre à jour<br>votre <em>CV existant</em></div>
-              <div class="cs-card__row">
-                <div class="cs-card__desc">Nouveau poste, formation ou adresse même design conservé</div>
-                <a href="formulaire-mise-a-jour-cv.html" class="cs-card__btn cs-card__btn--orange">Modifier</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── SLIDE 4 : Lettre de motivation ── -->
-          <div class="cs-card cs-card--lettre">
-            <img class="cs-card__photo" src="Galleries/lettre de motivation.png" alt="Lettre de motivation" style="position:absolute;top:0;left:48%;width:52%;height:100%;object-fit:contain;object-position:center right;border-radius:inherit;z-index:0;pointer-events:none;opacity:1;" />
-            <div class="cs-card__deco"></div>
-            <div class="cs-card__overlay"></div>
-            <div class="cs-card__overlay-left"></div>
-            <div class="cs-card__badge">
-              <span class="cs-card__badge-dot" style="background:#fb923c;"></span>Sur mesure
-            </div>
-            <div class="cs-card__content">
-              <div class="cs-card__eyebrow">Lettre de motivation</div>
-              <div class="cs-card__title">Rédigée pour<br><em>votre poste cible</em></div>
-              <div class="cs-card__row">
-                <div class="cs-card__desc">Candidature spontanée ou réponse à offre · Option prioritaire</div>
-                <a href="formulaire-lettre.html" class="cs-card__btn cs-card__btn--white">Rédiger</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── SLIDE 5 : Contact WhatsApp ── -->
-          <div class="cs-card cs-card--contact">
-            <div class="cs-card__deco"></div>
-            <div class="cs-card__overlay"></div>
-            <div class="cs-card__badge">
-              <span class="cs-card__badge-dot"></span>562+ clients
-            </div>
-            <div class="cs-card__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/></svg>
-            </div>
-            <div class="cs-card__content">
-              <div class="cs-card__eyebrow">Contact direct</div>
-              <div class="cs-card__title">Un client satisfait, c'est une publicité de plus pour nos services.</div>
-              <div class="cs-card__row">
-                <div class="cs-card__desc">Réponse rapide · WhatsApp · 065.37.08.82</div>
-                <a href="https://wa.me/24165370882" class="cs-card__btn cs-card__btn--green">WhatsApp</a>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /cs-track -->
-      </div><!-- /cs-track-outer -->
-
-      <div class="cs-dots" id="csDots">
-        <div class="cs-dot on"></div>
-        <div class="cs-dot"></div>
-        <div class="cs-dot"></div>
-        <div class="cs-dot"></div>
-        <div class="cs-dot"></div>
-      </div>
-    </section>
 
     <div class="stats-row">
       <div class="stat-card"><div class="stat-card__value">562+</div><div class="stat-card__label">CV mis à jour</div></div>
@@ -1264,12 +1069,12 @@
 
       <div class="menu-sheet">
         <div class="menu-sheet__list">
-          <a href="index.html" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></span>Accueil</a>
-          <a href="#" onclick="closeMenuSheet();showToast('Affiches publicitaires — contactez-nous : 065.37.08.82');return false;" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></span>Conception d'affiches</a>
-          <a href="#" onclick="closeMenuSheet();showToast('Réseaux sociaux — contactez-nous : 065.37.08.82');return false;" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5z"/><circle cx="12" cy="12" r="3"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></span>Gestion des réseaux sociaux</a>
-          <a href="#" onclick="closeMenuSheet();showToast('Rédaction de documents — contactez-nous : 065.37.08.82');return false;" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>Rédaction de documents</a>
-          <a href="#" onclick="closeMenuSheet();openModal('helpModal');return false;" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>Centre d'aide</a>
-          <a href="https://wa.me/24165370882" target="_blank" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/></svg></span>Contactez-nous</a>
+          <a href="index.html" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></span>Accueil</a>
+          <a href="#" onclick="closeMenuSheet();showToast('Affiches publicitaires — contactez-nous : 065.37.08.82');return false;" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></span>Conception d'affiches</a>
+          <a href="#" onclick="closeMenuSheet();showToast('Réseaux sociaux — contactez-nous : 065.37.08.82');return false;" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5z"/><circle cx="12" cy="12" r="3"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></span>Gestion des réseaux sociaux</a>
+          <a href="#" onclick="closeMenuSheet();showToast('Rédaction de documents — contactez-nous : 065.37.08.82');return false;" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>Rédaction de documents</a>
+          <a href="#" onclick="closeMenuSheet();openModal('helpModal');return false;" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>Centre d'aide</a>
+          <a href="https://wa.me/24165370882" target="_blank" class="menu-sheet__item"><span class="menu-sheet__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>Contactez-nous</a>
         </div>
 
         <div class="menu-sheet__social">
@@ -1291,21 +1096,40 @@
   <div id="majModal" onclick="majModalBackdrop(event)">
     <div class="maj-sheet">
       <div class="maj-handle"></div>
-      <div class="maj-icon">🔄</div>
       <div class="maj-title">Vous avez déjà un CV chez nous ?</div>
       <div class="maj-desc">
-        Ce formulaire est <strong>réservé aux anciens clients</strong> qui souhaitent mettre à jour leur CV déjà réalisé par Chronos-Services.<br><br>
-        Vous n'avez pas encore de CV chez nous ? Utilisez le formulaire de <strong>Demande de CV</strong>.
+        Ce formulaire est réservé aux anciens clients qui souhaitent mettre à jour un CV déjà réalisé par Chronos-Services.
       </div>
-      <div class="maj-btns">
-        <a href="formulaire-mise-a-jour-cv.html" class="maj-btn-yes" onclick="event.stopPropagation()">
-          Oui, j'ai déjà un CV chez vous
+      <div class="maj-choices">
+        <a href="formulaire-mise-a-jour-cv.html" class="maj-choice-card maj-choice-card--primary" onclick="event.stopPropagation()">
+          <span class="maj-choice-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </span>
+          <span class="maj-choice-text">
+            <span class="maj-choice-title">J'ai déjà un CV chez vous</span> <br>
+            <span class="maj-choice-desc">Je souhaite mettre à jour le CV en ajoutant ou en modifiant certaines informations</span>
+          </span>
+          <span class="maj-choice-chevron">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
         </a>
-        <a href="formulaire-cv-scanner.html" class="maj-btn-no" onclick="event.stopPropagation()">
-          Non, je veux un nouveau CV
+
+        <div class="maj-or-divider"><span>ou</span></div>
+
+        <a href="formulaire-cv-scanner.html" class="maj-choice-card maj-choice-card--neutral" onclick="event.stopPropagation()">
+          <span class="maj-choice-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          </span>
+          <span class="maj-choice-text">
+            <span class="maj-choice-title">Je n'ai pas encore de CV</span> <br>
+            <span class="maj-choice-desc">Nos experts le rédigent de A à Z, livré en 48h</span>
+          </span>
+          <span class="maj-choice-chevron">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
         </a>
-        <button class="maj-btn-cancel" onclick="closeMajModal()">Annuler</button>
       </div>
+      <button class="maj-btn-cancel" onclick="closeMajModal()">Annuler</button>
     </div>
   </div>
 
@@ -1429,68 +1253,6 @@
       document.body.style.overflow = 'hidden';
       updateNav();
       updateDots();
-    })();
-
-    /* ─── SLIDER PRINCIPAL (5 slides) ───────────────────── */
-    (function () {
-      var outer  = document.getElementById('csTrack');
-      var inner  = document.getElementById('csInner');
-      var dotsEl = document.querySelectorAll('#csDots .cs-dot');
-      var cards  = inner.children;
-      var total  = cards.length;
-      var cur    = 0;
-      var auto, startX = 0;
-
-      function resetProgress(idx) {
-        var pb = cards[idx].querySelector('.cs-progress');
-        if (!pb) return;
-        pb.style.animation = 'none';
-        void pb.offsetWidth;
-        pb.style.animation = 'csProgress 4s linear infinite';
-      }
-
-      function go(n) {
-        n = (n + total) % total;
-        cur = n;
-        inner.style.transform = 'translateX(calc(-' + cur + ' * (100% + 14px)))';
-        dotsEl.forEach(function (d, i) {
-          d.className = 'cs-dot' + (i === cur ? ' on' : '');
-        });
-        resetProgress(cur);
-      }
-
-      function startAuto() { auto = setInterval(function () { go(cur + 1); }, 4000); }
-      function stopAuto()  { clearInterval(auto); }
-
-      outer.addEventListener('mousedown', function (e) {
-        startX = e.clientX;
-        outer.classList.add('dragging');
-        stopAuto();
-      });
-      document.addEventListener('mouseup', function (e) {
-        if (!outer.classList.contains('dragging')) return;
-        outer.classList.remove('dragging');
-        var dx = e.clientX - startX;
-        if (Math.abs(dx) > 40) { dx < 0 ? go(cur + 1) : go(cur - 1); }
-        startAuto();
-      });
-
-      outer.addEventListener('touchstart', function (e) {
-        startX = e.touches[0].clientX;
-        stopAuto();
-      }, { passive: true });
-      outer.addEventListener('touchend', function (e) {
-        var dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 40) { dx < 0 ? go(cur + 1) : go(cur - 1); }
-        startAuto();
-      }, { passive: true });
-
-      dotsEl.forEach(function (d, i) {
-        d.addEventListener('click', function () { stopAuto(); go(i); startAuto(); });
-      });
-
-      go(0);
-      startAuto();
     })();
 
     /* ─── PAGE D'ACCUEIL ─────────────────────────────────── */
