@@ -1600,7 +1600,7 @@ function loadScript(src) {
 async function callGroqAPI(textContent) {
     var systemPrompt = 'Tu es un assistant expert en lecture de CV francophones (notamment africains). Analyse le texte fourni et extrais les informations du CV. Réponds UNIQUEMENT en JSON valide, sans aucun texte avant ou après, sans balises markdown. Structure JSON exacte à respecter :\n{"nom_prenom":"","email":"","telephone":"","adresse":"","numero_one_pnpe":"","poste_recherche":"","objectifs":"","langues":[],"competences_informatiques":[],"domaines_competences":[],"experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"centres_interet":"","informations_complementaires":""}\nRègles importantes :\n- Pour langues, competences_informatiques, domaines_competences : retourne des tableaux de chaînes simples\n- Pour experiences et formations : retourne des tableaux d\'objets\n- Si une information est absente du texte, laisse la valeur vide ("" ou [])\n- Ne jamais inventer d\'informations qui ne sont pas dans le texte\n- numero_one_pnpe : chercher un numéro PNPE, ONE, ou tout numéro d\'enregistrement emploi';
     var userMessage = 'Voici le texte extrait du CV :\n\n' + textContent.slice(0, 8000) + '\n\nExtrais toutes les informations présentes dans ce CV.';
-    var payload = { model: GROQ_MODEL, messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: userMessage }], temperature: 0.1, max_tokens: 2048, response_format: { type: 'json_object' } };
+    var payload = { model: GROQ_MODEL, messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: userMessage }], temperature: 0.1, max_tokens: 4096, reasoning_effort: 'none', response_format: { type: 'json_object' } };
     var response = await fetch(GROQ_PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
     if (!response.ok) {
         var errData = await response.json().catch(function() { return {}; });
@@ -1608,6 +1608,7 @@ async function callGroqAPI(textContent) {
         if (errData.error) {
             if (errData.error.code === 'invalid_api_key') errMsg = 'Clé Groq invalide.';
             else if (errData.error.code === 'rate_limit_exceeded') errMsg = 'Limite Groq atteinte, réessayez dans quelques secondes.';
+            else if (errData.error.code === 'json_validate_failed') errMsg = 'Le document est trop complexe pour être analysé en une fois. Réessayez, ou raccourcissez le document.';
             else errMsg = errData.error.message || errMsg;
         }
         throw new Error(errMsg);
@@ -1884,7 +1885,7 @@ async function analyzeVoice() {
 async function callGroqAPIVoice(textContent) {
     var systemPrompt = 'Tu es un assistant expert en recrutement qui remplit un formulaire de CV à partir d\'une dictée orale transcrite automatiquement (français, éventuellement africain). Le texte peut contenir des hésitations, répétitions ou petites erreurs de transcription vocale : corrige-les intelligemment sans jamais inventer d\'informations absentes. Réponds UNIQUEMENT en JSON valide, sans aucun texte avant ou après, sans balises markdown. Structure JSON exacte à respecter :\n{"nom_prenom":"","email":"","telephone":"","adresse":"","numero_one_pnpe":"","poste_recherche":"","objectifs":"","langues":[],"competences_informatiques":[],"domaines_competences":[],"experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"centres_interet":"","informations_complementaires":""}\nRègles importantes :\n- Pour langues, competences_informatiques, domaines_competences : retourne des tableaux de chaînes simples\n- Pour experiences et formations : retourne des tableaux d\'objets\n- Si une information n\'est pas mentionnée dans la dictée, laisse la valeur vide ("" ou [])\n- Ne jamais inventer d\'informations qui ne sont pas dites\n- Pour un email dicté oralement (ex: "jean point dupont arobase gmail point com"), reconstitue le format correct (jean.dupont@gmail.com)\n- Pour numero_one_pnpe : chercher un numéro PNPE, ONE, ou tout numéro d\'enregistrement emploi mentionné';
     var userMessage = 'Voici la transcription vocale du candidat décrivant son profil :\n\n' + textContent.slice(0, 8000) + '\n\nExtrais toutes les informations mentionnées oralement.';
-    var payload = { model: GROQ_MODEL, messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: userMessage }], temperature: 0.1, max_tokens: 2048, response_format: { type: 'json_object' } };
+    var payload = { model: GROQ_MODEL, messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: userMessage }], temperature: 0.1, max_tokens: 4096, reasoning_effort: 'none', response_format: { type: 'json_object' } };
     var response = await fetch(GROQ_PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
     if (!response.ok) {
         var errData = await response.json().catch(function() { return {}; });
@@ -1892,6 +1893,7 @@ async function callGroqAPIVoice(textContent) {
         if (errData.error) {
             if (errData.error.code === 'invalid_api_key') errMsg = 'Clé Groq invalide.';
             else if (errData.error.code === 'rate_limit_exceeded') errMsg = 'Limite Groq atteinte, réessayez dans quelques secondes.';
+            else if (errData.error.code === 'json_validate_failed') errMsg = 'Le document est trop complexe pour être analysé en une fois. Réessayez, ou raccourcissez le document.';
             else errMsg = errData.error.message || errMsg;
         }
         throw new Error(errMsg);
