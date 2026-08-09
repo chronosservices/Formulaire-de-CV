@@ -29,6 +29,7 @@
     .header__title-wrap{flex:1;min-width:0;}
     .header__title{font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;color:#fff;line-height:1.25;}
     .header__slogan{font-size:.62rem;color:rgba(255,255,255,.82);line-height:1.4;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+    @keyframes headerWave{0%{transform:rotate(0deg);}10%{transform:rotate(14deg);}20%{transform:rotate(-8deg);}30%{transform:rotate(14deg);}40%{transform:rotate(-4deg);}50%{transform:rotate(10deg);}60%{transform:rotate(0deg);}100%{transform:rotate(0deg);}}
     .header__actions{display:flex;align-items:center;gap:8px;flex-shrink:0;padding-top:2px;}
     .header__btn{width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;flex-shrink:0;cursor:pointer;text-decoration:none;overflow:visible;}
     .header__btn:hover{background:rgba(255,255,255,.26);}
@@ -204,6 +205,12 @@
     .toast{position:fixed;top:80px;right:16px;left:16px;max-width:440px;margin:0 auto;background:var(--green-dark);color:white;padding:14px 18px;border-radius:var(--radius-md);font-size:.88rem;font-weight:500;box-shadow:0 6px 24px rgba(9,65,2,.35);z-index:300;display:flex;align-items:center;gap:10px;animation:slideDown .4s ease,fadeOut .4s ease 4.6s forwards;}
     @keyframes slideDown{from{transform:translateY(-20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
     @keyframes fadeOut{from{opacity:1;}to{opacity:0;pointer-events:none;}}
+
+    .toast--welcome{background:linear-gradient(120deg,var(--green-dark) 0%,var(--green-mid) 55%,#b6480a 100%);padding:16px 20px;gap:13px;box-shadow:0 12px 32px rgba(9,65,2,.4);border:1px solid rgba(255,255,255,.12);animation:slideDown .45s cubic-bezier(.34,1.56,.64,1),fadeOut .4s ease 4.6s forwards;}
+    .toast--welcome .toast__icon{font-size:1.5rem;flex-shrink:0;line-height:1;animation:headerWave 2.4s ease-in-out .25s 1;transform-origin:70% 70%;}
+    .toast--welcome .toast__text{display:flex;flex-direction:column;gap:2px;min-width:0;}
+    .toast--welcome .toast__text strong{font-family:'Sora',sans-serif;font-size:.94rem;font-weight:700;letter-spacing:-.005em;}
+    .toast--welcome .toast__text span{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.82);line-height:1.35;}
 
     /* RESPONSIVE INDEX */
     /* ── Badge "Clients existants" ── */
@@ -1161,6 +1168,93 @@
   </div>
 
   <script>
+    /* ─── MOTEUR DE SONS UI (synthétisés, sans fichier audio) ─── */
+    const SoundFX = (function () {
+      let ctx = null;
+      function getCtx() {
+        if (!ctx) {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return null;
+          ctx = new AC();
+        }
+        if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+        return ctx;
+      }
+      function tone(freq, duration, type, peakGain, delay, glideTo) {
+        const c = getCtx();
+        if (!c) return;
+        try {
+          const osc = c.createOscillator();
+          const gain = c.createGain();
+          osc.type = type || 'sine';
+          const t0 = c.currentTime + (delay || 0);
+          osc.frequency.setValueAtTime(freq, t0);
+          if (glideTo) osc.frequency.exponentialRampToValueAtTime(glideTo, t0 + duration);
+          gain.gain.setValueAtTime(0.0001, t0);
+          gain.gain.exponentialRampToValueAtTime(peakGain, t0 + 0.008);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+          osc.connect(gain);
+          gain.connect(c.destination);
+          osc.start(t0);
+          osc.stop(t0 + duration + 0.02);
+        } catch (e) {}
+      }
+      /* "Whoosh" : bruit filtré dont la fréquence balaie de fromFreq à toFreq —
+         donne un vrai mouvement dynamique à l'apparition/disparition d'une fenêtre */
+      function whoosh(fromFreq, toFreq, duration, peakGain, delay) {
+        const c = getCtx();
+        if (!c) return;
+        try {
+          const t0 = c.currentTime + (delay || 0);
+          const size = Math.max(1, Math.floor(c.sampleRate * duration));
+          const buffer = c.createBuffer(1, size, c.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < size; i++) data[i] = Math.random() * 2 - 1;
+          const noise = c.createBufferSource();
+          noise.buffer = buffer;
+          const filter = c.createBiquadFilter();
+          filter.type = 'bandpass';
+          filter.Q.value = 0.9;
+          filter.frequency.setValueAtTime(fromFreq, t0);
+          filter.frequency.exponentialRampToValueAtTime(toFreq, t0 + duration);
+          const gain = c.createGain();
+          gain.gain.setValueAtTime(0.0001, t0);
+          gain.gain.exponentialRampToValueAtTime(peakGain, t0 + duration * 0.35);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(c.destination);
+          noise.start(t0);
+          noise.stop(t0 + duration + 0.02);
+        } catch (e) {}
+      }
+      return {
+        click()  { tone(680, 0.05, 'sine', 0.07); },
+        toggle() { tone(560, 0.045, 'sine', 0.06); },
+        open()   { whoosh(260, 2600, 0.17, 0.06); tone(760, 0.11, 'sine', 0.08, 0.1, 1140); },
+        close()  { whoosh(1900, 240, 0.14, 0.05); tone(400, 0.08, 'sine', 0.05, 0, 220); },
+        notify() { tone(880, 0.09, 'sine', 0.08); tone(1320, 0.13, 'sine', 0.065, 0.08); },
+      };
+    })();
+
+    /* Feedback sonore générique au clic (boutons, liens, cartes, chips…),
+       en évitant les doublons avec les sons dédiés open/close/toggle */
+    document.addEventListener('click', function (e) {
+      const t = e.target.closest('button, a, [onclick], .service-chip, .quick-item, .tile');
+      if (!t) return;
+      const oc = t.getAttribute('onclick') || '';
+      if (/toggleMenuSheet/.test(oc)) {
+        const sheet = document.getElementById('menuSheet');
+        (sheet && sheet.classList.contains('open')) ? SoundFX.close() : SoundFX.open();
+      } else if (/openMenuSheet|openMajModal|openModal/.test(oc)) {
+        SoundFX.open();
+      } else if (/closeMenuSheet|closeMajModal|closeModal|majModalBackdrop|closeMenuOnBackdrop/.test(oc)) {
+        SoundFX.close();
+      } else {
+        SoundFX.click();
+      }
+    }, true);
+
     /* ─── NOUVEL ONBOARDING — navigation 100% manuelle (Passer / ← / Suivant) ─── */
     (function () {
       var TOTAL = 7;
@@ -1222,7 +1316,7 @@
           if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
           document.body.style.overflow = '';
           setTimeout(function() {
-            if (typeof showToast === 'function') showToast('Bienvenue sur Chronos-Services !');
+            if (typeof showWelcomeToast === 'function') showWelcomeToast();
           }, 200);
         }, 380);
       }
@@ -1341,11 +1435,23 @@
     }
 
     function showToast(msg) {
+      SoundFX.notify();
       const existing = document.querySelector('.toast');
       if (existing) existing.remove();
       const el = document.createElement('div');
       el.className = 'toast';
       el.innerHTML = `<svg width="18" height="18" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>${msg}</span>`;
+      document.body.appendChild(el);
+      setTimeout(() => { if (el.parentNode) el.remove(); }, 5000);
+    }
+
+    function showWelcomeToast() {
+      SoundFX.notify();
+      const existing = document.querySelector('.toast');
+      if (existing) existing.remove();
+      const el = document.createElement('div');
+      el.className = 'toast toast--welcome';
+      el.innerHTML = `<span class="toast__icon">👋</span><span class="toast__text"><strong>Bienvenue sur Chronos-Services !</strong><span>On est là pour vous aider.</span></span>`;
       document.body.appendChild(el);
       setTimeout(() => { if (el.parentNode) el.remove(); }, 5000);
     }

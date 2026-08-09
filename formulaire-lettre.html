@@ -1203,6 +1203,99 @@
 var GROQ_PROXY_URL = '/.netlify/functions/groq-proxy';
 var GROQ_MODEL = 'llama-3.3-70b-versatile';
 
+/* ─── MOTEUR DE SONS UI (synthétisés, sans fichier audio) ─── */
+const SoundFX = (function () {
+  let ctx = null;
+  function getCtx() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      ctx = new AC();
+    }
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+    return ctx;
+  }
+  function tone(freq, duration, type, peakGain, delay, glideTo) {
+    const c = getCtx();
+    if (!c) return;
+    try {
+      const osc = c.createOscillator();
+      const gain = c.createGain();
+      osc.type = type || 'sine';
+      const t0 = c.currentTime + (delay || 0);
+      osc.frequency.setValueAtTime(freq, t0);
+      if (glideTo) osc.frequency.exponentialRampToValueAtTime(glideTo, t0 + duration);
+      gain.gain.setValueAtTime(0.0001, t0);
+      gain.gain.exponentialRampToValueAtTime(peakGain, t0 + 0.008);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+      osc.connect(gain);
+      gain.connect(c.destination);
+      osc.start(t0);
+      osc.stop(t0 + duration + 0.02);
+    } catch (e) {}
+  }
+  /* "Whoosh" : bruit filtré dont la fréquence balaie de fromFreq à toFreq —
+     donne un vrai mouvement dynamique à l'apparition/disparition d'une fenêtre */
+  function whoosh(fromFreq, toFreq, duration, peakGain, delay) {
+    const c = getCtx();
+    if (!c) return;
+    try {
+      const t0 = c.currentTime + (delay || 0);
+      const size = Math.max(1, Math.floor(c.sampleRate * duration));
+      const buffer = c.createBuffer(1, size, c.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < size; i++) data[i] = Math.random() * 2 - 1;
+      const noise = c.createBufferSource();
+      noise.buffer = buffer;
+      const filter = c.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.Q.value = 0.9;
+      filter.frequency.setValueAtTime(fromFreq, t0);
+      filter.frequency.exponentialRampToValueAtTime(toFreq, t0 + duration);
+      const gain = c.createGain();
+      gain.gain.setValueAtTime(0.0001, t0);
+      gain.gain.exponentialRampToValueAtTime(peakGain, t0 + duration * 0.35);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(c.destination);
+      noise.start(t0);
+      noise.stop(t0 + duration + 0.02);
+    } catch (e) {}
+  }
+  return {
+    click()  { tone(680, 0.05, 'sine', 0.07); },
+    toggle() { tone(560, 0.045, 'sine', 0.06); },
+    open()   { whoosh(260, 2600, 0.17, 0.06); tone(760, 0.11, 'sine', 0.08, 0.1, 1140); },
+    close()  { whoosh(1900, 240, 0.14, 0.05); tone(400, 0.08, 'sine', 0.05, 0, 220); },
+    notify() { tone(880, 0.09, 'sine', 0.08); tone(1320, 0.13, 'sine', 0.065, 0.08); },
+  };
+})();
+
+/* Feedback sonore générique au clic (boutons, liens, cartes, chips…),
+   en évitant les doublons avec les sons dédiés open/close */
+document.addEventListener('click', function (e) {
+  const t = e.target.closest('button, a, [onclick], .sk-example, .offer-skill-chip, .step-nav');
+  if (!t) return;
+  const oc = t.getAttribute('onclick') || '';
+  if (/openOfferScanner/.test(oc)) {
+    SoundFX.open();
+  } else if (/closeOfferScanner|closePaymentModal/.test(oc)) {
+    SoundFX.close();
+  } else {
+    SoundFX.click();
+  }
+}, true);
+
+/* Feedback sonore pour les <select> (Type de lettre, Urgence, etc.) —
+   un <select> ne déclenche pas de "click" exploitable (le menu déroulant
+   natif intercepte l'interaction), on écoute donc "change" à la place */
+document.addEventListener('change', function (e) {
+  if (e.target.matches('select, .form-select')) {
+    SoundFX.toggle();
+  }
+}, true);
+
 /* ════════════════════════════════════════════════════
    FORM WIZARD
 ════════════════════════════════════════════════════ */
@@ -1491,6 +1584,7 @@ class MotivationFormWizard {
         try {
             const r = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target), headers: { Accept: 'application/json' } });
             if (r.ok) {
+                SoundFX.notify();
                 txt.textContent = 'Demande envoyée !'; txt.style.opacity = '1'; load.style.display = 'none';
                 btn.style.background = '#28a745';
                 setTimeout(() => { this.showPaymentModal(fd); setTimeout(() => { btn.disabled = false; txt.textContent = 'Envoyer ma demande'; btn.style.background = ''; }, 2000); }, 1000);
@@ -1567,6 +1661,7 @@ class MotivationFormWizard {
     }
 
     showPaymentModal(fd) {
+        SoundFX.notify();
         const today = new Date();
         const num = `LM-${today.getFullYear()}${String(today.getMonth()+1).padStart(2,'0')}${String(today.getDate()).padStart(2,'0')}-${String(Math.floor(Math.random()*1000)).padStart(3,'0')}`;
         document.getElementById('clientName').textContent = fd.get('nom_prenom') || 'Client';
@@ -1856,6 +1951,7 @@ async function analyzeOfferDocument() {
 }
 
 function showOfferResults(data) {
+    SoundFX.notify();
     document.getElementById('offerAnalysisProgress').classList.remove('show');
     document.getElementById('offerScanResults').classList.add('show');
 
@@ -1986,6 +2082,7 @@ function applyOfferResults() {
     const tagsContainer = document.getElementById('prefillTagsContainer');
     tagsContainer.innerHTML = tags.map(t => `<span class="prefill-tag-item">${t}</span>`).join('');
     banner.classList.add('show');
+    SoundFX.notify();
 
     closeOfferScanner();
     // Stay on step 3 — user can review the filled fields directly
