@@ -339,6 +339,40 @@
         .scan-tip { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px; }
         .scan-tip-text { color: rgba(255,255,255,0.3); font-size: 0.73rem; line-height: 1.6; }
 
+        /* ─── MICRO (dictée vocale) — bouton et modal séparés du scanner de document ─── */
+        #micFab { position: fixed; bottom: 92px; right: 24px; z-index: 1500; width: 52px; height: 52px; border-radius: 8px; background: linear-gradient(135deg, #ff5700 0%, #e64a00 100%); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(255,87,0,0.5); transition: transform 0.2s, box-shadow 0.2s; overflow: visible; }
+        #micFab:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,87,0,0.6); }
+        #micFab svg { width: 22px; height: 22px; fill: white; pointer-events: none; }
+        #micFab:hover .fab-tooltip { opacity: 1; }
+
+        #micOverlay { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(5,22,4,0.96); align-items: center; justify-content: center; padding: 20px; }
+        #micOverlay.show { display: flex; }
+
+        .mic-unsupported { display: none; background: rgba(255,87,0,0.08); border-left: 3px solid #ff5700; border-radius: 0 6px 6px 0; padding: 10px 12px; color: rgba(255,220,200,0.9); font-size: 0.78rem; line-height: 1.5; }
+        .mic-unsupported.show { display: block; }
+
+        .mic-record-zone { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 0 4px; }
+        .mic-record-btn { width: 68px; height: 68px; border-radius: 50%; border: none; background: linear-gradient(135deg, #094102, #0a6b03); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 0 4px 14px rgba(9,65,2,0.4); flex-shrink: 0; }
+        .mic-record-btn svg { width: 28px; height: 28px; fill: white; pointer-events: none; }
+        .mic-record-btn:hover:not(:disabled) { transform: scale(1.05); }
+        .mic-record-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .mic-record-btn.recording { background: linear-gradient(135deg, #ff5700, #e64a00); animation: micPulse 1.4s ease-in-out infinite; }
+        @keyframes micPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,87,0,0.5); }
+            50% { box-shadow: 0 0 0 14px rgba(255,87,0,0); }
+        }
+        .mic-record-label { color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 500; }
+
+        .mic-transcript-label { color: #fff; font-size: 0.8rem; font-weight: 600; display: block; }
+        .mic-transcript { width: 100%; margin-top: 6px; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.85); font-family: 'Poppins', sans-serif; font-size: 0.83rem; resize: vertical; line-height: 1.5; }
+        .mic-transcript:focus { outline: none; border-color: rgba(255,87,0,0.5); }
+        .mic-transcript::placeholder { color: rgba(255,255,255,0.25); }
+
+        #micAnalyzeBtn { background: #ff5700; color: #fff; border: none; border-radius: 6px; padding: 12px 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s; display: none; font-family: 'Poppins', sans-serif; letter-spacing: 0.02em; }
+        #micAnalyzeBtn.show { display: block; }
+        #micAnalyzeBtn:hover:not(:disabled) { background: #e64a00; }
+        #micAnalyzeBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .container { margin: 10px; padding: 20px; }
@@ -359,6 +393,8 @@
             #scannerOverlay { padding: 12px; }
             #scanFab { bottom: 16px; right: 14px; width: 46px; height: 46px; border-radius: 6px; }
             #scanFab svg { width: 20px; height: 20px; }
+            #micFab { bottom: 70px; right: 14px; width: 46px; height: 46px; border-radius: 6px; }
+            #micFab svg { width: 20px; height: 20px; }
             .cv-sidebar, .cv-main-content { gap: 14px; }
             .langue-picker-row { flex-direction: column; }
             .langue-picker-row .nav-button { width: 100%; }
@@ -702,12 +738,20 @@
 
 <div id="downloadToast"></div>
 
-<!-- SCANNER FAB -->
+<!-- SCANNER FAB (import de document CV) -->
 <button id="scanFab" type="button" onclick="openScanner()">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6h16v2H4zm0 10h16v2H4zm-2-5h2v2H2zm20 0h2v2h-2zm-4-5h2v8h-2zm-12 0h2v8H6z"/>
     </svg>
     <div class="fab-tooltip">Scanner un CV</div>
+</button>
+
+<!-- MIC FAB (dictée vocale) — bouton distinct pour laisser le choix à l'utilisateur -->
+<button id="micFab" type="button" onclick="openMicScanner()">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/>
+    </svg>
+    <div class="fab-tooltip">Remplir à la voix</div>
 </button>
 
 <!-- SCANNER OVERLAY -->
@@ -754,6 +798,57 @@
         </div>
         <div class="scan-tip">
             <div class="scan-tip-text">Pour de meilleurs résultats, utilisez un PDF créé numériquement. Les scans et photos doivent être nets. Vous pourrez modifier les champs après import.</div>
+        </div>
+    </div>
+</div>
+
+<!-- MIC OVERLAY (dictée vocale) — modal entièrement séparée du scanner de document -->
+<div id="micOverlay">
+    <div class="scanner-panel">
+        <div class="scanner-header">
+            <div>
+                <div class="scanner-title">Dicter vos informations</div>
+                <div class="scanner-sub">Parlez, l'IA extrait et pré-remplit vos informations</div>
+            </div>
+            <button class="scanner-close-btn" type="button" onclick="closeMicScanner()">✕</button>
+        </div>
+
+        <div class="mic-unsupported" id="micUnsupported">
+            La reconnaissance vocale n'est pas disponible sur ce navigateur (essayez Chrome ou Edge sur ordinateur ou Android). Vous pouvez tout de même écrire ou coller votre texte ci-dessous et l'analyser.
+        </div>
+
+        <div class="mic-record-zone">
+            <button type="button" class="mic-record-btn" id="micRecordBtn" onclick="toggleRecording()">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/>
+                </svg>
+            </button>
+            <div class="mic-record-label" id="micRecordLabel">Cliquez pour parler</div>
+        </div>
+
+        <label class="mic-transcript-label">Transcription (modifiable)
+            <textarea id="micTranscript" class="mic-transcript" rows="5" placeholder="Ex : Je m'appelle Jeanne Mavoungou, je cherche un poste d'agent administratif, mon email est jeanne point mavoungou arobase gmail point com, mon téléphone est..."></textarea>
+        </label>
+
+        <button id="micAnalyzeBtn" type="button" onclick="analyzeVoice()">🤖 Analyser avec l'IA</button>
+
+        <div class="analysis-progress" id="micAnalysisProgress">
+            <div class="analysis-bar-wrap"><div class="analysis-bar" id="micAnalysisBar"></div></div>
+            <div class="analysis-step-row"><div class="analysis-step-icon" id="mic-step-icon-1">1</div><div class="analysis-step-label" id="mic-step-label-1">Lecture de la dictée</div></div>
+            <div class="analysis-step-row"><div class="analysis-step-icon" id="mic-step-icon-2">2</div><div class="analysis-step-label" id="mic-step-label-2">Analyse par l'IA (Groq)</div></div>
+            <div class="analysis-step-row"><div class="analysis-step-icon" id="mic-step-icon-3">3</div><div class="analysis-step-label" id="mic-step-label-3">Préparation du formulaire</div></div>
+        </div>
+
+        <div class="scan-error" id="micScanError"></div>
+        <div class="scan-results" id="micScanResults">
+            <div class="scan-results-title">Informations détectées</div>
+            <div class="scan-results-grid" id="micResultsGrid"></div>
+            <button class="scan-apply-btn" type="button" onclick="applyMicResults()">Appliquer dans le formulaire</button>
+            <button class="scan-retry-btn" type="button" onclick="resetMic()">Recommencer la dictée</button>
+        </div>
+
+        <div class="scan-tip">
+            <div class="scan-tip-text">Parlez clairement et mentionnez votre nom, poste recherché, coordonnées, expériences et formations. Vous pourrez modifier les champs après import.</div>
         </div>
     </div>
 </div>
@@ -834,7 +929,7 @@ const SoundFX = (function () {
   };
 })();
 
-var GROQ_MODEL     = 'llama-3.3-70b-versatile';
+var GROQ_MODEL     = 'qwen/qwen3.6-27b';
 var GROQ_PROXY_URL = '/.netlify/functions/groq-proxy';
 
 var currentStep = 1;
@@ -1303,8 +1398,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var oc = t.getAttribute('onclick') || '';
         if (t.id === 'submitBtn') return; // son de confirmation joué séparément selon le résultat de l'envoi
         if (/^downloadInvoicePDF/.test(oc)) return; // son dédié, joué dans downloadInvoicePDF()
-        if (/^openScanner/.test(oc)) { SoundFX.open(); }
-        else if (/^closeScanner|^closePaymentModal/.test(oc)) { SoundFX.close(); }
+        if (/^openScanner|^openMicScanner/.test(oc)) { SoundFX.open(); }
+        else if (/^closeScanner|^closeMicScanner|^closePaymentModal/.test(oc)) { SoundFX.close(); }
         else { SoundFX.click(); }
     }, true);
 
@@ -1324,6 +1419,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (bc) { bc.addEventListener('click', function() { var fd2 = new FormData(document.getElementById('mainForm')); var dt2 = {}; fd2.forEach(function(v, k) { dt2[k] = v; }); localStorage.setItem('formDataBackup', JSON.stringify(dt2)); localStorage.setItem('returnToForm', 'true'); window.location.href = 'catalogue de CV.html'; }); }
 
     initScanner();
+    initMic();
 });
 
 /* ════════════════════════════════════════
@@ -1525,10 +1621,10 @@ async function callGroqAPI(textContent) {
     return parsed;
 }
 
-function showResults(data) {
-    document.getElementById('analysisProgress').classList.remove('show');
-    document.getElementById('scanResults').classList.add('show');
-    var grid = document.getElementById('resultsGrid'); grid.innerHTML = '';
+/* Fonction partagée : construit la grille de résultats détectés.
+   Utilisée par le scanner de document ET par le module micro. */
+function renderResultsGrid(grid, data) {
+    grid.innerHTML = '';
     function card(label, value, full) {
         var isEmpty = !value || (Array.isArray(value) && value.length === 0) || (typeof value === 'string' && !value.trim());
         var disp = isEmpty ? 'Non détecté' : (Array.isArray(value) ? value.join(', ') : value);
@@ -1545,10 +1641,15 @@ function showResults(data) {
     if (data.formations && data.formations.length) card('Formations', data.formations.length + ' formation(s) détectée(s)');
 }
 
-function applyResults() {
-    if (!extractedData) return;
-    SoundFX.notify();
-    var d = extractedData;
+function showResults(data) {
+    document.getElementById('analysisProgress').classList.remove('show');
+    document.getElementById('scanResults').classList.add('show');
+    renderResultsGrid(document.getElementById('resultsGrid'), data);
+}
+
+/* Fonction partagée : remplit réellement les champs du formulaire principal
+   à partir des données extraites (par le scanner de document OU par le micro). */
+function fillFormFromData(d) {
     var prefilled = [];
     function setField(id, value) {
         if (!value || (typeof value === 'string' && !value.trim())) return;
@@ -1608,6 +1709,12 @@ function applyResults() {
     var labelMap = { 'f_nom_prenom': 'Nom & Prénom', 'f_email': 'Email', 'f_telephone': 'Téléphone', 'f_adresse': 'Adresse', 'f_numero_one_pnpe': 'N° ONE/PNPE', 'f_poste_recherche': 'Poste', 'f_objectifs': 'Objectifs', 'f_centres_interet': 'Centres d\'intérêt', 'f_informations_complementaires': 'Infos complémentaires' };
     tags.innerHTML = prefilled.map(function(t) { return '<div class="prefill-tag">' + (labelMap[t] || t) + '</div>'; }).join('');
     banner.classList.add('show');
+}
+
+function applyResults() {
+    if (!extractedData) return;
+    SoundFX.notify();
+    fillFormFromData(extractedData);
     closeScanner();
     currentStep = 1; showStep(1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1630,6 +1737,203 @@ function resetScanner() {
 
 function escapeHtml(str) {
     return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ════════════════════════════════════════
+   MICRO — DICTÉE VOCALE (module séparé du scanner de document)
+   Utilise la Web Speech API (gratuite, native au navigateur) pour la
+   transcription, puis Groq (déjà utilisée par le scanner) pour extraire
+   les informations. L'utilisateur choisit librement scanner OU micro.
+   ════════════════════════════════════════ */
+var micRecognition = null;
+var micRecording = false;
+var micFinalTranscript = '';
+var micExtractedData = null;
+
+function initMic() {
+    var SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var recordBtn = document.getElementById('micRecordBtn');
+    if (!SpeechRecognitionCtor) {
+        document.getElementById('micUnsupported').classList.add('show');
+        if (recordBtn) recordBtn.disabled = true;
+        var lbl = document.getElementById('micRecordLabel');
+        if (lbl) lbl.textContent = 'Micro non supporté — saisissez le texte ci-dessous';
+        // La saisie manuelle reste possible : on suit quand même le champ texte
+        var ta0 = document.getElementById('micTranscript');
+        if (ta0) ta0.addEventListener('input', function() {
+            document.getElementById('micAnalyzeBtn').classList.toggle('show', this.value.trim().length > 0);
+        });
+        return;
+    }
+    micRecognition = new SpeechRecognitionCtor();
+    micRecognition.lang = 'fr-FR';
+    micRecognition.continuous = true;
+    micRecognition.interimResults = true;
+
+    micRecognition.onresult = function(e) {
+        var interim = '';
+        for (var i = e.resultIndex; i < e.results.length; i++) {
+            var piece = e.results[i][0].transcript;
+            if (e.results[i].isFinal) micFinalTranscript += piece + ' ';
+            else interim += piece;
+        }
+        var ta = document.getElementById('micTranscript');
+        ta.value = (micFinalTranscript + interim).trim();
+        document.getElementById('micAnalyzeBtn').classList.toggle('show', ta.value.trim().length > 0);
+    };
+    micRecognition.onerror = function(e) {
+        console.warn('Erreur reconnaissance vocale :', e.error);
+        if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+            showMicError('Accès au microphone refusé. Autorisez le micro dans les réglages de votre navigateur.');
+            stopRecording();
+        } else if (e.error === 'no-speech' || e.error === 'aborted') {
+            // silence temporaire, ne pas interrompre l'écoute
+        } else {
+            showMicError('Erreur de reconnaissance vocale (' + e.error + '). Vous pouvez saisir le texte manuellement.');
+            stopRecording();
+        }
+    };
+    micRecognition.onend = function() {
+        // Certains navigateurs arrêtent l'écoute après une pause : on relance si l'utilisateur n'a pas cliqué sur stop
+        if (micRecording) { try { micRecognition.start(); } catch (e) {} }
+    };
+
+    // Permet aussi la saisie/collage manuel du texte, sans passer par le micro
+    var ta = document.getElementById('micTranscript');
+    ta.addEventListener('input', function() {
+        document.getElementById('micAnalyzeBtn').classList.toggle('show', this.value.trim().length > 0);
+    });
+}
+
+function openMicScanner() { document.getElementById('micOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; }
+function closeMicScanner() { document.getElementById('micOverlay').classList.remove('show'); document.body.style.overflow = 'auto'; stopRecording(); }
+
+function toggleRecording() {
+    if (!micRecognition) { showMicError('La reconnaissance vocale n\'est pas supportée par ce navigateur. Utilisez Chrome ou Edge, ou saisissez votre texte ci-dessous.'); return; }
+    if (micRecording) stopRecording(); else startRecording();
+}
+
+function startRecording() {
+    document.getElementById('micScanError').classList.remove('show');
+    micRecording = true;
+    try { micRecognition.start(); } catch (e) {}
+    var btn = document.getElementById('micRecordBtn');
+    btn.classList.add('recording');
+    document.getElementById('micRecordLabel').textContent = 'Écoute en cours… cliquez pour arrêter';
+}
+
+function stopRecording() {
+    micRecording = false;
+    if (micRecognition) { try { micRecognition.stop(); } catch (e) {} }
+    var btn = document.getElementById('micRecordBtn');
+    if (btn) btn.classList.remove('recording');
+    var lbl = document.getElementById('micRecordLabel');
+    if (lbl) lbl.textContent = 'Cliquez pour parler';
+}
+
+function showMicError(msg) {
+    var el = document.getElementById('micScanError');
+    el.textContent = '⚠️ ' + msg; el.classList.add('show');
+}
+
+function setMicAnalysisStep(num) {
+    var pcts = [0, 30, 65, 95];
+    document.getElementById('micAnalysisBar').style.width = pcts[num] + '%';
+    for (var i = 1; i <= 3; i++) {
+        var icon = document.getElementById('mic-step-icon-' + i);
+        var label = document.getElementById('mic-step-label-' + i);
+        icon.classList.remove('active', 'done'); label.classList.remove('active', 'done');
+        if (i < num) { icon.classList.add('done'); icon.textContent = '✓'; label.classList.add('done'); }
+        else if (i === num) { icon.classList.add('active'); label.classList.add('active'); }
+    }
+}
+
+async function analyzeVoice() {
+    var text = document.getElementById('micTranscript').value.trim();
+    if (!text || text.length < 10) { showMicError('Dictez ou saisissez au moins quelques informations avant d\'analyser.'); return; }
+    if (micRecording) stopRecording();
+    document.getElementById('micScanError').classList.remove('show');
+    document.getElementById('micScanResults').classList.remove('show');
+    var btn = document.getElementById('micAnalyzeBtn');
+    btn.disabled = true; btn.textContent = '⏳ Analyse en cours…';
+    document.getElementById('micAnalysisProgress').classList.add('show');
+    setMicAnalysisStep(1);
+    try {
+        await delay(250);
+        setMicAnalysisStep(2);
+        var aiResult = await callGroqAPIVoice(text);
+        micExtractedData = aiResult;
+        await delay(250);
+        setMicAnalysisStep(3);
+        await delay(350);
+        document.getElementById('micAnalysisBar').style.width = '100%';
+        for (var i = 1; i <= 3; i++) {
+            var ic = document.getElementById('mic-step-icon-' + i); ic.classList.remove('active'); ic.classList.add('done'); ic.textContent = '✓';
+            var lb = document.getElementById('mic-step-label-' + i); lb.classList.remove('active'); lb.classList.add('done');
+        }
+        showMicResults(aiResult);
+    } catch (err) {
+        console.error(err);
+        document.getElementById('micAnalysisProgress').classList.remove('show');
+        showMicError('Erreur : ' + (err.message || 'Réessayez.'));
+    } finally {
+        btn.disabled = false; btn.textContent = '🤖 Analyser avec l\'IA';
+    }
+}
+
+async function callGroqAPIVoice(textContent) {
+    var systemPrompt = 'Tu es un assistant expert en recrutement qui remplit un formulaire de CV à partir d\'une dictée orale transcrite automatiquement (français, éventuellement africain). Le texte peut contenir des hésitations, répétitions ou petites erreurs de transcription vocale : corrige-les intelligemment sans jamais inventer d\'informations absentes. Réponds UNIQUEMENT en JSON valide, sans aucun texte avant ou après, sans balises markdown. Structure JSON exacte à respecter :\n{"nom_prenom":"","email":"","telephone":"","adresse":"","numero_one_pnpe":"","poste_recherche":"","objectifs":"","langues":[],"competences_informatiques":[],"domaines_competences":[],"experiences":[{"dates":"","poste":"","entreprise":"","taches":""}],"formations":[{"diplome":"","serie":"","date":"","etablissement":""}],"centres_interet":"","informations_complementaires":""}\nRègles importantes :\n- Pour langues, competences_informatiques, domaines_competences : retourne des tableaux de chaînes simples\n- Pour experiences et formations : retourne des tableaux d\'objets\n- Si une information n\'est pas mentionnée dans la dictée, laisse la valeur vide ("" ou [])\n- Ne jamais inventer d\'informations qui ne sont pas dites\n- Pour un email dicté oralement (ex: "jean point dupont arobase gmail point com"), reconstitue le format correct (jean.dupont@gmail.com)\n- Pour numero_one_pnpe : chercher un numéro PNPE, ONE, ou tout numéro d\'enregistrement emploi mentionné';
+    var userMessage = 'Voici la transcription vocale du candidat décrivant son profil :\n\n' + textContent.slice(0, 8000) + '\n\nExtrais toutes les informations mentionnées oralement.';
+    var payload = { model: GROQ_MODEL, messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: userMessage }], temperature: 0.1, max_tokens: 2048, response_format: { type: 'json_object' } };
+    var response = await fetch(GROQ_PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    if (!response.ok) {
+        var errData = await response.json().catch(function() { return {}; });
+        var errMsg = 'Erreur Groq API';
+        if (errData.error) {
+            if (errData.error.code === 'invalid_api_key') errMsg = 'Clé Groq invalide.';
+            else if (errData.error.code === 'rate_limit_exceeded') errMsg = 'Limite Groq atteinte, réessayez dans quelques secondes.';
+            else errMsg = errData.error.message || errMsg;
+        }
+        throw new Error(errMsg);
+    }
+    var data = await response.json();
+    var raw = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content || '' : '';
+    raw = raw.replace(/```json|```/g, '').trim();
+    var parsed = JSON.parse(raw);
+    ['langues','competences_informatiques','domaines_competences'].forEach(function(k) { if (!Array.isArray(parsed[k])) parsed[k] = parsed[k] ? [String(parsed[k])] : []; });
+    ['experiences','formations'].forEach(function(k) { if (!Array.isArray(parsed[k])) parsed[k] = []; });
+    return parsed;
+}
+
+function showMicResults(data) {
+    document.getElementById('micAnalysisProgress').classList.remove('show');
+    document.getElementById('micScanResults').classList.add('show');
+    renderResultsGrid(document.getElementById('micResultsGrid'), data);
+}
+
+function applyMicResults() {
+    if (!micExtractedData) return;
+    SoundFX.notify();
+    fillFormFromData(micExtractedData);
+    closeMicScanner();
+    currentStep = 1; showStep(1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetMic() {
+    micFinalTranscript = '';
+    micExtractedData = null;
+    document.getElementById('micTranscript').value = '';
+    document.getElementById('micAnalyzeBtn').classList.remove('show');
+    document.getElementById('micScanResults').classList.remove('show');
+    document.getElementById('micAnalysisProgress').classList.remove('show');
+    document.getElementById('micScanError').classList.remove('show');
+    document.getElementById('micAnalysisBar').style.width = '0%';
+    for (var i = 1; i <= 3; i++) {
+        var ic = document.getElementById('mic-step-icon-' + i); ic.classList.remove('active', 'done'); ic.textContent = i;
+        var lb = document.getElementById('mic-step-label-' + i); lb.classList.remove('active', 'done');
+    }
+    stopRecording();
 }
 
 </script>
