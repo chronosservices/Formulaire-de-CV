@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hors ligne — Chronos-Services</title>
+<style>
+  :root{--green-dark:#094102;--green-mid:#0d5203;--orange:#FF5700;}
+  *{box-sizing:border-box;}
+  body{
+    margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    font-family:'DM Sans',system-ui,-apple-system,sans-serif;text-align:center;padding:24px;
+    background:linear-gradient(165deg,var(--green-dark) 0%,#03210a 100%);color:#fff;
+  }
+  .card{max-width:380px;}
+  h1{font-family:'Sora',system-ui,sans-serif;font-size:1.4rem;font-weight:800;margin:0 0 12px;}
+  p{font-size:.95rem;line-height:1.5;color:rgba(255,255,255,.85);margin:0 0 24px;}
+  button{
+    background:var(--orange);color:#fff;border:none;border-radius:100px;
+    padding:12px 28px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Vous êtes hors ligne</h1>
+    <p>Chronos-Services n'a pas pu joindre le réseau. Vérifiez votre connexion puis réessayez — les pages déjà visitées restent disponibles hors ligne.</p>
+    <button onclick="location.reload()">Réessayer</button>
+  </div>
+</body>
+</html>
