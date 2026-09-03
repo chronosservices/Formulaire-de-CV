@@ -1,2171 +1,1551 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catalogue CV — Chronos-Services</title>
-  <meta name="description" content="43 modèles CV professionnels Word & PowerPoint. Trouvez le design qui vous correspond." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Catalogue CV — Chronos-Services</title>
+<meta name="description" content="Catalogue de modèles CV professionnels Chronos-Services.">
 
-  <meta property="og:type"        content="website" />
-  <meta property="og:site_name"   content="Chronos-Services" />
-  <meta property="og:title"       content="Catalogue CV — Chronos-Services" />
-  <meta property="og:description" content="43 modèles CV professionnels Word & PowerPoint. Trouvez le design parfait pour décrocher votre prochain poste." />
-  <meta property="og:url"         content="https://chronos-services.netlify.app/catalogue%20de%20cv" />
-  <meta property="og:image"       content="https://chronos-services.netlify.app/Logo/og-cover.jpg" />
-  <meta property="og:image:width"  content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:locale"      content="fr_FR" />
+<!-- ═══════════════════════════════════════════════════════════
+     APERÇU VISUEL OPEN GRAPH (WhatsApp, Facebook, LinkedIn)
+═══════════════════════════════════════════════════════════ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Chronos-Services">
+<meta property="og:title" content="Catalogue CV Professionnels — Chronos-Services">
+<meta property="og:description" content="Découvrez nos modèles de CV modernes et percutants sous Word et PowerPoint.">
+<meta property="og:image" content="https://chronos-services.netlify.app/images/modele-002.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://chronos-services.netlify.app/catalogue%20de%20cv">
 
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Catalogue CV — Chronos-Services" />
-  <meta name="twitter:description" content="43 modèles CV professionnels Word & PowerPoint. Trouvez le design parfait pour décrocher votre prochain poste." />
-  <meta name="twitter:image"       content="https://chronos-services.netlify.app/Logo/og-cover.jpg" />
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Catalogue CV Professionnels — Chronos-Services">
+<meta name="twitter:description" content="Découvrez nos modèles de CV modernes et percutants sous Word et PowerPoint.">
+<meta name="twitter:image" content="https://chronos-services.netlify.app/images/modele-002.jpg">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* ============================================================
-       VARIABLES — vert uni, sans orange
-    ============================================================ */
-    :root {
-      --green:       #094102;
-      --green-mid:   #0d5203;
-      --green-light: rgba(9,65,2,.08);
-      --green-pale:  #e8f0e6;
-      --accent:      #2a7a1a;        /* vert clair pour CTA secondaires */
-      --bg:          #f2f4f0;
-      --bg2:         #e9ece6;
-      --surface:     #ffffff;
-      --text:        #111810;
-      --text-2:      #4a5240;
-      --text-3:      #8a9480;
-      --border:      #dde0d8;
-      --grad:        linear-gradient(135deg, #094102 0%, #1a6b09 100%);
-      --grad-rev:    linear-gradient(135deg, #1a6b09 0%, #094102 100%);
-      --shadow-xs:   0 1px 3px rgba(9,65,2,.07);
-      --shadow-sm:   0 3px 10px rgba(9,65,2,.09);
-      --shadow-md:   0 8px 24px rgba(9,65,2,.11);
-      --shadow-lg:   0 16px 40px rgba(9,65,2,.14);
-      --r-sm: 10px;
-      --r-md: 16px;
-      --r-lg: 22px;
-      --r-xl: 28px;
-      --r-pill: 100px;
-    }
+<style>
+:root{
+  --green:#094102;
+  --green2:#145f0b;
+  --green3:#2a7a1a;
+  --green-glow:rgba(9,65,2,.12);
+  --bg:#f3f5f1;
+  --surface:#ffffff;
+  --surface2:#e9eee7;
+  --text:#111810;
+  --muted:#687263;
+  --border:#dce2d9;
+  --shadow:0 12px 35px rgba(9,65,2,.10);
+  --r:18px;
+  --pill:999px;
+}
+*{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden}
+button,input,select,textarea{font:inherit} button{border:0;background:none;cursor:pointer} img{display:block;max-width:100%} a{color:inherit;text-decoration:none}
+body.modal-open{overflow:hidden}
+.icon{width:18px;height:18px;display:block;flex:none}
 
-    /* ============================================================
-       RESET & BASE
-    ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-    a { text-decoration: none; color: inherit; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; }
-    img { display: block; max-width: 100%; }
-    input, select { font-family: inherit; }
+.topbar{position:sticky;top:0;z-index:50;height:58px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 max(16px,calc((100vw - 1100px)/2))}
+.back{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 14px;border:1px solid var(--border);border-radius:12px;color:var(--text);font-weight:600;font-size:13px;background:var(--surface);transition:.2s}
+.back:hover{border-color:var(--green);color:var(--green)}
+.theme{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 9px 0 12px;border:1px solid var(--border);border-radius:var(--pill);background:var(--surface2);color:var(--muted);font-size:12px;font-weight:600}
+.switch{width:36px;height:22px;border-radius:99px;background:#cbd3c8;position:relative}.switch:after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.25s}
+body.dark .switch{background:var(--green3)} body.dark .switch:after{transform:translateX(14px)}
 
-    /* ============================================================
-       BACK BUTTON
-    ============================================================ */
-    .back-bar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 10px 20px;
-    }
+.hero{background:linear-gradient(135deg,#094102,#1a6b09);color:#fff;padding:54px 20px 84px;position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(60px);opacity:.16;background:#a8e890}.hero:before{width:330px;height:330px;right:-100px;top:-130px}.hero:after{width:230px;height:230px;left:-80px;bottom:-120px}
+.hero-inner{max-width:720px;margin:auto;text-align:center;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.09);border-radius:var(--pill);padding:6px 13px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em}.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:#a8e890}
+h1{font:800 clamp(30px,5.5vw,50px)/1.08 Sora,sans-serif;letter-spacing:-.03em;margin:14px 0 10px} h1 span{color:#a8e890}.hero p{max-width:560px;margin:auto;color:rgba(255,255,255,.75);font-size:14.5px}
 
-    /* Theme toggle — pill style */
-    .theme-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg2);
-      border: 1.5px solid var(--border);
-      border-radius: var(--r-pill);
-      padding: 5px 6px 5px 12px;
-      cursor: pointer;
-      transition: background .2s, border-color .2s;
-      flex-shrink: 0;
-    }
-    .theme-toggle:hover { background: var(--green-light); border-color: var(--green); }
-    .theme-toggle__label {
-      font-size: .82rem;
-      font-weight: 600;
-      color: var(--text-2);
-      transition: color .2s;
-      user-select: none;
-    }
-    .theme-toggle:hover .theme-toggle__label { color: var(--green); }
-    /* The switch track */
-    .theme-switch {
-      width: 36px; height: 22px;
-      border-radius: 11px;
-      background: var(--border);
-      position: relative;
-      transition: background .25s;
-      flex-shrink: 0;
-    }
-    /* Thumb */
-    .theme-switch::after {
-      content: '';
-      position: absolute;
-      top: 3px; left: 3px;
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      background: var(--surface);
-      box-shadow: 0 1px 3px rgba(0,0,0,.2);
-      transition: transform .25s cubic-bezier(.4,0,.2,1), background .25s;
-    }
-    /* Icon inside thumb — sun/moon via background-image SVG */
-    .theme-switch-icon {
-      position: absolute;
-      top: 50%; left: 3px;
-      transform: translateY(-50%);
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none;
-      transition: transform .25s cubic-bezier(.4,0,.2,1);
-      z-index: 1;
-    }
-    /* Active (dark) state */
-    [data-theme="dark"] .theme-switch {
-      background: var(--green);
-    }
-    [data-theme="dark"] .theme-switch::after {
-      transform: translateX(14px);
-      background: var(--surface);
-    }
-    [data-theme="dark"] .theme-switch-icon {
-      transform: translateX(14px) translateY(-50%);
-    }
-    [data-theme="dark"] .theme-toggle__label { color: #d4e8cc; }
-    [data-theme="dark"] .theme-toggle { background: #2a3a24; border-color: #3a4e34; }
-    [data-theme="dark"] .theme-toggle:hover { background: #3a4e34; border-color: #5a7a50; }
+.stats{max-width:620px;margin:-34px auto 26px;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;position:relative;z-index:3}.stat{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:16px;padding:14px 8px;text-align:center}.stat strong{display:block;font:800 20px Sora;color:var(--green)}.stat small{display:block;margin-top:3px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.05em;font-weight:700}
 
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: .85rem;
-      font-weight: 600;
-      color: var(--green);
-      padding: 7px 14px;
-      border-radius: var(--r-pill);
-      border: 1.5px solid var(--border);
-      background: var(--surface);
-      transition: background .2s, border-color .2s;
-    }
-    .back-btn:hover { background: var(--green-light); border-color: var(--green); }
-    .back-btn svg { flex-shrink: 0; }
+.main{max-width:1100px;margin:auto;padding:0 16px 90px}
+.controls{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px;box-shadow:0 5px 18px rgba(9,65,2,.05);margin-bottom:18px}
+.search{height:46px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);background:var(--bg);border-radius:13px;padding:0 14px;transition:.2s}.search:focus-within{border-color:var(--green);box-shadow:0 0 0 3px rgba(9,65,2,.08);background:#fff}.search input{border:0;outline:0;background:transparent;width:100%;font-size:13.5px;color:var(--text)}.clear{width:30px;height:30px;display:none;align-items:center;justify-content:center;border-radius:50%;color:var(--muted)}.clear.show{display:flex}
 
-    /* ============================================================
-       HERO HEADER — vert uni, sans orbe orange
-    ============================================================ */
-    .hero {
-      background: var(--green);
-      position: relative;
-      overflow: hidden;
-      padding: 48px 20px 80px;
-      text-align: center;
-    }
+.filter-row{display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 2px 4px;-webkit-overflow-scrolling:touch}.filter-row::-webkit-scrollbar{display:none}.filter-label{font-size:10.5px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.06em;flex:none}
+.pill{min-height:38px;padding:0 14px;border:1px solid var(--border);border-radius:var(--pill);background:var(--surface);color:var(--muted);font-size:11.5px;font-weight:700;white-space:nowrap;display:inline-flex;align-items:center;gap:7px;flex-shrink:0;transition:.2s}.pill:hover{border-color:var(--green);color:var(--green)}.pill.active{background:var(--green);border-color:var(--green);color:#fff}
 
-    .hero::before, .hero::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      opacity: .18;
-      animation: drift 14s ease-in-out infinite alternate;
-    }
-    .hero::before {
-      width: 340px; height: 340px;
-      background: #3aac1a;
-      top: -100px; right: -80px;
-    }
-    .hero::after {
-      width: 220px; height: 220px;
-      background: #1a6b09;
-      bottom: -70px; left: -50px;
-      animation-delay: -7s;
-    }
-    @keyframes drift {
-      from { transform: translate(0,0) scale(1); }
-      to   { transform: translate(30px, 20px) scale(1.1); }
-    }
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0 14px;flex-wrap:wrap}
+.results{font-size:12px;color:var(--muted);white-space:nowrap}.results strong{color:var(--text);font-family:Sora}
+.toolbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+select{height:38px;border:1px solid var(--border);background:var(--surface);border-radius:11px;padding:0 10px;color:var(--text);font-size:11.5px;outline:none}
+.view{display:flex;border:1px solid var(--border);border-radius:11px;overflow:hidden;background:var(--surface)}
+.view button{width:38px;height:38px;color:var(--muted);display:flex;align-items:center;justify-content:center}
+.view button.active{background:var(--green);color:#fff}
 
-    .hero__inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+/* ═══════════════════════════════════════════════════════════
+   GRILLE ET VUE LISTE HARMONISÉE (100% UNIFORME)
+═══════════════════════════════════════════════════════════ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:16px}
 
-    .hero__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.18);
-      color: rgba(255,255,255,.9);
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: var(--r-pill);
-      margin-bottom: 16px;
-    }
-    .hero__badge span {
-      width: 6px; height: 6px;
-      background: #6dd94a;
-      border-radius: 50%; display: inline-block;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+/* Carte Grille */
+.card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 3px 12px rgba(9,65,2,.04);transition:transform .22s,box-shadow .22s,border-color .22s;cursor:pointer}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(9,65,2,.28)}
+.card.selected{border-color:var(--green);box-shadow:0 0 0 3px rgba(9,65,2,.12)}
 
-    .hero__title {
-      font-family: 'Sora', sans-serif;
-      font-size: clamp(2rem, 6vw, 3.2rem);
-      font-weight: 800;
-      color: white;
-      line-height: 1.1;
-      letter-spacing: -.02em;
-      margin-bottom: 12px;
-    }
-    .hero__title em {
-      font-style: normal;
-      color: #a8e890;
-    }
+.thumb{aspect-ratio:4/5;background:#f2f4f0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:16px 20px}
+.thumb img{width:78%;height:94%;object-fit:contain;background:#fff;border-radius:7px;box-shadow:0 10px 24px rgba(0,0,0,.14);transition:transform .3s,box-shadow .3s}
+.card:hover .thumb img{transform:translateY(-2px) scale(1.015);box-shadow:0 14px 30px rgba(0,0,0,.17)}
+.num{position:absolute;top:9px;left:9px;z-index:2;background:rgba(255,255,255,.94);border-radius:9px;padding:4px 7px;font:700 10px Sora;color:var(--green)}
+.card-tools{position:absolute;top:8px;right:8px;z-index:3;display:flex;gap:6px}
+.tool{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.94);color:var(--muted);box-shadow:0 2px 8px rgba(0,0,0,.08);transition:.2s}
+.tool:hover,.tool.active{color:var(--green)}
+.overlay{position:absolute;inset:0;background:rgba(9,65,2,.74);display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s}
+.card:hover .overlay{opacity:1}.overlay span{background:#fff;color:var(--green);padding:9px 15px;border-radius:10px;font:700 11.5px Sora}
 
-    .hero__sub {
-      color: rgba(255,255,255,.65);
-      font-size: .95rem;
-      max-width: 420px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
+.card-body{padding:12px}
+.card-title{font:700 13px Sora;margin-bottom:6px;color:var(--text)}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-size:9.5px;font-weight:700;padding:3px 8px;border-radius:99px;background:#eef2ec;color:var(--green);white-space:nowrap}
+.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
+.btn{height:36px;border-radius:10px;font:700 11px Sora;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s;white-space:nowrap;padding:0 8px}
+.btn.outline{border:1px solid var(--border);color:var(--muted);background:var(--surface)}.btn.solid{background:var(--green);color:#fff}.btn:hover{border-color:var(--green)}
 
-    /* ============================================================
-       STATS STRIP
-    ============================================================ */
-    .stats-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      max-width: 520px;
-      margin: -36px auto 32px;
-      padding: 0 20px;
-      position: relative;
-      z-index: 10;
-    }
+/* ── Vue Liste Réalignée & Harmonisée à 100% ── */
+.grid.list{grid-template-columns:1fr;gap:12px}
+.grid.list .card{
+  display:flex;
+  align-items:center;
+  padding:12px 14px;
+  gap:14px;
+}
+.grid.list .thumb{
+  width:80px;
+  min-width:80px;
+  height:104px;
+  aspect-ratio:auto;
+  padding:6px;
+  border-radius:10px;
+  flex-shrink:0;
+}
+.grid.list .thumb img{width:82%;height:94%}
+.grid.list .overlay{display:none}
 
-    .stat-pill {
-      background: var(--surface);
-      border-radius: var(--r-lg);
-      padding: 16px 12px;
-      text-align: center;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border);
-    }
-    .stat-pill.accent {
-      background: var(--green);
-      border-color: transparent;
-    }
-    .stat-pill__num {
-      font-family: 'Sora', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .stat-pill.accent .stat-pill__num { color: white; }
-    .stat-pill__label { font-size: .65rem; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
-    .stat-pill.accent .stat-pill__label { color: rgba(255,255,255,.75); }
+.grid.list .card-body{
+  flex:1;
+  min-width:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:8px;
+}
+.grid.list .card-header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.grid.list .card-title{font-size:13.5px;font-weight:700;margin:0}
+.grid.list .card-tools{position:static;display:flex;gap:6px}
+.grid.list .card-tools .tool{width:32px;height:32px}
 
-    /* ============================================================
-       MAIN WRAPPER
-    ============================================================ */
-    .main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
-    }
+.grid.list .tags{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
 
-    /* ============================================================
-       CONTROLS BAR
-    ============================================================ */
-    .controls {
-      background: var(--surface);
-      border-radius: var(--r-xl);
-      padding: 18px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border);
-      margin-bottom: 20px;
-    }
+.grid.list .card-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  margin:0;
+}
+.grid.list .btn{
+  height:32px;
+  padding:0 14px;
+  font-size:11px;
+  border-radius:9px;
+  flex:0 0 auto;
+}
 
-    .controls__top {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
+.favorites-bar{display:none;align-items:center;gap:9px;margin:-2px 0 16px;font-size:12px}.favorites-bar.show{display:flex}.fav-count{font:700 12px Sora;color:var(--green)}
+.empty{display:none;text-align:center;background:var(--surface);border:1px dashed var(--border);border-radius:16px;padding:50px 20px;color:var(--muted)}.empty.show{display:block}.empty strong{display:block;color:var(--text);font:700 18px Sora;margin:12px 0 6px}.empty button{margin-top:15px;height:42px;padding:0 16px;border-radius:10px;background:var(--green);color:#fff;font-weight:700}
 
-    .search-box {
-      flex: 1 1 200px;
-      position: relative;
-    }
-    .search-box svg {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-3);
-      pointer-events: none;
-    }
-    .search-box input {
-      width: 100%;
-      height: 44px;
-      border-radius: var(--r-pill);
-      border: 1.5px solid var(--border);
-      background: var(--bg);
-      padding: 0 16px 0 44px;
-      font-size: .9rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .search-box input:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px var(--green-light);
-      background: var(--surface);
-    }
-    .search-box input::placeholder { color: var(--text-3); }
+/* ═══════════════════════════════════════════════════════════
+   TIROIR DES RÉCENTS AVEC SUPPRESSION (✕)
+═══════════════════════════════════════════════════════════ */
+.recent-drawer {
+  position: fixed;
+  bottom: 20px;
+  left: 16px;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 6px 10px 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(9, 65, 2, 0.14);
+}
+.recent-drawer.show { display: flex; }
+.recent-drawer__label { font: 800 10px Sora, sans-serif; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-right: 2px; }
+.recent-drawer__items { display: flex; align-items: center; gap: 6px; }
+.recent-drawer__item { width: 32px; height: 42px; border-radius: 7px; overflow: hidden; border: 1.5px solid var(--border); cursor: pointer; transition: transform .2s, border-color .2s; background: #fff; }
+.recent-drawer__item:hover { transform: scale(1.12); border-color: var(--green); }
+.recent-drawer__item img { width: 100%; height: 100%; object-fit: cover; }
 
-    .search-clear {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--text-3);
-      color: white;
-      font-size: .7rem;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: none;
-    }
-    .search-clear.visible { display: flex; }
+.recent-drawer__close {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: all .2s ease;
+}
+.recent-drawer__close:hover { background: rgba(200, 30, 30, 0.15); color: #c5221f; transform: scale(1.1); }
 
-    .filters {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      align-items: center;
-    }
-    .filters__label {
-      font-size: .75rem;
-      font-weight: 600;
-      color: var(--text-3);
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      white-space: nowrap;
-    }
+/* ═══════════════════════════════════════════════════════════
+   MODALE D'APERÇU & CONTRÔLES TACTILES
+═══════════════════════════════════════════════════════════ */
+.backdrop{position:fixed;inset:0;z-index:200;display:none;background:rgba(4,10,4,.68);backdrop-filter:blur(8px);padding:22px;align-items:center;justify-content:center}.backdrop.open{display:flex}
+.preview-modal{
+  width:min(900px,100%);
+  height:min(680px,calc(100vh - 44px));
+  background:var(--surface);
+  border-radius:22px;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1.35fr .85fr;
+  box-shadow:0 35px 90px rgba(0,0,0,.3);
+  animation:up .25s ease;
+  position:relative;
+}
+.preview-modal.fullscreen-fallback{width:100vw;height:100vh;max-width:none;border-radius:0}.preview-modal.fullscreen-fallback .preview-wrap img{max-height:calc(100vh - 70px)}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
-    .filter-pill {
-      height: 34px;
-      padding: 0 14px;
-      border-radius: var(--r-pill);
-      border: 1.5px solid var(--border);
-      background: var(--bg);
-      color: var(--text-2);
-      font-size: .8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .2s;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .filter-pill:hover { border-color: var(--green); color: var(--green); background: var(--green-light); }
-    .filter-pill.active { background: var(--green); border-color: var(--green); color: white; }
-    /* PowerPoint pill : vert moyen au lieu d'orange */
-    .filter-pill.ppt-pill { }
-    .filter-pill.ppt-pill.active { background: var(--accent); border-color: var(--accent); }
+.preview-pane{
+  min-width:0;background:var(--surface2);
+  position:relative;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;touch-action:none;user-select:none;cursor:grab;
+}
+.preview-pane:active{cursor:grabbing}
+.preview-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:38px 54px;pointer-events:none}
+.preview-wrap img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 14px 34px rgba(0,0,0,.18);border-radius:5px;transform-origin:center center;user-select:none;-webkit-user-drag:none;will-change:transform}
 
-    /* ============================================================
-       TOOLBAR ROW
-    ============================================================ */
-    .toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
+.preview-close{
+  position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+  color:var(--text);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);border:1px solid rgba(255,255,255,.6);
+  z-index:4;transition:.2s ease;
+}
+.preview-close:hover{background:#ffffff;transform:scale(1.05)}
 
-    .results-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-pill);
-      padding: 6px 14px;
-      font-size: .82rem;
-      font-weight: 600;
-      color: var(--text-2);
-      box-shadow: var(--shadow-xs);
-    }
-    .results-badge strong { color: var(--green); font-family: 'Sora', sans-serif; font-size: .95rem; }
+.counter{
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  padding:6px 14px;border-radius:999px;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+  font:700 11px Sora;color:var(--text);z-index:4;
+}
 
-    .toolbar__right { display: flex; align-items: center; gap: 10px; }
+.nav{position:absolute;left:14px;right:14px;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none;z-index:3}
+.nav button{
+  pointer-events:auto;width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.6);
+  color:var(--green);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.1);transition:.2s ease;
+}
+.nav button:hover{background:#ffffff;transform:scale(1.08)}
 
-    .sort-select {
-      height: 36px;
-      padding: 0 12px;
-      border-radius: var(--r-pill);
-      border: 1.5px solid var(--border);
-      background: var(--surface);
-      color: var(--text-2);
-      font-size: .8rem;
-      font-weight: 500;
-      cursor: pointer;
-      outline: none;
-      transition: border-color .2s;
-    }
-    .sort-select:focus { border-color: var(--green); }
+.zoom{
+  position:absolute;bottom:14px;right:14px;
+  display:inline-flex;align-items:center;gap:3px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:999px;padding:3px 5px;
+  box-shadow:0 6px 20px rgba(9,65,2,.12);
+  z-index:4;
+}
+.zoom-btn{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--green);background:transparent;transition:all .18s ease}
+.zoom-btn:hover{background:rgba(9,65,2,.08);transform:scale(1.1)}
+.zoom-value-btn{height:28px;padding:0 9px;border-radius:999px;background:rgba(9,65,2,.06);border:1px solid rgba(9,65,2,.08);font:800 11px Sora,sans-serif;color:var(--green);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s ease}
+.zoom-value-btn:hover{background:var(--green);color:#fff}
 
-    .view-toggle {
-      display: flex;
-      background: var(--bg2);
-      border-radius: var(--r-sm);
-      padding: 3px;
-      gap: 2px;
-    }
-    .view-btn {
-      width: 32px;
-      height: 30px;
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-3);
-      transition: all .2s;
-    }
-    .view-btn.active { background: var(--surface); color: var(--green); box-shadow: var(--shadow-xs); }
-    .view-btn:hover:not(.active) { color: var(--text-2); }
+.info-pane{display:flex;flex-direction:column;min-width:0;overflow-y:auto;padding:26px 22px;position:relative}
+.eyebrow{font:700 10px Sora;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:4px}
+.info-pane h2{font:700 20px Sora;line-height:1.2;margin-bottom:10px}
+.info-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
 
-    /* ============================================================
-       GRID
-    ============================================================ */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 16px;
-    }
-    .grid.list { grid-template-columns: 1fr; gap: 10px; }
+.info-actions {display:grid;gap:10px;margin-bottom:20px}
+.primary {
+  height:48px;border-radius:15px;
+  background:linear-gradient(145deg, #106606 0%, #094102 60%, #052c01 100%);
+  border:1px solid rgba(255, 255, 255, 0.22);
+  color:#fff;font:800 12.5px Sora;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px;box-shadow:0 10px 26px -4px rgba(9,65,2,.35);
+  cursor:pointer;transition:all .22s cubic-bezier(.16,1,.3,1);
+}
+.primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -4px rgba(9,65,2,.45)}
+.primary-left{display:flex;align-items:center;gap:10px}
+.primary-icon-wrap{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#a8e890}
+.primary-arrow{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px}
 
-    /* ============================================================
-       CV CARD
-    ============================================================ */
-    .cv-card {
-      background: var(--surface);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      border: 1.5px solid var(--border);
-      box-shadow: var(--shadow-xs);
-      transition: transform .25s cubic-bezier(.2,0,.2,1), box-shadow .25s, border-color .25s;
-      cursor: pointer;
-      position: relative;
-    }
-    .cv-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(9,65,2,.3);
-    }
+.info-actions-sub{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.secondary, .full {
+  height:40px;border-radius:13px;border:1px solid #dce4d9;background:#f6f8f5;color:#1e2a1d;
+  font:700 11px Sora;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;
+  transition:all .2s cubic-bezier(.16,1,.3,1);
+}
+.secondary:hover, .full:hover{background:#fff;border-color:var(--green);color:var(--green);transform:translateY(-2px)}
+.btn-icon-pill{width:22px;height:22px;border-radius:7px;background:rgba(9,65,2,.06);display:flex;align-items:center;justify-content:center;color:var(--green)}
 
-    .cv-card__num {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 2;
-      background: rgba(0,0,0,.5);
-      backdrop-filter: blur(6px);
-      color: white;
-      font-family: 'Sora', sans-serif;
-      font-size: .68rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: var(--r-pill);
-      letter-spacing: .03em;
-    }
+.reco{margin-top:14px;padding-top:16px;border-top:1px solid var(--border)}
+.reco-title{font:700 10px Sora;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:10px}
+.reco-list{display:grid;gap:8px}
+.reco-item{display:flex;align-items:center;gap:9px;padding:7px;border:1px solid var(--border);border-radius:11px;background:var(--bg);cursor:pointer;transition:border-color .2s}
+.reco-item:hover{border-color:var(--green)}
+.reco-item img{width:34px;height:46px;object-fit:cover;border-radius:4px;background:var(--surface2)}
+.reco-item strong{display:block;font:700 10px Sora}
+.reco-item small{font-size:9px;color:var(--muted)}
 
-    .cv-card__share {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 2;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.85);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-3);
-      transition: all .2s;
-      border: none;
-      cursor: pointer;
-      opacity: 0;
-      transform: scale(.7);
-    }
-    .cv-card:hover .cv-card__share { opacity: 1; transform: scale(1); }
-    .cv-card__share:hover { color: var(--green); background: white; }
-    .grid.list .cv-card__share { top: 8px; right: 8px; opacity: 1; transform: scale(1); }
+/* Modale de Comparaison */
+.compare-modal{width:min(1000px,100%);max-height:90vh;background:var(--surface);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}.compare-head{height:58px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font:700 13px Sora}.compare-body{padding:18px;overflow:auto}.compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.compare-item{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg)}.compare-item img{width:100%;aspect-ratio:3/4;object-fit:cover}.compare-info{padding:11px}.compare-info h3{font:700 12px Sora;margin-bottom:7px}.compare-info p{font-size:10px;color:var(--muted);margin:3px 0}.compare-info button{width:100%;height:40px;border-radius:10px;background:var(--green);color:#fff;font-weight:700;font-size:10px Sora;margin-top:9px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,90px);opacity:0;z-index:500;background:var(--text);color:#fff;border-radius:99px;padding:11px 18px;font-size:12px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:.28s cubic-bezier(.16,1,.3,1);pointer-events:none}.toast.show{transform:translate(-50%,0);opacity:1}
 
-    .cv-card__img {
-      aspect-ratio: 3/4;
-      background: var(--bg2);
-      overflow: hidden;
-      position: relative;
-    }
-    .grid.list .cv-card__img {
-      aspect-ratio: unset;
-      height: 100px;
-      width: 80px;
-      flex-shrink: 0;
-    }
-    .cv-card__img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform .35s ease;
-    }
-    .cv-card:hover .cv-card__img img { transform: scale(1.06); }
-    .cv-card__img-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: var(--text-3);
-      font-size: .78rem;
-    }
-    .cv-card__img-placeholder svg { opacity: .4; }
+/* ═══════════════════════════════════════════════════════════
+   MODALE DE PARTAGE 2026
+═══════════════════════════════════════════════════════════ */
+.share-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+  background: rgba(8, 20, 8, 0.65);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  padding: 16px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.share-backdrop.open { display: flex; opacity: 1; }
+.share-modal {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -10px rgba(4, 25, 3, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.15);
+  transform: translateY(20px) scale(.98);
+  animation: modalEnter .28s cubic-bezier(.16, 1, .3, 1) forwards;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+@keyframes modalEnter { to { transform: translateY(0) scale(1); } }
+.share-modal__header { background: linear-gradient(145deg, #094102 0%, #062e01 100%); padding: 18px 18px 16px; position: relative; color: #fff; flex-shrink: 0; }
+.share-modal__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.share-modal__htitle { font: 800 12.5px Sora, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #ebfae8; }
+.share-modal__close { width: 28px; height: 28px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.share-card { display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.085); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 14px; padding: 10px 12px; }
+.share-card__icon { width: 40px; height: 40px; border-radius: 11px; background: rgba(255, 255, 255, 0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
+.share-card__title { font: 800 14px Sora, sans-serif; color: #fff; margin-bottom: 4px; }
+.share-card__meta { display: flex; gap: 6px; flex-wrap: wrap; }
+.share-card__tag { font: 800 8.5px Sora, sans-serif; padding: 3px 8px; border-radius: 99px; background: rgba(255, 255, 255, 0.16); color: #f1f8ee; text-transform: uppercase; }
 
-    .cv-card__overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(9,65,2,.72);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity .25s;
-    }
-    .cv-card:hover .cv-card__overlay { opacity: 1; }
-    .cv-card__overlay-btn {
-      background: white;
-      color: var(--green);
-      font-family: 'Sora', sans-serif;
-      font-size: .78rem;
-      font-weight: 700;
-      padding: 8px 18px;
-      border-radius: var(--r-pill);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: transform .15s;
-    }
-    .cv-card__overlay-btn:hover { transform: scale(1.05); }
+.share-modal__body { padding: 16px 18px 20px; background: #ffffff; overflow-y: auto; }
+.share-viral-actions { display: grid; gap: 8px; margin-bottom: 14px; }
+.share-viral-btn { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 13px; border: 1.5px solid #dce4d9; background: #f6f8f5; font: 700 11px Sora, sans-serif; color: #1a2a19; cursor: pointer; transition: all .2s; }
+.share-viral-btn:hover { background: #fff; border-color: var(--green); transform: translateY(-1px); }
+.share-viral-btn.opinion { background: #eef7ee; border-color: #badcba; color: #0b4907; }
+.share-viral-btn.story { background: #f5f0ff; border-color: #dec8ff; color: #4b168f; }
 
-    .cv-card__body { padding: 14px; }
-    .cv-card__title {
-      font-family: 'Sora', sans-serif;
-      font-size: .88rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-      line-height: 1.2;
-    }
-    .cv-card__tags {
-      display: flex;
-      gap: 5px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-    .tag {
-      font-size: .65rem;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: var(--r-pill);
-      text-transform: uppercase;
-      letter-spacing: .04em;
-    }
-    .tag.word     { background: rgba(9,65,2,.1);      color: var(--green); }
-    .tag.ppt      { background: rgba(42,122,26,.12);  color: var(--accent); }
-    .tag.moderne  { background: rgba(255,87,0,.1);    color: #c94400; }
-    .tag.classique{ background: rgba(255,87,0,.1);    color: #c94400; }
-    .tag.creatif  { background: rgba(255,87,0,.1);    color: #c94400; }
-    .tag.minimal  { background: rgba(255,87,0,.1);    color: #c94400; }
+.share-field-label { display: block; font: 800 10px Sora, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #798675; margin-bottom: 6px; }
+.share-message-box { position: relative; margin-bottom: 12px; }
+.share-textarea { width: 100%; height: 64px; border-radius: 12px; border: 1px solid #e1e7de; background: #f4f6f3; padding: 9px 11px 20px; font: 500 11.5px "DM Sans", sans-serif; color: #1e261d; outline: none; resize: none; }
+.share-message-count { position: absolute; right: 10px; bottom: 5px; font: 700 9.5px Sora, sans-serif; color: #9aa598; }
 
-    .cv-card__actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 7px;
-    }
-    .btn-sm {
-      height: 36px;
-      border-radius: var(--r-sm);
-      font-size: .78rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      transition: all .2s;
-      cursor: pointer;
-      border: 1.5px solid transparent;
-    }
-    .btn-sm.outline {
-      background: var(--bg);
-      border-color: var(--border);
-      color: var(--text-2);
-    }
-    .btn-sm.outline:hover { border-color: var(--green); color: var(--green); background: var(--green-light); }
-    .btn-sm.solid {
-      background: var(--green);
-      color: white;
-      border-color: transparent;
-    }
-    .btn-sm.solid:hover { background: var(--green-mid); transform: translateY(-1px); }
+.share-link-row { display: flex; gap: 7px; margin-bottom: 14px; }
+.share-link-input { flex: 1; height: 40px; border-radius: 12px; border: 1px solid #e1e7de; background: #f4f6f3; padding: 0 11px; font-size: 11px; color: #556252; outline: none; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.share-copy-btn { height: 40px; padding: 0 14px; border-radius: 12px; background: var(--green); color: #fff; font: 700 11.5px Sora; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
-    /* LIST mode */
-    .grid.list .cv-card { display: flex; flex-direction: row; align-items: center; }
-    .grid.list .cv-card__num { top: 8px; left: 8px; }
-    .grid.list .cv-card__overlay { display: none; }
-    .grid.list .cv-card__body {
-      flex: 1;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .grid.list .cv-card__info { flex: 1; min-width: 0; }
-    .grid.list .cv-card__actions { grid-template-columns: auto auto; width: auto; flex-shrink: 0; }
-    .grid.list .cv-card__title { margin-bottom: 5px; }
-    .grid.list .cv-card__tags { margin-bottom: 0; }
+.share-platforms { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 12px; }
+.share-platform-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 8px 3px 6px; border-radius: 14px; background: #f4f6f3; border: 1px solid #e1e7de; cursor: pointer; }
+.share-platform-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; }
+.share-platform-btn span.lbl { font: 700 9px Sora; color: #3b4639; }
 
-    /* ============================================================
-       EMPTY STATE
-    ============================================================ */
-    .empty {
-      display: none;
-      text-align: center;
-      padding: 60px 20px;
-      background: var(--surface);
-      border-radius: var(--r-xl);
-      border: 2px dashed var(--border);
-    }
-    .empty.visible { display: block; }
-    .empty svg { margin: 0 auto 16px; color: var(--text-3); opacity: .5; }
-    .empty h3 { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
-    .empty p { color: var(--text-2); font-size: .9rem; margin-bottom: 20px; }
-    .empty-reset {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--green);
-      color: white;
-      font-weight: 700;
-      font-size: .85rem;
-      padding: 10px 20px;
-      border-radius: var(--r-pill);
-      cursor: pointer;
-      border: none;
-      transition: opacity .2s;
-    }
-    .empty-reset:hover { opacity: .85; }
+.share-platform-icon.whatsapp { background: #25D366; }
+.share-platform-icon.facebook { background: #1877F2; }
+.share-platform-icon.email    { background: #0b3d07; }
+.share-platform-icon.linkedin { background: #0A66C2; }
+.share-platform-icon.native   { background: #267c1c; }
 
-    /* ============================================================
-       MODAL
-    ============================================================ */
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.65);
-      backdrop-filter: blur(6px);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .modal-backdrop.open { display: flex; animation: fadeIn .25s ease; }
-    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.share-divider { border: 0; border-top: 1px solid #e6ece4; margin: 10px 0 12px; }
+.share-qr-section { display: flex; align-items: center; gap: 12px; }
+.share-qr-wrap { width: 64px; height: 64px; border-radius: 10px; border: 1px solid #dce4d9; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 3px; }
+.share-qr-wrap img { width: 100%; height: 100%; object-fit: contain; }
+.share-qr-info strong { display: block; font: 800 12px Sora; color: #172216; margin-bottom: 2px; }
+.share-qr-info p { font-size: 10px; line-height: 1.3; color: #6d786a; }
+.share-qr-download { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; font: 800 10px Sora; color: var(--green); text-decoration: underline; background: none; border: none; padding: 0; cursor: pointer; }
 
-    .modal {
-      background: var(--surface);
-      border-radius: var(--r-xl);
-      width: 100%;
-      max-width: 480px;
-      max-height: 92vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 30px 80px rgba(0,0,0,.28);
-      animation: slideUp .3s cubic-bezier(.2,0,.2,1);
-    }
-    @keyframes slideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
+/* Mode Sombre */
+body.dark {
+  --bg:#0e140f;
+  --surface:#182119;
+  --surface2:#222d20;
+  --text:#fff;
+  --muted:#a8b6a2;
+  --border:#344332;
+}
+body.dark .search, body.dark select, body.dark .view, body.dark .pill, body.dark .back, body.dark .theme { background:#182119; color:#fff; }
+body.dark .tag { background:#263625; color:#a8e890; }
+body.dark .stat { background:#182119; }
+body.dark .num, body.dark .tool, body.dark .preview-close, body.dark .counter { background:rgba(24,33,25,.94); color:#fff; }
+body.dark .zoom { background:rgba(24,33,25,.94); border-color:#344332; }
+body.dark .zoom-btn { color:#a8e890; }
+body.dark .zoom-value-btn { background:#263625; border-color:#344332; color:#a8e890; }
+body.dark .reco-item { background:#111811; }
+body.dark .toast { background:#fff; color:#111; }
+body.dark .recent-drawer { background:rgba(24, 33, 25, 0.95); border-color:#2e3e2f; }
+body.dark .recent-drawer__item { background:#111811; border-color:#344332; }
+body.dark .recent-drawer__close { background:rgba(255, 255, 255, 0.1); color:#cbd3c8; }
+body.dark .share-modal { background:#172218; }
+body.dark .share-modal__body { background:#172218; }
+body.dark .share-textarea, body.dark .share-link-input, body.dark .share-platform-btn { background:#202c21; border-color:#2e3e2f; color:#ebf3e9; }
+body.dark .share-viral-btn { background:#1c271d; border-color:#2e3e2f; color:#d4e2d2; }
+body.dark .share-qr-wrap { background:#ffffff; }
+body.dark .share-qr-info strong { color:#ffffff; }
+body.dark .share-qr-info p { color:#a3b2a0; }
+body.dark .share-qr-download { color:#7ce868; }
+body.dark .secondary, body.dark .full { background: #202d21; border-color: #2e3e2f; color: #e4eee3; }
+body.dark .btn-icon-pill { background: rgba(168, 232, 144, 0.12); color: #a8e890; }
 
-    .modal__header {
-      background: var(--green);
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-shrink: 0;
-    }
-    .modal__title {
-      font-family: 'Sora', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: white;
-    }
-    .modal__close {
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.15);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background .2s;
-      border: none;
-      font-size: 1.2rem;
-    }
-    .modal__close:hover { background: rgba(255,255,255,.28); }
+/* ═══════════════════════════════════════════════════════════
+   ADAPTATIONS MOBILES ERGONOMIQUES (JUSQU'À 320PX)
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 820px) {
+  .backdrop { padding: 0; align-items: flex-end; }
+  .preview-modal { width: 100%; height: 92vh; max-height: 92vh; border-radius: 24px 24px 0 0; display: flex; flex-direction: column; }
+  .preview-pane { height: 44vh; min-height: 44vh; flex-shrink: 0; background: #eef2eb; }
+  .preview-wrap { padding: 16px 24px 28px; }
+  .info-pane { flex: 1; overflow-y: auto; padding: 16px 16px 24px; background: var(--surface); border-top: 1px solid var(--border); -webkit-overflow-scrolling: touch; }
+  .recent-drawer { bottom: 16px; left: 12px; padding: 4px 8px 4px 10px; }
+}
 
-    .modal__img-outer {
-      flex: 1;
-      position: relative;
-      background: var(--bg2);
-      overflow: hidden;
-      min-height: 260px;
-      height: 0;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .modal__img-wrap {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-    .modal__img {
-      max-width: calc(100% - 32px);
-      max-height: calc(100% - 32px);
-      width: auto;
-      height: auto;
-      border-radius: var(--r-md);
-      box-shadow: var(--shadow-lg);
-      object-fit: contain;
-      transition: transform .18s cubic-bezier(.2,0,.2,1);
-      transform-origin: center center;
-      cursor: zoom-in;
-      pointer-events: none;
-      will-change: transform;
-      display: block;
-      -webkit-user-drag: none;
-      user-drag: none;
-    }
-    .modal__img.zoomed { cursor: grab; }
-    .modal__img.dragging { transition: none !important; }
+@media (max-width: 480px) {
+  .main { padding: 0 12px 90px; }
+  .controls { padding: 12px; }
+  .toolbar { gap: 8px; margin: 12px 0 10px; }
+  .toolbar-right { width: 100%; justify-content: space-between; }
+  .toolbar-right select { flex: 1; max-width: none; }
+  
+  /* Alignement garanti en vue liste sur petit écran */
+  .grid.list .card { padding: 10px; gap: 10px; }
+  .grid.list .thumb { width: 72px; min-width: 72px; height: 94px; }
+  .grid.list .card-title { font-size: 12.5px; }
+  .grid.list .btn { height: 30px; padding: 0 10px; font-size: 10.5px; }
+  
+  .share-backdrop { padding: 0; align-items: flex-end; }
+  .share-modal { max-width: 100%; border-radius: 24px 24px 0 0; }
+}
 
-    .zoom-controls {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      z-index: 5;
-      display: flex;
-      gap: 4px;
-    }
-    .zoom-btn {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
-      color: white; border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; font-weight: 700; transition: background .15s;
-      user-select: none;
-    }
-    .zoom-btn:hover { background: rgba(0,0,0,.75); }
-    .zoom-level {
-      height: 30px; padding: 0 8px; border-radius: 15px;
-      background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
-      color: white; font-size: .68rem; font-weight: 700;
-      display: flex; align-items: center; font-family: 'Sora', sans-serif;
-    }
-
-    .modal__footer {
-      padding: 16px 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-    .modal__btn {
-      flex: 1;
-      height: 44px;
-      border-radius: var(--r-md);
-      font-family: 'Sora', sans-serif;
-      font-size: .85rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all .2s;
-      border: 1.5px solid transparent;
-    }
-    .modal__btn.outline { background: var(--bg); border-color: var(--border); color: var(--text-2); }
-    .modal__btn.outline:hover { border-color: var(--green); color: var(--green); }
-    .modal__btn.solid { background: var(--green); color: white; }
-    .modal__btn.solid:hover { background: var(--green-mid); }
-
-    /* ============================================================
-       TOAST
-    ============================================================ */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: var(--text);
-      color: white;
-      padding: 12px 20px;
-      border-radius: var(--r-pill);
-      font-size: .85rem;
-      font-weight: 500;
-      box-shadow: var(--shadow-lg);
-      z-index: 300;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      transition: transform .35s cubic-bezier(.2,0,.2,1);
-      pointer-events: none;
-    }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-    .toast svg { flex-shrink: 0; }
-
-    /* ============================================================
-       SCROLL TO TOP
-    ============================================================ */
-    .scroll-top {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--green);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow-md);
-      cursor: pointer;
-      border: none;
-      opacity: 0;
-      transform: scale(.8);
-      transition: opacity .3s, transform .3s;
-      z-index: 100;
-    }
-    .scroll-top.visible { opacity: 1; transform: scale(1); }
-
-    /* ============================================================
-       ACTIVE FILTERS BAR
-    ============================================================ */
-    .active-filters {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-    .active-filters.visible { display: flex; }
-    .active-filters__label { font-size: .75rem; color: var(--text-3); font-weight: 600; }
-    .active-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--green);
-      color: white;
-      font-size: .72rem;
-      font-weight: 600;
-      padding: 3px 10px 3px 8px;
-      border-radius: var(--r-pill);
-    }
-    .active-tag button { color: rgba(255,255,255,.7); font-size: .8rem; line-height: 1; cursor: pointer; transition: color .15s; }
-    .active-tag button:hover { color: white; }
-    .clear-all-btn { font-size: .72rem; color: var(--text-3); cursor: pointer; text-decoration: underline; transition: color .2s; }
-    .clear-all-btn:hover { color: var(--green); }
-
-    /* ============================================================
-       SHARE MODAL
-    ============================================================ */
-    .share-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.6);
-      backdrop-filter: blur(8px);
-      z-index: 300;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .share-backdrop.open { display: flex; animation: fadeIn .22s ease; }
-
-    .share-modal {
-      background: var(--surface);
-      border-radius: var(--r-xl);
-      width: 100%;
-      max-width: 400px;
-      overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,.28);
-      animation: slideUp .28s cubic-bezier(.2,0,.2,1);
-    }
-    .share-modal__header {
-      background: var(--green);
-      padding: 18px 20px 14px;
-      position: relative;
-    }
-    .share-modal__close {
-      position: absolute; top: 12px; right: 14px;
-      width: 28px; height: 28px; border-radius: 50%;
-      background: rgba(255,255,255,.15); color: white;
-      border: none; cursor: pointer; font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .2s;
-    }
-    .share-modal__close:hover { background: rgba(255,255,255,.28); }
-    .share-modal__htitle {
-      font-family: 'Sora', sans-serif;
-      font-size: .8rem; font-weight: 600;
-      color: rgba(255,255,255,.7);
-      text-transform: uppercase; letter-spacing: .06em;
-      margin-bottom: 8px;
-    }
-    .share-card {
-      display: flex; align-items: center; gap: 12px;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: var(--r-md);
-      padding: 10px 14px;
-    }
-    .share-card__icon {
-      width: 40px; height: 40px; border-radius: var(--r-sm);
-      background: rgba(255,255,255,.18);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; color: white;
-    }
-    .share-card__title { font-family:'Sora',sans-serif; font-size:.9rem; font-weight:700; color:white; margin-bottom:4px; }
-    .share-card__meta { display:flex; gap:5px; }
-    .share-card__tag {
-      font-size:.62rem; font-weight:600; padding:2px 8px; border-radius:var(--r-pill);
-      background:rgba(255,255,255,.18); color:rgba(255,255,255,.9);
-      text-transform:uppercase; letter-spacing:.04em;
-    }
-
-    .share-modal__body { padding: 18px 20px 20px; }
-
-    .share-link-row { display:flex; gap:8px; margin-bottom:18px; }
-    .share-link-input {
-      flex:1; height:40px; border-radius:var(--r-sm);
-      border:1.5px solid var(--border); background:var(--bg);
-      padding:0 12px; font-size:.76rem; color:var(--text-2); outline:none;
-      overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-      font-family:'DM Sans',sans-serif; cursor:text;
-    }
-    .share-link-input:focus { border-color:var(--green); }
-    .share-copy-btn {
-      height:40px; padding:0 14px; border-radius:var(--r-sm);
-      background:var(--green); color:white;
-      font-family:'Sora',sans-serif; font-size:.78rem; font-weight:700;
-      border:none; cursor:pointer;
-      display:flex; align-items:center; gap:5px;
-      transition:opacity .2s, transform .15s, background .3s;
-      white-space:nowrap; flex-shrink:0;
-    }
-    .share-copy-btn:hover { opacity:.85; }
-    .share-copy-btn.copied { background:#16a34a; }
-
-    .share-platforms-label { font-size:.72rem; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
-    .share-platforms { display:grid; grid-template-columns:repeat(5,1fr); gap:7px; }
-    .share-platform-btn {
-      display:flex; flex-direction:column; align-items:center; gap:5px;
-      padding:12px 4px 9px; border-radius:var(--r-md);
-      border:1.5px solid var(--border); background:var(--bg);
-      cursor:pointer; transition:all .2s;
-      font-size:.62rem; font-weight:600; color:var(--text-2);
-    }
-    .share-platform-btn:hover { transform:translateY(-3px); box-shadow:var(--shadow-sm); border-color:transparent; }
-    .platform-icon { width:36px; height:36px; border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; }
-    .share-platform-btn.whatsapp:hover { background:#e7fbe7; border-color:#25D366; color:#128C7E; }
-    .share-platform-btn.whatsapp .platform-icon { background:#25D366; }
-    .share-platform-btn.facebook:hover { background:#e7f0ff; border-color:#1877F2; color:#1877F2; }
-    .share-platform-btn.facebook .platform-icon { background:#1877F2; }
-    .share-platform-btn.email:hover { background:var(--green-light); border-color:var(--green); color:var(--green); }
-    .share-platform-btn.email .platform-icon { background:var(--green); }
-    .share-platform-btn.native .platform-icon { background:var(--accent); }
-    .share-platform-btn.native:hover { background:var(--green-light); border-color:var(--green); color:var(--green); }
-    .share-platform-btn:nth-child(5):hover { background:#e7f0f8; border-color:#0A66C2; color:#0A66C2; }
-
-    .share-divider { border:none; border-top:1px solid var(--border); margin:16px 0; }
-
-    .share-qr-section { display:flex; align-items:center; gap:14px; }
-    .share-qr-wrap { width:72px; height:72px; border-radius:var(--r-sm); border:1.5px solid var(--border); background:white; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
-    .share-qr-info strong { font-size:.8rem; display:block; margin-bottom:3px; color:var(--text); }
-    .share-qr-info p { font-size:.72rem; color:var(--text-3); line-height:1.3; }
-    .share-qr-download { margin-top:5px; font-size:.7rem; font-weight:600; color:var(--green); cursor:pointer; background:none; border:none; padding:0; text-decoration:underline; text-underline-offset:2px; }
-
-    @media (max-width: 480px) {
-      .share-backdrop { align-items:flex-end; padding:0; }
-      .share-modal { border-radius:var(--r-xl) var(--r-xl) 0 0; max-width:100%; }
-    }
-    @media (max-width: 340px) {
-      .share-platforms { grid-template-columns:repeat(2,1fr); }
-    }
-
-    /* ============================================================
-       RESPONSIVE
-    ============================================================ */
-    @media (min-width: 900px) { .controls__top { flex-wrap: nowrap; } }
-    @media (min-width: 768px) and (max-width: 899px) { .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; } .main { padding: 0 18px 60px; } }
-    @media (min-width: 600px) and (max-width: 767px) { .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; } .main { padding: 0 16px 60px; } .hero { padding: 40px 16px 72px; } .stats-strip { max-width: 480px; } }
-    @media (min-width: 600px) { .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } }
-    @media (min-width: 480px) and (max-width: 599px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } .hero__title { font-size: 1.9rem; } .stats-strip { max-width: 440px; } .toolbar { flex-wrap: nowrap; } }
-    @media (max-width: 599px) {
-      .hero { padding: 36px 16px 70px; } .hero__title { font-size: 1.8rem; } .hero__sub { font-size: .88rem; }
-      .stats-strip { padding: 0 16px; gap: 8px; margin-top: -30px; }
-      .stat-pill { padding: 12px 8px; } .stat-pill__num { font-size: 1.2rem; } .stat-pill__label { font-size: .58rem; }
-      .back-bar { padding: 8px 14px; } .back-btn { font-size: .78rem; padding: 6px 11px; }
-      .main { padding: 0 14px 80px; } .controls { padding: 12px; border-radius: var(--r-lg); }
-      .controls__top { flex-wrap: wrap; gap: 8px; } .search-box input { height: 40px; font-size: .85rem; }
-      .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 4px; margin-bottom: -4px; gap: 6px; }
-      .filters::-webkit-scrollbar { display: none; } .filters__label { flex-shrink: 0; }
-      .filter-pill { flex-shrink: 0; height: 30px; font-size: .74rem; padding: 0 11px; }
-      .toolbar { flex-wrap: wrap; gap: 8px; } .results-badge { font-size: .76rem; padding: 5px 11px; }
-      .toolbar__right { gap: 7px; } .sort-select { height: 32px; font-size: .74rem; padding: 0 9px; }
-      #compareModeBtn { height: 32px !important; font-size: .7rem !important; padding: 0 10px; }
-      .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .cv-card__body { padding: 10px; } .cv-card__title { font-size: .78rem; }
-      .cv-card__tags { gap: 4px; margin-bottom: 8px; } .tag { font-size: .6rem; padding: 2px 6px; }
-      .cv-card__actions { grid-template-columns: 1fr; gap: 5px; } .btn-sm { height: 32px; font-size: .72rem; }
-      .grid.list { grid-template-columns: 1fr; gap: 8px; }
-      .grid.list .cv-card__img { height: 90px; width: 70px; }
-      .grid.list .cv-card__body { flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
-      .grid.list .cv-card__actions { width: 100%; grid-template-columns: 1fr 1fr; }
-      .active-filters { gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
-      .modal { max-width: 100%; border-radius: var(--r-xl) var(--r-xl) 0 0; }
-      .modal-backdrop { align-items: flex-end; padding: 0; }
-      .modal__header { padding: 13px 16px; } .modal__title { font-size: .9rem; }
-      .modal__footer { padding: 12px 16px; gap: 8px; } .modal__btn { height: 40px; font-size: .8rem; }
-      .similar-section { padding: 12px 14px; } .similar-chip { padding: 6px 8px; }
-      .compare-bar { padding: 10px 14px; } .compare-slot { padding: 5px 8px; font-size: .72rem; }
-      .compare-action-btn { height: 32px; font-size: .72rem; padding: 0 11px; }
-    }
-    @media (max-width: 380px) {
-      .hero__title { font-size: 1.5rem; } .hero__badge { font-size: .68rem; padding: 4px 11px; }
-      .stats-strip { grid-template-columns: 1fr 1fr; } .stats-strip .stat-pill:last-child { grid-column: 1 / -1; }
-      .grid { grid-template-columns: 1fr; gap: 10px; }
-      .toolbar { flex-direction: column; align-items: flex-start; } .toolbar__right { width: 100%; justify-content: flex-end; }
-      .back-btn span { display: none; }
-      .modal__header { flex-wrap: wrap; gap: 6px; }
-      .compare-bar__slots { flex-wrap: wrap; } .compare-bar__actions { width: 100%; justify-content: flex-end; }
-      .share-platforms { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 320px) { .hero__title { font-size: 1.3rem; } .stat-pill__num { font-size: 1rem; } .grid { gap: 8px; } .cv-card__body { padding: 8px; } .share-platforms { grid-template-columns: repeat(2, 1fr); } }
-
-    /* ============================================================
-       DARK MODE
-    ============================================================ */
-    [data-theme="dark"] {
-      --bg:          #0f1510;
-      --bg2:         #1a2118;
-      --surface:     #1e2820;
-      --text:        #ffffff;
-      --text-2:      #d4e8cc;
-      --text-3:      #8ab07e;
-      --border:      #3a4e34;
-      --green-light: rgba(255,255,255,.08);
-      --green-pale:  #1a2e18;
-      --shadow-xs:   0 1px 3px rgba(0,0,0,.4);
-      --shadow-sm:   0 3px 10px rgba(0,0,0,.4);
-      --shadow-md:   0 8px 24px rgba(0,0,0,.5);
-      --shadow-lg:   0 16px 40px rgba(0,0,0,.6);
-    }
-    [data-theme="dark"] .back-bar { background: #1e2820; border-color: #3a4e34; }
-    [data-theme="dark"] .back-btn { color: #ffffff; background: #2a3a24; border-color: #3a4e34; }
-    [data-theme="dark"] .back-btn:hover { background: #3a4e34; border-color: #5a7a50; color: #ffffff; }
-    [data-theme="dark"] .stat-pill { background: #1e2820; border-color: #3a4e34; }
-    [data-theme="dark"] .stat-pill__label { color: #8ab07e; }
-    [data-theme="dark"] .stat-pill__num { color: #7ecb6a; }
-    [data-theme="dark"] .stat-pill.accent .stat-pill__num { color: white; }
-    [data-theme="dark"] .controls { background: #1e2820; border-color: #3a4e34; }
-    [data-theme="dark"] .search-box input { background: #151d13; border-color: #3a4e34; color: #ffffff; }
-    [data-theme="dark"] .search-box input::placeholder { color: #8ab07e; }
-    [data-theme="dark"] .search-box svg { color: #8ab07e; }
-    [data-theme="dark"] .search-clear { background: #5a7a50; }
-    [data-theme="dark"] .filters { border-color: #3a4e34; }
-    [data-theme="dark"] .filters__label { color: #8ab07e; }
-    [data-theme="dark"] .filter-pill { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
-    [data-theme="dark"] .filter-pill:hover { border-color: #7ecb6a; color: #ffffff; background: rgba(126,203,106,.12); }
-    [data-theme="dark"] .filter-pill.active { background: var(--green); border-color: var(--green); color: #ffffff; }
-    [data-theme="dark"] .filter-pill.ppt-pill.active { background: var(--accent); border-color: var(--accent); }
-    [data-theme="dark"] .results-badge { background: #1e2820; border-color: #3a4e34; color: #d4e8cc; }
-    [data-theme="dark"] .results-badge strong { color: #7ecb6a; }
-    [data-theme="dark"] .sort-select { background: #1e2820; border-color: #3a4e34; color: #ffffff; }
-    [data-theme="dark"] #compareModeBtn { background: #1e2820 !important; border-color: #3a4e34 !important; color: #d4e8cc !important; }
-    [data-theme="dark"] #compareModeBtn:hover { border-color: #5a7a50 !important; color: #ffffff !important; }
-    [data-theme="dark"] .view-toggle { background: #151d13; }
-    [data-theme="dark"] .view-btn { color: #8ab07e; }
-    [data-theme="dark"] .view-btn.active { background: #2d3d28; color: #ffffff; }
-    [data-theme="dark"] .view-btn:hover:not(.active) { color: #d4e8cc; }
-    [data-theme="dark"] .active-filters__label { color: #8ab07e; }
-    [data-theme="dark"] .clear-all-btn { color: #8ab07e; }
-    [data-theme="dark"] .clear-all-btn:hover { color: #7ecb6a; }
-    [data-theme="dark"] .cv-card { background: #1e2820; border-color: #3a4e34; }
-    [data-theme="dark"] .cv-card__title { color: #ffffff; }
-    [data-theme="dark"] .cv-card__body { background: #1e2820; }
-    [data-theme="dark"] .btn-sm.outline { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
-    [data-theme="dark"] .btn-sm.outline:hover { border-color: #7ecb6a; color: #ffffff; background: rgba(126,203,106,.12); }
-    [data-theme="dark"] .cv-card__share { background: rgba(30,40,32,.85); color: #d4e8cc; }
-    [data-theme="dark"] .cv-card__share:hover { color: #ffffff; background: #2a3a24; }
-    [data-theme="dark"] .tag.word     { background: rgba(126,203,106,.15); color: #7ecb6a; }
-    [data-theme="dark"] .tag.ppt      { background: rgba(126,203,106,.1);  color: #a0d48a; }
-    [data-theme="dark"] .tag.moderne  { background: rgba(255,87,0,.15);    color: #ff8c55; }
-    [data-theme="dark"] .tag.classique{ background: rgba(255,87,0,.15);    color: #ff8c55; }
-    [data-theme="dark"] .tag.creatif  { background: rgba(255,87,0,.15);    color: #ff8c55; }
-    [data-theme="dark"] .tag.minimal  { background: rgba(255,87,0,.15);    color: #ff8c55; }
-    [data-theme="dark"] .modal { background: #1e2820; }
-    [data-theme="dark"] .modal__img-outer { background: #151d13; }
-    [data-theme="dark"] .modal__footer { background: #1e2820; border-color: #3a4e34; }
-    [data-theme="dark"] .modal__btn.outline { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
-    [data-theme="dark"] .modal__btn.outline:hover { border-color: #7ecb6a; color: #ffffff; }
-    [data-theme="dark"] .similar-section { background: #1e2820; border-color: #3a4e34; }
-    [data-theme="dark"] .similar-label { color: #8ab07e; }
-    [data-theme="dark"] .similar-chip { background: #151d13; border-color: #3a4e34; }
-    [data-theme="dark"] .similar-chip:hover { border-color: #7ecb6a; }
-    [data-theme="dark"] .similar-chip__title { color: #ffffff; }
-    [data-theme="dark"] .similar-chip__tag   { color: #8ab07e; }
-    [data-theme="dark"] .share-modal { background: #1e2820; }
-    [data-theme="dark"] .share-modal__body { background: #1e2820; }
-    [data-theme="dark"] .share-link-input { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
-    [data-theme="dark"] .share-platform-btn { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
-    [data-theme="dark"] .share-divider { border-color: #3a4e34; }
-    [data-theme="dark"] .share-qr-wrap { background: white; border-color: #3a4e34; }
-    [data-theme="dark"] .share-qr-info strong { color: #ffffff; }
-    [data-theme="dark"] .share-qr-info p { color: #8ab07e; }
-    [data-theme="dark"] .share-qr-download { color: #7ecb6a; }
-    [data-theme="dark"] .share-platforms-label { color: #8ab07e; }
-    [data-theme="dark"] #shareMessage { background: #151d13 !important; border-color: #3a4e34 !important; color: #ffffff !important; }
-    [data-theme="dark"] #shareMsgCnt { color: #8ab07e; }
-    [data-theme="dark"] .compare-bar { background: #1e2820; border-color: var(--green); }
-    [data-theme="dark"] .compare-slot { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
-    [data-theme="dark"] .compare-slot.filled { border-color: var(--accent); }
-    [data-theme="dark"] .compare-slot__num   { color: var(--accent); }
-    [data-theme="dark"] .compare-action-btn.cancel { background: #151d13; border-color: #3a4e34; color: #d4e8cc; }
-    [data-theme="dark"] .compare-modal-inner { background: #1e2820; }
-    [data-theme="dark"] .compare-modal-body  { background: #1e2820; }
-    [data-theme="dark"] .compare-item { background: #151d13; border-color: #3a4e34; }
-    [data-theme="dark"] .compare-item__title { color: #ffffff; }
-    [data-theme="dark"] .toast { background: #2a3a24; color: #ffffff; }
-    [data-theme="dark"] .empty { background: #1e2820; border-color: #3a4e34; }
-    [data-theme="dark"] .empty h3 { color: #ffffff; }
-    [data-theme="dark"] .empty p   { color: #d4e8cc; }
-
-    /* ============================================================
-       COMPARE MODE
-    ============================================================ */
-    .cv-card.compare-selected { border-color: var(--accent) !important; box-shadow: 0 0 0 3px rgba(42,122,26,.2) !important; }
-    .cv-card__compare-check {
-      position: absolute; top: 46px; left: 10px; z-index: 2;
-      width: 20px; height: 20px; border-radius: 4px;
-      border: 2px solid rgba(255,255,255,.7);
-      background: rgba(0,0,0,.3); backdrop-filter: blur(4px);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all .15s;
-    }
-    .cv-card__compare-check.checked { background: var(--green); border-color: var(--green); }
-    .cv-card__compare-check svg { display: none; }
-    .cv-card__compare-check.checked svg { display: block; }
-
-    .compare-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
-      background: var(--surface); border-top: 2px solid var(--green);
-      padding: 12px 20px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 12px; flex-wrap: wrap;
-      box-shadow: 0 -8px 24px rgba(0,0,0,.12);
-      transform: translateY(100%);
-      transition: transform .3s cubic-bezier(.2,0,.2,1);
-    }
-    .compare-bar.visible { transform: translateY(0); }
-    .compare-bar__slots { display:flex; gap:8px; align-items:center; flex:1; min-width:0; }
-    .compare-slot {
-      display:flex; align-items:center; gap:7px;
-      background: var(--bg); border:1.5px solid var(--border);
-      border-radius: var(--r-sm); padding: 6px 10px;
-      font-size:.78rem; font-weight:600; min-width:0;
-    }
-    .compare-slot.filled { border-color: var(--green); }
-    .compare-slot__num { color: var(--green); font-family:'Sora',sans-serif; font-weight:800; }
-    .compare-slot__remove { color:var(--text-3); cursor:pointer; font-size:.9rem; transition:color .15s; border:none; background:none; }
-    .compare-slot__remove:hover { color:#c53030; }
-    .compare-slot.empty { opacity:.4; }
-    .compare-bar__actions { display:flex; gap:8px; flex-shrink:0; }
-    .compare-action-btn {
-      height:36px; padding:0 14px; border-radius:var(--r-pill);
-      font-family:'Sora',sans-serif; font-size:.78rem; font-weight:700;
-      cursor:pointer; transition:all .2s; border:none;
-    }
-    .compare-action-btn.go { background: var(--green); color:white; }
-    .compare-action-btn.go:hover { opacity:.85; }
-    .compare-action-btn.cancel { background:var(--bg); color:var(--text-2); border:1.5px solid var(--border); }
-    .compare-count-badge {
-      display:inline-flex; align-items:center; justify-content:center;
-      background: rgba(255,255,255,.25); color:white;
-      width:18px; height:18px; border-radius:50%;
-      font-size:.65rem; font-weight:800; font-family:'Sora',sans-serif;
-    }
-
-    .compare-backdrop {
-      display:none; position:fixed; inset:0;
-      background:rgba(0,0,0,.75); backdrop-filter:blur(8px);
-      z-index:500; align-items:center; justify-content:center; padding:16px;
-    }
-    .compare-backdrop.open { display:flex; animation:fadeIn .25s ease; }
-    .compare-modal-inner {
-      background:var(--surface); border-radius:var(--r-xl);
-      width:100%; max-width:900px; max-height:90vh;
-      overflow:hidden; display:flex; flex-direction:column;
-      box-shadow:0 30px 80px rgba(0,0,0,.35);
-      animation:slideUp .3s cubic-bezier(.2,0,.2,1);
-    }
-    .compare-modal-header { background: var(--green); padding:16px 20px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
-    .compare-modal-title { font-family:'Sora',sans-serif; font-size:1rem; font-weight:700; color:white; }
-    .compare-modal-close { width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.15); color:white; border:none; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; }
-    .compare-modal-close:hover { background:rgba(255,255,255,.28); }
-    .compare-modal-body { flex:1; overflow-y:auto; padding:20px; }
-    .compare-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
-    .compare-item { background:var(--bg); border-radius:var(--r-lg); border:1.5px solid var(--border); overflow:hidden; }
-    .compare-item__img { aspect-ratio:3/4; background:var(--bg2); display:flex; align-items:center; justify-content:center; overflow:hidden; }
-    .compare-item__img img { width:100%; height:100%; object-fit:cover; }
-    .compare-item__info { padding:12px; }
-    .compare-item__title { font-family:'Sora',sans-serif; font-size:.85rem; font-weight:700; margin-bottom:6px; }
-    .compare-item__tags { display:flex; gap:4px; flex-wrap:wrap; margin-bottom:10px; }
-    .compare-item__select { width:100%; height:34px; border-radius:var(--r-sm); background: var(--green); color:white; border:none; font-family:'Sora',sans-serif; font-size:.75rem; font-weight:700; cursor:pointer; transition:opacity .2s; }
-    .compare-item__select:hover { opacity:.85; }
-    @media (max-width:599px) {
-      .compare-grid { grid-template-columns:1fr 1fr; }
-      .compare-modal-inner { border-radius: var(--r-xl) var(--r-xl) 0 0; max-height: 85vh; }
-      .compare-backdrop { align-items: flex-end; padding: 0; }
-    }
-    @media (max-width:380px) { .compare-grid { grid-template-columns:1fr; } }
-
-    /* ============================================================
-       SIMILAR MODELS
-    ============================================================ */
-    .similar-section { background: var(--bg); border-top: 1px solid var(--border); padding: 14px 18px; flex-shrink: 0; }
-    .similar-label { font-size:.72rem; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
-    .similar-strip { display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px; }
-    .similar-strip::-webkit-scrollbar { display:none; }
-    .similar-chip { flex:0 0 auto; display:flex; align-items:center; gap:7px; background:var(--surface); border:1.5px solid var(--border); border-radius:var(--r-sm); padding:7px 10px; cursor:pointer; transition:all .2s; min-width:0; }
-    .similar-chip:hover { border-color:var(--green); transform:translateY(-2px); box-shadow:var(--shadow-sm); }
-    .similar-chip__img { width:32px; height:42px; border-radius:4px; overflow:hidden; background:var(--bg2); flex-shrink:0; }
-    .similar-chip__img img { width:100%; height:100%; object-fit:cover; }
-    .similar-chip__info { min-width:0; }
-    .similar-chip__title { font-size:.72rem; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:80px; }
-    .similar-chip__tag { font-size:.6rem; color:var(--text-3); }
-  </style>
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#FF5700">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="/Logo/apple-touch-icon.png">
-  <script src="/js/pwa-register.js" defer></script>
-  <script src="/js/pwa-install-banner.js" defer></script>
-  <script src="/js/pwa-update-banner.js" defer></script>
+@media (max-width: 340px) {
+  .topbar { height: 50px; padding: 0 10px; }
+  .back { height: 36px; padding: 0 8px; font-size: 11px; }
+  .theme { height: 36px; padding: 0 6px; font-size: 10.5px; }
+  .stats { gap: 6px; padding: 0 6px; margin-top: -24px; }
+  .stat { padding: 10px 4px; }
+  .stat strong { font-size: 16px; }
+  .stat small { font-size: 8px; }
+  .primary { height: 42px; font-size: 11px; padding: 0 12px; }
+  .secondary, .full { height: 36px; font-size: 10px; gap: 4px; }
+  .grid.list .thumb { width: 64px; min-width: 64px; height: 84px; }
+  .grid.list .card-title { font-size: 11.5px; }
+  .grid.list .btn { height: 28px; padding: 0 8px; font-size: 9.5px; }
+}
+</style>
 </head>
 <body>
+<header class="topbar">
+  <a class="back" href="index.html"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Retour à l'accueil</a>
+  <button class="theme" id="themeBtn"><span id="themeText">Mode sombre</span><span class="switch"></span></button>
+</header>
 
-  <!-- ── BACK BAR ── -->
-  <div class="back-bar" style="display:flex;align-items:center;justify-content:space-between;">
-    <a href="index.html" class="back-btn">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-        <path d="M19 12H5M12 5l-7 7 7 7"/>
-      </svg>
-      Retour à l'accueil
-    </a>
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Thème sombre/clair" aria-label="Basculer le thème">
-      <span class="theme-toggle__label" id="themeLabel">Dark</span>
-      <span class="theme-switch" id="themeSwitch">
-        <span class="theme-switch-icon">
-          <svg class="icon-moon" width="10" height="10" fill="none" stroke="#8a9480" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun" width="10" height="10" fill="none" stroke="#a8e890" stroke-width="2" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        </span>
-      </span>
-    </button>
+<section class="hero">
+  <div class="hero-inner">
+    <span class="badge">Catalogue exclusif</span>
+    <h1>Catalogue <span>CV</span></h1>
+    <p>Explorez les modèles professionnels, comparez-les et choisissez celui qui correspond le mieux à votre projet.</p>
   </div>
+</section>
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="hero__inner">
-      <div class="hero__badge">
-        <span></span>
-        Catalogue exclusif
-      </div>
-      <h1 class="hero__title">
-        Catalogue <em>CV</em>
-      </h1>
-      <p class="hero__sub">
-        Découvrez notre collection exclusive de modèles CV professionnels conçus pour vous démarquer.
-      </p>
+<section class="stats">
+  <div class="stat"><strong id="statTotal">43</strong><small>Modèles</small></div>
+  <div class="stat"><strong id="statFiltered">43</strong><small>Résultats</small></div>
+  <div class="stat"><strong id="favStat">0</strong><small>Favoris</small></div>
+</section>
+
+<main class="main">
+  <section class="controls">
+    <label class="search">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input id="searchInput" type="search" placeholder="Rechercher un modèle ou un numéro" autocomplete="off">
+      <button class="clear" id="clearSearch" aria-label="Effacer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </label>
+    <div class="filter-row" id="filters">
+      <span class="filter-label">Format</span>
+      <button class="pill active" data-group="format" data-value="">Tous</button>
+      <button class="pill" data-group="format" data-value="word"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l3 3v15H6zM15 3v4h4"/></svg>Word</button>
+      <button class="pill" data-group="format" data-value="powerpoint"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>PowerPoint</button>
+      <span class="filter-label" style="margin-left:6px">Style</span>
+      <button class="pill active" data-group="style" data-value="">Tous</button>
+      <button class="pill" data-group="style" data-value="moderne">Moderne</button>
+      <button class="pill" data-group="style" data-value="classique">Classique</button>
+      <button class="pill" data-group="style" data-value="creatif">Créatif</button>
+      <button class="pill" data-group="style" data-value="minimal">Minimal</button>
+      <button class="pill" data-group="popular" data-value="popular"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/></svg>Populaires</button>
+      <button class="pill" id="favoritesFilter"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 8.7c0 5.4-8.8 11-8.8 11S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>Mes favoris</button>
     </div>
   </section>
 
-  <!-- ── STATS STRIP ── -->
-  <div class="stats-strip">
-    <div class="stat-pill">
-      <div class="stat-pill__num" id="statTotal">43</div>
-      <div class="stat-pill__label">Modèles</div>
-    </div>
-    <div class="stat-pill">
-      <div class="stat-pill__num" id="statFiltered">43</div>
-      <div class="stat-pill__label">Résultats</div>
-    </div>
-    <div class="stat-pill accent">
-      <div class="stat-pill__num">Premium</div>
-      <div class="stat-pill__label">Qualité garantie</div>
+  <div class="favorites-bar" id="favoritesBar">
+    <span>Favoris enregistrés :</span>
+    <span class="fav-count" id="favCount">0</span>
+    <button class="pill" id="clearFavs" style="min-height:34px">Effacer les favoris</button>
+  </div>
+
+  <div class="toolbar">
+    <div class="results"><strong id="resultsNum">43</strong> modèles trouvés</div>
+    <div class="toolbar-right">
+      <select id="sortSelect">
+        <option value="num-asc">N° croissant</option>
+        <option value="num-desc">N° décroissant</option>
+        <option value="alpha">Alphabétique</option>
+        <option value="popular">Popularité</option>
+      </select>
+      <button class="pill" id="compareBtn">Comparer</button>
+      <div class="view">
+        <button id="gridBtn" class="active" aria-label="Vue grille"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+        <button id="listBtn" aria-label="Vue liste"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
     </div>
   </div>
 
-  <!-- ── MAIN ── -->
-  <main class="main">
+  <section class="grid" id="grid"></section>
+  <section class="empty" id="empty">
+    <svg class="icon" style="width:38px;height:38px;margin:auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    <strong>Aucun modèle trouvé</strong>
+    <p>Modifiez votre recherche ou vos filtres.</p>
+    <button id="resetBtn">Réinitialiser</button>
+  </section>
+</main>
 
-    <div class="controls">
-      <div class="controls__top">
-        <div class="search-box">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="10" cy="10" r="7"/><path d="m20 20-4.35-4.35"/>
-          </svg>
-          <input type="text" id="searchInput" placeholder="Rechercher un modèle, numéro…" autocomplete="off" />
-          <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Effacer">✕</button>
-        </div>
+<!-- Tiroir flottant : Récemment consultés avec bouton supprimer -->
+<div class="recent-drawer" id="recentDrawer">
+  <span class="recent-drawer__label">Récents</span>
+  <div class="recent-drawer__items" id="recentDrawerItems"></div>
+  <button class="recent-drawer__close" type="button" onclick="clearRecentDrawer()" title="Effacer les récents" aria-label="Fermer les récents">✕</button>
+</div>
+
+<!-- Aperçu Modale grand format & Mobile -->
+<div class="backdrop" id="previewBackdrop" role="dialog" aria-modal="true">
+  <div class="preview-modal">
+    
+    <div class="preview-pane" id="previewPane">
+      <button class="preview-close" id="closePreview" aria-label="Fermer"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="counter" id="counter">1 / 43</div>
+      <div class="nav">
+        <button id="prevBtn" aria-label="Modèle précédent"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button id="nextBtn" aria-label="Modèle suivant"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
       </div>
-
-      <div class="filters">
-        <span class="filters__label">Format</span>
-        <button class="filter-pill active" data-group="format" data-val="">Tous</button>
-        <button class="filter-pill" data-group="format" data-val="word">
-          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="1" width="7" height="9" rx="1"/></svg>
-          Word
+      
+      <div class="preview-wrap" id="previewWrap"><img id="previewImg" alt=""></div>
+      
+      <!-- Barre de zoom épurée sans doublon -->
+      <div class="zoom">
+        <button class="zoom-btn" id="zoomOut" aria-label="Dézoomer" title="Dézoomer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </button>
-        <button class="filter-pill ppt-pill" data-group="format" data-val="powerpoint">
-          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="1" width="7" height="9" rx="1"/><path d="M4 4h3"/><path d="M4 6h2"/></svg>
-          PowerPoint
+        <button class="zoom-value-btn" id="zoomReset" title="Cliquer pour réinitialiser">
+          <span id="zoomLabel">100%</span>
         </button>
-
-        <span class="filters__label" style="margin-left:6px;">Style</span>
-        <button class="filter-pill active" data-group="style" data-val="">Tous</button>
-        <button class="filter-pill" data-group="style" data-val="moderne">Moderne</button>
-        <button class="filter-pill" data-group="style" data-val="classique">Classique</button>
-        <button class="filter-pill" data-group="style" data-val="creatif">Créatif</button>
-        <button class="filter-pill" data-group="style" data-val="minimal">Minimal</button>
-      </div>
-    </div>
-
-    <div class="active-filters" id="activeFilters">
-      <span class="active-filters__label">Filtres actifs :</span>
-      <button class="clear-all-btn" onclick="clearAllFilters()">Tout effacer</button>
-    </div>
-
-    <div class="toolbar">
-      <div class="results-badge">
-        <strong id="resultsNum">43</strong> modèles trouvés
-      </div>
-      <div class="toolbar__right">
-        <select class="sort-select" id="sortSelect">
-          <option value="num-asc">N° croissant</option>
-          <option value="num-desc">N° décroissant</option>
-          <option value="alpha">Alphabétique</option>
-        </select>
-        <button class="compare-action-btn cancel" id="compareModeBtn"
-                style="height:36px;font-size:.75rem;display:inline-flex;align-items:center;gap:5px;"
-                onclick="toggleCompareMode()">
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="4" height="8" rx="1"/><rect x="8" y="2" width="4" height="8" rx="1"/></svg>
-          <span id="compareModeLabel">Comparer</span>
-        </button>
-        <div class="view-toggle">
-          <button class="view-btn active" id="viewGrid" title="Grille" onclick="setView('grid')">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-              <rect x="0" y="0" width="6" height="6" rx="1"/><rect x="10" y="0" width="6" height="6" rx="1"/>
-              <rect x="0" y="10" width="6" height="6" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/>
-            </svg>
-          </button>
-          <button class="view-btn" id="viewList" title="Liste" onclick="setView('list')">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <line x1="3" y1="5" x2="21" y2="5"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="15" x2="21" y2="15"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid" id="grid"></div>
-
-    <div class="empty" id="emptyState">
-      <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        <line x1="8" y1="11" x2="14" y2="11"/>
-      </svg>
-      <h3>Aucun résultat trouvé</h3>
-      <p>Essayez de modifier vos critères de recherche ou de réinitialiser les filtres.</p>
-      <button class="empty-reset" onclick="clearAllFilters()">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-        Réinitialiser
-      </button>
-    </div>
-
-  </main>
-
-  <!-- ── MODAL PREVIEW ── -->
-  <div class="modal-backdrop" id="modalBackdrop" onclick="closeModalOnOutside(event)">
-    <div class="modal" id="modal">
-      <div class="modal__header" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
-        <span class="modal__title" id="modalTitle">Aperçu</span>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <button class="modal__close" style="font-size:.9rem;width:28px;height:28px;" onclick="slidePreview(-1)" title="Précédent">&#8592;</button>
-          <span id="modalNavIndex" style="font-size:.72rem;color:rgba(255,255,255,.7);font-family:'Sora',sans-serif;white-space:nowrap;"></span>
-          <button class="modal__close" style="font-size:.9rem;width:28px;height:28px;" onclick="slidePreview(1)" title="Suivant">&#8594;</button>
-          <button class="modal__close" onclick="closeModal()">×</button>
-        </div>
-      </div>
-
-      <div class="modal__img-outer" id="modalImgOuter" onclick="handleImgClick(event)">
-        <div class="modal__img-wrap" id="modalImgWrap">
-          <img class="modal__img" id="modalImg" src="" alt="" />
-        </div>
-        <div class="zoom-controls" id="zoomControls">
-          <button class="zoom-btn" onclick="zoomImg(-1)" title="Dézoomer">−</button>
-          <span class="zoom-level" id="zoomLevel">100%</span>
-          <button class="zoom-btn" onclick="zoomImg(1)" title="Zoomer">+</button>
-          <button class="zoom-btn" onclick="resetZoom()" title="Réinitialiser" style="font-size:.7rem;width:auto;padding:0 8px;border-radius:15px;">↺</button>
-        </div>
-      </div>
-
-      <div style="padding:10px 18px 8px;display:flex;align-items:center;justify-content:flex-end;border-top:1px solid var(--border);">
-        <button class="btn-sm outline" style="height:30px;font-size:.7rem;" onclick="state.currentPreview && openShare(state.currentPreview.id)">
-          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="2.5" r="1.5"/><circle cx="3" cy="6" r="1.5"/><circle cx="9" cy="9.5" r="1.5"/><line x1="4.27" y1="6.75" x2="7.74" y2="8.77"/><line x1="7.73" y1="3.22" x2="4.27" y2="5.25"/></svg>
-          Partager
-        </button>
-      </div>
-
-      <div class="similar-section" id="similarSection"></div>
-
-      <div class="modal__footer">
-        <button class="modal__btn outline" onclick="closeModal()">Fermer</button>
-        <button class="modal__btn solid" id="modalSelectBtn" onclick="selectFromModal()">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
-          Sélectionner
+        <button class="zoom-btn" id="zoomIn" aria-label="Zoomer" title="Zoomer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </button>
       </div>
     </div>
-  </div>
 
-  <!-- ── SHARE MODAL ── -->
-  <div class="share-backdrop" id="shareBackdrop" onclick="closeShareOnOutside(event)">
-    <div class="share-modal">
-      <div class="share-modal__header">
-        <button class="share-modal__close" onclick="closeShare()">×</button>
-        <div class="share-modal__htitle">Partager ce modèle</div>
-        <div class="share-card">
-          <div class="share-card__icon" id="shareCardIcon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2zm0 0v6h6"/></svg>
-          </div>
-          <div>
-            <div class="share-card__title" id="shareCardTitle">—</div>
-            <div class="share-card__meta" id="shareCardMeta"></div>
-          </div>
-        </div>
-      </div>
+    <aside class="info-pane" id="infoPane">
+      <div class="eyebrow" id="previewNumber">Modèle N°001</div>
+      <h2 id="previewTitle">Modèle N°001</h2>
+      <div class="info-tags" id="previewTags"></div>
 
-      <div class="share-modal__body">
-        <div style="margin-bottom:14px;">
-          <div class="share-platforms-label" style="margin-bottom:6px;">Message personnel (optionnel)</div>
-          <div style="position:relative;">
-            <textarea id="shareMessage"
-              placeholder="Ex: Regarde ce modèle, je pense qu'il te conviendra parfaitement !"
-              maxlength="200"
-              style="width:100%;height:64px;resize:none;border:1.5px solid var(--border);border-radius:10px;
-                     padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--text);
-                     background:var(--bg);outline:none;line-height:1.5;transition:border-color .2s;"
-              oninput="document.getElementById('shareMsgCnt').textContent=this.value.length+'/200'"
-              onfocus="this.style.borderColor='var(--green)'"
-              onblur="this.style.borderColor='var(--border)'"></textarea>
-            <span id="shareMsgCnt" style="position:absolute;bottom:6px;right:8px;font-size:.62rem;color:var(--text-3);">0/200</span>
-          </div>
-        </div>
-
-        <div class="share-link-row">
-          <input type="text" class="share-link-input" id="shareLinkInput" readonly />
-          <button class="share-copy-btn" id="shareCopyBtn" onclick="copyShareLink()">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="9" height="9" rx="1"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span id="shareCopyLabel">Copier</span>
-          </button>
-        </div>
-
-        <div class="share-platforms-label">Partager via</div>
-        <div class="share-platforms">
-          <button class="share-platform-btn whatsapp" onclick="shareWhatsApp()">
-            <div class="platform-icon">
-              <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.525 3.49"/></svg>
-            </div>
-            WhatsApp
-          </button>
-          <button class="share-platform-btn facebook" onclick="shareFacebook()">
-            <div class="platform-icon">
-              <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </div>
-            Facebook
-          </button>
-          <button class="share-platform-btn email" onclick="shareEmail()">
-            <div class="platform-icon">
-              <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,6 12,13 22,6"/></svg>
-            </div>
-            Email
-          </button>
-          <button class="share-platform-btn" onclick="shareLinkedIn()">
-            <div class="platform-icon" style="background:#0A66C2;">
-              <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </div>
-            LinkedIn
-          </button>
-          <button class="share-platform-btn native" id="nativeShareBtn" onclick="nativeShare()" style="display:none">
-            <div class="platform-icon">
-              <svg width="18" height="18" fill="none" stroke="white" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            </div>
-            Partager
-          </button>
-        </div>
-
-        <hr class="share-divider" />
-
-        <div class="share-qr-section">
-          <div class="share-qr-wrap" id="shareQrWrap"></div>
-          <div class="share-qr-info">
-            <strong>QR Code</strong>
-            <p>Scannez pour accéder directement à ce modèle depuis un autre appareil.</p>
-            <button class="share-qr-download" onclick="downloadQR()">⬇ Télécharger le QR</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── COMPARE BAR ── -->
-  <div class="compare-bar" id="compareBar">
-    <div class="compare-bar__slots" id="compareSlots"></div>
-    <div class="compare-bar__actions">
-      <button class="compare-action-btn cancel" onclick="cancelCompare()">Annuler</button>
-      <button class="compare-action-btn go" id="compareGoBtn" onclick="openCompareModal()" disabled>
-        Comparer <span class="compare-count-badge" id="compareBadge">0</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- ── COMPARE MODAL ── -->
-  <div class="compare-backdrop" id="compareBackdrop" onclick="closeCompareOnOutside(event)">
-    <div class="compare-modal-inner">
-      <div class="compare-modal-header">
-        <span class="compare-modal-title">Comparaison des modèles</span>
-        <button class="compare-modal-close" onclick="closeCompareModal()">×</button>
-      </div>
-      <div class="compare-modal-body">
-        <div class="compare-grid" id="compareGrid"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── TOAST ── -->
-  <div class="toast" id="toast">
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-      <polyline points="20,6 9,17 4,12"/>
-    </svg>
-    <span id="toastMsg"></span>
-  </div>
-
-  <!-- ── SCROLL TO TOP ── -->
-  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Haut de page">
-    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-      <path d="M5 15l7-7 7 7"/>
-    </svg>
-  </button>
-
-  <script>
-    /* ── DATA ── */
-    const RAW_MODELS = [
-      {n:"001",format:"word",style:"moderne"},
-      {n:"002",format:"powerpoint",style:"moderne"},
-      {n:"003",format:"powerpoint",style:"classique"},
-      {n:"004",format:"powerpoint",style:"creatif"},
-      {n:"005",format:"powerpoint",style:"minimal"},
-      {n:"006",format:"word",style:"moderne"},
-      {n:"007",format:"word",style:"classique"},
-      {n:"008",format:"word",style:"creatif"},
-      {n:"009",format:"word",style:"minimal"},
-      {n:"010",format:"word",style:"moderne"},
-      {n:"011",format:"powerpoint",style:"classique"},
-      {n:"012",format:"word",style:"creatif"},
-      {n:"013",format:"powerpoint",style:"minimal"},
-      {n:"014",format:"word",style:"moderne"},
-      {n:"015",format:"powerpoint",style:"classique"},
-      {n:"016",format:"word",style:"creatif"},
-      {n:"017",format:"powerpoint",style:"minimal"},
-      {n:"018",format:"powerpoint",style:"moderne"},
-      {n:"019",format:"powerpoint",style:"classique"},
-      {n:"020",format:"powerpoint",style:"creatif"},
-      {n:"021",format:"powerpoint",style:"minimal"},
-      {n:"022",format:"powerpoint",style:"moderne"},
-      {n:"023",format:"powerpoint",style:"classique"},
-      {n:"024",format:"powerpoint",style:"creatif"},
-      {n:"025",format:"word",style:"minimal"},
-      {n:"026",format:"powerpoint",style:"moderne"},
-      {n:"027",format:"powerpoint",style:"classique"},
-      {n:"028",format:"powerpoint",style:"creatif"},
-      {n:"029",format:"word",style:"minimal"},
-      {n:"030",format:"powerpoint",style:"moderne"},
-      {n:"031",format:"powerpoint",style:"classique"},
-      {n:"032",format:"powerpoint",style:"creatif"},
-      {n:"033",format:"word",style:"minimal"},
-      {n:"034",format:"powerpoint",style:"moderne"},
-      {n:"035",format:"powerpoint",style:"classique"},
-      {n:"036",format:"powerpoint",style:"creatif"},
-      {n:"037",format:"word",style:"minimal"},
-      {n:"038",format:"powerpoint",style:"moderne"},
-      {n:"039",format:"powerpoint",style:"classique"},
-      {n:"040",format:"powerpoint",style:"creatif"},
-      {n:"041",format:"word",style:"minimal"},
-      {n:"042",format:"word",style:"moderne"},
-      {n:"043",format:"powerpoint",style:"classique"},
-    ].map(m => ({
-      id: m.n,
-      number: m.n,
-      title: `Modèle N°${m.n}`,
-      format: m.format,
-      style: m.style,
-      image: `images/modele-${m.n}.jpg`
-    }));
-
-    /* ── STATE ── */
-    let state = {
-      models: [...RAW_MODELS],
-      filtered: [...RAW_MODELS],
-      view: 'grid',
-      search: '',
-      format: '',
-      style: '',
-      sort: 'num-asc',
-      compareMode: false,
-      compareList: [],
-      currentPreview: null,
-      zoomLevel: 1
-    };
-
-    /* ── FILTER & SORT ── */
-    function applyFilters() {
-      const q = state.search.toLowerCase().trim();
-      let res = RAW_MODELS.filter(m => {
-        const matchQ = !q || m.title.toLowerCase().includes(q) || m.number.includes(q) || m.format.includes(q) || m.style.includes(q);
-        const matchF = !state.format || m.format === state.format;
-        const matchS = !state.style  || m.style  === state.style;
-        return matchQ && matchF && matchS;
-      });
-      res = [...res].sort((a,b) => {
-        if (state.sort === 'num-asc')  return a.number.localeCompare(b.number);
-        if (state.sort === 'num-desc') return b.number.localeCompare(a.number);
-        if (state.sort === 'alpha')    return a.title.localeCompare(b.title);
-        return 0;
-      });
-      state.filtered = res;
-      render();
-      updateStats();
-      renderActiveFilters();
-    }
-
-    /* ── RENDER GRID ── */
-    function render() {
-      const grid  = document.getElementById('grid');
-      const empty = document.getElementById('emptyState');
-      if (!state.filtered.length) { grid.innerHTML = ''; empty.classList.add('visible'); return; }
-      empty.classList.remove('visible');
-      grid.className = 'grid' + (state.view === 'list' ? ' list' : '');
-      const styleLabels = {moderne:'Moderne',classique:'Classique',creatif:'Créatif',minimal:'Minimal'};
-      grid.innerHTML = state.filtered.map((m, i) => {
-        const fmtLabel = m.format === 'word' ? 'Word' : 'PowerPoint';
-        return `
-          <div class="cv-card" data-id="${m.id}" style="animation-delay:${i*30}ms" onclick="previewModel('${m.id}')">
-            <span class="cv-card__num">N°${m.number}</span>
-            <button class="cv-card__share" onclick="event.stopPropagation();openShare('${m.id}')" aria-label="Partager ${m.title}" title="Partager">
-              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+      <!-- Boutons d'action modernes 2026 -->
+      <div class="info-actions">
+        <button class="primary" id="selectBtn" type="button">
+          <div class="primary-left">
+            <div class="primary-icon-wrap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
-            </button>
-            <button class="cv-card__compare-check ${state.compareList.includes(m.id)?'checked':''}"
-                    id="chk-${m.id}" onclick="event.stopPropagation();toggleCompare('${m.id}')"
-                    style="display:${state.compareMode?'flex':'none'}" title="Ajouter à la comparaison">
-              <svg width="10" height="10" fill="none" stroke="white" stroke-width="3"><polyline points="9,2 4,8 1,5"/></svg>
-            </button>
-            <div class="cv-card__img">
-              <img src="${m.image}" alt="${m.title}" loading="lazy"
-                   onerror="this.parentElement.innerHTML='<div class=\\'cv-card__img-placeholder\\'><svg width=\\'32\\' height=\\'32\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.5\\'><path d=\\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\\'/><polyline points=\\'14,2 14,8 20,8\\'/></svg><span>Aperçu indisponible</span></div>'" />
-              <div class="cv-card__overlay">
-                <div class="cv-card__overlay-btn">
-                  <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                  Aperçu
-                </div>
-              </div>
             </div>
-            <div class="cv-card__body">
-              <div class="cv-card__info">
-                <div class="cv-card__title">${m.title}</div>
-                <div class="cv-card__tags">
-                  <span class="tag ${m.format === 'word' ? 'word' : 'ppt'}">${fmtLabel}</span>
-                  <span class="tag ${m.style}">${styleLabels[m.style]||m.style}</span>
-                </div>
-              </div>
-              <div class="cv-card__actions">
-                <button class="btn-sm outline" onclick="event.stopPropagation();previewModel('${m.id}')">
-                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="5"/><circle cx="6" cy="6" r="2"/></svg>
-                  Aperçu
-                </button>
-                <button class="btn-sm solid" onclick="event.stopPropagation();selectModel('${m.id}')">
-                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="10,3 5,8.5 2,6"/></svg>
-                  Choisir
-                </button>
-              </div>
+            <span>Choisir ce modèle</span>
+          </div>
+          <div class="primary-arrow">➔</div>
+        </button>
+        
+        <div class="info-actions-sub">
+          <button class="secondary" id="shareBtn" type="button">
+            <div class="btn-icon-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98"/>
+              </svg>
             </div>
-          </div>`;
-      }).join('');
+            <span>Partager</span>
+          </button>
+          
+          <button class="full" id="fullscreenBtn" type="button">
+            <div class="btn-icon-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M21 16v5h-5"/>
+              </svg>
+            </div>
+            <span>Plein écran</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="reco">
+        <div class="reco-title">Vous aimerez aussi</div>
+        <div class="reco-list" id="recoList"></div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MODALE DE PARTAGE
+═══════════════════════════════════════════════════════════ -->
+<div class="share-backdrop" id="shareBackdrop" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle" onclick="closeShareOnOutside(event)">
+  <div class="share-modal">
+    
+    <header class="share-modal__header">
+      <div class="share-modal__top">
+        <div class="share-modal__htitle" id="shareModalTitle">Partager ce modèle</div>
+        <button class="share-modal__close" type="button" onclick="closeShare()" aria-label="Fermer">✕</button>
+      </div>
+      <div class="share-card">
+        <div class="share-card__icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+            <path d="M9 2v8l3-2 3 2V2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="share-card__title" id="shareCardTitle">Modèle N°002</div>
+          <div class="share-card__meta" id="shareCardMeta"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="share-modal__body">
+      
+      <div class="share-viral-actions">
+        <button class="share-viral-btn opinion" type="button" onclick="shareForOpinion()">
+          <span> Demander l'avis d'un proche</span>
+          <span style="font-size:10px;font-weight:800;color:var(--green)">WhatsApp ➔</span>
+        </button>
+        <button class="share-viral-btn story" type="button" onclick="downloadStoryImage()">
+          <span> Télécharger l'image du modèle choisi</span>
+          <span style="font-size:10px;font-weight:800;color:#6b21a8">HD PNG ⬇</span>
+        </button>
+      </div>
+
+      <label class="share-field-label" for="shareMessage">Message personnalisé</label>
+      <div class="share-message-box">
+        <textarea id="shareMessage" class="share-textarea" maxlength="200" placeholder="Ex: Regarde ce modèle, je pense qu'il te conviendra parfaitement !"></textarea>
+        <span class="share-message-count" id="shareMsgCnt">0/200</span>
+      </div>
+
+      <div class="share-link-row">
+        <input class="share-link-input" id="shareLinkInput" type="text" readonly aria-label="Lien du modèle">
+        <button class="share-copy-btn" id="shareCopyBtn" type="button" onclick="copyShareLink()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="shareCopyLabel">Copier</span>
+        </button>
+      </div>
+
+      <div class="share-field-label">Partager via</div>
+      <div class="share-platforms">
+        <button class="share-platform-btn" type="button" onclick="shareWhatsApp()" aria-label="Partager sur WhatsApp">
+          <div class="share-platform-icon whatsapp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.9L2 22l5.3-1.4A9.9 9.9 0 1 0 12 2Zm0 18a8.1 8.1 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3.1-.2-.3A8.1 8.1 0 1 1 12 20Zm4.5-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1a6.6 6.6 0 0 1-1.9-1.2 7.3 7.3 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4s-.5-1.3-.7-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.1 2 3.1 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.2-.3-.2-.5-.3Z"/></svg>
+          </div>
+          <span class="lbl">WhatsApp</span>
+        </button>
+
+        <button class="share-platform-btn" type="button" onclick="shareFacebook()" aria-label="Partager sur Facebook">
+          <div class="share-platform-icon facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07Z"/></svg>
+          </div>
+          <span class="lbl">Facebook</span>
+        </button>
+
+        <button class="share-platform-btn" type="button" onclick="shareEmail()" aria-label="Partager par Email">
+          <div class="share-platform-icon email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+          </div>
+          <span class="lbl">Email</span>
+        </button>
+
+        <button class="share-platform-btn" type="button" onclick="shareLinkedIn()" aria-label="Partager sur LinkedIn">
+          <div class="share-platform-icon linkedin">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </div>
+          <span class="lbl">LinkedIn</span>
+        </button>
+
+        <button class="share-platform-btn" id="nativeShareBtn" type="button" onclick="nativeShare()" aria-label="Plus d'options de partage">
+          <div class="share-platform-icon native">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98"/>
+          </svg>
+          </div>
+          <span class="lbl">Partager</span>
+        </button>
+      </div>
+
+      <hr class="share-divider">
+
+      <div class="share-qr-section">
+        <div class="share-qr-wrap" id="shareQrWrap"></div>
+        <div class="share-qr-info">
+          <strong>QR Code</strong>
+          <p>Scannez pour accéder directement à ce modèle depuis un autre appareil.</p>
+          <button class="share-qr-download" type="button" onclick="downloadQR()">⬇ Télécharger le QR</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="backdrop" id="compareBackdrop">
+  <div class="compare-modal">
+    <div class="compare-head">
+      <span>Comparaison des modèles</span>
+      <button id="closeCompare" style="color:#fff;width:36px;height:36px;border-radius:50%">×</button>
+    </div>
+    <div class="compare-body"><div class="compare-grid" id="compareGrid"></div></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const RAW_MODELS=[
+  {id:"001",number:"001",title:"Modèle N°001",format:"word",style:"moderne",image:"images/modele-001.jpg"},
+  {id:"002",number:"002",title:"Modèle N°002",format:"powerpoint",style:"moderne",image:"images/modele-002.jpg"},
+  {id:"003",number:"003",title:"Modèle N°003",format:"powerpoint",style:"classique",image:"images/modele-003.jpg"},
+  {id:"004",number:"004",title:"Modèle N°004",format:"powerpoint",style:"creatif",image:"images/modele-004.jpg"},
+  {id:"005",number:"005",title:"Modèle N°005",format:"powerpoint",style:"minimal",image:"images/modele-005.jpg"},
+  {id:"006",number:"006",title:"Modèle N°006",format:"word",style:"moderne",image:"images/modele-006.jpg"},
+  {id:"007",number:"007",title:"Modèle N°007",format:"word",style:"classique",image:"images/modele-007.jpg"},
+  {id:"008",number:"008",title:"Modèle N°008",format:"word",style:"creatif",image:"images/modele-008.jpg"},
+  {id:"009",number:"009",title:"Modèle N°009",format:"word",style:"minimal",image:"images/modele-009.jpg"},
+  {id:"010",number:"010",title:"Modèle N°010",format:"word",style:"moderne",image:"images/modele-010.jpg"},
+  {id:"011",number:"011",title:"Modèle N°011",format:"powerpoint",style:"classique",image:"images/modele-011.jpg"},
+  {id:"012",number:"012",title:"Modèle N°012",format:"word",style:"creatif",image:"images/modele-012.jpg"},
+  {id:"013",number:"013",title:"Modèle N°013",format:"powerpoint",style:"minimal",image:"images/modele-013.jpg"},
+  {id:"014",number:"014",title:"Modèle N°014",format:"word",style:"moderne",image:"images/modele-014.jpg"},
+  {id:"015",number:"015",title:"Modèle N°015",format:"powerpoint",style:"classique",image:"images/modele-015.jpg"},
+  {id:"016",number:"016",title:"Modèle N°016",format:"word",style:"creatif",image:"images/modele-016.jpg"},
+  {id:"017",number:"017",title:"Modèle N°017",format:"powerpoint",style:"minimal",image:"images/modele-017.jpg"},
+  {id:"018",number:"018",title:"Modèle N°018",format:"powerpoint",style:"moderne",image:"images/modele-018.jpg"},
+  {id:"019",number:"019",title:"Modèle N°019",format:"powerpoint",style:"classique",image:"images/modele-019.jpg"},
+  {id:"020",number:"020",title:"Modèle N°020",format:"powerpoint",style:"creatif",image:"images/modele-020.jpg"},
+  {id:"021",number:"021",title:"Modèle N°021",format:"powerpoint",style:"minimal",image:"images/modele-021.jpg"},
+  {id:"022",number:"022",title:"Modèle N°022",format:"powerpoint",style:"moderne",image:"images/modele-022.jpg"},
+  {id:"023",number:"023",title:"Modèle N°023",format:"powerpoint",style:"classique",image:"images/modele-023.jpg"},
+  {id:"024",number:"024",title:"Modèle N°024",format:"powerpoint",style:"creatif",image:"images/modele-024.jpg"},
+  {id:"025",number:"025",title:"Modèle N°025",format:"word",style:"minimal",image:"images/modele-025.jpg"},
+  {id:"026",number:"026",title:"Modèle N°026",format:"powerpoint",style:"moderne",image:"images/modele-026.jpg"},
+  {id:"027",number:"027",title:"Modèle N°027",format:"powerpoint",style:"classique",image:"images/modele-027.jpg"},
+  {id:"028",number:"028",title:"Modèle N°028",format:"powerpoint",style:"creatif",image:"images/modele-028.jpg"},
+  {id:"029",number:"029",title:"Modèle N°029",format:"word",style:"minimal",image:"images/modele-029.jpg"},
+  {id:"030",number:"030",title:"Modèle N°030",format:"powerpoint",style:"moderne",image:"images/modele-030.jpg"},
+  {id:"031",number:"031",title:"Modèle N°031",format:"powerpoint",style:"classique",image:"images/modele-031.jpg"},
+  {id:"032",number:"032",title:"Modèle N°032",format:"powerpoint",style:"creatif",image:"images/modele-032.jpg"},
+  {id:"033",number:"033",title:"Modèle N°033",format:"word",style:"minimal",image:"images/modele-033.jpg"},
+  {id:"034",number:"034",title:"Modèle N°034",format:"powerpoint",style:"moderne",image:"images/modele-034.jpg"},
+  {id:"035",number:"035",title:"Modèle N°035",format:"powerpoint",style:"classique",image:"images/modele-035.jpg"},
+  {id:"036",number:"036",title:"Modèle N°036",format:"powerpoint",style:"creatif",image:"images/modele-036.jpg"},
+  {id:"037",number:"037",title:"Modèle N°037",format:"word",style:"minimal",image:"images/modele-037.jpg"},
+  {id:"038",number:"038",title:"Modèle N°038",format:"powerpoint",style:"moderne",image:"images/modele-038.jpg"},
+  {id:"039",number:"039",title:"Modèle N°039",format:"powerpoint",style:"classique",image:"images/modele-039.jpg"},
+  {id:"040",number:"040",title:"Modèle N°040",format:"powerpoint",style:"creatif",image:"images/modele-040.jpg"},
+  {id:"041",number:"041",title:"Modèle N°041",format:"word",style:"minimal",image:"images/modele-041.jpg"},
+  {id:"042",number:"042",title:"Modèle N°042",format:"word",style:"moderne",image:"images/modele-042.jpg"},
+  {id:"043",number:"043",title:"Modèle N°043",format:"powerpoint",style:"classique",image:"images/modele-043.jpg"}
+];
+const POPULAR=["001","006","010","014","018","022","030","042"];
+const STYLE_LABELS={moderne:"Moderne",classique:"Classique",creatif:"Créatif",minimal:"Minimal"};
+const FORMAT_LABELS={word:"Word",powerpoint:"PowerPoint"};
+
+let state={
+  filtered:[...RAW_MODELS],search:"",format:"",style:"",popular:false,favoritesOnly:false,
+  sort:"num-asc",view:"grid",current:null,
+  zoom:1,panX:0,panY:0,
+  compareMode:false,compare:[]
+};
+let favorites=new Set(JSON.parse(localStorage.getItem("cvFavorites")||"[]"));
+let recentModels=JSON.parse(localStorage.getItem("cvRecentViews")||"[]");
+
+const $=id=>document.getElementById(id);
+
+function haptic(ms = 15) {
+  if ('vibrate' in navigator) {
+    try { navigator.vibrate(ms); } catch(e){}
+  }
+}
+
+function savePrefs(){localStorage.setItem("cvCatalogPrefs",JSON.stringify({search:state.search,format:state.format,style:state.style,sort:state.sort,view:state.view}))}
+function loadPrefs(){try{const p=JSON.parse(localStorage.getItem("cvCatalogPrefs")||"{}");Object.assign(state,p)}catch(e){}$("searchInput").value=state.search||"";$("sortSelect").value=state.sort||"num-asc"}
+
+function applyFilters(){
+  let r=RAW_MODELS.filter(m=>{
+    const q=state.search.toLowerCase().trim();
+    return(!q||m.title.toLowerCase().includes(q)||m.number.includes(q)||m.format.includes(q)||m.style.includes(q))&&
+          (!state.format||m.format===state.format)&&
+          (!state.style||m.style===state.style)&&
+          (!state.popular||POPULAR.includes(m.id))&&
+          (!state.favoritesOnly||favorites.has(m.id));
+  });
+  r.sort((a,b)=>state.sort==="num-desc"?b.number.localeCompare(a.number):state.sort==="alpha"?a.title.localeCompare(b.title):state.sort==="popular"?(POPULAR.indexOf(a.id)<0?99:POPULAR.indexOf(a.id))-(POPULAR.indexOf(b.id)<0?99:POPULAR.indexOf(b.id)):a.number.localeCompare(b.number));
+  state.filtered=r;render();updateStats();savePrefs();
+}
+
+function render(){
+  const isList = state.view === "list";
+  $("grid").className = "grid" + (isList ? " list" : "");
+  
+  $("grid").innerHTML = state.filtered.map(m => {
+    const fav = favorites.has(m.id), cmp = state.compare.includes(m.id);
+    
+    if (isList) {
+      // ── Vue Liste Uniforme (3 rangées régulières sur 100% des modèles) ──
+      return `<article class="card ${cmp ? "selected" : ""}" data-id="${m.id}" onclick="previewModel('${m.id}')">
+        <div class="thumb">
+          <img src="${m.image}" alt="${m.title}" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="card-body">
+          <div class="card-header-row">
+            <div class="card-title">${m.title}</div>
+            <div class="card-tools">
+              <button class="tool ${fav ? "active" : ""}" onclick="event.stopPropagation();toggleFavorite('${m.id}')" aria-label="Favori">
+                <svg class="icon" viewBox="0 0 24 24" fill="${fav ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2"><path d="M20.8 8.7c0 5.4-8.8 11-8.8 11S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+              </button>
+              <button class="tool" onclick="event.stopPropagation();shareModel('${m.id}')" aria-label="Partager">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag">${FORMAT_LABELS[m.format]}</span>
+            <span class="tag">${STYLE_LABELS[m.style]}</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn outline" onclick="event.stopPropagation();previewModel('${m.id}')">Aperçu</button>
+            <button class="btn solid" onclick="event.stopPropagation();selectModel('${m.id}')">Choisir</button>
+          </div>
+        </div>
+      </article>`;
     }
 
-    function updateStats() {
-      document.getElementById('statTotal').textContent    = RAW_MODELS.length;
-      document.getElementById('statFiltered').textContent = state.filtered.length;
-      document.getElementById('resultsNum').textContent   = state.filtered.length;
+    // ── Vue Grille ──
+    return `<article class="card ${cmp ? "selected" : ""}" data-id="${m.id}" onclick="previewModel('${m.id}')">
+      <span class="num">N°${m.number}</span>
+      <div class="card-tools">
+        <button class="tool ${fav ? "active" : ""}" onclick="event.stopPropagation();toggleFavorite('${m.id}')" aria-label="Favori">
+          <svg class="icon" viewBox="0 0 24 24" fill="${fav ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2"><path d="M20.8 8.7c0 5.4-8.8 11-8.8 11S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+        </button>
+        <button class="tool" onclick="event.stopPropagation();shareModel('${m.id}')" aria-label="Partager">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/></svg>
+        </button>
+      </div>
+      <div class="thumb"><img src="${m.image}" alt="${m.title}" loading="lazy" onerror="this.style.display='none'"><div class="overlay"><span>Aperçu</span></div></div>
+      <div class="card-body">
+        <div class="card-title">${m.title}</div>
+        <div class="tags"><span class="tag">${FORMAT_LABELS[m.format]}</span><span class="tag">${STYLE_LABELS[m.style]}</span></div>
+        <div class="card-actions"><button class="btn outline" onclick="event.stopPropagation();previewModel('${m.id}')">Aperçu</button><button class="btn solid" onclick="event.stopPropagation();selectModel('${m.id}')">Choisir</button></div>
+      </div>
+    </article>`;
+  }).join("");
+
+  $("empty").classList.toggle("show", !state.filtered.length);
+  $("clearSearch").classList.toggle("show", !!state.search);
+}
+
+function updateStats(){
+  $("statFiltered").textContent=state.filtered.length;
+  $("resultsNum").textContent=state.filtered.length;
+  $("favStat").textContent=favorites.size;
+  $("favCount").textContent=favorites.size;
+  $("favoritesBar").classList.toggle("show",favorites.size>0);
+}
+
+function toggleFavorite(id){
+  haptic(20);
+  favorites.has(id)?favorites.delete(id):favorites.add(id);
+  localStorage.setItem("cvFavorites",JSON.stringify([...favorites]));
+  showToast(favorites.has(id)?"Modèle ajouté aux favoris":"Modèle retiré des favoris");
+  if(state.favoritesOnly)applyFilters();else{render();updateStats();}
+}
+
+function setFilter(group,val){
+  haptic(10);
+  if(group==="popular")state.popular=val==="popular";
+  else state[group]=val;
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(b=>b.classList.toggle("active",b.dataset.value===val));
+  applyFilters();
+}
+
+function reset(){
+  state.search="";state.format="";state.style="";state.popular=false;state.favoritesOnly=false;state.sort="num-asc";
+  $("searchInput").value="";$("sortSelect").value="num-asc";
+  document.querySelectorAll(".pill[data-group]").forEach(b=>b.classList.toggle("active",b.dataset.value===""));
+  $("favoritesFilter").classList.remove("active");
+  applyFilters();
+}
+
+function recommend(m){
+  return RAW_MODELS.filter(x=>x.id!==m.id).map(x=>({m:x,score:(x.style===m.style?4:0)+(x.format===m.format?3:0)+(POPULAR.includes(x.id)?1:0)+(favorites.has(x.id)?.5:0)})).sort((a,b)=>b.score-a.score||a.m.number.localeCompare(b.m.number)).slice(0,3).map(x=>x.m);
+}
+
+function trackRecent(id) {
+  recentModels = [id, ...recentModels.filter(x => x !== id)].slice(0, 3);
+  localStorage.setItem("cvRecentViews", JSON.stringify(recentModels));
+  renderRecentDrawer();
+}
+
+function renderRecentDrawer() {
+  const drawer = $("recentDrawer");
+  const itemsEl = $("recentDrawerItems");
+  if (!recentModels.length) {
+    drawer.classList.remove("show");
+    return;
+  }
+  itemsEl.innerHTML = recentModels.map(id => {
+    const m = RAW_MODELS.find(x => x.id === id);
+    if (!m) return "";
+    return `<div class="recent-drawer__item" onclick="previewModel('${m.id}')" title="${m.title}"><img src="${m.image}" alt=""></div>`;
+  }).join("");
+  drawer.classList.add("show");
+}
+
+function clearRecentDrawer() {
+  haptic(15);
+  recentModels = [];
+  localStorage.removeItem("cvRecentViews");
+  $("recentDrawer").classList.remove("show");
+  showToast("Historique récent effacé ✓");
+}
+
+function previewModel(id){
+  const m=RAW_MODELS.find(x=>x.id===id);if(!m)return;
+  haptic(12);
+  state.current=m;
+  state.zoom=1;
+  state.panX=0;
+  state.panY=0;
+  trackRecent(id);
+  renderPreviewInfo();
+  $("previewBackdrop").classList.add("open");
+  document.body.classList.add("modal-open");
+  applyZoom(true);
+  if($("infoPane")) $("infoPane").scrollTop = 0;
+}
+
+function renderPreviewInfo(){
+  const m=state.current;if(!m)return;
+  $("previewNumber").textContent="Modèle N°"+m.number;
+  $("previewTitle").textContent=m.title;
+  $("previewTags").innerHTML=`<span class="tag">${FORMAT_LABELS[m.format]}</span><span class="tag">${STYLE_LABELS[m.style]}</span>`;
+  const arr=state.filtered.length?state.filtered:RAW_MODELS,i=arr.findIndex(x=>x.id===m.id);
+  $("counter").textContent=(i+1)+" / "+arr.length;
+  $("previewImg").src=m.image;$("previewImg").alt=m.title;
+  $("recoList").innerHTML=recommend(m).map(s=>`<div class="reco-item" onclick="previewModel('${s.id}')"><img src="${s.image}" alt=""><div><strong>${s.title}</strong><small>${FORMAT_LABELS[s.format]} · ${STYLE_LABELS[s.style]}</small></div></div>`).join("");
+}
+
+function closePreview(){
+  if(document.fullscreenElement&&document.exitFullscreen){try{document.exitFullscreen()}catch(e){}}
+  closeFullscreenFallback();
+  $("previewBackdrop").classList.remove("open");
+  document.body.classList.remove("modal-open");
+  state.current=null;
+}
+
+function slide(dir){
+  haptic(15);
+  const arr=state.filtered.length?state.filtered:RAW_MODELS;if(!state.current)return;
+  const i=arr.findIndex(x=>x.id===state.current.id);
+  state.current=arr[(i+dir+arr.length)%arr.length];
+  state.zoom=1;
+  state.panX=0;
+  state.panY=0;
+  trackRecent(state.current.id);
+  renderPreviewInfo();
+  applyZoom(true);
+}
+
+function applyZoom(animated = false) {
+  if (state.zoom <= 1) {
+    state.zoom = 1;
+    state.panX = 0;
+    state.panY = 0;
+  }
+  
+  const maxPanX = Math.max(0, (window.innerWidth * (state.zoom - 1)) / 1.6);
+  const maxPanY = Math.max(0, (window.innerHeight * 0.45 * (state.zoom - 1)) / 1.6);
+  state.panX = Math.max(-maxPanX, Math.min(maxPanX, state.panX));
+  state.panY = Math.max(-maxPanY, Math.min(maxPanY, state.panY));
+
+  const img = $("previewImg");
+  img.style.transition = animated ? 'transform .22s cubic-bezier(.16, 1, .3, 1)' : 'none';
+  img.style.transform = `translate3d(${state.panX}px, ${state.panY}px, 0) scale(${state.zoom})`;
+  $("zoomLabel").textContent = Math.round(state.zoom * 100) + "%";
+}
+
+function zoom(dir){
+  state.zoom = Math.max(1, Math.min(4, state.zoom + dir * 0.4));
+  if (state.zoom === 1) {
+    state.panX = 0;
+    state.panY = 0;
+  }
+  applyZoom(true);
+  haptic(10);
+}
+
+function selectModel(id){
+  const m=RAW_MODELS.find(x=>x.id===id);if(!m)return;
+  haptic(30);
+  localStorage.setItem("chosenCvModel","N°"+m.number+" - "+m.title);
+  localStorage.setItem("chosenCvFormat",m.format);
+  localStorage.setItem("chosenCvStyle",m.style);
+  showToast("Modèle sélectionné ✓");
+  document.querySelector(`[data-id="${id}"]`)?.classList.add("selected");
+  setTimeout(()=>{
+    const p=new URLSearchParams(location.search);
+    if(p.get("source")==="maj")location.href="formulaire-mise-a-jour-cv.html?source=maj&modele="+encodeURIComponent("N°"+m.number+" — "+m.title);
+    else location.href="formulaire-cv-scanner.html";
+  },700);
+}
+
+function shareModel(id){ openShare(id); }
+function showToast(msg){
+  clearTimeout(window._toast);
+  $("toast").textContent=msg;
+  $("toast").classList.add("show");
+  window._toast=setTimeout(()=>$("toast").classList.remove("show"),2200);
+}
+
+function toggleCompareMode(){
+  state.compareMode=!state.compareMode;
+  state.compare=[];
+  $("compareBtn").classList.toggle("active",state.compareMode);
+  $("compareBtn").textContent=state.compareMode?"Quitter":"Comparer";
+  render();
+  if(state.compareMode)showToast("Sélectionnez 2 à 3 modèles");
+}
+
+function openCompare(){
+  $("compareGrid").innerHTML=state.compare.map(id=>RAW_MODELS.find(x=>x.id===id)).filter(Boolean).map(m=>`<article class="compare-item"><img src="${m.image}" alt="${m.title}" onerror="this.style.display='none'"><div class="compare-info"><h3>${m.title}</h3><p>Format : ${FORMAT_LABELS[m.format]}</p><p>Style : ${STYLE_LABELS[m.style]}</p><button onclick="closeCompare();selectModel('${m.id}')">Choisir</button></div></article>`).join("");
+  $("compareBackdrop").classList.add("open");
+  document.body.classList.add("modal-open");
+}
+function closeCompare(){$("compareBackdrop").classList.remove("open");document.body.classList.remove("modal-open")}
+
+/* ═══════════════════════════════════════════════════════════
+   PARTAGE AVEC ENVOI DIRECT D'IMAGE
+═══════════════════════════════════════════════════════════ */
+let shareTarget = null;
+const SITE_BASE = 'https://chronos-services.netlify.app/catalogue%20de%20cv';
+
+function buildShareURL(model) {
+  return `${SITE_BASE}?model=${model.id}&format=${model.format}&style=${model.style}`;
+}
+
+function buildShareText(model) {
+  const fmtLabel = model.format === 'word' ? 'Word' : 'PowerPoint';
+  const styleLabels = { moderne:'Moderne', classique:'Classique', creatif:'Créatif', minimal:'Minimal' };
+  const userMsg = ($('shareMessage')?.value || '').trim();
+  return `${userMsg || 'Regarde ce modèle, je pense qu\'il te conviendra parfaitement !'}\n\nDécouvrez le ${model.title} sur Chronos-Services !\nFormat : ${fmtLabel} | Style : ${styleLabels[model.style]||model.style}\n`;
+}
+
+function openShare(id) {
+  const m = RAW_MODELS.find(x => x.id === id); if (!m) return;
+  haptic(15);
+  shareTarget = m;
+  const fmtLabel = (m.format === 'word' ? 'Word' : 'PowerPoint').toUpperCase();
+  const styleLabels = { moderne:'MODERNE', classique:'CLASSIQUE', creatif:'CRÉATIF', minimal:'MINIMAL' };
+  const url = buildShareURL(m);
+
+  $('shareCardTitle').textContent = m.title;
+  $('shareCardMeta').innerHTML = `<span class="share-card__tag">${fmtLabel}</span><span class="share-card__tag">${styleLabels[m.style]||m.style.toUpperCase()}</span>`;
+  $('shareLinkInput').value = url;
+
+  const copyBtn = $('shareCopyBtn');
+  copyBtn.classList.remove('copied');
+  $('shareCopyLabel').textContent = 'Copier';
+
+  generateQR(url);
+  $('shareBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeShare() {
+  $('shareBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+  const msgEl = $('shareMessage');
+  if (msgEl) { msgEl.value = ''; $('shareMsgCnt').textContent = '0/200'; }
+  shareTarget = null;
+}
+
+function closeShareOnOutside(e) { if (e.target === $('shareBackdrop')) closeShare(); }
+
+async function copyShareLink() {
+  if (!shareTarget) return;
+  haptic(25);
+  const url = buildShareURL(shareTarget);
+  const btn = $('shareCopyBtn');
+  const lbl = $('shareCopyLabel');
+
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(url);
+    } else {
+      const inp = $('shareLinkInput');
+      inp.focus(); inp.select();
+      if (!document.execCommand('copy')) throw new Error('copy failed');
     }
+    btn.classList.add('copied');
+    lbl.textContent = 'Copié !';
+    showToast('Lien copié dans le presse-papier ✓');
+    setTimeout(() => { btn.classList.remove('copied'); lbl.textContent = 'Copier'; }, 2200);
+  } catch(e) {
+    window.prompt('Copiez ce lien :', url);
+  }
+}
 
-    function renderActiveFilters() {
-      const bar = document.getElementById('activeFilters');
-      const tags = [];
-      if (state.format) tags.push({label: state.format === 'word' ? 'Word' : 'PowerPoint', clear: () => { state.format=''; resetFilterGroup('format'); applyFilters(); }});
-      if (state.style)  { const sl = {moderne:'Moderne',classique:'Classique',creatif:'Créatif',minimal:'Minimal'}; tags.push({label: sl[state.style]||state.style, clear: () => { state.style=''; resetFilterGroup('style'); applyFilters(); }}); }
-      if (state.search) tags.push({label: `"${state.search}"`, clear: () => { state.search=''; document.getElementById('searchInput').value=''; updateClearBtn(); applyFilters(); }});
-      if (!tags.length) { bar.classList.remove('visible'); return; }
-      bar.classList.add('visible');
-      const innerHTML = tags.map((t,i) => `<span class="active-tag">${t.label}<button onclick="clearActiveTag(${i})" aria-label="Retirer ce filtre">×</button></span>`).join('');
-      window._activeTags = tags;
-      const clearBtn = bar.querySelector('.clear-all-btn');
-      bar.innerHTML = `<span class="active-filters__label">Filtres actifs :</span>${innerHTML}`;
-      bar.appendChild(clearBtn);
-    }
+async function shareForOpinion() {
+  if (!shareTarget) return;
+  haptic(20);
+  const m = shareTarget;
+  const url = buildShareURL(m);
+  const opinionMsg = `Salut ! J'hésite pour ma candidature. Que penses-tu de ce modèle : ${url} ? Tu valides ?`;
 
-    window.clearActiveTag = function(i) { if (window._activeTags && window._activeTags[i]) window._activeTags[i].clear(); };
+  if (navigator.share && navigator.canShare) {
+    try {
+      showToast("Préparation de l'aperçu...");
+      const response = await fetch(m.image);
+      const blob = await response.blob();
+      const file = new File([blob], `modele-${m.id}.jpg`, { type: 'image/jpeg' });
 
-    function resetFilterGroup(group) {
-      document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
-      document.querySelector(`[data-group="${group}"][data-val=""]`).classList.add('active');
-    }
-
-    let debounceTimer;
-    document.getElementById('searchInput').addEventListener('input', function() {
-      state.search = this.value; updateClearBtn();
-      clearTimeout(debounceTimer); debounceTimer = setTimeout(applyFilters, 260);
-    });
-
-    function updateClearBtn() { document.getElementById('searchClear').classList.toggle('visible', state.search.length > 0); }
-    function clearSearch() { state.search = ''; document.getElementById('searchInput').value = ''; updateClearBtn(); applyFilters(); }
-
-    document.querySelectorAll('.filter-pill').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const group = this.dataset.group; const val = this.dataset.val;
-        document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
-        this.classList.add('active'); state[group] = val; applyFilters();
-      });
-    });
-
-    function clearAllFilters() {
-      state.search = ''; state.format = ''; state.style = '';
-      document.getElementById('searchInput').value = ''; updateClearBtn();
-      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.filter-pill[data-val=""]').forEach(b => b.classList.add('active'));
-      applyFilters();
-    }
-
-    document.getElementById('sortSelect').addEventListener('change', function() { state.sort = this.value; applyFilters(); });
-
-    function setView(v) {
-      state.view = v;
-      document.getElementById('viewGrid').classList.toggle('active', v === 'grid');
-      document.getElementById('viewList').classList.toggle('active', v === 'list');
-      render();
-    }
-
-    /* ── PREVIEW MODAL ── */
-    function previewModel(id) {
-      const m = RAW_MODELS.find(x => x.id === id); if (!m) return;
-      state.currentPreview = m;
-      document.getElementById('modalTitle').textContent = m.title;
-      const img = document.getElementById('modalImg'); img.alt = m.title; img.src = '';
-      img.onerror = function() {
-        document.getElementById('modalImgWrap').innerHTML = `<div style="text-align:center;color:var(--text-3);padding:40px 20px;"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" style="margin:0 auto 12px;opacity:.4;display:block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg><p style="font-weight:600;margin-bottom:4px;color:var(--text-2)">Aperçu non disponible</p><p style="font-size:.82rem">Disponible prochainement</p></div>`;
-        document.getElementById('zoomControls').style.display = 'none';
-      };
-      img.onload = function() { document.getElementById('zoomControls').style.display = 'flex'; };
-      img.src = m.image;
-      renderSimilar(m);
-      const idx = state.filtered.findIndex(x => x.id === m.id);
-      document.getElementById('modalNavIndex').textContent = idx >= 0 ? `${idx+1} / ${state.filtered.length}` : '';
-      state.zoomLevel = 1; pan.x = 0; pan.y = 0;
-      img.style.transform = 'scale(1)'; img.classList.remove('zoomed'); img.style.cursor = 'zoom-in';
-      document.getElementById('zoomLevel').textContent = '100%';
-      document.getElementById('zoomControls').style.display = 'flex';
-      document.getElementById('modalBackdrop').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() { document.getElementById('modalBackdrop').classList.remove('open'); document.body.style.overflow = ''; state.currentPreview = null; }
-    function closeModalOnOutside(e) { if (e.target === document.getElementById('modalBackdrop')) closeModal(); }
-    function selectFromModal() { if (state.currentPreview) selectModel(state.currentPreview.id); }
-
-    function selectModel(id) {
-      const m = RAW_MODELS.find(x => x.id === id); if (!m) return;
-      closeModal();
-      const params = new URLSearchParams(window.location.search); const source = params.get('source');
-      if (source === 'maj') {
-        const modeleStr = encodeURIComponent(`N°${m.number} — ${m.title}`);
-        showToast(`"${m.title}" sélectionné — retour au formulaire…`);
-        setTimeout(() => { window.location.href = `formulaire-mise-a-jour-cv.html?source=maj&modele=${modeleStr}`; }, 700);
+      if (navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: `Avis sur le ${m.title}`,
+          text: opinionMsg,
+        });
+        closeShare();
         return;
       }
-      try { localStorage.setItem('chosenCvModel', `N°${m.number} - ${m.title}`); localStorage.setItem('chosenCvFormat', m.format); localStorage.setItem('chosenCvStyle', m.style); } catch(e) {}
-      showToast(`"${m.title}" sélectionné ✓`);
-      setTimeout(() => {
-        const card = document.querySelector(`[data-id="${id}"]`);
-        if (card) { card.style.borderColor = 'var(--green)'; card.style.boxShadow = '0 0 0 3px rgba(9,65,2,.2)'; setTimeout(() => { card.style.borderColor=''; card.style.boxShadow=''; }, 2500); }
-      }, 100);
-      setTimeout(() => { window.location.href = 'formulaire-cv-scanner.html'; }, 800);
+    } catch (err) {
+      console.log("Partage direct de fichier non disponible.");
     }
+  }
 
-    let toastTimer;
-    function showToast(msg) {
-      clearTimeout(toastTimer); const t = document.getElementById('toast');
-      document.getElementById('toastMsg').textContent = msg;
-      t.classList.add('show'); toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+  const fullText = encodeURIComponent(`${opinionMsg}\n\n${url}`);
+  window.open(`https://wa.me/?text=${fullText}`, '_blank');
+  closeShare();
+}
+
+async function downloadStoryImage() {
+  if (!shareTarget) return;
+  haptic(25);
+  showToast("Téléchargement de l'image...");
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 1080;
+  canvas.height = 1920;
+  const ctx = canvas.getContext('2d');
+
+  const grad = ctx.createLinearGradient(0, 0, 1080, 1920);
+  grad.addColorStop(0, '#042202');
+  grad.addColorStop(0.55, '#094102');
+  grad.addColorStop(1, '#021601');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 1080, 1920);
+
+  const glow = ctx.createRadialGradient(540, 750, 50, 540, 750, 520);
+  glow.addColorStop(0, 'rgba(168, 232, 144, 0.22)');
+  glow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, 1080, 1920);
+
+  ctx.fillStyle = '#a8e890';
+  ctx.font = '800 36px Sora, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('CHRONOS-SERVICES', 540, 180);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '800 62px Sora, sans-serif';
+  ctx.fillText(shareTarget.title.toUpperCase(), 540, 265);
+
+  const fmt = (shareTarget.format === 'word' ? 'Word' : 'PowerPoint').toUpperCase();
+  const sty = (STYLE_LABELS[shareTarget.style] || shareTarget.style).toUpperCase();
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
+  ctx.font = '600 30px Sora, sans-serif';
+  ctx.fillText(`FORMAT : ${fmt}  |  STYLE : ${sty}`, 540, 325);
+
+  const cvImg = new Image();
+  cvImg.crossOrigin = 'anonymous';
+  cvImg.src = shareTarget.image;
+
+  await new Promise((resolve) => { cvImg.onload = resolve; cvImg.onerror = resolve; });
+
+  const imgW = 720, imgH = 960, imgX = (1080 - imgW) / 2, imgY = 390;
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
+  ctx.shadowBlur = 45;
+  ctx.shadowOffsetY = 24;
+  ctx.fillStyle = '#ffffff';
+  ctx.roundRect(imgX, imgY, imgW, imgH, 20);
+  ctx.fill();
+  ctx.clip();
+  if (cvImg.complete && cvImg.naturalWidth > 0) {
+    ctx.drawImage(cvImg, imgX, imgY, imgW, imgH);
+  }
+  ctx.restore();
+
+  const qrImg = new Image();
+  qrImg.crossOrigin = 'anonymous';
+  qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(buildShareURL(shareTarget))}&bgcolor=ffffff&color=094102&margin=6`;
+  await new Promise((resolve) => { qrImg.onload = resolve; qrImg.onerror = resolve; });
+
+  const qrSize = 200, qrX = 140, qrY = 1480;
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+  ctx.shadowBlur = 20;
+  ctx.drawImage(qrImg, qrX, qrY, qrSize, qrSize);
+  ctx.restore();
+
+  ctx.textAlign = 'left';
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '800 38px Sora, sans-serif';
+  ctx.fillText('Scannez pour accéder', qrX + qrSize + 40, qrY + 80);
+
+  ctx.fillStyle = '#a8e890';
+  ctx.font = '600 28px Sora, sans-serif';
+  ctx.fillText('chronos-services.netlify.app', qrX + qrSize + 40, qrY + 130);
+
+  const link = document.createElement('a');
+  link.download = `Modele-CV-${shareTarget.id}.png`;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+  showToast("Image du modèle téléchargée avec succès ✓");
+}
+
+function shareWhatsApp() {
+  if (!shareTarget) return;
+  haptic(15);
+  window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText(shareTarget) + buildShareURL(shareTarget))}`, '_blank');
+  closeShare();
+}
+
+function shareFacebook() {
+  if (!shareTarget) return;
+  haptic(15);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(buildShareURL(shareTarget))}`, '_blank', 'width=620,height=440');
+  closeShare();
+}
+
+function shareEmail() {
+  if (!shareTarget) return;
+  haptic(15);
+  const m = shareTarget;
+  const fmtLabel = m.format === 'word' ? 'Word' : 'PowerPoint';
+  const styleLabels = { moderne:'Moderne', classique:'Classique', creatif:'Créatif', minimal:'Minimal' };
+  const url = buildShareURL(m);
+  const userMsg = ($('shareMessage')?.value || '').trim();
+  const subject = encodeURIComponent(`${m.title} — Chronos-Services`);
+  const body = encodeURIComponent((userMsg ? userMsg + '\n\n' : 'Bonjour,\n\nJe vous partage ce modèle de CV professionnel :\n\n') + `${m.title}\nFormat : ${fmtLabel} | Style : ${styleLabels[m.style]||m.style}\n\nAccédez au modèle ici : ${url}\n\nChronos-Services`);
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  closeShare();
+}
+
+function shareLinkedIn() {
+  if (!shareTarget) return;
+  haptic(15);
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(buildShareURL(shareTarget))}`, '_blank', 'width=620,height=520');
+  closeShare();
+}
+
+function nativeShare() {
+  if (!shareTarget) return;
+  haptic(15);
+  if (navigator.share) {
+    navigator.share({
+      title: `${shareTarget.title} — Chronos-Services`,
+      text: buildShareText(shareTarget),
+      url: buildShareURL(shareTarget)
+    }).then(() => { closeShare(); showToast('Partagé avec succès ✓'); }).catch(() => {});
+  } else {
+    copyShareLink();
+  }
+}
+
+function generateQR(url) {
+  const wrap = $('shareQrWrap');
+  const size = 68;
+  wrap.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(url)}&bgcolor=ffffff&color=094102&margin=1" width="${size}" height="${size}" alt="QR Code" onerror="this.parentElement.innerHTML='<span style=\\'font-size:.65rem;color:#888;\\'>QR N/A</span>'"/>`;
+}
+
+function downloadQR() {
+  if (!shareTarget) return;
+  haptic(20);
+  const url = buildShareURL(shareTarget);
+  const a = document.createElement('a');
+  a.href = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(url)}&bgcolor=ffffff&color=094102&margin=10`;
+  a.download = `QR-${shareTarget.id}-${shareTarget.format}.png`;
+  a.target = '_blank';
+  a.click();
+  showToast('Téléchargement du QR code en cours…');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PINCH-TO-ZOOM, PAN LIBRE (360°), DOUBLE-TAP & SWIPE
+═══════════════════════════════════════════════════════════ */
+const previewPane = $('previewPane');
+let touchMode = 'none';
+let touchStartX = 0, touchStartY = 0;
+let initialPanX = 0, initialPanY = 0;
+let initialPinchDist = 0, initialPinchZoom = 1;
+let lastTapTime = 0;
+
+function getTouchDistance(e) {
+  return Math.hypot(
+    e.touches[0].clientX - e.touches[1].clientX,
+    e.touches[0].clientY - e.touches[1].clientY
+  );
+}
+
+previewPane.addEventListener('touchstart', (e) => {
+  if (e.touches.length === 2) {
+    touchMode = 'pinch';
+    initialPinchDist = getTouchDistance(e);
+    initialPinchZoom = state.zoom;
+  } else if (e.touches.length === 1) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    initialPanX = state.panX;
+    initialPanY = state.panY;
+    touchMode = (state.zoom > 1) ? 'pan' : 'swipe';
+  }
+}, { passive: false });
+
+previewPane.addEventListener('touchmove', (e) => {
+  if (touchMode === 'pinch' && e.touches.length === 2) {
+    e.preventDefault();
+    const currentDist = getTouchDistance(e);
+    const scaleFactor = currentDist / initialPinchDist;
+    state.zoom = Math.max(1, Math.min(4, initialPinchZoom * scaleFactor));
+    applyZoom(false);
+  } else if (touchMode === 'pan' && e.touches.length === 1 && state.zoom > 1) {
+    e.preventDefault();
+    const deltaX = e.touches[0].clientX - touchStartX;
+    const deltaY = e.touches[0].clientY - touchStartY;
+    state.panX = initialPanX + deltaX;
+    state.panY = initialPanY + deltaY;
+    applyZoom(false);
+  } else if (touchMode === 'swipe' && e.touches.length === 1 && state.zoom === 1) {
+    const deltaX = e.touches[0].clientX - touchStartX;
+    const deltaY = e.touches[0].clientY - touchStartY;
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+      e.preventDefault();
+      $("previewImg").style.transform = `translateX(${deltaX * 0.72}px) scale(1)`;
     }
+  }
+}, { passive: false });
 
-    const scrollTopBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('visible', window.scrollY > 400); });
-
-    document.addEventListener('keydown', e => {
-      if ((e.ctrlKey||e.metaKey) && e.key==='f') { e.preventDefault(); document.getElementById('searchInput').focus(); }
-    });
-
-    applyFilters();
-
-    (function checkDeepLink() {
-      const params = new URLSearchParams(window.location.search);
-      const modelId = params.get('model') || params.get('m');
-      const source  = params.get('source');
-      if (source === 'maj') {
-        const banner = document.createElement('div');
-        banner.id = 'majBanner';
-        banner.style.cssText = ['position:fixed','top:57px','left:0','right:0','z-index:40','background:#f0f7ee','border-bottom:1px solid #b2d4a8','padding:8px 20px','display:flex','align-items:center','justify-content:space-between','gap:12px','font-family:"DM Sans",sans-serif','font-size:.8rem','color:#2a4a22'].join(';');
-        banner.innerHTML = `<span><strong style="font-weight:700;">Sélection de modèle</strong> — Cliquez sur <strong style="color:var(--green)">Choisir</strong> sur le modèle souhaité pour revenir au formulaire de mise à jour.</span><a href="formulaire-mise-a-jour-cv.html" style="font-size:.75rem;font-weight:600;color:#2a4a22;text-decoration:underline;white-space:nowrap;flex-shrink:0;">← Retour sans choisir</a>`;
-        document.body.appendChild(banner);
-        const hero = document.querySelector('.hero'); if (hero) hero.style.marginTop = banner.offsetHeight + 'px';
+previewPane.addEventListener('touchend', (e) => {
+  if (touchMode === 'pinch') {
+    if (e.touches.length === 0) {
+      touchMode = 'none';
+      if (state.zoom < 1.08) {
+        state.zoom = 1;
+        state.panX = 0;
+        state.panY = 0;
       }
-      if (modelId) {
-        const m = RAW_MODELS.find(x => x.id === modelId);
-        if (m) { setTimeout(() => { const card = document.querySelector(`[data-id="${modelId}"]`); if (card) { card.scrollIntoView({behavior:'smooth', block:'center'}); } previewModel(modelId); }, 400); }
+      applyZoom(true);
+    }
+  } else if (touchMode === 'swipe' && state.zoom === 1) {
+    touchMode = 'none';
+    const deltaX = (e.changedTouches[0]?.clientX || touchStartX) - touchStartX;
+    if (deltaX < -65) slide(1);
+    else if (deltaX > 65) slide(-1);
+    else applyZoom(true);
+  } else if (touchMode === 'pan') {
+    touchMode = 'none';
+    applyZoom(true);
+  }
+
+  if (e.touches.length === 0 && e.changedTouches.length === 1) {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTapTime;
+    if (tapLength < 280 && tapLength > 40) {
+      if (state.zoom > 1) {
+        state.zoom = 1;
+        state.panX = 0;
+        state.panY = 0;
+      } else {
+        state.zoom = 2.2;
       }
-    })();
+      applyZoom(true);
+      haptic(15);
+    }
+    lastTapTime = currentTime;
+  }
+});
 
-    /* ── ZOOM + PAN ── */
-    let pan = { x: 0, y: 0 };
-    function zoomImg(dir) { state.zoomLevel = Math.min(4, Math.max(1, state.zoomLevel + dir * 0.5)); applyZoom(); }
-    function toggleZoom() { state.zoomLevel = state.zoomLevel > 1 ? 1 : 2; applyZoom(); }
-    function resetZoom() { state.zoomLevel = 1; pan.x = 0; pan.y = 0; applyZoom(); }
-    function clampPan() {
-      const img = document.getElementById('modalImg'); const outer = document.getElementById('modalImgOuter'); if (!img || !outer) return;
-      const maxX = Math.max(0, (img.offsetWidth * state.zoomLevel - outer.clientWidth)  / 2);
-      const maxY = Math.max(0, (img.offsetHeight * state.zoomLevel - outer.clientHeight) / 2);
-      pan.x = Math.min(maxX, Math.max(-maxX, pan.x)); pan.y = Math.min(maxY, Math.max(-maxY, pan.y));
-    }
-    function applyZoom() {
-      const img = document.getElementById('modalImg'); if (!img) return;
-      if (state.zoomLevel <= 1) { pan.x = 0; pan.y = 0; } clampPan();
-      img.style.transform = `scale(${state.zoomLevel}) translate(${pan.x / state.zoomLevel}px, ${pan.y / state.zoomLevel}px)`;
-      img.classList.toggle('zoomed', state.zoomLevel > 1); img.style.cursor = state.zoomLevel > 1 ? 'grab' : 'zoom-in';
-      document.getElementById('zoomLevel').textContent = Math.round(state.zoomLevel * 100) + '%';
-    }
+previewPane.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  if (e.deltaY < 0) zoom(1);
+  else zoom(-1);
+}, { passive: false });
 
-    (function() {
-      const outer = document.getElementById('modalImgOuter');
-      let dragging = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0, didDrag = false;
-      outer.addEventListener('mousedown', function(e) {
-        if (e.target.closest('.zoom-controls')) return; if (state.zoomLevel <= 1) return;
-        e.preventDefault(); dragging = true; didDrag = false;
-        startX = e.clientX; startY = e.clientY; startPanX = pan.x; startPanY = pan.y;
-        const img = document.getElementById('modalImg'); if (img) { img.style.cursor = 'grabbing'; img.classList.add('dragging'); }
-      });
-      window.addEventListener('mousemove', function(e) {
-        if (!dragging) return; const dx = e.clientX - startX; const dy = e.clientY - startY;
-        if (Math.abs(dx) > 2 || Math.abs(dy) > 2) didDrag = true;
-        pan.x = startPanX + dx; pan.y = startPanY + dy; applyZoom();
-      });
-      window.addEventListener('mouseup', function() {
-        if (!dragging) return; dragging = false;
-        const img = document.getElementById('modalImg');
-        if (img) { img.classList.remove('dragging'); img.style.cursor = state.zoomLevel > 1 ? 'grab' : 'zoom-in'; }
-      });
-      outer._getDidDrag = () => didDrag;
-    })();
+let isMouseDown = false, mouseStartX = 0, mouseStartY = 0, initialMousePanX = 0, initialMousePanY = 0;
+previewPane.addEventListener('mousedown', (e) => {
+  if (state.zoom > 1) {
+    isMouseDown = true;
+    mouseStartX = e.clientX;
+    mouseStartY = e.clientY;
+    initialMousePanX = state.panX;
+    initialMousePanY = state.panY;
+  }
+});
+window.addEventListener('mousemove', (e) => {
+  if (isMouseDown && state.zoom > 1) {
+    state.panX = initialMousePanX + (e.clientX - mouseStartX);
+    state.panY = initialMousePanY + (e.clientY - mouseStartY);
+    applyZoom(false);
+  }
+});
+window.addEventListener('mouseup', () => {
+  if (isMouseDown) {
+    isMouseDown = false;
+    applyZoom(true);
+  }
+});
 
-    function handleImgClick(e) {
-      if (e.target.closest('.zoom-controls')) return;
-      const outer = document.getElementById('modalImgOuter');
-      if (outer._getDidDrag && outer._getDidDrag()) return;
-      toggleZoom();
+function checkSharedModelOnLoad() {
+  const params = new URLSearchParams(window.location.search);
+  const modelId = params.get('model');
+  if (modelId) {
+    const exists = RAW_MODELS.find(m => m.id === modelId);
+    if (exists) {
+      setTimeout(() => { previewModel(modelId); }, 350);
     }
+  }
+}
 
-    (function() {
-      const outer = document.getElementById('modalImgOuter');
-      let lastDist = 0, lastTX = 0, lastTY = 0, touchPanning = false;
-      outer.addEventListener('touchstart', function(e) {
-        if (e.touches.length === 2) { touchPanning = false; lastDist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY); }
-        else if (e.touches.length === 1 && state.zoomLevel > 1) { touchPanning = true; lastTX = e.touches[0].clientX; lastTY = e.touches[0].clientY; }
-      }, { passive: true });
-      outer.addEventListener('touchmove', function(e) {
-        if (e.touches.length === 2) {
-          const dist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
-          state.zoomLevel = Math.min(4, Math.max(1, state.zoomLevel + (dist - lastDist) / 80)); applyZoom(); lastDist = dist;
-        } else if (e.touches.length === 1 && touchPanning) {
-          pan.x += e.touches[0].clientX - lastTX; pan.y += e.touches[0].clientY - lastTY;
-          lastTX = e.touches[0].clientX; lastTY = e.touches[0].clientY; applyZoom();
-        }
-      }, { passive: true });
-      outer.addEventListener('touchend', function(e) { if (e.touches.length < 1) touchPanning = false; }, { passive: true });
-    })();
+/* Événements & Initialisation */
+$('shareMessage')?.addEventListener('input', function(){
+  $('shareMsgCnt').textContent = this.value.length + '/200';
+});
 
-    document.getElementById('modalImgOuter').addEventListener('wheel', function(e) {
-      if (!document.getElementById('modalBackdrop').classList.contains('open')) return; e.preventDefault();
-      const oldZoom = state.zoomLevel; state.zoomLevel = Math.min(4, Math.max(1, state.zoomLevel - e.deltaY / 250));
-      if (state.zoomLevel === oldZoom) return;
-      if (oldZoom > 1 && state.zoomLevel > 1) {
-        const outer = document.getElementById('modalImgOuter'); const rect = outer.getBoundingClientRect();
-        const cx = e.clientX - rect.left - rect.width / 2; const cy = e.clientY - rect.top - rect.height / 2;
-        const ratio = state.zoomLevel / oldZoom; pan.x = cx + (pan.x - cx) * ratio; pan.y = cy + (pan.y - cy) * ratio;
-      } else if (state.zoomLevel <= 1) { pan.x = 0; pan.y = 0; }
-      applyZoom();
-    }, { passive: false });
+loadPrefs();
+renderRecentDrawer();
 
-    document.addEventListener('keydown', function(e) {
-      if (!document.getElementById('modalBackdrop').classList.contains('open')) return;
-      if (state.zoomLevel > 1) {
-        const step = 50;
-        if (e.key === 'ArrowUp')    { pan.y += step; applyZoom(); e.preventDefault(); return; }
-        if (e.key === 'ArrowDown')  { pan.y -= step; applyZoom(); e.preventDefault(); return; }
-        if (e.key === 'ArrowLeft'  && !e.shiftKey) { pan.x += step; applyZoom(); e.preventDefault(); return; }
-        if (e.key === 'ArrowRight' && !e.shiftKey) { pan.x -= step; applyZoom(); e.preventDefault(); return; }
-      }
-    });
+document.querySelectorAll(".pill[data-group]").forEach(b=>b.addEventListener("click",()=>setFilter(b.dataset.group,b.dataset.value)));
+$("favoritesFilter").addEventListener("click",()=>{state.favoritesOnly=!state.favoritesOnly;$("favoritesFilter").classList.toggle("active",state.favoritesOnly);applyFilters()});
+$("clearFavs").addEventListener("click",()=>{favorites.clear();localStorage.removeItem("cvFavorites");applyFilters();showToast("Favoris effacés")});
+$("searchInput").addEventListener("input",e=>{state.search=e.target.value;clearTimeout(window._deb);window._deb=setTimeout(applyFilters,180)});
+$("clearSearch").addEventListener("click",()=>{$("searchInput").value="";state.search="";applyFilters()});
+$("sortSelect").addEventListener("change",e=>{state.sort=e.target.value;applyFilters()});
+$("gridBtn").addEventListener("click",()=>{state.view="grid";$("gridBtn").classList.add("active");$("listBtn").classList.remove("active");render();savePrefs()});
+$("listBtn").addEventListener("click",()=>{state.view="list";$("listBtn").classList.add("active");$("gridBtn").classList.remove("active");render();savePrefs()});
+$("resetBtn").addEventListener("click",reset);
+$("compareBtn").addEventListener("click",toggleCompareMode);
+$("closePreview").addEventListener("click",closePreview);
+$("previewBackdrop").addEventListener("click",e=>{if(e.target===$("previewBackdrop"))closePreview()});
+$("prevBtn").addEventListener("click",()=>slide(-1));
+$("nextBtn").addEventListener("click",()=>slide(1));
+$("zoomIn").addEventListener("click",()=>zoom(1));
+$("zoomOut").addEventListener("click",()=>zoom(-1));
+$("zoomReset").addEventListener("click",()=>{state.zoom=1;state.panX=0;state.panY=0;applyZoom(true);haptic(15);});
 
-    function slidePreview(dir) {
-      if (!state.currentPreview) return;
-      const arr = state.filtered; const idx = arr.findIndex(x => x.id === state.currentPreview.id);
-      previewModel(arr[(idx + dir + arr.length) % arr.length].id);
-    }
+$("selectBtn").addEventListener("click",()=>selectModel(state.current?.id));
+$("shareBtn").addEventListener("click",()=>state.current&&shareModel(state.current.id));
+$("fullscreenBtn").addEventListener("click",openFullscreen);
 
-    document.addEventListener('keydown', function(e) {
-      if (!document.getElementById('modalBackdrop').classList.contains('open')) return;
-      if (e.key === 'ArrowRight') slidePreview(1);
-      if (e.key === 'ArrowLeft')  slidePreview(-1);
-    });
+async function openFullscreen(){
+  const modal=document.querySelector('.preview-modal');
+  try{if(modal.requestFullscreen){await modal.requestFullscreen();return}}catch(e){}
+  modal.classList.add('fullscreen-fallback');
+  $('previewBackdrop').style.padding='0';$('previewBackdrop').style.alignItems='stretch';
+}
+function closeFullscreenFallback(){
+  const modal=document.querySelector('.preview-modal');
+  if(modal?.classList.contains('fullscreen-fallback')){
+    modal.classList.remove('fullscreen-fallback');
+    $('previewBackdrop').style.padding='';$('previewBackdrop').style.alignItems='';
+  }
+}
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)closeFullscreenFallback()});
+$("closeCompare").addEventListener("click",closeCompare);
+$("compareBackdrop").addEventListener("click",e=>{if(e.target===$("compareBackdrop"))closeCompare()});
 
-    function renderSimilar(m) {
-      const sec = document.getElementById('similarSection');
-      const similars = RAW_MODELS.filter(x => x.id !== m.id && (x.format === m.format || x.style === m.style)).slice(0, 6);
-      if (!similars.length) { sec.innerHTML = ''; return; }
-      sec.innerHTML = `<div class="similar-label">Vous aimerez aussi</div><div class="similar-strip">${similars.map(s => `<div class="similar-chip" onclick="previewModel('${s.id}')"><div class="similar-chip__img"><img src="${s.image}" alt="${s.title}" loading="lazy" onerror="this.style.display='none'"/></div><div class="similar-chip__info"><div class="similar-chip__title">${s.title}</div><div class="similar-chip__tag">${s.format==='word'?'Word':'PPT'} · ${s.style}</div></div></div>`).join('')}</div>`;
-    }
+$("themeBtn").addEventListener("click",()=>{
+  haptic(15);
+  document.body.classList.toggle("dark");
+  const dark=document.body.classList.contains("dark");
+  localStorage.setItem("cvThemeV2",dark?"dark":"light");
+  $("themeText").textContent=dark?"Mode clair":"Mode sombre";
+});
+if(localStorage.getItem("cvThemeV2")==="dark"){document.body.classList.add("dark");$("themeText").textContent="Mode clair"}
 
-    /* ── COMPARE MODE ── */
-    function toggleCompareMode() {
-      state.compareMode = !state.compareMode; state.compareList = [];
-      document.getElementById('compareModeLabel').textContent = state.compareMode ? '✕ Quitter' : 'Comparer';
-      document.getElementById('compareBar').classList.toggle('visible', state.compareMode);
-      render(); if (state.compareMode) showToast('Sélectionnez 2 à 3 modèles à comparer');
-    }
-    function toggleCompare(id) {
-      if (!state.compareMode) return; const idx = state.compareList.indexOf(id);
-      if (idx === -1) { if (state.compareList.length >= 3) { showToast('Maximum 3 modèles à la fois'); return; } state.compareList.push(id); }
-      else { state.compareList.splice(idx, 1); }
-      updateCompareBar(); render();
-    }
-    function updateCompareBar() {
-      const slots = document.getElementById('compareSlots'); const badge = document.getElementById('compareBadge'); const goBtn = document.getElementById('compareGoBtn');
-      badge.textContent = state.compareList.length; goBtn.disabled = state.compareList.length < 2;
-      slots.innerHTML = Array.from({length: 3}).map((_, i) => {
-        const id = state.compareList[i]; const m = id ? RAW_MODELS.find(x => x.id === id) : null;
-        return m ? `<div class="compare-slot filled"><span class="compare-slot__num">N°${m.number}</span><span style="font-size:.75rem;color:var(--text-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80px;">${m.title}</span><button class="compare-slot__remove" onclick="toggleCompare('${m.id}')" title="Retirer">×</button></div>`
-                 : `<div class="compare-slot empty" style="font-size:.72rem;color:var(--text-3);">Slot ${i+1}</div>`;
-      }).join('');
-    }
-    function cancelCompare() {
-      state.compareMode = false; state.compareList = [];
-      document.getElementById('compareModeLabel').textContent = 'Comparer';
-      document.getElementById('compareBar').classList.remove('visible'); render();
-    }
-    function openCompareModal() {
-      if (state.compareList.length < 2) return;
-      const styleLabels = {moderne:'Moderne',classique:'Classique',creatif:'Créatif',minimal:'Minimal'};
-      document.getElementById('compareGrid').innerHTML = state.compareList.map(id => {
-        const m = RAW_MODELS.find(x => x.id === id); if (!m) return '';
-        return `<div class="compare-item"><div class="compare-item__img"><img src="${m.image}" alt="${m.title}" loading="lazy" onerror="this.style.display='none'"/></div><div class="compare-item__info"><div class="compare-item__title">${m.title}</div><div class="compare-item__tags"><span class="tag ${m.format==='word'?'word':'ppt'}">${m.format==='word'?'Word':'PowerPoint'}</span><span class="tag ${m.style}">${styleLabels[m.style]||m.style}</span></div><button class="compare-item__select" onclick="closeCompareModal();selectModel('${m.id}')">Choisir ce modèle</button></div></div>`;
-      }).join('');
-      document.getElementById('compareBackdrop').classList.add('open'); document.body.style.overflow = 'hidden';
-    }
-    function closeCompareModal() { document.getElementById('compareBackdrop').classList.remove('open'); document.body.style.overflow = ''; }
-    function closeCompareOnOutside(e) { if (e.target === document.getElementById('compareBackdrop')) closeCompareModal(); }
+document.addEventListener("keydown",e=>{
+  if($("shareBackdrop").classList.contains("open")&&e.key==="Escape"){closeShare()}
+  else if($("previewBackdrop").classList.contains("open")){
+    if(e.key==="Escape"){if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen();closeFullscreenFallback();closePreview()}
+    else if(e.key==="ArrowLeft")slide(-1);
+    else if(e.key==="ArrowRight")slide(1);
+    else if(e.key==="+")zoom(1);
+    else if(e.key==="-")zoom(-1);
+  }else if($("compareBackdrop").classList.contains("open")&&e.key==="Escape")closeCompare();
+});
 
-    /* ── SHARE SYSTEM ── */
-    let shareTarget = null;
-    const SITE_BASE = 'https://chronos-services.netlify.app/catalogue%20de%20cv';
-    function buildShareURL(model) { return `${SITE_BASE}?model=${model.id}&format=${model.format}&style=${model.style}`; }
-    function buildShareText(model) {
-      const fmtLabel = model.format === 'word' ? 'Word' : 'PowerPoint';
-      const styleLabels = { moderne:'Moderne', classique:'Classique', creatif:'Créatif', minimal:'Minimal' };
-      const userMsg = (document.getElementById('shareMessage')?.value || '').trim();
-      return `${userMsg || 'Je pense qu\'il peut te correspondre !'}\n\nDécouvrez le ${model.title} sur Chronos-Services !\nFormat : ${fmtLabel}\nStyle : ${styleLabels[model.style]||model.style}\n`;
-    }
-    function openShare(id) {
-      const m = RAW_MODELS.find(x => x.id === id); if (!m) return; shareTarget = m;
-      const fmtLabel = m.format === 'word' ? 'Word' : 'PowerPoint';
-      const styleLabels = { moderne:'Moderne', classique:'Classique', creatif:'Créatif', minimal:'Minimal' };
-      const url = buildShareURL(m);
-      document.getElementById('shareCardTitle').textContent = m.title;
-      document.getElementById('shareCardMeta').innerHTML = `<span class="share-card__tag">${fmtLabel}</span><span class="share-card__tag">${styleLabels[m.style]||m.style}</span>`;
-      document.getElementById('shareLinkInput').value = url;
-      const ogTitle = `${m.title} — Chronos-Services`; const ogDesc = `Modèle CV professionnel · Format ${fmtLabel} · Style ${styleLabels[m.style]||m.style}. Téléchargez-le sur Chronos-Services.`;
-      document.querySelector('meta[property="og:title"]')?.setAttribute('content', ogTitle);
-      document.querySelector('meta[property="og:description"]')?.setAttribute('content', ogDesc);
-      document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
-      document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', ogTitle);
-      document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', ogDesc);
-      document.title = ogTitle;
-      const copyBtn = document.getElementById('shareCopyBtn'); copyBtn.classList.remove('copied'); document.getElementById('shareCopyLabel').textContent = 'Copier';
-      document.getElementById('nativeShareBtn').style.display = navigator.share ? 'flex' : 'none';
-      generateQR(url);
-      document.getElementById('shareBackdrop').classList.add('open'); document.body.style.overflow = 'hidden';
-    }
-    function closeShare() {
-      document.getElementById('shareBackdrop').classList.remove('open'); document.body.style.overflow = '';
-      const msgEl = document.getElementById('shareMessage'); if (msgEl) { msgEl.value = ''; document.getElementById('shareMsgCnt').textContent = '0/200'; }
-      shareTarget = null;
-    }
-    function closeShareOnOutside(e) { if (e.target === document.getElementById('shareBackdrop')) closeShare(); }
-    function copyShareLink() {
-      if (!shareTarget) return; const url = buildShareURL(shareTarget); const btn = document.getElementById('shareCopyBtn'); const lbl = document.getElementById('shareCopyLabel');
-      navigator.clipboard.writeText(url).then(() => { btn.classList.add('copied'); lbl.textContent = 'Copié ✓'; showToast('Lien copié dans le presse-papiers ✓'); setTimeout(() => { btn.classList.remove('copied'); lbl.textContent = 'Copier'; }, 2500); }).catch(() => { const inp = document.getElementById('shareLinkInput'); inp.select(); document.execCommand('copy'); btn.classList.add('copied'); lbl.textContent = 'Copié ✓'; showToast('Lien copié ✓'); setTimeout(() => { btn.classList.remove('copied'); lbl.textContent = 'Copier'; }, 2500); });
-    }
-    function shareWhatsApp() { if (!shareTarget) return; window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText(shareTarget) + buildShareURL(shareTarget))}`, '_blank'); closeShare(); }
-    function shareFacebook() { if (!shareTarget) return; window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(buildShareURL(shareTarget))}`, '_blank', 'width=600,height=400'); closeShare(); }
-    function shareEmail() {
-      if (!shareTarget) return; const m = shareTarget;
-      const fmtLabel = m.format === 'word' ? 'Word' : 'PowerPoint'; const styleLabels = { moderne:'Moderne', classique:'Classique', creatif:'Créatif', minimal:'Minimal' };
-      const url = buildShareURL(m); const userMsg = (document.getElementById('shareMessage')?.value || '').trim();
-      const subject = encodeURIComponent(`${m.title} — Chronos-Services`);
-      const body = encodeURIComponent((userMsg ? userMsg + '\n\n' : 'Bonjour,\n\nJe vous partage ce modèle de CV professionnel.\n\n') + `${m.title}\nFormat : ${fmtLabel}  |  Style : ${styleLabels[m.style]||m.style}\n\nVoir le modèle : ${url}\n\nChronos-Services`);
-      window.location.href = `mailto:?subject=${subject}&body=${body}`; closeShare();
-    }
-    function shareLinkedIn() { if (!shareTarget) return; window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(buildShareURL(shareTarget))}`, '_blank', 'width=600,height=500'); closeShare(); }
-    function nativeShare() {
-      if (!shareTarget || !navigator.share) return;
-      navigator.share({ title: `${shareTarget.title} — Chronos-Services`, text: buildShareText(shareTarget), url: buildShareURL(shareTarget) }).then(() => { closeShare(); showToast('Partagé avec succès ✓'); }).catch(() => {});
-    }
-    function generateQR(url) {
-      const wrap = document.getElementById('shareQrWrap'); const size = 64;
-      wrap.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(url)}&bgcolor=ffffff&color=094102&margin=2" width="${size}" height="${size}" alt="QR Code" style="border-radius:4px;" onerror="this.parentElement.innerHTML='<span style=\\'font-size:.6rem;color:var(--text-3);text-align:center;padding:4px;\\'>QR<br>indisponible</span>'"/>`;
-    }
-    function downloadQR() {
-      if (!shareTarget) return; const url = buildShareURL(shareTarget);
-      const a = document.createElement('a'); a.href = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}&bgcolor=ffffff&color=094102&margin=10`; a.download = `QR-${shareTarget.id}-${shareTarget.format}.png`; a.target = '_blank'; a.click();
-      showToast('Téléchargement du QR code…');
-    }
-
-    /* ── DARK MODE ── */
-    function applyThemeUI(isDark) {
-      document.querySelector('.icon-moon').style.display = isDark ? 'none'  : 'block';
-      document.querySelector('.icon-sun').style.display  = isDark ? 'block' : 'none';
-      const lbl = document.getElementById('themeLabel');
-      if (lbl) lbl.textContent = isDark ? 'Light' : 'Dark';
-    }
-    function toggleTheme() {
-      const isDark = document.body.getAttribute('data-theme') === 'dark';
-      document.body.setAttribute('data-theme', isDark ? '' : 'dark');
-      applyThemeUI(!isDark);
-      try { sessionStorage.setItem('cvTheme', isDark ? '' : 'dark'); } catch(e){}
-    }
-    (function() {
-      const saved = sessionStorage.getItem('cvTheme');
-      if (saved === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
-        applyThemeUI(true);
-      }
-    })();
-
-    /* ── ESCAPE KEY ── */
-    document.addEventListener('keydown', function(e) {
-      if (e.key !== 'Escape') return;
-      if (document.getElementById('compareBackdrop').classList.contains('open')) { closeCompareModal(); return; }
-      if (document.getElementById('shareBackdrop').classList.contains('open'))   { closeShare(); return; }
-      closeModal();
-    });
-  </script>
+applyFilters();
+updateStats();
+checkSharedModelOnLoad();
+</script>
 </body>
 </html>
